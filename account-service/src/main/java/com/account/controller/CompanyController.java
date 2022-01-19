@@ -1,6 +1,7 @@
 package com.account.controller;
 
 import com.account.Dto.BaseResponse;
+import com.account.config.ResponseError;
 import com.account.entity.Account;
 import com.account.entity.Company;
 import com.account.exception.ResourceBadRequestException;
@@ -23,8 +24,10 @@ public class CompanyController {
 
     @Autowired
     private CompanyService companyService;
-    private static final int notFound = 80915;
-    private static final int isExist = 80916;
+
+    @Autowired
+    private ResponseError r;
+
 
     // Create company
     // http://localhost:8091/company
@@ -51,7 +54,7 @@ public class CompanyController {
 
         Company company = companyService.getById(c.getId());
         if (company == null) {
-            throw new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this id"));
+            throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
         }
         company.setEmail(c.getEmail());
         company.setActive(c.getActive());

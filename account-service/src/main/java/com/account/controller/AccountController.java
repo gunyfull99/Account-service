@@ -1,6 +1,7 @@
 package com.account.controller;
 
 import com.account.Dto.*;
+import com.account.config.ResponseError;
 import com.account.entity.*;
 import com.account.exception.ResourceBadRequestException;
 import com.account.exception.ResourceNotFoundException;
@@ -35,10 +36,8 @@ import java.util.Set;
 @RestController
 @RequestMapping("/accounts")
 public class AccountController {
-    private static final int notFound = 80915;
-    private static final int isExist = 80916;
-    private static final int usernameEmpty = 80911;
-    private static final int passwordEmpty = 80912;
+    @Autowired
+    private ResponseError r;
     @Autowired
     private HttpSession session;
 
@@ -51,9 +50,6 @@ public class AccountController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
-    // @Autowired
-    // private AccountRepository accountRepository;
     @Autowired
     private AccountService accountService;
 
@@ -77,7 +73,7 @@ public class AccountController {
 
     public ResponseEntity<Account> getAccountById(@Valid @PathVariable(name = "id") Long id) throws ResourceNotFoundException {
         Account account = accountService.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this id")));
+                .orElseThrow(() -> new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id")));
 
         // convert entity to DTO
         // AccountDto postResponse = modelMapper.map(account, AccountDto.class);
@@ -92,7 +88,7 @@ public class AccountController {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Login success", response = JwtResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws ResourceNotFoundException {
+    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws ResourceNotFoundException,ResourceBadRequestException {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -101,8 +97,9 @@ public class AccountController {
                     )
             );
         } catch (BadCredentialsException e) {
-            throw new ResourceNotFoundException(new BaseResponse(notFound, "Wrong user or password"));
+            throw new ResourceBadRequestException(new BaseResponse(r.notFound, "Wrong user or password"));
         }
+
 
         final UserDetails userDetails
                 = myUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
@@ -110,6 +107,9 @@ public class AccountController {
         final String token =
                 jwtUtility.generateToken(userDetails);
         Account a = accountService.getByUsername(jwtRequest.getUsername());
+        if(a.getActive() == false){
+            throw new ResourceBadRequestException(new BaseResponse(r.notFound, "Account is block."));
+        }
         return new JwtResponse(token, a);
     }
 
@@ -133,7 +133,7 @@ public class AccountController {
 
         Account account = accountService.getByUsername(a.getUsername());
         if (account != null) {
-            throw new ResourceBadRequestException(new BaseResponse(isExist, "User is exist"));
+            throw new ResourceBadRequestException(new BaseResponse(r.isExist, "User is exist"));
         } else {
             return new ResponseEntity<Account>(accountService.saveUser(a), HttpStatus.CREATED);
         }
@@ -156,7 +156,7 @@ public class AccountController {
 
         Account accountRequest = accountService.getByUsername(a.getUsername());
         if (accountRequest == null) {
-            throw new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this id"));
+            throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
         }
         //  accountRequest = modelMapper.map(accountDto, Account.class);
         accountRequest.setPassword(a.getPassword());
