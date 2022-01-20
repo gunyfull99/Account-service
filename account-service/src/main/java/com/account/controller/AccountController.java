@@ -16,13 +16,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -195,6 +189,33 @@ public class AccountController {
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public ResponseEntity<?> addRoleToUser(@Valid @RequestBody RoleToUserForm form) {
         accountService.addRoleToUser(form.getUsername(), form.getRoleId());
+        return ResponseEntity.ok().build();
+    }
+
+
+    // delete role to User
+    // http://localhost:8091/accounts/role/deleteroleaccount
+    @DeleteMapping("/role/deleteroleaccount")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    public ResponseEntity<?> deleteRoleAccount(@Valid @RequestBody RoleToUserForm form) {
+        accountService.removeRoleToUser(form.getUsername(), form.getRoleId());
+        return ResponseEntity.ok().build();
+    }
+
+    // delete permission to User
+    // http://localhost:8091/accounts/permission/deletepermissionaccount
+    @DeleteMapping("/permission/deletepermissionaccount")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    public ResponseEntity<?> deletePermissionAccount(@Valid @RequestBody RoleToUserForm form) {
+        accountService.removePermissionToUser(form.getUsername(), form.getRoleId());
         return ResponseEntity.ok().build();
     }
 

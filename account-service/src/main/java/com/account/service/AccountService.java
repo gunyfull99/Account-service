@@ -104,6 +104,17 @@ public class AccountService {
         accountRepository.save(user);
     }
 
+    public void removePermissionToUser(String username, long perId) throws ResourceNotFoundException {
+
+        Account user = accountRepository.findByUsername(username);
+        if (user == null) {
+            throw new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this username "));
+        }
+        Set<Permission> userPer=user.getPermissions();
+        user.getPermissions().removeIf(x->x.getId()==perId);
+        accountRepository.save(user);
+    }
+
     public Set<Roles> getUserNotRole(Long id){
         return  roleRepository.getUserNotRole(id);
     }

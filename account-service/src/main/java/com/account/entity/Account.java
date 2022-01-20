@@ -39,7 +39,6 @@ public class Account implements Serializable {
     private String password;
 
     @NotEmpty(message = "full name must not empty")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "full name must alpha numberic")
     @Size(min = 1, max = 50, message = "Full name should between 1-50 characters")
     private String fullName;
     private String email;
