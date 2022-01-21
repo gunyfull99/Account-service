@@ -13,4 +13,9 @@ public interface RoleRepository extends JpaRepository<Roles, Long> {
             "",nativeQuery = true)
     Set<Roles> getUserNotRole(@Param("id") long id);
 
+    @Query(value = "SELECT  * from roles where id  IN (select roles_id  from accounts_roles where account_id" +
+            " = :id)" +
+            "",nativeQuery = true)
+    Set<Roles> getUserHaveRole(@Param("id") long id);
+
 }

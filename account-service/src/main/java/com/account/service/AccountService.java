@@ -2,7 +2,9 @@ package com.account.service;
 
 
 import com.account.Dto.BaseResponse;
+import com.account.Dto.ChangePassForm;
 import com.account.entity.*;
+import com.account.exception.ResourceBadRequestException;
 import com.account.exception.ResourceNotFoundException;
 import com.account.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -62,6 +64,22 @@ public class AccountService {
         return accountRepository.save(user);
     }
 
+    public Account UserChangePass(ChangePassForm form) {
+        Account user = accountRepository.findByUsername(form.getUsername());
+        boolean match=passwordEncoder.matches(form.getOldPass(),user.getPassword());
+
+        if(!match){
+            throw new ResourceBadRequestException(new BaseResponse(notFound, "Old pass  is wrong  "));
+        }else if(!form.getNewPass().equals(form.getReNewPass())){
+            System.out.println(form.getNewPass() +" zz "+ form.getReNewPass());
+            throw new ResourceBadRequestException(new BaseResponse(notFound, "Re-NewPass not equal new pass  "));
+        }else {
+            user.setPassword(passwordEncoder.encode(form.getNewPass()));
+        }
+        return accountRepository.save(user);
+    }
+
+
     public Roles saveRole(Roles role) {
         return roleRepository.save(role);
     }
@@ -119,6 +137,24 @@ public class AccountService {
         return  roleRepository.getUserNotRole(id);
     }
 
+    public Set<Permission> getUserNotPer(Long id){
+        return  permissionRepository.getUserNotPer(id);
+    }
+
+    public Set<Permission> getUserHavePer(Long id){
+        return  permissionRepository.getUserHavePer(id);
+    }
+
+    public Set<Permission> getRoleNotPer(Long id){
+        return  permissionRepository.getRoleNotPer(id);
+    }
+
+    public Set<Permission> getRoleHavePer(Long id){
+        return  permissionRepository.getRoleHavePer(id);
+    }
+    public Set<Roles> getUserHaveRole(Long id){
+        return  roleRepository.getUserHaveRole(id);
+    }
 
 
     public void addPer2User(AccountPermission accountPermission) {

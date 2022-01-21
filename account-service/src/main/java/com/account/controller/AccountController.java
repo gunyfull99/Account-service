@@ -82,7 +82,7 @@ public class AccountController {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Login success", response = JwtResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws ResourceNotFoundException,ResourceBadRequestException {
+    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws ResourceNotFoundException, ResourceBadRequestException {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -101,7 +101,7 @@ public class AccountController {
         final String token =
                 jwtUtility.generateToken(userDetails);
         Account a = accountService.getByUsername(jwtRequest.getUsername());
-        if(a.getActive() == false){
+        if (a.getActive() == false) {
             throw new ResourceBadRequestException(new BaseResponse(r.notFound, "Account is block."));
         }
         return new JwtResponse(token, a);
@@ -153,17 +153,51 @@ public class AccountController {
             throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
         }
         //  accountRequest = modelMapper.map(accountDto, Account.class);
-        accountRequest.setPassword(a.getPassword());
         accountRequest.setActive(a.getActive());
         accountRequest.setAddress(a.getAddress());
         accountRequest.setCompany(a.getCompany());
         accountRequest.setEmail(a.getEmail());
         accountRequest.setFullName(a.getFullName());
         accountRequest.setUserType(a.getUserType());
-        Account account = accountService.saveUser(accountRequest);
+        Account account = accountService.save(accountRequest);
         //AccountDto accountResponse = modelMapper.map(account, AccountDto.class);
 
         return ResponseEntity.ok().body(account);
+    }
+
+    // admin change pass
+    // http://localhost:8091/accounts/admin/changepass
+    @PutMapping("/admin/changepass")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    public ResponseEntity<Account> adminChangePass(@Valid @RequestBody Account a)
+            throws ResourceNotFoundException, ResourceBadRequestException {
+
+        Account accountRequest = accountService.getByUsername(a.getUsername());
+        if (accountRequest == null) {
+            throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
+        }
+        accountRequest.setPassword(a.getPassword());
+        Account account = accountService.saveUser(accountRequest);
+
+        return ResponseEntity.ok().body(account);
+    }
+
+    // user change pass
+    // http://localhost:8091/accounts/changepass
+    @PutMapping("/changepass")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    public ResponseEntity<?> userChangePass(@Valid @RequestBody ChangePassForm form)
+            throws ResourceNotFoundException, ResourceBadRequestException {
+        accountService.UserChangePass(form);
+        return ResponseEntity.ok().build();
     }
 
     // create role(ex:,ROLE_ADMIN,ROLE_USER,...)
@@ -275,6 +309,67 @@ public class AccountController {
     @GetMapping("/list/notrole/{id}")
     public ResponseEntity<Set<Roles>> getRoleNotInUser(@PathVariable(name = "id") long id) {
         return ResponseEntity.ok().body(accountService.getUserNotRole(id));
+    }
+
+
+    // get role not in Account
+    // http://localhost:8091/accounts/list/haverole/2
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/list/haverole/{id}")
+    public ResponseEntity<Set<Roles>> getRoleHaveInUser(@PathVariable(name = "id") long id) {
+        return ResponseEntity.ok().body(accountService.getUserHaveRole(id));
+    }
+
+    // get per not in Account
+    // http://localhost:8091/accounts/list/havePer/2
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/list/havePer/{id}")
+    public ResponseEntity<Set<Permission>> getUserHavePer(@PathVariable(name = "id") long id) {
+        return ResponseEntity.ok().body(accountService.getUserHavePer(id));
+    }
+
+    // get per not in Account
+    // http://localhost:8091/accounts/list/notPer/2
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/list/notPer/{id}")
+    public ResponseEntity<Set<Permission>> getUserNotPer(@PathVariable(name = "id") long id) {
+        return ResponseEntity.ok().body(accountService.getUserNotPer(id));
+    }
+
+    // get per not in role
+    // http://localhost:8091/accounts/role/notPer/1
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/role/notPer/{id}")
+    public ResponseEntity<Set<Permission>> getRoleNotPer(@PathVariable(name = "id") long id) {
+        return ResponseEntity.ok().body(accountService.getRoleNotPer(id));
+    }
+
+    // get per  in role
+    // http://localhost:8091/accounts/role/havePer/1
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/role/havePer/{id}")
+    public ResponseEntity<Set<Permission>> getRoleHavePer(@PathVariable(name = "id") long id) {
+        return ResponseEntity.ok().body(accountService.getRoleHavePer(id));
     }
 
     // get all Account

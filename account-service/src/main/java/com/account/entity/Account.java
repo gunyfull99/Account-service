@@ -30,7 +30,7 @@ public class Account implements Serializable {
 
     @NotEmpty(message = "username must not empty")
     @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "username must alpha numberic")
-    @Size(min = 6, max = 12, message = "username should between 6-12 characters")
+    @Size(min = 5, max = 12, message = "username should between 5-12 characters")
     private String username;
 
     @NotEmpty(message = "password must not empty")
@@ -38,8 +38,6 @@ public class Account implements Serializable {
 //    @Size(min = 8,max = 16,message = "password should between 8-16 characters")
     private String password;
 
-    @NotEmpty(message = "full name must not empty")
-    @Size(min = 1, max = 50, message = "Full name should between 1-50 characters")
     private String fullName;
     private String email;
     private String address;

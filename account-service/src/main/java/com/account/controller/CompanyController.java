@@ -49,7 +49,7 @@ public class CompanyController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Company> updateAccount(@Valid @RequestBody Company c)
+    public ResponseEntity<Company> updateCompany(@Valid @RequestBody Company c)
             throws ResourceNotFoundException, ResourceBadRequestException {
 
         Company company = companyService.getById(c.getId());
