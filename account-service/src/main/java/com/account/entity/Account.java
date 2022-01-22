@@ -33,7 +33,6 @@ public class Account implements Serializable {
     @Size(min = 5, max = 12, message = "username should between 5-12 characters")
     private String username;
 
-    @NotEmpty(message = "password must not empty")
 //    @Pattern(regexp = "^[a-zA-Z0-9]+$",message = "password must alpha numberic")
 //    @Size(min = 8,max = 16,message = "password should between 8-16 characters")
     private String password;

@@ -65,7 +65,7 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
 
-    public ResponseEntity<Account> getAccountById(@Valid @PathVariable(name = "id") Long id) throws ResourceNotFoundException {
+    public ResponseEntity<Account> getDetailUser(@Valid @PathVariable(name = "id") Long id) throws ResourceNotFoundException {
         Account account = accountService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id")));
 
@@ -208,7 +208,7 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Roles> saveRole(@Valid @RequestBody Roles role) {
+    public ResponseEntity<Roles> createRole(@Valid @RequestBody Roles role) {
 
         return new ResponseEntity<Roles>(accountService.saveRole(role), HttpStatus.CREATED);
     }
@@ -235,7 +235,7 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<?> deleteRoleAccount(@Valid @RequestBody RoleToUserForm form) {
+    public ResponseEntity<?> deleteRoleToUser(@Valid @RequestBody RoleToUserForm form) {
         accountService.removeRoleToUser(form.getUsername(), form.getRoleId());
         return ResponseEntity.ok().build();
     }
@@ -248,7 +248,7 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<?> deletePermissionAccount(@Valid @RequestBody RoleToUserForm form) {
+    public ResponseEntity<?> deletePermissionUser(@Valid @RequestBody RoleToUserForm form) {
         accountService.removePermissionToUser(form.getUsername(), form.getRoleId());
         return ResponseEntity.ok().build();
     }
@@ -261,7 +261,7 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Permission> savePermission(@Valid @RequestBody Permission permission) {
+    public ResponseEntity<Permission> createPermission(@Valid @RequestBody Permission permission) {
         return new ResponseEntity<Permission>(accountService.savePermission(permission), HttpStatus.CREATED);
     }
 
@@ -324,7 +324,7 @@ public class AccountController {
         return ResponseEntity.ok().body(accountService.getUserHaveRole(id));
     }
 
-    // get per not in Account
+    // get per  in Account
     // http://localhost:8091/accounts/list/havePer/2
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -332,7 +332,7 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @GetMapping("/list/havePer/{id}")
-    public ResponseEntity<Set<Permission>> getUserHavePer(@PathVariable(name = "id") long id) {
+    public ResponseEntity<Set<Permission>> getListPerInUser(@PathVariable(name = "id") long id) {
         return ResponseEntity.ok().body(accountService.getUserHavePer(id));
     }
 
@@ -344,7 +344,7 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @GetMapping("/list/notPer/{id}")
-    public ResponseEntity<Set<Permission>> getUserNotPer(@PathVariable(name = "id") long id) {
+    public ResponseEntity<Set<Permission>> getListPerNotInUser(@PathVariable(name = "id") long id) {
         return ResponseEntity.ok().body(accountService.getUserNotPer(id));
     }
 
@@ -356,7 +356,7 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @GetMapping("/role/notPer/{id}")
-    public ResponseEntity<Set<Permission>> getRoleNotPer(@PathVariable(name = "id") long id) {
+    public ResponseEntity<Set<Permission>> getPerNotInRole(@PathVariable(name = "id") long id) {
         return ResponseEntity.ok().body(accountService.getRoleNotPer(id));
     }
 

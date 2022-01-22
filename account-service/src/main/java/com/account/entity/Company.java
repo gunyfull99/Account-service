@@ -23,6 +23,7 @@ public class Company {
 
     private String email;
     private String phone;
+    private String address;
 
    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
    @JsonIgnore

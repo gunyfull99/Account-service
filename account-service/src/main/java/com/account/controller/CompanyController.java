@@ -58,6 +58,7 @@ public class CompanyController {
         }
         company.setEmail(c.getEmail());
         company.setActive(c.getActive());
+        company.setAddress(c.getAddress());
         company.setPhone(c.getPhone());
         company.setName(c.getName());
         return ResponseEntity.ok().body(companyService.save(company));

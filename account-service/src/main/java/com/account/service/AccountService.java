@@ -110,6 +110,8 @@ public class AccountService {
         }
         // accountRepository.addRole2User(user.getId(), role.getId());
         user.getRoles().add(role);
+        accountRepository.save(user);
+
     }
     public void removeRoleToUser(String username, long roleId) throws ResourceNotFoundException {
 
