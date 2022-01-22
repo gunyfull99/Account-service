@@ -46,7 +46,13 @@ public class AccountService {
     public List<Account> findAll() {
         return accountRepository.findAll();
     }
+    public List<Roles> findAllRole() {
+        return roleRepository.findAll();
+    }
 
+    public List<Permission> findAllPer() {
+        return permissionRepository.findAll();
+    }
     public Optional<Account> findById(Long aLong) {
         return accountRepository.findById(aLong);
     }

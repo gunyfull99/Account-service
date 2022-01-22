@@ -371,6 +371,29 @@ public class AccountController {
     public ResponseEntity<Set<Permission>> getRoleHavePer(@PathVariable(name = "id") long id) {
         return ResponseEntity.ok().body(accountService.getRoleHavePer(id));
     }
+    // get all Per
+    // http://localhost:8091/account/per/list
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/per/list")
+    public ResponseEntity<List<Permission>> getAllPer() {
+        return ResponseEntity.ok().body(accountService.findAllPer());
+    }
+
+    // get all Per
+    // http://localhost:8091/account/role/list
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/role/list")
+    public ResponseEntity<List<Roles>> getAllRole() {
+        return ResponseEntity.ok().body(accountService.findAllRole());
+    }
 
     // get all Account
     // http://localhost:8091/accounts/list
