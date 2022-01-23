@@ -176,8 +176,17 @@ public class AccountService {
     public void addPer2User(AccountPermission accountPermission) {
         accountPermissionRepository.save(accountPermission);
     }
-
+    public AccountPermission getDetailPerInUser(long id){
+        return  accountPermissionRepository.getDetailPerInUser(id);
+    }
+    public RolePermission getDetailPerInRole(long id){
+        return  rolePermissionRepository.getDetailPerInRole(id);
+    }
     public void addPer2Role(RolePermission rolePermission) {
         rolePermissionRepository.save(rolePermission);
+    }
+    public String updatePerInRole(RolePermission rolePermission){
+        rolePermissionRepository.updatePerInRole(rolePermission.isCanCreate(),rolePermission.isCanUpdate(), rolePermission.isCanRead(),rolePermission.getRoles_id(),rolePermission.getPermissions_id());
+        return "Update success!";
     }
 }

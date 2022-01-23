@@ -14,8 +14,8 @@ import javax.persistence.*;
 @Table(name = "roles_permissions")
 public class RolePermission {
     @Id
-    @SequenceGenerator(name = "account_generator", sequenceName = "account_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_generator")
+    @SequenceGenerator(name = "rolePer_generator", sequenceName = "rolePer_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rolePer_generator")
     private long id;
     private long roles_id;
     private  long permissions_id;

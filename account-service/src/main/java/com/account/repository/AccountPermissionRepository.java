@@ -12,4 +12,7 @@ public interface AccountPermissionRepository extends JpaRepository<AccountPermis
 
     @Query(value = "select * FROM accounts_permissions WHERE account_id = :id", nativeQuery = true)
     List<AccountPermission> findPerByUserId(@Param("id") long id);
+
+    @Query(value = "select * from accounts_permissions WHERE id = :id", nativeQuery = true)
+    AccountPermission getDetailPerInUser(@Param("id") long id);
 }
