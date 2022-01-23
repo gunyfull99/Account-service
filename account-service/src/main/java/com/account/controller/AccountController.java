@@ -68,11 +68,8 @@ public class AccountController {
     public ResponseEntity<Account> getDetailUser(@Valid @PathVariable(name = "id") Long id) throws ResourceNotFoundException {
         Account account = accountService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id")));
-
         // convert entity to DTO
         // AccountDto postResponse = modelMapper.map(account, AccountDto.class);
-
-
         return ResponseEntity.ok().body(account);
     }
 
@@ -253,6 +250,19 @@ public class AccountController {
         return ResponseEntity.ok().build();
     }
 
+    // delete permission to role
+    // http://localhost:8091/accounts/permission/deletepermissiontorole
+    @DeleteMapping("/permission/deletepermissiontorole")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    public ResponseEntity<?> deletePermissionRole(@Valid @RequestBody RolePermission form) {
+        accountService.removePermissionToRole(form.getRoles_id(), form.getPermissions_id());
+        return ResponseEntity.ok().build();
+    }
+
     // create permission
     // http://localhost:8091/accounts/permission/save
     @PostMapping("/permission/save")
@@ -286,7 +296,7 @@ public class AccountController {
     }
 
     // add permission to role
-    // http://localhost:8091/accounts/permission/addtoaccounts
+    // http://localhost:8091/accounts/permission/addtorole
     @PostMapping("/permission/addtorole")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),

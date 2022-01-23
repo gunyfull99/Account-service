@@ -141,6 +141,14 @@ public class AccountService {
         accountRepository.save(user);
     }
 
+    public void removePermissionToRole(long roleId, long perId)  {
+        Roles roles= roleRepository.getById(roleId);
+        Set<Permission> per=roles.getPermissions();
+        roles.getPermissions().removeIf(x->x.getId()==perId);
+        roleRepository.save(roles);
+    }
+
+
     public Set<Roles> getUserNotRole(Long id){
         return  roleRepository.getUserNotRole(id);
     }
