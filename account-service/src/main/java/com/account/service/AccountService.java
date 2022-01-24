@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AccountService {
 
@@ -187,6 +189,11 @@ public class AccountService {
     }
     public String updatePerInRole(RolePermission rolePermission){
         rolePermissionRepository.updatePerInRole(rolePermission.isCanCreate(),rolePermission.isCanUpdate(), rolePermission.isCanRead(),rolePermission.getRoles_id(),rolePermission.getPermissions_id());
+        return "Update success!";
+    }
+
+    public String updatePerInUser(AccountPermission accountPermission){
+        accountPermissionRepository.updatePerInUser(accountPermission.isCanCreate(),accountPermission.isCanUpdate(), accountPermission.isCanRead(),accountPermission.getAccount_id(),accountPermission.getPermissions_id());
         return "Update success!";
     }
 }

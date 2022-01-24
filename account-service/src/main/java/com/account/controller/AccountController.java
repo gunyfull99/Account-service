@@ -319,6 +319,18 @@ public class AccountController {
         return  accountService.updatePerInRole(rolePermission);
 
     }
+    // update permission to user
+    // http://localhost:8091/accounts/permission/updatetouser
+    @PutMapping("/permission/updatetouser")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    public String updatePerToUser(@Valid @RequestBody AccountPermission accountPermission) {
+        return  accountService.updatePerInUser(accountPermission);
+
+    }
 
     // get role not in Account
     // http://localhost:8091/accounts/list/notrole/2
