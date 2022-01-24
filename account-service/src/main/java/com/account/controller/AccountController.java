@@ -353,7 +353,7 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @GetMapping("/list/haverole/{id}")
-    public ResponseEntity<Set<Roles>> getRoleHaveInUser(@PathVariable(name = "id") long id) {
+    public ResponseEntity<List<Roles>> getRoleHaveInUser(@PathVariable(name = "id") long id) {
         return ResponseEntity.ok().body(accountService.getUserHaveRole(id));
     }
 
@@ -365,8 +365,8 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @GetMapping("/list/havePer/{id}")
-    public ResponseEntity<Set<Permission>> getListPerInUser(@PathVariable(name = "id") long id) {
-        return ResponseEntity.ok().body(accountService.getUserHavePer(id));
+    public ResponseEntity<List<AccountPerForm>> getListPerInUser(@PathVariable(name = "id") long id) {
+        return ResponseEntity.ok().body(accountService.getPerInUser(id));
     }
 
     // get per not in Account
@@ -401,8 +401,8 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @GetMapping("/role/havePer/{id}")
-    public ResponseEntity<Set<Permission>> getRoleHavePer(@PathVariable(name = "id") long id) {
-        return ResponseEntity.ok().body(accountService.getRoleHavePer(id));
+    public ResponseEntity<List<RolePerForm>> getRoleHavePer(@PathVariable(name = "id") long id) {
+        return ResponseEntity.ok().body(accountService.getPerInRole(id));
     }
     // get all Per
     // http://localhost:8091/account/per/list

@@ -1,8 +1,10 @@
 package com.account.service;
 
 
+import com.account.Dto.AccountPerForm;
 import com.account.Dto.BaseResponse;
 import com.account.Dto.ChangePassForm;
+import com.account.Dto.RolePerForm;
 import com.account.entity.*;
 import com.account.exception.ResourceBadRequestException;
 import com.account.exception.ResourceNotFoundException;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -159,7 +162,7 @@ public class AccountService {
         return  permissionRepository.getUserNotPer(id);
     }
 
-    public Set<Permission> getUserHavePer(Long id){
+    public List<Permission> getUserHavePer(Long id){
         return  permissionRepository.getUserHavePer(id);
     }
 
@@ -167,10 +170,22 @@ public class AccountService {
         return  permissionRepository.getRoleNotPer(id);
     }
 
-    public Set<Permission> getRoleHavePer(Long id){
+    public List<Permission> getRoleHavePer(Long id){
         return  permissionRepository.getRoleHavePer(id);
     }
-    public Set<Roles> getUserHaveRole(Long id){
+    public List<RolePerForm> getPerInRole(long roleId){
+        List<Permission> p =  getRoleHavePer(roleId);
+        List<RolePerForm> list=new ArrayList<>();
+        for (int i = 0; i <p.size() ; i++) {
+            list.add(new RolePerForm(roleId,p.get(i).getId(),getDetailPerInRole(roleId,p.get(i).getId()).isCanRead(),
+                    getDetailPerInRole(roleId,p.get(i).getId()).isCanUpdate(), getDetailPerInRole(roleId,p.get(i).getId()).isCanCreate(),
+                    p.get(i).getName()));
+        }
+        return list;
+    }
+
+
+    public List<Roles> getUserHaveRole(Long id){
         return  roleRepository.getUserHaveRole(id);
     }
 
@@ -181,6 +196,17 @@ public class AccountService {
     public AccountPermission getDetailPerInUser(long id,long idP){
         return  accountPermissionRepository.getDetailPerInUser(id,idP);
     }
+    public List<AccountPerForm> getPerInUser(long userId){
+        List<Permission> p =  getUserHavePer(userId);
+        List<AccountPerForm> list=new ArrayList<>();
+        for (int i = 0; i <p.size() ; i++) {
+            list.add(new AccountPerForm(userId,p.get(i).getId(),getDetailPerInUser(userId,p.get(i).getId()).isCanRead(),
+                    getDetailPerInUser(userId,p.get(i).getId()).isCanUpdate(), getDetailPerInUser(userId,p.get(i).getId()).isCanCreate(),
+                    p.get(i).getName()));
+        }
+        return list;
+    }
+
     public RolePermission getDetailPerInRole(long id,long idP){
         return  rolePermissionRepository.getDetailPerInRole(id,idP);
     }
