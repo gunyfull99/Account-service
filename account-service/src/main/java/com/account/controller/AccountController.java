@@ -404,26 +404,26 @@ public class AccountController {
         return ResponseEntity.ok().body(accountService.findAllPer());
     }
     // get detail per  in role
-    // http://localhost:8091/accounts/role/per/1
+    // http://localhost:8091/accounts/role/per/1/1
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    @GetMapping("/role/per/{id}")
-    public ResponseEntity<RolePermission> getDetailPerInRole(@PathVariable(name = "id") long id) {
-        return ResponseEntity.ok().body(accountService.getDetailPerInRole(id));
+    @GetMapping("/role/per/{id}/{idP}")
+    public ResponseEntity<RolePermission> getDetailPerInRole(@PathVariable(name = "id") long id,@PathVariable(name = "idP") long idP) {
+        return ResponseEntity.ok().body(accountService.getDetailPerInRole(id,idP));
     }
     // get detail per  in user
-    // http://localhost:8091/accounts/user/per/1
+    // http://localhost:8091/accounts/user/per/1/1
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    @GetMapping("/user/per/{id}")
-    public ResponseEntity<AccountPermission> getDetailPerInUser(@PathVariable(name = "id") long id) {
-        return ResponseEntity.ok().body(accountService.getDetailPerInUser(id));
+    @GetMapping("/user/per/{id}/{idP}")
+    public ResponseEntity<AccountPermission> getDetailPerInUser(@PathVariable(name = "id")long id,@PathVariable(name = "idP") long idP) {
+        return ResponseEntity.ok().body(accountService.getDetailPerInUser(id,idP));
     }
     // get all Per
     // http://localhost:8091/account/role/list

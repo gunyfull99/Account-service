@@ -176,11 +176,11 @@ public class AccountService {
     public void addPer2User(AccountPermission accountPermission) {
         accountPermissionRepository.save(accountPermission);
     }
-    public AccountPermission getDetailPerInUser(long id){
-        return  accountPermissionRepository.getDetailPerInUser(id);
+    public AccountPermission getDetailPerInUser(long id,long idP){
+        return  accountPermissionRepository.getDetailPerInUser(id,idP);
     }
-    public RolePermission getDetailPerInRole(long id){
-        return  rolePermissionRepository.getDetailPerInRole(id);
+    public RolePermission getDetailPerInRole(long id,long idP){
+        return  rolePermissionRepository.getDetailPerInRole(id,idP);
     }
     public void addPer2Role(RolePermission rolePermission) {
         rolePermissionRepository.save(rolePermission);

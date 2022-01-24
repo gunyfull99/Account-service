@@ -16,6 +16,6 @@ public interface RolePermissionRepository  extends JpaRepository<RolePermission,
     void updatePerInRole(@Param("create") boolean create,@Param("update") boolean update,@Param("read") boolean read,
                           @Param("role") long role,@Param("per") long per);
 
-    @Query(value = "select * from roles_permissions WHERE id = :id", nativeQuery = true)
-    RolePermission getDetailPerInRole(@Param("id") long id);
+    @Query(value = "select * from roles_permissions WHERE roles_id = :id and permissions_id = :idP", nativeQuery = true)
+    RolePermission getDetailPerInRole(@Param("id") long id,@Param("idP") long idP);
 }
