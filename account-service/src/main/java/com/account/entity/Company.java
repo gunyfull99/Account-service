@@ -23,7 +23,9 @@ public class Company {
 
     private String email;
     private String phone;
+    private String shortCutName;
     private String address;
+    private String logo;
 
    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
    @JsonIgnore
@@ -33,4 +35,11 @@ public class Company {
     public boolean getActive() {
         return this.isActive;
     }
+
+//    @Transient
+//    public String getPhotosImagePath() {
+//        if (logo == null || id == null) return null;
+//
+//        return "/user-photos/" + id + "/" + logo;
+//    }
 }
