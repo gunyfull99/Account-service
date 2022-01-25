@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -66,7 +67,10 @@ public class CompanyController {
         company.setShortCutName(shortCutName);
         company.setName(name);
         company.setAddress(address);
-        company.setLogo(imagePath.resolve(image.getOriginalFilename()).toString());
+        System.out.println(imagePath.resolve(image.getOriginalFilename()));
+        byte[] bytes=image.getBytes();
+        String base64= Base64.getEncoder().encodeToString(bytes);
+        company.setLogo(base64);
 
         return new ResponseEntity<Company>(companyService.save(company), HttpStatus.CREATED);
     }
