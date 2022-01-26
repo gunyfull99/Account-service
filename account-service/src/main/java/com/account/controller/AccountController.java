@@ -460,4 +460,15 @@ public class AccountController {
     public ResponseEntity<List<Account>> getAllAccount() {
         return ResponseEntity.ok().body(accountService.findAll());
     }
+
+    // http://localhost:8091/accounts/int/getnamebyid
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/int/getnamebyid/{id}")
+    public ResponseEntity<String> getNameById(long accountId) {
+        return ResponseEntity.ok().body(accountService.getNameById(accountId));
+    }
 }

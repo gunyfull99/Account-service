@@ -24,5 +24,6 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
                             @Param("canUpdate") boolean canUpdate,
                             @Param("perId") Long perId);
 
-
+    @Query(value = "SELECT  full_name from accounts where id= :id", nativeQuery = true)
+    String findNameByUserId(@Param("id") long id);
 }

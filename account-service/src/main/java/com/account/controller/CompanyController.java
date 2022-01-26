@@ -48,9 +48,13 @@ public class CompanyController {
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Company> createCompany( @RequestParam String name,@RequestParam String phone,
+    public ResponseEntity<Company> createCompany(@RequestParam String name,@RequestParam String phone,
                                                   @RequestParam String email, @RequestParam String shortCutName,@RequestParam String address,
                                                   @RequestParam MultipartFile image) throws ResourceBadRequestException, IOException {
+
+
+        Company company = new Company();
+
         Path staticPath = Paths.get("static");
         Path imagePath = Paths.get("images");
         if (!Files.exists(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath))) {
@@ -61,7 +65,6 @@ public class CompanyController {
         try (OutputStream os = Files.newOutputStream(file)) {
             os.write(image.getBytes());
         }
-        Company company = new Company();
         company.setEmail(email);
         company.setPhone(phone);
         company.setShortCutName(shortCutName);
@@ -83,20 +86,34 @@ public class CompanyController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Company> updateCompany(@Valid @RequestBody Company c)
-            throws ResourceNotFoundException, ResourceBadRequestException {
+    public ResponseEntity<Company> updateCompany(@RequestParam long id, @RequestParam String name,@RequestParam String phone,
+                                                 @RequestParam String email, @RequestParam String shortCutName,@RequestParam String address,
+                                                 @RequestParam MultipartFile image)
+            throws ResourceNotFoundException, ResourceBadRequestException, IOException {
 
-        Company company = companyService.getById(c.getId());
-        if (company == null) {
-            throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
+        Company company = companyService.getById(id);
+
+        Path staticPath = Paths.get("static");
+        Path imagePath = Paths.get("images");
+        if (!Files.exists(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath))) {
+            Files.createDirectories(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath));
         }
-        company.setEmail(c.getEmail());
-        company.setActive(c.getActive());
-        company.setAddress(c.getAddress());
-        company.setPhone(c.getPhone());
-        company.setName(c.getName());
-        company.setShortCutName(c.getShortCutName());
-        return ResponseEntity.ok().body(companyService.save(company));
+        Path file = CURRENT_FOLDER.resolve(staticPath)
+                .resolve(imagePath).resolve(image.getOriginalFilename());
+        try (OutputStream os = Files.newOutputStream(file)) {
+            os.write(image.getBytes());
+        }
+        company.setEmail(email);
+        company.setPhone(phone);
+        company.setShortCutName(shortCutName);
+        company.setName(name);
+        company.setAddress(address);
+        System.out.println(imagePath.resolve(image.getOriginalFilename()));
+        byte[] bytes=image.getBytes();
+        String base64= Base64.getEncoder().encodeToString(bytes);
+        company.setLogo(base64);
+
+        return new ResponseEntity<Company>(companyService.save(company), HttpStatus.CREATED);
     }
 
     // delete company

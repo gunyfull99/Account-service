@@ -222,4 +222,9 @@ public class AccountService {
         accountPermissionRepository.updatePerInUser(accountPermission.isCanCreate(),accountPermission.isCanUpdate(), accountPermission.isCanRead(),accountPermission.getAccount_id(),accountPermission.getPermissions_id());
         return "Update success!";
     }
+
+    public String getNameById(long accountId) {
+        String name = accountRepository.findNameByUserId(accountId);
+        return name;
+    }
 }
