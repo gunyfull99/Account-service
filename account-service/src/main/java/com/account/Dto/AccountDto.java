@@ -1,57 +1,32 @@
-//package com.account.Dto;
-//
-//import lombok.AllArgsConstructor;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
-//
-//import javax.validation.constraints.NotEmpty;
-//import javax.validation.constraints.Pattern;
-//import javax.validation.constraints.Size;
-//import java.util.Collection;
-//
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
-//public class AccountDto implements UserDetails {
-//
-//
-//    @NotEmpty
-//    @Pattern(regexp = "^[a-zA-Z0-9]*$",message = "username must alpha numberic")
-//    @Size(min = 6,max = 12,message = "username should between 6-12 characters")
-//    private String username;
-//
-//    @NotEmpty
-//    @Pattern(regexp = "^[a-zA-Z0-9]*$",message = "password must alpha numberic")
-//    @Size(min = 8,max = 16,message = "password should between 8-16 characters")
-//    private String password;
-//    @NotEmpty
-//    @Pattern(regexp = "^(active)|(deactive)$",message = "status  must active or deactive")
-//    private String status;
-//
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return null;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return true;
-//    }
-//}
+package com.account.Dto;
+
+import com.account.entity.Company;
+import com.account.entity.Permission;
+import com.account.entity.Roles;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import java.util.HashSet;
+import java.util.Set;
+
+import static javax.persistence.FetchType.EAGER;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AccountDto {
+
+    private long id;
+    private String username;
+    private String fullName;
+    private String email;
+    private String address;
+    private boolean isActive ;
+    private Company company;
+    private Set<Roles> roles = new HashSet<>();
+    private Set<Permission> permissions = new HashSet<>();
+}

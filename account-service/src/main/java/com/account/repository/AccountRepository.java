@@ -7,16 +7,20 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
+@Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Query(value = "SELECT  * from accounts where username= :username", nativeQuery = true)
     Account findByUsername(@Param("username") String username);
 
-
+    @Query(value = "SELECT  * from accounts where id= :id", nativeQuery = true)
+     Account findByIdTest(@Param("id") Long id);
 
     @Query(value = "insert into accounts_permissions VALUES(:acId,:canCreate,:canRead,:canUpdate,:perId)", nativeQuery = true)
     void addPermission2User(@Param("acId") Long acId, @Param("canCreate") boolean canCreate,

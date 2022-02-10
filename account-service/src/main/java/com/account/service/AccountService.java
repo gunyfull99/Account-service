@@ -1,10 +1,7 @@
 package com.account.service;
 
 
-import com.account.Dto.AccountPerForm;
-import com.account.Dto.BaseResponse;
-import com.account.Dto.ChangePassForm;
-import com.account.Dto.RolePerForm;
+import com.account.Dto.*;
 import com.account.entity.*;
 import com.account.exception.ResourceBadRequestException;
 import com.account.exception.ResourceNotFoundException;
@@ -51,6 +48,7 @@ public class AccountService {
     public List<Account> findAll() {
         return accountRepository.findAll();
     }
+
     public List<Roles> findAllRole() {
         return roleRepository.findAll();
     }
@@ -58,8 +56,9 @@ public class AccountService {
     public List<Permission> findAllPer() {
         return permissionRepository.findAll();
     }
-    public Optional<Account> findById(Long aLong) {
-        return accountRepository.findById(aLong);
+
+    public Account findById(Long aLong) {
+        return accountRepository.findByIdTest(aLong);
     }
 
     public List<AccountPermission> findAllAccountPermission() {
@@ -77,14 +76,14 @@ public class AccountService {
 
     public Account UserChangePass(ChangePassForm form) {
         Account user = accountRepository.findByUsername(form.getUsername());
-        boolean match=passwordEncoder.matches(form.getOldPass(),user.getPassword());
+        boolean match = passwordEncoder.matches(form.getOldPass(), user.getPassword());
 
-        if(!match){
+        if (!match) {
             throw new ResourceBadRequestException(new BaseResponse(notFound, "Old pass  is wrong  "));
-        }else if(!form.getNewPass().equals(form.getReNewPass())){
-            System.out.println(form.getNewPass() +" zz "+ form.getReNewPass());
+        } else if (!form.getNewPass().equals(form.getReNewPass())) {
+            System.out.println(form.getNewPass() + " zz " + form.getReNewPass());
             throw new ResourceBadRequestException(new BaseResponse(notFound, "Re-NewPass not equal new pass  "));
-        }else {
+        } else {
             user.setPassword(passwordEncoder.encode(form.getNewPass()));
         }
         return accountRepository.save(user);
@@ -124,14 +123,15 @@ public class AccountService {
         accountRepository.save(user);
 
     }
+
     public void removeRoleToUser(String username, long roleId) throws ResourceNotFoundException {
 
         Account user = accountRepository.findByUsername(username);
         if (user == null) {
             throw new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this username "));
         }
-        Set<Roles> userRole=user.getRoles();
-        user.getRoles().removeIf(x->x.getId()==roleId);
+        Set<Roles> userRole = user.getRoles();
+        user.getRoles().removeIf(x -> x.getId() == roleId);
         accountRepository.save(user);
     }
 
@@ -141,90 +141,104 @@ public class AccountService {
         if (user == null) {
             throw new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this username "));
         }
-        Set<Permission> userPer=user.getPermissions();
-        user.getPermissions().removeIf(x->x.getId()==perId);
+        Set<Permission> userPer = user.getPermissions();
+        user.getPermissions().removeIf(x -> x.getId() == perId);
         accountRepository.save(user);
     }
 
-    public void removePermissionToRole(long roleId, long perId)  {
-        Roles roles= roleRepository.getById(roleId);
-        Set<Permission> per=roles.getPermissions();
-        roles.getPermissions().removeIf(x->x.getId()==perId);
+    public void removePermissionToRole(long roleId, long perId) {
+        Roles roles = roleRepository.getById(roleId);
+        Set<Permission> per = roles.getPermissions();
+        roles.getPermissions().removeIf(x -> x.getId() == perId);
         roleRepository.save(roles);
     }
 
 
-    public Set<Roles> getUserNotRole(Long id){
-        return  roleRepository.getUserNotRole(id);
+    public Set<Roles> getUserNotRole(Long id) {
+        return roleRepository.getUserNotRole(id);
     }
 
-    public Set<Permission> getUserNotPer(Long id){
-        return  permissionRepository.getUserNotPer(id);
+    public Set<Permission> getUserNotPer(Long id) {
+        return permissionRepository.getUserNotPer(id);
     }
 
-    public List<Permission> getUserHavePer(Long id){
-        return  permissionRepository.getUserHavePer(id);
+    public List<Permission> getUserHavePer(Long id) {
+        return permissionRepository.getUserHavePer(id);
     }
 
-    public Set<Permission> getRoleNotPer(Long id){
-        return  permissionRepository.getRoleNotPer(id);
+    public Set<Permission> getRoleNotPer(Long id) {
+        return permissionRepository.getRoleNotPer(id);
     }
 
-    public List<Permission> getRoleHavePer(Long id){
-        return  permissionRepository.getRoleHavePer(id);
+    public List<Permission> getRoleHavePer(Long id) {
+        return permissionRepository.getRoleHavePer(id);
     }
-    public List<RolePerForm> getPerInRole(long roleId){
-        List<Permission> p =  getRoleHavePer(roleId);
-        List<RolePerForm> list=new ArrayList<>();
-        for (int i = 0; i <p.size() ; i++) {
-            list.add(new RolePerForm(roleId,p.get(i).getId(),getDetailPerInRole(roleId,p.get(i).getId()).isCanRead(),
-                    getDetailPerInRole(roleId,p.get(i).getId()).isCanUpdate(), getDetailPerInRole(roleId,p.get(i).getId()).isCanCreate(),
+
+    public List<RolePerForm> getPerInRole(long roleId) {
+        List<Permission> p = getRoleHavePer(roleId);
+        List<RolePerForm> list = new ArrayList<>();
+        for (int i = 0; i < p.size(); i++) {
+            list.add(new RolePerForm(roleId, p.get(i).getId(), getDetailPerInRole(roleId, p.get(i).getId()).isCanRead(),
+                    getDetailPerInRole(roleId, p.get(i).getId()).isCanUpdate(), getDetailPerInRole(roleId, p.get(i).getId()).isCanCreate(),
                     p.get(i).getName()));
         }
         return list;
     }
 
 
-    public List<Roles> getUserHaveRole(Long id){
-        return  roleRepository.getUserHaveRole(id);
+    public List<Roles> getUserHaveRole(Long id) {
+        return roleRepository.getUserHaveRole(id);
     }
 
 
     public void addPer2User(AccountPermission accountPermission) {
         accountPermissionRepository.save(accountPermission);
     }
-    public AccountPermission getDetailPerInUser(long id,long idP){
-        return  accountPermissionRepository.getDetailPerInUser(id,idP);
+
+    public AccountPermission getDetailPerInUser(long id, long idP) {
+        return accountPermissionRepository.getDetailPerInUser(id, idP);
     }
-    public List<AccountPerForm> getPerInUser(long userId){
-        List<Permission> p =  getUserHavePer(userId);
-        List<AccountPerForm> list=new ArrayList<>();
-        for (int i = 0; i <p.size() ; i++) {
-            list.add(new AccountPerForm(userId,p.get(i).getId(),getDetailPerInUser(userId,p.get(i).getId()).isCanRead(),
-                    getDetailPerInUser(userId,p.get(i).getId()).isCanUpdate(), getDetailPerInUser(userId,p.get(i).getId()).isCanCreate(),
+
+    public List<AccountPerForm> getPerInUser(long userId) {
+        List<Permission> p = getUserHavePer(userId);
+        List<AccountPerForm> list = new ArrayList<>();
+        for (int i = 0; i < p.size(); i++) {
+            list.add(new AccountPerForm(userId, p.get(i).getId(), getDetailPerInUser(userId, p.get(i).getId()).isCanRead(),
+                    getDetailPerInUser(userId, p.get(i).getId()).isCanUpdate(), getDetailPerInUser(userId, p.get(i).getId()).isCanCreate(),
                     p.get(i).getName()));
         }
         return list;
     }
 
-    public RolePermission getDetailPerInRole(long id,long idP){
-        return  rolePermissionRepository.getDetailPerInRole(id,idP);
+    public RolePermission getDetailPerInRole(long id, long idP) {
+        return rolePermissionRepository.getDetailPerInRole(id, idP);
     }
+
     public void addPer2Role(RolePermission rolePermission) {
         rolePermissionRepository.save(rolePermission);
     }
-    public String updatePerInRole(RolePermission rolePermission){
-        rolePermissionRepository.updatePerInRole(rolePermission.isCanCreate(),rolePermission.isCanUpdate(), rolePermission.isCanRead(),rolePermission.getRoles_id(),rolePermission.getPermissions_id());
+
+    public String updatePerInRole(RolePermission rolePermission) {
+        rolePermissionRepository.updatePerInRole(rolePermission.isCanCreate(), rolePermission.isCanUpdate(), rolePermission.isCanRead(), rolePermission.getRoles_id(), rolePermission.getPermissions_id());
         return "Update success!";
     }
 
-    public String updatePerInUser(AccountPermission accountPermission){
-        accountPermissionRepository.updatePerInUser(accountPermission.isCanCreate(),accountPermission.isCanUpdate(), accountPermission.isCanRead(),accountPermission.getAccount_id(),accountPermission.getPermissions_id());
+    public String updatePerInUser(AccountPermission accountPermission) {
+        accountPermissionRepository.updatePerInUser(accountPermission.isCanCreate(), accountPermission.isCanUpdate(), accountPermission.isCanRead(), accountPermission.getAccount_id(), accountPermission.getPermissions_id());
         return "Update success!";
     }
 
-    public String getNameById(long accountId) {
-        String name = accountRepository.findNameByUserId(accountId);
-        return name;
+    public AccountDto getAccById(Account a) {
+        AccountDto acc = new AccountDto();
+        acc.setId(a.getId());
+        acc.setEmail((a.getEmail()));
+        acc.setFullName((a.getFullName()));
+        acc.setAddress(a.getAddress());
+        acc.setUsername(a.getUsername());
+        acc.setActive(a.getActive());
+        acc.setCompany(a.getCompany());
+        acc.setPermissions(a.getPermissions());
+        acc.setRoles(a.getRoles());
+        return acc;
     }
 }

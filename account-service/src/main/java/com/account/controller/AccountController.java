@@ -65,12 +65,13 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
 
-    public ResponseEntity<Account> getDetailUser(@Valid @PathVariable(name = "id") Long id) throws ResourceNotFoundException {
-        Account account = accountService.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id")));
+    public ResponseEntity<AccountDto> getDetailUser(@Valid @PathVariable(name = "id") Long id) throws ResourceNotFoundException {
+        Account account = accountService.findById(id);
+
+                //.orElseThrow(() -> new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id")));
         // convert entity to DTO
         // AccountDto postResponse = modelMapper.map(account, AccountDto.class);
-        return ResponseEntity.ok().body(account);
+        return ResponseEntity.ok().body(accountService.getAccById(account));
     }
 
     // Login
@@ -462,13 +463,13 @@ public class AccountController {
     }
 
     // http://localhost:8091/accounts/int/getnamebyid
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
-            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
-            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
-            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
-            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    @GetMapping("/int/getnamebyid/{id}")
-    public ResponseEntity<String> getNameById(long accountId) {
-        return ResponseEntity.ok().body(accountService.getNameById(accountId));
-    }
+//    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+//            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+//            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+//            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+//            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+//    @GetMapping("/int/getnamebyid/{id}")
+//    public ResponseEntity<String> getNameById(long accountId) {
+//        return ResponseEntity.ok().body(accountService.getNameById(accountId));
+//    }
 }
