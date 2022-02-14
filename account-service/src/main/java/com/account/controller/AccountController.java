@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8091")
 @RequestMapping("/accounts")
 public class AccountController {
     @Autowired
