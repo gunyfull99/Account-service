@@ -228,6 +228,21 @@ public class AccountService {
         return "Update success!";
     }
 
+    public AccountDto getAccByUsername(String username) {
+        Account a= accountRepository.findByUsername(username);
+        AccountDto acc = new AccountDto();
+        acc.setId(a.getId());
+        acc.setEmail((a.getEmail()));
+        acc.setFullName((a.getFullName()));
+        acc.setAddress(a.getAddress());
+        acc.setUsername(a.getUsername());
+        acc.setActive(a.getActive());
+        acc.setCompany(a.getCompany());
+        acc.setPermissions(a.getPermissions());
+        acc.setRoles(a.getRoles());
+        return acc;
+    }
+
     public AccountDto getAccById(Account a) {
         AccountDto acc = new AccountDto();
         acc.setId(a.getId());

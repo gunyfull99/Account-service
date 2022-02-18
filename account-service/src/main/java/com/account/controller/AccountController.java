@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.math.BigInteger;
@@ -28,7 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8091")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/accounts")
 public class AccountController {
     @Autowired
@@ -59,6 +60,7 @@ public class AccountController {
 
     // get detail account
     // http://localhost:8091/accounts/{id}
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @GetMapping("/{id}")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Success", response = Account.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -69,7 +71,7 @@ public class AccountController {
     public ResponseEntity<AccountDto> getDetailUser(@Valid @PathVariable(name = "id") Long id) throws ResourceNotFoundException {
         Account account = accountService.findById(id);
 
-                //.orElseThrow(() -> new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id")));
+        //.orElseThrow(() -> new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id")));
         // convert entity to DTO
         // AccountDto postResponse = modelMapper.map(account, AccountDto.class);
         return ResponseEntity.ok().body(accountService.getAccById(account));
@@ -81,7 +83,7 @@ public class AccountController {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Login success", response = JwtResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws ResourceNotFoundException, ResourceBadRequestException {
+    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest, HttpSession session) throws ResourceNotFoundException, ResourceBadRequestException {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -93,7 +95,6 @@ public class AccountController {
             throw new ResourceBadRequestException(new BaseResponse(r.notFound, "Wrong user or password"));
         }
 
-
         final UserDetails userDetails
                 = myUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
 
@@ -103,6 +104,7 @@ public class AccountController {
         if (a.getActive() == false) {
             throw new ResourceBadRequestException(new BaseResponse(r.notFound, "Account is block."));
         }
+        session.setAttribute("userId", a.getId());
         return new JwtResponse(token, a);
     }
 
@@ -116,6 +118,7 @@ public class AccountController {
 
     // Create account
     // http://localhost:8091/accounts
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PostMapping("")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Account.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -138,6 +141,7 @@ public class AccountController {
 
     // Update account
     // http://localhost:8091/accounts
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PutMapping("")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -166,6 +170,7 @@ public class AccountController {
 
     // admin change pass
     // http://localhost:8091/accounts/admin/changepass
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PutMapping("/admin/changepass")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -187,6 +192,7 @@ public class AccountController {
 
     // user change pass
     // http://localhost:8091/accounts/changepass
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PutMapping("/changepass")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -201,6 +207,7 @@ public class AccountController {
 
     // create role(ex:,ROLE_ADMIN,ROLE_USER,...)
     // http://localhost:8091/accounts/role/save
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PostMapping("/role/save")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -214,6 +221,7 @@ public class AccountController {
 
     // add role to User
     // http://localhost:8091/accounts/role/addtoaccounts
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PostMapping("/role/addtoaccounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -228,6 +236,7 @@ public class AccountController {
 
     // delete role to User
     // http://localhost:8091/accounts/role/deleteroleaccount
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @DeleteMapping("/role/deleteroleaccount")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -241,6 +250,7 @@ public class AccountController {
 
     // delete permission to User
     // http://localhost:8091/accounts/permission/deletepermissionaccount
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @DeleteMapping("/permission/deletepermissionaccount")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -254,6 +264,7 @@ public class AccountController {
 
     // delete permission to role
     // http://localhost:8091/accounts/permission/deletepermissiontorole
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @DeleteMapping("/permission/deletepermissiontorole")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -267,6 +278,7 @@ public class AccountController {
 
     // create permission
     // http://localhost:8091/accounts/permission/save
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PostMapping("/permission/save")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Permission.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -279,6 +291,7 @@ public class AccountController {
 
     // get all permission by userid
     // http://localhost:8091/accounts/permission/2
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @GetMapping("/permission/{id}")
     public ResponseEntity<List<AccountPermission>> getPerByUser(@PathVariable(name = "id") long id) {
         return ResponseEntity.ok().body(accountService.findPerByUserId(id));
@@ -286,6 +299,7 @@ public class AccountController {
 
     // add permission to User
     // http://localhost:8091/accounts/permission/addtoaccounts
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PostMapping("/permission/addtoaccounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -299,6 +313,7 @@ public class AccountController {
 
     // add permission to role
     // http://localhost:8091/accounts/permission/addtorole
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PostMapping("/permission/addtorole")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -309,8 +324,10 @@ public class AccountController {
         accountService.addPer2Role(rolePermission);
         return ResponseEntity.ok().build();
     }
+
     // update permission to role
     // http://localhost:8091/accounts/permission/updatetorole
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PutMapping("/permission/updatetorole")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -318,11 +335,13 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public String updatePerToRole(@Valid @RequestBody RolePermission rolePermission) {
-        return  accountService.updatePerInRole(rolePermission);
+        return accountService.updatePerInRole(rolePermission);
 
     }
+
     // update permission to user
     // http://localhost:8091/accounts/permission/updatetouser
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @PutMapping("/permission/updatetouser")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -330,12 +349,13 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public String updatePerToUser(@Valid @RequestBody AccountPermission accountPermission) {
-        return  accountService.updatePerInUser(accountPermission);
+        return accountService.updatePerInUser(accountPermission);
 
     }
 
     // get role not in Account
     // http://localhost:8091/accounts/list/notrole/2
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -349,6 +369,7 @@ public class AccountController {
 
     // get role not in Account
     // http://localhost:8091/accounts/list/haverole/2
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -361,6 +382,7 @@ public class AccountController {
 
     // get per  in Account
     // http://localhost:8091/accounts/list/havePer/2
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -373,6 +395,7 @@ public class AccountController {
 
     // get per not in Account
     // http://localhost:8091/accounts/list/notPer/2
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -385,6 +408,7 @@ public class AccountController {
 
     // get per not in role
     // http://localhost:8091/accounts/role/notPer/1
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -397,6 +421,7 @@ public class AccountController {
 
     // get per  in role
     // http://localhost:8091/accounts/role/havePer/1
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -406,8 +431,10 @@ public class AccountController {
     public ResponseEntity<List<RolePerForm>> getRoleHavePer(@PathVariable(name = "id") long id) {
         return ResponseEntity.ok().body(accountService.getPerInRole(id));
     }
+
     // get all Per
     // http://localhost:8091/account/per/list
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -417,30 +444,36 @@ public class AccountController {
     public ResponseEntity<List<Permission>> getAllPer() {
         return ResponseEntity.ok().body(accountService.findAllPer());
     }
+
     // get detail per  in role
     // http://localhost:8091/accounts/role/per/1/1
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @GetMapping("/role/per/{id}/{idP}")
-    public ResponseEntity<RolePermission> getDetailPerInRole(@PathVariable(name = "id") long id,@PathVariable(name = "idP") long idP) {
-        return ResponseEntity.ok().body(accountService.getDetailPerInRole(id,idP));
+    public ResponseEntity<RolePermission> getDetailPerInRole(@PathVariable(name = "id") long id, @PathVariable(name = "idP") long idP) {
+        return ResponseEntity.ok().body(accountService.getDetailPerInRole(id, idP));
     }
+
     // get detail per  in user
     // http://localhost:8091/accounts/user/per/1/1
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @GetMapping("/user/per/{id}/{idP}")
-    public ResponseEntity<AccountPermission> getDetailPerInUser(@PathVariable(name = "id")long id,@PathVariable(name = "idP") long idP) {
-        return ResponseEntity.ok().body(accountService.getDetailPerInUser(id,idP));
+    public ResponseEntity<AccountPermission> getDetailPerInUser(@PathVariable(name = "id") long id, @PathVariable(name = "idP") long idP) {
+        return ResponseEntity.ok().body(accountService.getDetailPerInUser(id, idP));
     }
+
     // get all Per
     // http://localhost:8091/account/role/list
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -453,6 +486,7 @@ public class AccountController {
 
     // get all Account
     // http://localhost:8091/accounts/list
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -462,6 +496,57 @@ public class AccountController {
     public ResponseEntity<List<Account>> getAllAccount() {
         return ResponseEntity.ok().body(accountService.findAll());
     }
+
+    // get can read from user
+    // http://localhost:8091/accounts/canread/{perid}
+
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @GetMapping("/canread/{perid}")
+    public ResponseEntity<Boolean> getCanRead(HttpServletRequest request,@PathVariable(name = "perid") long perId) {
+        long userId = (long) request.getSession().getAttribute("userId");
+        Account a = accountService.findById(userId);
+        AccountDto a1 = accountService.getAccById(a);
+        AccountPermission ap = accountService.getDetailPerInUser(userId,perId);
+        return ResponseEntity.ok().body(ap.isCanRead());
+    }
+
+    // get can create from user
+    // http://localhost:8091/accounts/cancreate/{username}/{perid}
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @GetMapping("/cancreate/{username}/{perid}")
+    public ResponseEntity<Boolean> getCanCreate(@PathVariable(name = "username") String username,@PathVariable(name = "perid") long perId) {
+        AccountDto a1 = accountService.getAccByUsername(username);
+        AccountPermission ap = accountService.getDetailPerInUser(a1.getId(),perId);
+        return ResponseEntity.ok().body(ap.isCanCreate());
+    }
+
+    // get can update from user
+    // http://localhost:8091/accounts/canupdate/{perid}
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @GetMapping("/canupdate/{perid}")
+    public ResponseEntity<Boolean> getCanUpdate(HttpServletRequest request,@PathVariable(name = "perid") long perId) {
+        long userId = (long) request.getSession().getAttribute("userId");
+        Account a = accountService.findById(userId);
+        AccountDto a1 = accountService.getAccById(a);
+        AccountPermission ap = accountService.getDetailPerInUser(userId,perId);
+        return ResponseEntity.ok().body(ap.isCanUpdate());
+    }
+
 
     // http://localhost:8091/accounts/int/getnamebyid
 //    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
