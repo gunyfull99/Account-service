@@ -58,10 +58,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/accounts/login").permitAll()
-                .antMatchers("/accounts/{id}").permitAll()
                 .antMatchers("/accounts/role").hasAnyAuthority("ADMIN")
-                .antMatchers("/accounts/**").permitAll()
                 .anyRequest().authenticated()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/accounts/login")
+                .logoutUrl("accounts/logout").
+                clearAuthentication(true).
+                invalidateHttpSession(true)
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
