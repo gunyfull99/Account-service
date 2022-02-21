@@ -28,6 +28,7 @@ import java.util.Base64;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/company")
 public class CompanyController {
 
@@ -43,6 +44,7 @@ public class CompanyController {
 
 
     @PostMapping("")
+    @CrossOrigin(origins = "http://localhost:8091/company")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Company.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -80,6 +82,7 @@ public class CompanyController {
 
     // Update company
     // http://localhost:8091/company
+    @CrossOrigin(origins = "http://localhost:8091/company")
     @PutMapping("")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Company.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -116,25 +119,11 @@ public class CompanyController {
         return new ResponseEntity<Company>(companyService.save(company), HttpStatus.CREATED);
     }
 
-    // delete company
-    // http://localhost:8091/company/2
-//    @DeleteMapping("/{id}")
-//    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Company.class),
-//            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
-//            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
-//            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
-//            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-//    public ResponseEntity<String> delete(@PathVariable("id") long id) throws ResourceNotFoundException {
-//        Company company =  companyService.findCompany(id);
-//        if (company == null) {
-//            throw new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this id"));
-//        }
-//        companyService.deleteById(id);
-//        return new ResponseEntity<String>("Company deleted successfully!.", HttpStatus.OK);
-//    }
+
 
     // get all company
     // http://localhost:8091/company/list
+    @CrossOrigin(origins = "http://localhost:8091/company")
     @GetMapping("/list")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Company.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),

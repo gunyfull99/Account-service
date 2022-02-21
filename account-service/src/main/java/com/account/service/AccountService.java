@@ -45,8 +45,14 @@ public class AccountService {
         return accountRepository.save(entity);
     }
 
-    public List<Account> findAll() {
-        return accountRepository.findAll();
+    public List<AccountDto> findAll() {
+        List<Account>a=accountRepository.findAll();
+        List<AccountDto>a1=new ArrayList<>();
+        for (int i = 0; i <a.size() ; i++) {
+            AccountDto aDto=updateUser(a.get(i));
+            a1.add(aDto);
+        }
+        return a1;
     }
 
     public List<Roles> findAllRole() {
@@ -69,9 +75,35 @@ public class AccountService {
         return accountRepository.getById(id);
     }
 
-    public Account saveUser(Account user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return accountRepository.save(user);
+    public AccountDto saveUser(Account a) {
+        a.setPassword(passwordEncoder.encode(a.getPassword()));
+        accountRepository.save(a);
+        AccountDto acc = new AccountDto();
+        acc.setId(a.getId());
+        acc.setEmail((a.getEmail()));
+        acc.setFullName((a.getFullName()));
+        acc.setAddress(a.getAddress());
+        acc.setUsername(a.getUsername());
+        acc.setActive(a.getActive());
+        acc.setCompany(a.getCompany());
+        acc.setPermissions(a.getPermissions());
+        acc.setRoles(a.getRoles());
+        acc.setUserType(a.getUserType());
+        return acc;
+    }
+    public AccountDto updateUser(Account a) {
+        AccountDto acc = new AccountDto();
+        acc.setId(a.getId());
+        acc.setEmail((a.getEmail()));
+        acc.setFullName((a.getFullName()));
+        acc.setAddress(a.getAddress());
+        acc.setUsername(a.getUsername());
+        acc.setActive(a.getActive());
+        acc.setCompany(a.getCompany());
+        acc.setPermissions(a.getPermissions());
+        acc.setRoles(a.getRoles());
+        acc.setUserType(a.getUserType());
+        return acc;
     }
 
     public Account UserChangePass(ChangePassForm form) {
@@ -240,6 +272,7 @@ public class AccountService {
         acc.setCompany(a.getCompany());
         acc.setPermissions(a.getPermissions());
         acc.setRoles(a.getRoles());
+        acc.setUserType(a.getUserType());
         return acc;
     }
 

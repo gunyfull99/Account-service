@@ -49,14 +49,6 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-//    @Autowired
-//    private ModelMapper modelMapper;
-//    @GetMapping
-//    public List<PostDto> getAllPosts() {
-//
-//        return postService.getAllPosts().stream().map(post -> modelMapper.map(post, PostDto.class))
-//                .collect(Collectors.toList());
-//    }
 
     // get detail account
     // http://localhost:8091/accounts/{id}
@@ -71,9 +63,6 @@ public class AccountController {
     public ResponseEntity<AccountDto> getDetailUser(@Valid @PathVariable(name = "id") Long id) throws ResourceNotFoundException {
         Account account = accountService.findById(id);
 
-        //.orElseThrow(() -> new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id")));
-        // convert entity to DTO
-        // AccountDto postResponse = modelMapper.map(account, AccountDto.class);
         return ResponseEntity.ok().body(accountService.getAccById(account));
     }
 
@@ -100,8 +89,8 @@ public class AccountController {
 
         final String token =
                 jwtUtility.generateToken(userDetails);
-        Account a = accountService.getByUsername(jwtRequest.getUsername());
-        if (a.getActive() == false) {
+        AccountDto a = accountService.getAccByUsername(jwtRequest.getUsername());
+        if (a.isActive() == false) {
             throw new ResourceBadRequestException(new BaseResponse(r.notFound, "Account is block."));
         }
         session.setAttribute("userId", a.getId());
@@ -125,18 +114,14 @@ public class AccountController {
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Account> createAccount(@Valid @RequestBody Account a) throws ResourceBadRequestException {
+    public ResponseEntity<AccountDto> createAccount(@Valid @RequestBody Account a) throws ResourceBadRequestException {
 
         Account account = accountService.getByUsername(a.getUsername());
         if (account != null) {
             throw new ResourceBadRequestException(new BaseResponse(r.isExist, "User is exist"));
         } else {
-            return new ResponseEntity<Account>(accountService.saveUser(a), HttpStatus.CREATED);
+            return new ResponseEntity<AccountDto>(accountService.saveUser(a), HttpStatus.CREATED);
         }
-        // convert DTO to entity
-        //   Account postRequest = modelMapper.map(accountDto, Account.class);
-        // convert entity to DTO
-        //AccountDto postResponse = modelMapper.map(account, AccountDto.class);
     }
 
     // Update account
@@ -148,14 +133,13 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Account> updateAccount(@Valid @RequestBody Account a)
+    public ResponseEntity<AccountDto> updateAccount(@Valid @RequestBody Account a)
             throws ResourceNotFoundException, ResourceBadRequestException {
 
         Account accountRequest = accountService.getByUsername(a.getUsername());
         if (accountRequest == null) {
             throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
         }
-        //  accountRequest = modelMapper.map(accountDto, Account.class);
         accountRequest.setActive(a.getActive());
         accountRequest.setAddress(a.getAddress());
         accountRequest.setCompany(a.getCompany());
@@ -163,9 +147,7 @@ public class AccountController {
         accountRequest.setFullName(a.getFullName());
         accountRequest.setUserType(a.getUserType());
         Account account = accountService.save(accountRequest);
-        //AccountDto accountResponse = modelMapper.map(account, AccountDto.class);
-
-        return ResponseEntity.ok().body(account);
+        return ResponseEntity.ok().body(accountService.updateUser(account));
     }
 
     // admin change pass
@@ -177,7 +159,7 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Account> adminChangePass(@Valid @RequestBody Account a)
+    public ResponseEntity<AccountDto> adminChangePass(@Valid @RequestBody Account a)
             throws ResourceNotFoundException, ResourceBadRequestException {
 
         Account accountRequest = accountService.getByUsername(a.getUsername());
@@ -185,7 +167,7 @@ public class AccountController {
             throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
         }
         accountRequest.setPassword(a.getPassword());
-        Account account = accountService.saveUser(accountRequest);
+        AccountDto account = accountService.saveUser(accountRequest);
 
         return ResponseEntity.ok().body(account);
     }
@@ -493,7 +475,7 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @GetMapping("/list")
-    public ResponseEntity<List<Account>> getAllAccount() {
+    public ResponseEntity<List<AccountDto>> getAllAccount() {
         return ResponseEntity.ok().body(accountService.findAll());
     }
 
@@ -547,15 +529,4 @@ public class AccountController {
         return ResponseEntity.ok().body(ap.isCanUpdate());
     }
 
-
-    // http://localhost:8091/accounts/int/getnamebyid
-//    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
-//            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
-//            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
-//            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
-//            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-//    @GetMapping("/int/getnamebyid/{id}")
-//    public ResponseEntity<String> getNameById(long accountId) {
-//        return ResponseEntity.ok().body(accountService.getNameById(accountId));
-//    }
 }
