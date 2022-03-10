@@ -496,12 +496,10 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @CrossOrigin(origins = "http://localhost:8091/accounts")
-    @GetMapping("/canread/{perid}")
-    public ResponseEntity<Boolean> getCanRead(HttpServletRequest request,@PathVariable(name = "perid") long perId) {
-        long userId = (long) request.getSession().getAttribute("userId");
-        Account a = accountService.findById(userId);
-        AccountDto a1 = accountService.getAccById(a);
-        AccountPermission ap = accountService.getDetailPerInUser(userId,perId);
+    @GetMapping("/canread/{username}/{perid}")
+    public ResponseEntity<Boolean> getCanRead(@PathVariable(name = "username") String username,@PathVariable(name = "perid") long perId) {
+        AccountDto a1 = accountService.getAccByUsername(username);
+        AccountPermission ap = accountService.getDetailPerInUser(a1.getId(),perId);
         return ResponseEntity.ok().body(ap.isCanRead());
     }
 
@@ -528,12 +526,10 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @CrossOrigin(origins = "http://localhost:8091/accounts")
-    @GetMapping("/canupdate/{perid}")
-    public ResponseEntity<Boolean> getCanUpdate(HttpServletRequest request,@PathVariable(name = "perid") long perId) {
-        long userId = (long) request.getSession().getAttribute("userId");
-        Account a = accountService.findById(userId);
-        AccountDto a1 = accountService.getAccById(a);
-        AccountPermission ap = accountService.getDetailPerInUser(userId,perId);
+    @GetMapping("/canupdate/{username}/{perid}")
+    public ResponseEntity<Boolean> getCanUpdate(@PathVariable(name = "username") String username,@PathVariable(name = "perid") long perId) {
+        AccountDto a1 = accountService.getAccByUsername(username);
+        AccountPermission ap = accountService.getDetailPerInUser(a1.getId(),perId);
         return ResponseEntity.ok().body(ap.isCanUpdate());
     }
 
