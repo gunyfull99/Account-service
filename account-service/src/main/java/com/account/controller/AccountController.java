@@ -541,7 +541,7 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @CrossOrigin(origins = "http://localhost:8091/accounts")
-    @GetMapping("/blockusers")
+    @PutMapping("/blockusers")
     public ResponseEntity<String> blockUsers(@RequestBody List<Long> listUser) {
         accountService.blockListUser(listUser);
         return ResponseEntity.ok().body("Block success");
