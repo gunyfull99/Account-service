@@ -76,7 +76,7 @@ public class AccountController {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Login success", response = JwtResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest, HttpSession session) throws ResourceNotFoundException, ResourceBadRequestException {
+    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws ResourceNotFoundException, ResourceBadRequestException {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -97,7 +97,6 @@ public class AccountController {
         if (a.isActive() == false) {
             throw new ResourceBadRequestException(new BaseResponse(r.notFound, "Account is block."));
         }
-        session.setAttribute("userId", a.getId());
         return new JwtResponse(token, a);
     }
 
@@ -533,4 +532,18 @@ public class AccountController {
         return ResponseEntity.ok().body(ap.isCanUpdate());
     }
 
+
+    // block list user
+    // http://localhost:8091/accounts/blockusers
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @GetMapping("/blockusers")
+    public ResponseEntity<String> blockUsers(@RequestBody List<Long> listUser) {
+        accountService.blockListUser(listUser);
+        return ResponseEntity.ok().body("Block success");
+    }
 }

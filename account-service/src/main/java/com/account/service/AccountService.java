@@ -51,6 +51,13 @@ public class AccountService {
 
         return accountRepository.save(entity);
     }
+    public void blockListUser(List<Long> listUser){
+        for (int i = 0; i <listUser.size() ; i++) {
+            Account a= accountRepository.selectById(listUser.get(i));
+            a.setActive(false);
+            accountRepository.save(a);
+        }
+    }
 
     public List<AccountDto> findAll() {
         logger.info("Get all account");
@@ -81,7 +88,7 @@ public class AccountService {
 
     public Account findById(Long aLong) {
         logger.info("get account by id");
-        return accountRepository.findByIdTest(aLong);
+        return accountRepository.selectById(aLong);
     }
 
     public List<AccountPermission> findAllAccountPermission() {

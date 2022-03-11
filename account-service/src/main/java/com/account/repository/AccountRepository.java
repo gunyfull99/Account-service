@@ -20,7 +20,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     Account findByUsername(@Param("username") String username);
 
     @Query(value = "SELECT  * from accounts where id= :id", nativeQuery = true)
-     Account findByIdTest(@Param("id") Long id);
+     Account selectById(@Param("id") Long id);
 
     @Query(value = "insert into accounts_permissions VALUES(:acId,:canCreate,:canRead,:canUpdate,:perId)", nativeQuery = true)
     void addPermission2User(@Param("acId") Long acId, @Param("canCreate") boolean canCreate,
