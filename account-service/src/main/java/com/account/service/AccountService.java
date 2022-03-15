@@ -2,8 +2,10 @@ package com.account.service;
 
 
 import com.account.Dto.*;
+import com.account.config.ResponseError;
 import com.account.entity.*;
 import com.account.exception.ResourceBadRequestException;
+import com.account.exception.ResourceForbiddenRequestException;
 import com.account.exception.ResourceNotFoundException;
 import com.account.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +30,8 @@ public class AccountService {
 
     private static final int notFound = 80915;
     private final PasswordEncoder passwordEncoder;
-
+    @Autowired
+    private ResponseError r;
     @Autowired
     private AccountRepository accountRepository;
 
@@ -299,10 +302,13 @@ public class AccountService {
         accountPermissionRepository.save(accountPermission);
     }
 
-    public AccountPermission getDetailPerInUser(long id, long idP) {
+    public AccountPermission getDetailPerInUser(long id, long idP)throws ResourceNotFoundException {
         logger.info("get Detail Permission In User");
-
-        return accountPermissionRepository.getDetailPerInUser(id, idP);
+        AccountPermission a=accountPermissionRepository.getDetailPerInUser(id, idP);
+        if(a == null){
+            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+        }
+        return a;
     }
 
     public List<AccountPerForm> getPerInUser(long userId) {
