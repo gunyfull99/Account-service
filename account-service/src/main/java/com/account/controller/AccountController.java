@@ -56,7 +56,7 @@ public class AccountController {
 
     // get detail account
     // http://localhost:8091/accounts/{id}
-    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @CrossOrigin(origins = "http://localhost:8091/accounts/{id}")
     @GetMapping("/{id}")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Success", response = Account.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -546,4 +546,18 @@ public class AccountController {
         accountService.blockListUser(listUser);
         return ResponseEntity.ok().body("Block success");
     }
+
+    // search user
+    // http://localhost:8091/accounts/search/{name}
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<AccountDto>> searchUser(@PathVariable(name = "name")String name) {
+        return ResponseEntity.ok().body(accountService.searchUser(name));
+    }
+
 }

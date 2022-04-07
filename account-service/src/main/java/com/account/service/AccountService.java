@@ -383,4 +383,13 @@ public class AccountService {
         acc.setRoles(a.getRoles());
         return acc;
     }
+    public List<AccountDto> searchUser(String name) {
+        List<Account> a = accountRepository.searchUser(name);
+        List<AccountDto> a1 = new ArrayList<>();
+        for (int i = 0; i < a.size(); i++) {
+            AccountDto aDto = updateUser(a.get(i));
+            a1.add(aDto);
+        }
+        return a1;
+    }
 }
