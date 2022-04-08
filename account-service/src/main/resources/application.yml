@@ -1,0 +1,4 @@
+app:
+  name: Tech Interface - Swagger and Profiles Tutorial
+server:
+  port: 8091
