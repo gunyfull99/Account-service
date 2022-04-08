@@ -12,14 +12,15 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -62,17 +63,23 @@ public class AccountService {
         }
     }
 
-    public List<AccountDto> findAll() {
+    public Page<Account> findAll(AccountPaging ap) {
+        int offset =ap.getOffset();
+        if( offset<0){
+        offset=1;
+        }
         logger.info("Get all account");
-
-        List<Account> a = accountRepository.findAll();
+        Page<Account> a = accountRepository.findAll(PageRequest.of(offset-1,ap.getPageSize()));
         if (a.isEmpty()) {
             logger.error("no account exist !!!");
             throw new RuntimeException("no account exist !!!");
         }
+        return a;
+    }
+    public List<AccountDto> convertAccount(List<Account> list){
         List<AccountDto> a1 = new ArrayList<>();
-        for (int i = 0; i < a.size(); i++) {
-            AccountDto aDto = updateUser(a.get(i));
+        for (int i = 0; i < list.size(); i++) {
+            AccountDto aDto = updateUser(list.get(i));
             a1.add(aDto);
         }
         return a1;
@@ -383,13 +390,10 @@ public class AccountService {
         acc.setRoles(a.getRoles());
         return acc;
     }
-    public List<AccountDto> searchUser(String name) {
-        List<Account> a = accountRepository.searchUser(name);
-        List<AccountDto> a1 = new ArrayList<>();
-        for (int i = 0; i < a.size(); i++) {
-            AccountDto aDto = updateUser(a.get(i));
-            a1.add(aDto);
-        }
-        return a1;
+    public Page<Account> searchUser(String name, AccountPaging accountPaging) {
+        Pageable pageable = PageRequest.of(accountPaging.getOffset()-1,accountPaging.getPageSize());
+        Page<Account> a = accountRepository.findAllByFullNameContaining(name,pageable);
+
+        return a;
     }
 }

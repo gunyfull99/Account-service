@@ -10,6 +10,7 @@ import com.account.service.AccountService;
 import com.account.service.MyUserDetailsService;
 import com.account.utils.JwtUtility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -482,8 +483,10 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @GetMapping("/list")
-    public ResponseEntity<List<AccountDto>> getAllAccount() {
-        return ResponseEntity.ok().body(accountService.findAll());
+    public ResponseEntity<AccountPaging> getAllAccount(@RequestBody AccountPaging accountPaging) {
+        Page<Account> accounts = accountService.findAll(accountPaging);
+        List<AccountDto> list = accountService.convertAccount(accounts.getContent());
+        return ResponseEntity.ok().body(new AccountPaging((int) accounts.getTotalElements(), list));
     }
 
     // get can read from user
@@ -496,9 +499,9 @@ public class AccountController {
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @CrossOrigin(origins = "http://localhost:8091/accounts")
     @GetMapping("/canread/{username}/{perid}")
-    public ResponseEntity<Boolean> getCanRead(@PathVariable(name = "username") String username,@PathVariable(name = "perid") long perId) {
+    public ResponseEntity<Boolean> getCanRead(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
         AccountDto a1 = accountService.getAccByUsername(username);
-        AccountPermission ap = accountService.getDetailPerInUser(a1.getId(),perId);
+        AccountPermission ap = accountService.getDetailPerInUser(a1.getId(), perId);
         return ResponseEntity.ok().body(ap.isCanRead());
     }
 
@@ -511,9 +514,9 @@ public class AccountController {
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @CrossOrigin(origins = "http://localhost:8091/accounts")
     @GetMapping("/cancreate/{username}/{perid}")
-    public ResponseEntity<Boolean> getCanCreate(@PathVariable(name = "username") String username,@PathVariable(name = "perid") long perId) {
+    public ResponseEntity<Boolean> getCanCreate(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
         AccountDto a1 = accountService.getAccByUsername(username);
-        AccountPermission ap = accountService.getDetailPerInUser(a1.getId(),perId);
+        AccountPermission ap = accountService.getDetailPerInUser(a1.getId(), perId);
         return ResponseEntity.ok().body(ap.isCanCreate());
     }
 
@@ -526,9 +529,9 @@ public class AccountController {
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @CrossOrigin(origins = "http://localhost:8091/accounts")
     @GetMapping("/canupdate/{username}/{perid}")
-    public ResponseEntity<Boolean> getCanUpdate(@PathVariable(name = "username") String username,@PathVariable(name = "perid") long perId) {
+    public ResponseEntity<Boolean> getCanUpdate(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
         AccountDto a1 = accountService.getAccByUsername(username);
-        AccountPermission ap = accountService.getDetailPerInUser(a1.getId(),perId);
+        AccountPermission ap = accountService.getDetailPerInUser(a1.getId(), perId);
         return ResponseEntity.ok().body(ap.isCanUpdate());
     }
 
@@ -548,16 +551,17 @@ public class AccountController {
     }
 
     // search user
-    // http://localhost:8091/accounts/search/{name}
+    // http://localhost:8091/accounts/search
     @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    @GetMapping("/search/{name}")
-    public ResponseEntity<List<AccountDto>> searchUser(@PathVariable(name = "name")String name) {
-        return ResponseEntity.ok().body(accountService.searchUser(name));
+    @GetMapping("/search")
+    public ResponseEntity<AccountPaging> searchUser( @RequestBody AccountPaging accountPaging) {
+        Page<Account> list=  accountService.searchUser(accountPaging.getSearch(),accountPaging);
+        List<AccountDto> list1 = accountService.convertAccount(list.getContent());
+        return ResponseEntity.ok().body(new AccountPaging((int) list.getTotalElements(), list1));
     }
-
 }

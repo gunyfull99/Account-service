@@ -3,6 +3,8 @@ package com.account.repository;
 import com.account.entity.Account;
 import com.account.entity.AccountPermission;
 import com.account.entity.Company;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -33,4 +35,9 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Query(value = "select * from accounts  where username   LIKE %:name% or full_name  LIKE %:name% ", nativeQuery = true)
     List<Account> searchUser(@Param("name") String name);
+
+    @Query(value = "select * from accounts  where username   LIKE %:name% or full_name  LIKE %:name%  OFFSET :offset LIMIT :pageSize ", nativeQuery = true)
+    List<Account> searchAccountWithPaging(@Param("name") String name,@Param("offset") int offset,@Param("pageSize") int pageSize);
+
+    Page<Account> findAllByFullNameContaining (String name, Pageable p);
 }
