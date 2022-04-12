@@ -128,7 +128,7 @@ public class AccountController {
         if (account != null) {
             throw new ResourceBadRequestException(new BaseResponse(r.isExist, "User is exist"));
         } else {
-            return new ResponseEntity<AccountDto>(accountService.saveUser(a), HttpStatus.CREATED);
+            return new ResponseEntity<AccountDto>(accountService.saveUserWithPassword(a), HttpStatus.CREATED);
         }
     }
 
@@ -148,12 +148,7 @@ public class AccountController {
         if (accountRequest == null) {
             throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
         }
-        accountRequest.setActive(a.getActive());
-        accountRequest.setAddress(a.getAddress());
-        accountRequest.setCompany(a.getCompany());
-        accountRequest.setEmail(a.getEmail());
-        accountRequest.setFullName(a.getFullName());
-        accountRequest.setUserType(a.getUserType());
+        accountRequest=accountService.convertAccount(a);
         Account account = accountService.save(accountRequest);
         return ResponseEntity.ok().body(accountService.updateUser(account));
     }
@@ -175,7 +170,7 @@ public class AccountController {
             throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
         }
         accountRequest.setPassword(a.getPassword());
-        AccountDto account = accountService.saveUser(accountRequest);
+        AccountDto account = accountService.saveUserWithPassword(accountRequest);
 
         return ResponseEntity.ok().body(account);
     }

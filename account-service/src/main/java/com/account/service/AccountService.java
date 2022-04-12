@@ -9,6 +9,7 @@ import com.account.exception.ResourceForbiddenRequestException;
 import com.account.exception.ResourceNotFoundException;
 import com.account.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,39 +112,30 @@ public class AccountService {
         return accountRepository.getById(id);
     }
 
-    public AccountDto saveUser(Account a) {
+    public AccountDto saveUserWithPassword(Account a) {
         logger.info("save user {}", a.getFullName());
 
         a.setPassword(passwordEncoder.encode(a.getPassword()));
         accountRepository.save(a);
-        AccountDto acc = new AccountDto();
-        acc.setId(a.getId());
-        acc.setEmail((a.getEmail()));
-        acc.setFullName((a.getFullName()));
-        acc.setAddress(a.getAddress());
-        acc.setUsername(a.getUsername());
+        ModelMapper mapper=new ModelMapper();
+        AccountDto acc = mapper.map(a,AccountDto.class);
+        return acc;
+    }
+    public Account convertAccount(Account a){
+        Account acc=new Account();
         acc.setActive(a.getActive());
+        acc.setAddress(a.getAddress());
         acc.setCompany(a.getCompany());
-        acc.setPermissions(a.getPermissions());
-        acc.setRoles(a.getRoles());
+        acc.setEmail(a.getEmail());
+        acc.setFullName(a.getFullName());
         acc.setUserType(a.getUserType());
         return acc;
     }
 
     public AccountDto updateUser(Account a) {
         logger.info("update user {}", a.getFullName());
-
-        AccountDto acc = new AccountDto();
-        acc.setId(a.getId());
-        acc.setEmail((a.getEmail()));
-        acc.setFullName((a.getFullName()));
-        acc.setAddress(a.getAddress());
-        acc.setUsername(a.getUsername());
-        acc.setActive(a.getActive());
-        acc.setCompany(a.getCompany());
-        acc.setPermissions(a.getPermissions());
-        acc.setRoles(a.getRoles());
-        acc.setUserType(a.getUserType());
+        ModelMapper mapper=new ModelMapper();
+        AccountDto acc = mapper.map(a,AccountDto.class);
         return acc;
     }
 
@@ -360,34 +352,16 @@ public class AccountService {
     public AccountDto getAccByUsername(String username) {
         logger.info("get Account By Username {}",username);
 
+        ModelMapper mapper= new ModelMapper();
         Account a = accountRepository.findByUsername(username);
-        AccountDto acc = new AccountDto();
-        acc.setId(a.getId());
-        acc.setEmail((a.getEmail()));
-        acc.setFullName((a.getFullName()));
-        acc.setAddress(a.getAddress());
-        acc.setUsername(a.getUsername());
-        acc.setActive(a.getActive());
-        acc.setCompany(a.getCompany());
-        acc.setPermissions(a.getPermissions());
-        acc.setRoles(a.getRoles());
-        acc.setUserType(a.getUserType());
+        AccountDto acc = mapper.map(a,AccountDto.class);
         return acc;
     }
 
     public AccountDto getAccById(Account a) {
         logger.info("get Account By Id ");
-
-        AccountDto acc = new AccountDto();
-        acc.setId(a.getId());
-        acc.setEmail((a.getEmail()));
-        acc.setFullName((a.getFullName()));
-        acc.setAddress(a.getAddress());
-        acc.setUsername(a.getUsername());
-        acc.setActive(a.getActive());
-        acc.setCompany(a.getCompany());
-        acc.setPermissions(a.getPermissions());
-        acc.setRoles(a.getRoles());
+        ModelMapper mapper=new ModelMapper();
+        AccountDto acc = mapper.map(a,AccountDto.class);
         return acc;
     }
     public Page<Account> searchUser(String name, AccountPaging accountPaging) {
