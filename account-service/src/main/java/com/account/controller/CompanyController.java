@@ -125,7 +125,7 @@ public class CompanyController {
     // http://localhost:8091/company/list
     @CrossOrigin(origins = "http://localhost:8091/company")
     @GetMapping("/list")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Update success", response = Company.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Company.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
