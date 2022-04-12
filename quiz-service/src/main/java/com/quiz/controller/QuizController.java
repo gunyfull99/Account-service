@@ -83,10 +83,12 @@ public class QuizController {
     //http://localhost:8080/quiz/getquestionbycategory/category
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/getquestionbycategory/{category}")
-    public List<QuestDTO> getQuestionByCategory(@PathVariable("category") long id, @RequestHeader("Authorization") String token) {
-        if (templateService.getCanRead(perQuestion, token) == false) {
-            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-        }
+    public List<QuestDTO> getQuestionByCategory(@PathVariable("category") long id
+//            , @RequestHeader("Authorization") String token
+    ) {
+//        if (templateService.getCanRead(perQuestion, token) == false) {
+//            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+//        }
         return quesTionService.getQuestionByCategory(id);
     }
 
@@ -186,33 +188,30 @@ public class QuizController {
     // http://localhost:8080/quiz
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PostMapping("")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Quiz.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "create success", response = Quiz.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Quiz> createQuiz(@Valid @RequestBody CreateQuizForm form, @RequestHeader("Authorization") String token) throws ResourceBadRequestException, ResourceForbiddenRequestException {
-        if (templateService.getCanCreate(perQuiz, token) == false) {
-            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-        }
-        return new ResponseEntity<Quiz>(quizService.addQuesToQuiz(form), HttpStatus.CREATED);
+    public ResponseEntity<String> createQuiz(@Valid @RequestBody CreateQuizForm form
+                                             //   , @RequestHeader("Authorization") String token
+    ) throws ResourceBadRequestException, ResourceForbiddenRequestException {
+//        if (templateService.getCanCreate(perQuiz, token) == false) {
+//            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+//        }
+        return new ResponseEntity<String>(quizService.addQuesToQuiz(form), HttpStatus.CREATED);
     }
 
     // get detail quiz
     // http://localhost:8080/quiz/1
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/{id}")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Quiz.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Quiz> getDetailQuiz(@PathVariable("id") long id, @RequestHeader("Authorization") String token) throws ResourceBadRequestException {
-        if (templateService.getCanRead(perQuiz, token) == false) {
-            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-        }
-
-
+    public ResponseEntity<Quiz> getDetailQuiz(@PathVariable("id") long id) throws ResourceBadRequestException {
         return ResponseEntity.ok().body(quizService.getDetailQuiz(id));
     }
 
@@ -220,7 +219,7 @@ public class QuizController {
     // http://localhost:8080/quiz/listbyuser/2
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/listbyuser/{id}")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Quiz.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
@@ -233,7 +232,7 @@ public class QuizController {
     // http://localhost:8080/quiz/all/2
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/all/{id}")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Quiz.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
@@ -246,7 +245,7 @@ public class QuizController {
     // http://localhost:8080/quiz/notstart/2
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/notstart/{id}")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Quiz.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
@@ -259,7 +258,7 @@ public class QuizController {
     // http://localhost:8080/quiz/startquiz/1952
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/startquiz/{qizid}")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Quiz.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
@@ -272,7 +271,7 @@ public class QuizController {
     // http://localhost:8080/quiz/listchoice/54
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/listchoice/{questionid}")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Quiz.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
@@ -285,7 +284,7 @@ public class QuizController {
     // http://localhost:8080/quiz/calculate
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PostMapping("/calculate")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Quiz.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "calculate success", response = Quiz.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
@@ -307,7 +306,7 @@ public class QuizController {
     // http://localhost:8080/quiz/getUserDidTheTest
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/getUserDidTheTest")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Add success", response = Quiz.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),

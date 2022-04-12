@@ -11,8 +11,11 @@ import java.util.Set;
 
 public interface QuestionRepository extends JpaRepository<Question,Long> {
 
-    @Query(value = "select * from questions where cate_id = :id and is_active=true", nativeQuery = true)
+    @Query(value = "select * from questions where cate_id = :id and type_id != 3 and is_active=true", nativeQuery = true)
     List<Question> getAllQuestionByCate(@Param("id") long id );
+
+    @Query(value = "select * from questions where cate_id = :id and type_id = 3 and is_active=true", nativeQuery = true)
+    List<Question> getAllQuestionText(@Param("id") long id );
 
     @Query(value = "select * from questions where is_active=true", nativeQuery = true)
     List<Question> getAllQuestion();

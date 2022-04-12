@@ -10,6 +10,7 @@ import com.quiz.repository.QuestionChoiceRepository;
 import com.quiz.repository.QuestionRepository;
 import com.quiz.repository.QuestionTypeRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,11 @@ public class QuesTionService {
         logger.info("Receive id to get All Question By Cate");
 
         return questionRepository.getAllQuestionByCate(id);
+    }
+    public List<Question> getAllQuestionText(long id) {
+        logger.info("Receive id to get All Question Text");
+
+        return questionRepository.getAllQuestionText(id);
     }
 
     public List<Question> findAllById(long id) {
@@ -86,13 +92,8 @@ public class QuesTionService {
 
             throw new RuntimeException("this question was crate before !!!");
         }
-
-        Question questionEntity = new Question();
-        questionEntity.setContent(request.getContent());
-        questionEntity.setQuestionType(request.getQuestionType());
-        questionEntity.setCategory(request.getCategory());
-        questionEntity.setQuestionChoice(request.getQuestionChoice());
-        questionEntity.setQuestionTime(request.getQuestionTime());
+        ModelMapper mapper = new ModelMapper();
+        Question questionEntity = mapper.map(request,Question.class);
         Question q1 = questionRepository.save(questionEntity);
         List<QuestionChoice> q = request.getQuestionChoice();
         for (int i = 0; i < q.size(); i++) {
@@ -206,12 +207,9 @@ public class QuesTionService {
         List<QuestDTO> questionRequests = new ArrayList<>();
 
         for (Question question : questionEntity) {
-            QuestDTO request = new QuestDTO();
-            request.setContent(question.getContent());
-            request.setQuestions_id(question.getId());
+            ModelMapper mapper=new ModelMapper();
+            QuestDTO request = mapper.map(question,QuestDTO.class);
             request.setQuiz_id(list.get(0).getQuiz_id());
-            request.setQuestionType(question.getQuestionType());
-            request.setCategory(question.getCategory());
             List<QuestionChoiceDTO> questionChoiceDTOS = new ArrayList<>();
             for (QuestionChoice questionChoice : question.getQuestionChoice()) {
                 QuestionChoiceDTO questionChoiceDTO = new QuestionChoiceDTO();

@@ -19,10 +19,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.ManyToMany;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static javax.persistence.FetchType.EAGER;
 
 @Service
 @RequiredArgsConstructor
@@ -48,17 +51,15 @@ public class QuizService {
         return quizRepository.save(entity);
     }
 
-    public Quiz createQuiz(CreateQuizForm form) throws ResourceBadRequestException {
+    public Quiz createQuiz(Quiz quiz) throws ResourceBadRequestException {
         logger.info("receive info to create quiz");
 
-        Quiz quiz = form.getQuiz();
         Quiz quiz1 = new Quiz();
         LocalDateTime date1 = quiz.getStartTime();
         LocalDateTime date2 = quiz.getExpiredTime();
         if (date1.isAfter(date2)) {
             throw new ResourceBadRequestException(new BaseResponse(80805, "StartTime must before ExpireTime"));
         } else {
-            quiz1.setNumberQuestions((int) form.getQuantity1() + (int) form.getQuantity2() + (int) form.getQuantity3());
             quiz1.setDescription(quiz.getDescription());
             quiz1.setStartTime(quiz.getStartTime());
             quiz1.setExpiredTime(quiz.getExpiredTime());
@@ -76,69 +77,57 @@ public class QuizService {
         return quiz;
     }
 
-    public Quiz addQuesToQuiz(CreateQuizForm form) {
+
+    public String addQuesToQuiz(CreateQuizForm form) {
         logger.info("receive info to add Question To Quiz");
+        for (int k = 0; k < form.getQuiz().getUserId().size(); k++) {
+            Quiz quiz1 = new Quiz(form.getQuiz().getId(), form.getQuiz().getDescription(), form.getQuiz().getQuizTime(),
+                    form.getQuiz().getUserId().get(k), form.getQuiz().getStartTime(), form.getQuiz().getEndTime(),
+                    form.getQuiz().getExpiredTime(), form.getQuiz().getStatus(), form.getQuiz().getNumberQuestions()
+                    , form.getQuiz().getScore(), form.getQuiz().getQuestions()
+            );
+            Quiz quiz = createQuiz(quiz1);
+            int numberQuestion = 0;
+            int totalTime = 0;
+            List<Question> q = new ArrayList<>();
 
-        List<Question> hasTag1 = quesTionService.getAllQuestionByCate(form.getHasTag1());
-        Collections.shuffle(hasTag1);
-        List<Question> h1 = new ArrayList<>();
-        Quiz quiz = createQuiz(form);
-        int numberQuestion = quiz.getNumberQuestions();
-        int totalTime = 0;
-        if(form.getQuantity1()>hasTag1.size()){
-            throw new ResourceBadRequestException(new BaseResponse(80808, "Not enough question for cate 1"));
-        }
-        for (int i = 0; i < form.getQuantity1(); i++) {
-            if (hasTag1.get(i).getQuestionType().getId() == 3) {
-                numberQuestion -= 1;
+            for (int i = 0; i < form.getTopics().size(); i++) {
+                List<Question> hasTag1 = quesTionService.getAllQuestionByCate(form.getTopics().get(i).getCate());
+                Collections.shuffle(hasTag1);
+                List<Question> h1 = new ArrayList<>();
+                numberQuestion += form.getTopics().get(i).getQuantity();
+                if (form.getTopics().get(i).getQuantity() > hasTag1.size()) {
+                    throw new ResourceBadRequestException(new BaseResponse(80808, "Not enough question for topic " + i));
+                }
+                for (int j = 0; j < form.getTopics().get(i).getQuantity(); j++) {
+
+                    h1.add(hasTag1.get(j));
+                    totalTime += hasTag1.get(j).getQuestionTime();
+                }
+                if (form.getText() != null) {
+                    List<Question> listText = quesTionService.getAllQuestionText(form.getTopics().get(i).getCate());
+                    Collections.shuffle(listText);
+                    for (int e = 0; e < form.getQuantityText(); e++) {
+                        h1.add(listText.get(e));
+                    }
+                }
+                q.addAll(h1);
             }
-            h1.add(hasTag1.get(i));
-            totalTime += hasTag1.get(i).getQuestionTime();
-        }
-        List<Question> hasTag2 = quesTionService.getAllQuestionByCate(form.getHasTag2());
-        Collections.shuffle(hasTag2);
-        List<Question> h2 = new ArrayList<>();
-        if(form.getQuantity2()>hasTag2.size()){
-            throw new ResourceBadRequestException(new BaseResponse(80809, "Not enough question for cate 2"));
-        }
-        for (int i = 0; i < form.getQuantity2(); i++) {
-            if (hasTag2.get(i).getQuestionType().getId() == 3) {
-                numberQuestion -= 1;
+            quiz.setNumberQuestions(numberQuestion);
+            quiz.setQuizTime(totalTime);
+
+            quizRepository.save(quiz);
+
+            for (int i = 0; i < q.size(); i++) {
+                QuizQuestion q1 = new QuizQuestion();
+                q1.setQuestions_id(q.get(i).getId());
+                q1.setQuiz_id(quiz.getId());
+                q1.setUser_answer("not yet");
+                quizQuestionRepository.save(q1);
             }
-            h2.add(hasTag2.get(i));
-            totalTime += hasTag2.get(i).getQuestionTime();
         }
-        List<Question> hasTag3 = quesTionService.getAllQuestionByCate(form.getHasTag3());
-        Collections.shuffle(hasTag3);
-        List<Question> h3 = new ArrayList<>();
-        if(form.getQuantity3()>hasTag3.size()){
-            throw new ResourceBadRequestException(new BaseResponse(808010, "Not enough question for cate 3"));
-        }
-        for (int i = 0; i < form.getQuantity3(); i++) {
-            if (hasTag3.get(i).getQuestionType().getId() == 3) {
-                numberQuestion -= 1;
-            }
-            h3.add(hasTag3.get(i));
-            totalTime += hasTag3.get(i).getQuestionTime();
-        }
-        List<Question> q = new ArrayList<>();
-        q.addAll(h1);
-        q.addAll(h2);
-        q.addAll(h3);
-        quiz.setNumberQuestions(numberQuestion);
-        quiz.setQuizTime(totalTime);
 
-
-        quizRepository.save(quiz);
-
-        for (int i = 0; i < q.size(); i++) {
-            QuizQuestion q1 = new QuizQuestion();
-            q1.setQuestions_id(q.get(i).getId());
-            q1.setQuiz_id(quiz.getId());
-            q1.setUser_answer("not yet");
-            quizQuestionRepository.save(q1);
-        }
-        return quiz;
+        return "Create success";
     }
 
     public Quiz calculateScore(List<QuestDTO> questDTO) {
@@ -155,7 +144,7 @@ public class QuizService {
                 for (int j = 0; j < questDTO.get(i).getQuestionChoiceDTOs().size(); j++) {
                     user_answer = user_answer + " ; " + questDTO.get(i).getQuestionChoiceDTOs().get(j).getId();
 
-                    if (questionChoiceRepository.checkCorrectAnswer(questDTO.get(i).getQuestionChoiceDTOs().get(j).getId())== true) {
+                    if (questionChoiceRepository.checkCorrectAnswer(questDTO.get(i).getQuestionChoiceDTOs().get(j).getId()) == true) {
                         count1 += 1;
                     }
                 }
@@ -166,9 +155,9 @@ public class QuizService {
                     questionIds.get(i).setUser_answer(a);
                 }
             } else if (questDTO.get(i).getQuestionType().getId() == 1) {
-                questionIds.get(i).setUser_answer(questDTO.get(i).getQuestionChoiceDTOs().get(0).getId()+"");
+                questionIds.get(i).setUser_answer(questDTO.get(i).getQuestionChoiceDTOs().get(0).getId() + "");
 
-                if (questionChoiceRepository.checkCorrectAnswer(questDTO.get(i).getQuestionChoiceDTOs().get(0).getId())== true
+                if (questionChoiceRepository.checkCorrectAnswer(questDTO.get(i).getQuestionChoiceDTOs().get(0).getId()) == true
                 ) {
                     score += 1;
                 }
@@ -179,8 +168,8 @@ public class QuizService {
         }
 
         Quiz quiz = quizRepository.findById(questDTO.get(0).getQuiz_id()).get();
-      float  per=((float) score / (float) quiz.getNumberQuestions()) * 100;
-        percent = (float) (Math.round(per *100.0) / 100.0);
+        float per = ((float) score / (float) quiz.getNumberQuestions()) * 100;
+        percent = (float) (Math.round(per * 100.0) / 100.0);
         quiz.setScore((score + "/" + quiz.getNumberQuestions() + "  (" + percent + "%)"));
         quiz.setStatus("done");
         quiz.setEndTime(LocalDateTime.now());
@@ -241,8 +230,8 @@ public class QuizService {
 
         List<Integer> userId = quizRepository.getIdByStatus();
         List<AccountDto> user = new ArrayList<>();
-        for (Integer integer: userId) {
-            AccountDto o =  restTemplateService.getName(integer);
+        for (Integer integer : userId) {
+            AccountDto o = restTemplateService.getName(integer);
             user.add(o);
         }
         return user;
