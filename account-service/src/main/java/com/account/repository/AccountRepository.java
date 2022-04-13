@@ -36,8 +36,6 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query(value = "select * from accounts  where username   LIKE %:name% or full_name  LIKE %:name% ", nativeQuery = true)
     List<Account> searchUser(@Param("name") String name);
 
-    @Query(value = "select * from accounts  where username   LIKE %:name% or full_name  LIKE %:name%  OFFSET :offset LIMIT :pageSize ", nativeQuery = true)
-    List<Account> searchAccountWithPaging(@Param("name") String name,@Param("offset") int offset,@Param("pageSize") int pageSize);
 
     Page<Account> findAllByFullNameContaining (String name, Pageable p);
 }

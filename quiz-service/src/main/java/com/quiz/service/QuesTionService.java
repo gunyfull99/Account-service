@@ -14,6 +14,9 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,8 +46,9 @@ public class QuesTionService {
     public List<Question> getAllQuestionByCate(long id) {
         logger.info("Receive id to get All Question By Cate");
 
-        return questionRepository.getAllQuestionByCate(id);
+        return questionRepository.getAllQuestionByCateToCreateQuiz(id);
     }
+
     public List<Question> getAllQuestionText(long id) {
         logger.info("Receive id to get All Question Text");
 
@@ -93,7 +97,7 @@ public class QuesTionService {
             throw new RuntimeException("this question was crate before !!!");
         }
         ModelMapper mapper = new ModelMapper();
-        Question questionEntity = mapper.map(request,Question.class);
+        Question questionEntity = mapper.map(request, Question.class);
         Question q1 = questionRepository.save(questionEntity);
         List<QuestionChoice> q = request.getQuestionChoice();
         for (int i = 0; i < q.size(); i++) {
@@ -163,23 +167,19 @@ public class QuesTionService {
         questionRepository.save(questionEntity);
     }
 
-    public List<QuestDTO> getQuestionByCategory(long id) {
-        logger.info("Receive info of question {} to edit", id);
-
-        List<Question> questionEntity = questionRepository.getAllQuestionByCate(id);
+    public QuestionPaging getQuestionByCategory(QuestionPaging questionPaging) {
+        logger.info("Receive info of question {} to edit", questionPaging.getCateId());
+        Pageable pageable = PageRequest.of(questionPaging.getOffset() - 1, questionPaging.getPageSize());
+        Page<Question> questionEntity = questionRepository.findAllByCategoryId(questionPaging.getCateId(), pageable);
         List<QuestDTO> questionRequests = new ArrayList<>();
 
-        for (Question question : questionEntity) {
-            QuestDTO request = new QuestDTO();
-            request.setContent(question.getContent());
-            request.setQuestionType(question.getQuestionType());
-            request.setCategory(question.getCategory());
+        for (Question question : questionEntity.getContent()) {
+            ModelMapper mapper = new ModelMapper();
+            QuestDTO request = mapper.map(question, QuestDTO.class);
             List<QuestionChoiceDTO> questionChoiceDTOS = new ArrayList<>();
             for (QuestionChoice questionChoice : question.getQuestionChoice()) {
-                QuestionChoiceDTO questionChoiceDTO = new QuestionChoiceDTO();
-                questionChoiceDTO.setId(questionChoice.getId());
-                questionChoiceDTO.setName(questionChoice.getName());
-                questionChoiceDTO.setTrue(questionChoice.isTrue());
+                ModelMapper mapper1 = new ModelMapper();
+                QuestionChoiceDTO questionChoiceDTO = mapper1.map(questionChoice, QuestionChoiceDTO.class);
                 questionChoiceDTOS.add(questionChoiceDTO);
             }
             request.setQuestions_id(question.getId());
@@ -187,29 +187,30 @@ public class QuesTionService {
             request.setQuestionTime(question.getQuestionTime());
             questionRequests.add(request);
         }
-        return questionRequests;
+        return new QuestionPaging((int) questionEntity.getTotalElements(), questionRequests);
     }
 
     public List<QuestDTO> getListQuestionByQuizId(long id) {
         logger.info("Receive id to get List Question By Quiz Id", id);
 
         List<QuizQuestion> list = quizService.getListQuestionByQuizId(id);
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             logger.error("this list question is not exist !!!");
             throw new RuntimeException("this list question is not exist !!!");
         }
         List<Question> questionEntity = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
-            Question q = questionRepository.getById(list.get(i).getQuestions_id ());
+            Question q = questionRepository.getById(list.get(i).getQuestions_id());
             questionEntity.add(q);
         }
         List<QuestDTO> questionRequests = new ArrayList<>();
 
         for (Question question : questionEntity) {
-            ModelMapper mapper=new ModelMapper();
-            QuestDTO request = mapper.map(question,QuestDTO.class);
+            ModelMapper mapper = new ModelMapper();
+            QuestDTO request = mapper.map(question, QuestDTO.class);
             request.setQuiz_id(list.get(0).getQuiz_id());
+            request.setQuestions_id(question.getId());
             List<QuestionChoiceDTO> questionChoiceDTOS = new ArrayList<>();
             for (QuestionChoice questionChoice : question.getQuestionChoice()) {
                 QuestionChoiceDTO questionChoiceDTO = new QuestionChoiceDTO();

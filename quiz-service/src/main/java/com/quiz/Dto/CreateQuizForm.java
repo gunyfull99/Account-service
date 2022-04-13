@@ -9,7 +9,6 @@ import java.util.List;
 public class CreateQuizForm {
     List<Topic> topics;
     private QuizDto quiz;
-    private String text;
-    private int quantityText;
+
 
 }

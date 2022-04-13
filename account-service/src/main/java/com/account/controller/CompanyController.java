@@ -50,9 +50,9 @@ public class CompanyController {
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Company> createCompany(@RequestParam String name,@RequestParam String phone,
-                                                  @RequestParam String email, @RequestParam String shortCutName,@RequestParam String address,
-                                                  @RequestParam MultipartFile image) throws ResourceBadRequestException, IOException {
+    public ResponseEntity<Company> createCompany(@RequestParam String name, @RequestParam String phone,
+                                                 @RequestParam String email, @RequestParam String shortCutName, @RequestParam String address,
+                                                 @RequestParam MultipartFile image) throws ResourceBadRequestException, IOException {
 
 
         Company company = new Company();
@@ -73,8 +73,8 @@ public class CompanyController {
         company.setName(name);
         company.setAddress(address);
         System.out.println(imagePath.resolve(image.getOriginalFilename()));
-        byte[] bytes=image.getBytes();
-        String base64= Base64.getEncoder().encodeToString(bytes);
+        byte[] bytes = image.getBytes();
+        String base64 = Base64.getEncoder().encodeToString(bytes);
         company.setLogo(base64);
 
         return new ResponseEntity<Company>(companyService.save(company), HttpStatus.CREATED);
@@ -89,8 +89,8 @@ public class CompanyController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Company> updateCompany(@RequestParam long id, @RequestParam String name,@RequestParam String phone,
-                                                 @RequestParam String email, @RequestParam String shortCutName,@RequestParam String address,
+    public ResponseEntity<Company> updateCompany(@RequestParam long id, @RequestParam String name, @RequestParam String phone,
+                                                 @RequestParam String email, @RequestParam String shortCutName, @RequestParam String address,
                                                  @RequestParam MultipartFile image)
             throws ResourceNotFoundException, ResourceBadRequestException, IOException {
 
@@ -112,13 +112,12 @@ public class CompanyController {
         company.setName(name);
         company.setAddress(address);
         System.out.println(imagePath.resolve(image.getOriginalFilename()));
-        byte[] bytes=image.getBytes();
-        String base64= Base64.getEncoder().encodeToString(bytes);
+        byte[] bytes = image.getBytes();
+        String base64 = Base64.getEncoder().encodeToString(bytes);
         company.setLogo(base64);
 
         return new ResponseEntity<Company>(companyService.save(company), HttpStatus.CREATED);
     }
-
 
 
     // get all company

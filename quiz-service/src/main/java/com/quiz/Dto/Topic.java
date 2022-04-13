@@ -10,5 +10,8 @@ import lombok.NoArgsConstructor;
 public class Topic {
     private long cate;
     private int quantity;
+    private String text;
+    private int quantityText;
+
 
 }

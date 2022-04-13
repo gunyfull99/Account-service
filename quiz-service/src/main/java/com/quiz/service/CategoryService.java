@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CategoryService  {
+public class CategoryService {
 
     @Autowired
     QuestionRepository questionRepository;
@@ -57,7 +57,7 @@ public class CategoryService  {
 
         List<Category> categoryEntities = categoryRepository.findAll();
         List<CategoryRequest> categoryRequests = new ArrayList<>();
-        for (Category categoryEntity : categoryEntities){
+        for (Category categoryEntity : categoryEntities) {
             CategoryRequest categoryRequest = new CategoryRequest();
             categoryRequest.setName(categoryEntity.getName());
             categoryRequest.setActive(categoryEntity.isActive());
@@ -65,6 +65,7 @@ public class CategoryService  {
         }
         return categoryRequests;
     }
+
     public List<Category> getAllCate() {
         return categoryRepository.findAll();
     }

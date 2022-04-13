@@ -80,16 +80,16 @@ public class QuizController {
         return quesTionService.openQuestion(id);
     }
 
-    //http://localhost:8080/quiz/getquestionbycategory/category
+    //http://localhost:8080/quiz/getquestionbycategory
     @CrossOrigin(origins = "http://localhost:8080/quiz")
-    @GetMapping("/getquestionbycategory/{category}")
-    public List<QuestDTO> getQuestionByCategory(@PathVariable("category") long id
+    @PostMapping("/getquestionbycategory")
+    public QuestionPaging getQuestionByCategory(@RequestBody QuestionPaging questionPaging
 //            , @RequestHeader("Authorization") String token
     ) {
 //        if (templateService.getCanRead(perQuestion, token) == false) {
 //            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
 //        }
-        return quesTionService.getQuestionByCategory(id);
+        return quesTionService.getQuestionByCategory(questionPaging);
     }
 
     //http://localhost:8080/quiz/getAllQuestion

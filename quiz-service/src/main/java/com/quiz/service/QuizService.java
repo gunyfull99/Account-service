@@ -91,27 +91,26 @@ public class QuizService {
             int totalTime = 0;
             List<Question> q = new ArrayList<>();
 
+
             for (int i = 0; i < form.getTopics().size(); i++) {
                 List<Question> hasTag1 = quesTionService.getAllQuestionByCate(form.getTopics().get(i).getCate());
                 Collections.shuffle(hasTag1);
-                List<Question> h1 = new ArrayList<>();
                 numberQuestion += form.getTopics().get(i).getQuantity();
                 if (form.getTopics().get(i).getQuantity() > hasTag1.size()) {
                     throw new ResourceBadRequestException(new BaseResponse(80808, "Not enough question for topic " + i));
                 }
                 for (int j = 0; j < form.getTopics().get(i).getQuantity(); j++) {
 
-                    h1.add(hasTag1.get(j));
+                    q.add(hasTag1.get(j));
                     totalTime += hasTag1.get(j).getQuestionTime();
                 }
-                if (form.getText() != null) {
+                if (form.getTopics().get(i).getText() != null) {
                     List<Question> listText = quesTionService.getAllQuestionText(form.getTopics().get(i).getCate());
                     Collections.shuffle(listText);
-                    for (int e = 0; e < form.getQuantityText(); e++) {
-                        h1.add(listText.get(e));
+                    for (int e = 0; e < form.getTopics().get(i).getQuantityText(); e++) {
+                        q.add(listText.get(e));
                     }
                 }
-                q.addAll(h1);
             }
             quiz.setNumberQuestions(numberQuestion);
             quiz.setQuizTime(totalTime);

@@ -1,6 +1,8 @@
 package com.quiz.repository;
 
 import com.quiz.entity.Question;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +14,9 @@ import java.util.Set;
 public interface QuestionRepository extends JpaRepository<Question,Long> {
 
     @Query(value = "select * from questions where cate_id = :id and type_id != 3 and is_active=true", nativeQuery = true)
-    List<Question> getAllQuestionByCate(@Param("id") long id );
+    List<Question> getAllQuestionByCateToCreateQuiz(@Param("id") long id );
+
+    Page<Question> findAllByCategoryId (long name, Pageable p);
 
     @Query(value = "select * from questions where cate_id = :id and type_id = 3 and is_active=true", nativeQuery = true)
     List<Question> getAllQuestionText(@Param("id") long id );

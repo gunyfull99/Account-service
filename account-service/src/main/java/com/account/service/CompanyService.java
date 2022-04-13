@@ -29,12 +29,14 @@ public class CompanyService {
         logger.info("get company by id");
         return companyRepository.getById(id);
     }
+
     public Company findCompany(Long id) {
         logger.info("find ComPany By Id");
         return companyRepository.findComPanyById(id);
     }
+
     public Company save(Company company) {
-        logger.info("receive info to save for company {}",company.getName());
+        logger.info("receive info to save for company {}", company.getName());
 
         return companyRepository.save(company);
     }

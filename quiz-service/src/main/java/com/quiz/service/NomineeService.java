@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class NomineeService  {
+public class NomineeService {
 
     @Autowired
     NomineeRepository nomineeRepository;

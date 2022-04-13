@@ -56,28 +56,40 @@ public class AccountService {
 
         return accountRepository.save(entity);
     }
-    public void blockListUser(List<Long> listUser){
-        for (int i = 0; i <listUser.size() ; i++) {
-            Account a= accountRepository.selectById(listUser.get(i));
+
+    public void blockListUser(List<Long> listUser) {
+        for (int i = 0; i < listUser.size(); i++) {
+            Account a = accountRepository.selectById(listUser.get(i));
             a.setActive(false);
             accountRepository.save(a);
         }
     }
 
     public Page<Account> findAll(AccountPaging ap) {
-        int offset =ap.getOffset();
-        if( offset<0){
-        offset=1;
+        int offset = ap.getOffset();
+        if (offset < 0) {
+            offset = 1;
         }
         logger.info("Get all account");
-        Page<Account> a = accountRepository.findAll(PageRequest.of(offset-1,ap.getPageSize()));
+        Page<Account> a = accountRepository.findAll(PageRequest.of(offset - 1, ap.getPageSize()));
         if (a.isEmpty()) {
             logger.error("no account exist !!!");
             throw new RuntimeException("no account exist !!!");
         }
         return a;
     }
-    public List<AccountDto> convertAccount(List<Account> list){
+
+    public List<AccountDto> convertAccount(List<Account> list) {
+        List<AccountDto> a1 = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            AccountDto aDto = updateUser(list.get(i));
+            a1.add(aDto);
+        }
+        return a1;
+    }
+
+    public List<AccountDto> searchUser(String name) {
+        List<Account> list=accountRepository.searchUser(name);
         List<AccountDto> a1 = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             AccountDto aDto = updateUser(list.get(i));
@@ -117,12 +129,13 @@ public class AccountService {
 
         a.setPassword(passwordEncoder.encode(a.getPassword()));
         accountRepository.save(a);
-        ModelMapper mapper=new ModelMapper();
-        AccountDto acc = mapper.map(a,AccountDto.class);
+        ModelMapper mapper = new ModelMapper();
+        AccountDto acc = mapper.map(a, AccountDto.class);
         return acc;
     }
-    public Account convertAccount(Account a){
-        Account acc=new Account();
+
+    public Account convertAccount(Account a) {
+        Account acc = new Account();
         acc.setActive(a.getActive());
         acc.setAddress(a.getAddress());
         acc.setCompany(a.getCompany());
@@ -134,8 +147,8 @@ public class AccountService {
 
     public AccountDto updateUser(Account a) {
         logger.info("update user {}", a.getFullName());
-        ModelMapper mapper=new ModelMapper();
-        AccountDto acc = mapper.map(a,AccountDto.class);
+        ModelMapper mapper = new ModelMapper();
+        AccountDto acc = mapper.map(a, AccountDto.class);
         return acc;
     }
 
@@ -176,7 +189,8 @@ public class AccountService {
         return permissionRepository.save(permission);
     }
 
-    public Account getByUsername(String username) {        logger.info("get account By Username {}", username);
+    public Account getByUsername(String username) {
+        logger.info("get account By Username {}", username);
 
         return accountRepository.findByUsername(username);
     }
@@ -254,7 +268,8 @@ public class AccountService {
         return roleRepository.getUserNotRole(id);
     }
 
-    public Set<Permission> getUserNotPer(Long id) {        logger.info("get User Not Permission");
+    public Set<Permission> getUserNotPer(Long id) {
+        logger.info("get User Not Permission");
 
         return permissionRepository.getUserNotPer(id);
     }
@@ -301,10 +316,10 @@ public class AccountService {
         accountPermissionRepository.save(accountPermission);
     }
 
-    public AccountPermission getDetailPerInUser(long id, long idP)throws ResourceNotFoundException {
+    public AccountPermission getDetailPerInUser(long id, long idP) throws ResourceNotFoundException {
         logger.info("get Detail Permission In User");
-        AccountPermission a=accountPermissionRepository.getDetailPerInUser(id, idP);
-        if(a == null){
+        AccountPermission a = accountPermissionRepository.getDetailPerInUser(id, idP);
+        if (a == null) {
             throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
         }
         return a;
@@ -350,24 +365,26 @@ public class AccountService {
     }
 
     public AccountDto getAccByUsername(String username) {
-        logger.info("get Account By Username {}",username);
+        logger.info("get Account By Username {}", username);
 
-        ModelMapper mapper= new ModelMapper();
+        ModelMapper mapper = new ModelMapper();
         Account a = accountRepository.findByUsername(username);
-        AccountDto acc = mapper.map(a,AccountDto.class);
+        AccountDto acc = mapper.map(a, AccountDto.class);
         return acc;
     }
 
     public AccountDto getAccById(Account a) {
         logger.info("get Account By Id ");
-        ModelMapper mapper=new ModelMapper();
-        AccountDto acc = mapper.map(a,AccountDto.class);
+        ModelMapper mapper = new ModelMapper();
+        AccountDto acc = mapper.map(a, AccountDto.class);
         return acc;
     }
-    public Page<Account> searchUser(String name, AccountPaging accountPaging) {
-        Pageable pageable = PageRequest.of(accountPaging.getOffset()-1,accountPaging.getPageSize());
-        Page<Account> a = accountRepository.findAllByFullNameContaining(name,pageable);
 
+    public Page<Account> searchUserWithPaging(String name, AccountPaging accountPaging) {
+        Pageable pageable = PageRequest.of(accountPaging.getOffset() - 1, accountPaging.getPageSize());
+        Page<Account> a = accountRepository.findAllByFullNameContaining(name, pageable);
         return a;
     }
+
+
 }

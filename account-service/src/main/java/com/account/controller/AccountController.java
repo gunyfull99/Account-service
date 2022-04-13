@@ -148,7 +148,7 @@ public class AccountController {
         if (accountRequest == null) {
             throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
         }
-        accountRequest=accountService.convertAccount(a);
+        accountRequest = accountService.convertAccount(a);
         Account account = accountService.save(accountRequest);
         return ResponseEntity.ok().body(accountService.updateUser(account));
     }
@@ -477,7 +477,7 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    @GetMapping("/list")
+    @PostMapping("/list")
     public ResponseEntity<AccountPaging> getAllAccount(@RequestBody AccountPaging accountPaging) {
         Page<Account> accounts = accountService.findAll(accountPaging);
         List<AccountDto> list = accountService.convertAccount(accounts.getContent());
@@ -545,18 +545,31 @@ public class AccountController {
         return ResponseEntity.ok().body("Block success");
     }
 
-    // search user
-    // http://localhost:8091/accounts/search
+    // search user with paging
+    // http://localhost:8091/accounts/searchWithPaging
     @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    @GetMapping("/search")
-    public ResponseEntity<AccountPaging> searchUser( @RequestBody AccountPaging accountPaging) {
-        Page<Account> list=  accountService.searchUser(accountPaging.getSearch(),accountPaging);
+    @PostMapping("/searchWithPaging")
+    public ResponseEntity<AccountPaging> searchUserWithPaging(@RequestBody AccountPaging accountPaging) {
+        Page<Account> list = accountService.searchUserWithPaging(accountPaging.getSearch(), accountPaging);
         List<AccountDto> list1 = accountService.convertAccount(list.getContent());
         return ResponseEntity.ok().body(new AccountPaging((int) list.getTotalElements(), list1));
+    }
+
+    // search user
+    // http://localhost:8091/accounts/search/{name}
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<AccountDto>> searchUser(@PathVariable(name = "name") String name) {
+        return ResponseEntity.ok().body(accountService.searchUser(name));
     }
 }
