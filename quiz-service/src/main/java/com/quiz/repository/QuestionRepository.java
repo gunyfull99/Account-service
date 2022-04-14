@@ -16,7 +16,7 @@ public interface QuestionRepository extends JpaRepository<Question,Long> {
     @Query(value = "select * from questions where cate_id = :id and type_id != 3 and is_active=true", nativeQuery = true)
     List<Question> getAllQuestionByCateToCreateQuiz(@Param("id") long id );
 
-    Page<Question> findAllByCategoryId (long name, Pageable p);
+    Page<Question> findAllByCategoryId (long id, Pageable p);
 
     @Query(value = "select * from questions where cate_id = :id and type_id = 3 and is_active=true", nativeQuery = true)
     List<Question> getAllQuestionText(@Param("id") long id );

@@ -11,14 +11,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionPaging {
-    int totalElements;
+    int total;
     List<QuestDTO> questions;
-    int offset;
-    int pageSize;
+    int page;
+    int limit;
     long cateId;
 
     public  QuestionPaging(int totalElements,List<QuestDTO> questions){
-        this.totalElements=totalElements;
+        this.total=totalElements;
         this.questions=questions;
     }
 

@@ -169,7 +169,7 @@ public class QuesTionService {
 
     public QuestionPaging getQuestionByCategory(QuestionPaging questionPaging) {
         logger.info("Receive info of question {} to edit", questionPaging.getCateId());
-        Pageable pageable = PageRequest.of(questionPaging.getOffset() - 1, questionPaging.getPageSize());
+        Pageable pageable = PageRequest.of(questionPaging.getPage() - 1, questionPaging.getLimit());
         Page<Question> questionEntity = questionRepository.findAllByCategoryId(questionPaging.getCateId(), pageable);
         List<QuestDTO> questionRequests = new ArrayList<>();
 
@@ -187,7 +187,7 @@ public class QuesTionService {
             request.setQuestionTime(question.getQuestionTime());
             questionRequests.add(request);
         }
-        return new QuestionPaging((int) questionEntity.getTotalElements(), questionRequests);
+        return new QuestionPaging((int) questionEntity.getTotalElements(), questionRequests,questionPaging.getPage(),questionPaging.getLimit(),questionPaging.getCateId());
     }
 
     public List<QuestDTO> getListQuestionByQuizId(long id) {
