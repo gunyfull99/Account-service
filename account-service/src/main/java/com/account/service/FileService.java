@@ -46,7 +46,7 @@ public class FileService {
             Path targetLocation = fileStorageLocation.resolve(filename);
             // copy file to the target location and replace existing file with the same name if exists
             Files.copy(multipartFile.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-            return targetLocation.toString();
+            return filename.toString();
         } catch (IOException e) {
             throw new RuntimeException("Could not store file " + filename, e);
         }

@@ -13,6 +13,7 @@ import com.account.service.FileService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -120,9 +121,7 @@ public class CompanyController {
     @GetMapping("/getImage/{filename}")
     public ResponseEntity<?> downloadFile(@PathVariable("filename") String filename, HttpServletRequest request) throws IOException {
         Resource fileResource = fileService.getFile(filename);
-
         String contentType = null;
-
         try {
             contentType = request.getServletContext().getMimeType(fileResource.getFile().getAbsolutePath());
         } catch (IOException e) {
@@ -132,15 +131,13 @@ public class CompanyController {
         if (contentType == null) {
             contentType = "application/octet-stream";
         }
-
-        var imgFile = new ClassPathResource(Paths.get(System.getProperty(FILE_DIRECTORY))+filename);
-
-       return ResponseEntity.ok().contentType(parseMediaType(contentType))
-               .body(new InputStreamResource(imgFile.getInputStream()));
-//        return ResponseEntity.ok()
-//                .contentType(parseMediaType(contentType))
-//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileResource.getFilename() + "\"")
-//                .body(fileResource);
+        byte[] image = new byte[0];
+        try {
+            image = FileUtils.readFileToByteArray(new File("uploads/"+filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok().contentType(parseMediaType(contentType)).body(image);
     }
 
     // Update company
@@ -159,27 +156,13 @@ public class CompanyController {
 
         Company company = companyService.getById(id);
 
-        Path staticPath = Paths.get("static");
-        Path imagePath = Paths.get("images");
-        if (!Files.exists(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath))) {
-            Files.createDirectories(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath));
-        }
-        Path file = CURRENT_FOLDER.resolve(staticPath)
-                .resolve(imagePath).resolve(image.getOriginalFilename());
-        try (OutputStream os = Files.newOutputStream(file)) {
-            os.write(image.getBytes());
-        }
-
 
         company.setEmail(email);
         company.setPhone(phone);
         company.setShortCutName(shortCutName);
         company.setName(name);
         company.setAddress(address);
-        System.out.println(imagePath.resolve(image.getOriginalFilename()));
-        byte[] bytes = image.getBytes();
-        String base64 = Base64.getEncoder().encodeToString(bytes);
-        company.setLogo(base64);
+        company.setLogo(fileService.storeFile(image).toString());
 
         return new ResponseEntity<Company>(companyService.save(company), HttpStatus.CREATED);
     }

@@ -89,7 +89,7 @@ public class AccountService {
     }
 
     public List<AccountDto> searchUser(String name) {
-        List<Account> list=accountRepository.searchUser(name);
+        List<Account> list = accountRepository.searchUser(name);
         List<AccountDto> a1 = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             AccountDto aDto = updateUser(list.get(i));
@@ -381,8 +381,13 @@ public class AccountService {
     }
 
     public Page<Account> searchUserWithPaging(String name, AccountPaging accountPaging) {
+        Page<Account> a = null;
         Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit());
-        Page<Account> a = accountRepository.findAllByFullNameContaining(name, pageable);
+        if (name.isEmpty() || name == null) {
+            a= accountRepository.findAll(pageable);
+        } else {
+            a = accountRepository.findAllByFullNameContaining(name, pageable);
+        }
         return a;
     }
 

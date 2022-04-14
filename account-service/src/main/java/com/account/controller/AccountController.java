@@ -557,7 +557,7 @@ public class AccountController {
     public ResponseEntity<AccountPaging> searchUserWithPaging(@RequestBody AccountPaging accountPaging) {
         Page<Account> list = accountService.searchUserWithPaging(accountPaging.getSearch(), accountPaging);
         List<AccountDto> list1 = accountService.convertAccount(list.getContent());
-        return ResponseEntity.ok().body(new AccountPaging((int) list.getTotalElements(), list1));
+        return ResponseEntity.ok().body(new AccountPaging((int) list.getTotalElements(), list1,accountPaging.getPage(),accountPaging.getLimit(),accountPaging.getSearch()));
     }
 
     // search user
