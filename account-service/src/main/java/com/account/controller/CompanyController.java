@@ -60,8 +60,8 @@ public class CompanyController {
     public CompanyController() {
     }
 
-//    @Value("${file.upload-dir}")
-//    String FILE_DIRECTORY;
+    @Value("${file.upload-dir}")
+    String FILE_DIRECTORY;
 
 
     // Create company
@@ -133,7 +133,7 @@ public class CompanyController {
             contentType = "application/octet-stream";
         }
 
-        var imgFile = new ClassPathResource("/uploads/"+filename);
+        var imgFile = new ClassPathResource(Paths.get(System.getProperty(FILE_DIRECTORY))+filename);
 
        return ResponseEntity.ok().contentType(parseMediaType(contentType))
                .body(new InputStreamResource(imgFile.getInputStream()));

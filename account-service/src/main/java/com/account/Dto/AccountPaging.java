@@ -13,13 +13,13 @@ import java.util.List;
 @NoArgsConstructor
 public class AccountPaging {
     int total ;
-    List<AccountDto>accountDtoList;
+    List<AccountDto>accounts_list;
     int page ;
     int limit ;
     String search;
 
     public  AccountPaging(int totalElements,List<AccountDto> accountDtoList){
         this.total=totalElements;
-        this.accountDtoList=accountDtoList;
+        this.accounts_list=accountDtoList;
     }
 }
