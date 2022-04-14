@@ -383,7 +383,7 @@ public class AccountService {
     public Page<Account> searchUserWithPaging(String name, AccountPaging accountPaging) {
         Page<Account> a = null;
         Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit());
-        if (name.isEmpty() || name == null) {
+        if (name.isEmpty() || name == null || name.trim().equals("")) {
             a= accountRepository.findAll(pageable);
         } else {
             a = accountRepository.findAllByFullNameContaining(name, pageable);
