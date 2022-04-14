@@ -57,11 +57,13 @@ public class QuizController {
     //http://localhost:8080/quiz/editquestion
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PutMapping("/editquestion")
-    public void editQuestion(@RequestBody QuestionEditRequest request, @RequestHeader("Authorization") String token) {
-
-        if (templateService.getCanUpdate(perQuiz, token) == false) {
-            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-        }
+    public void editQuestion(@RequestBody QuestionEditRequest request
+       //     , @RequestHeader("Authorization") String token
+    ) {
+//
+//        if (templateService.getCanUpdate(perQuiz, token) == false) {
+//            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+//        }
         quesTionService.editQuestion(request);
     }
 
@@ -95,20 +97,25 @@ public class QuizController {
     //http://localhost:8080/quiz/getAllQuestion
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/getAllQuestion")
-    public List<QuestionRequest> getAllQuestion(@RequestHeader("Authorization") String token) {
-        if (templateService.getCanRead(perQuestion, token) == false) {
-            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-        }
+    public List<QuestionRequest> getAllQuestion(
+          //  @RequestHeader("Authorization") String token
+    ) {
+//        if (templateService.getCanRead(perQuestion, token) == false) {
+//            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+//        }
         return quesTionService.getAllQuestion();
     }
 
     //http://localhost:8080/quiz/getAllQuestionBlock
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/getAllQuestionBlock")
-    public List<QuestionRequest> getAllQuestionBlock(@RequestHeader("Authorization") String token) {
-        if (templateService.getCanRead(perQuestion, token) == false) {
-            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-        }
+    public List<QuestionRequest> getAllQuestionBlock
+    (
+    // @RequestHeader("Authorization") String token
+    ) {
+//        if (templateService.getCanRead(perQuestion, token) == false) {
+//            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+//        }
         return quesTionService.getAllQuestionBlock();
     }
 
@@ -141,10 +148,13 @@ public class QuizController {
     //http://localhost:8080/quiz/getAllQuestionType
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/getAllQuestionType")
-    public List<QuestionType> getAllQuestionType(@RequestHeader("Authorization") String token) {
-        if (templateService.getCanRead(perQuestion, token) == false) {
-            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-        }
+    public List<QuestionType> getAllQuestionType(
+//            @RequestHeader("Authorization") String token
+   )
+    {
+//        if (templateService.getCanRead(perQuestion, token) == false) {
+//            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+//        }
         return quesTionService.getAllQuestionType();
     }
 
