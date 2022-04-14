@@ -386,7 +386,7 @@ public class AccountService {
         if (name.isEmpty() || name == null || name.trim().equals("")) {
             a= accountRepository.findAll(pageable);
         } else {
-            a = accountRepository.findAllByFullNameContaining(name, pageable);
+            a = accountRepository.findAllByFullNameContainingIgnoreCase(name, pageable);
         }
         return a;
     }

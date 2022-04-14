@@ -37,5 +37,5 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     List<Account> searchUser(@Param("name") String name);
 
 
-    Page<Account> findAllByFullNameContaining (String name, Pageable p);
+    Page<Account> findAllByFullNameContainingIgnoreCase (String name, Pageable p);
 }
