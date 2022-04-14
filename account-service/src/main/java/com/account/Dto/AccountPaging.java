@@ -12,14 +12,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountPaging {
-    int totalElements;
+    int total ;
     List<AccountDto>accountDtoList;
-    int offset;
-    int pageSize;
+    int page ;
+    int limit ;
     String search;
 
     public  AccountPaging(int totalElements,List<AccountDto> accountDtoList){
-        this.totalElements=totalElements;
+        this.total=totalElements;
         this.accountDtoList=accountDtoList;
     }
 }

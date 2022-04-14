@@ -66,12 +66,12 @@ public class AccountService {
     }
 
     public Page<Account> findAll(AccountPaging ap) {
-        int offset = ap.getOffset();
+        int offset = ap.getPage();
         if (offset < 0) {
             offset = 1;
         }
         logger.info("Get all account");
-        Page<Account> a = accountRepository.findAll(PageRequest.of(offset - 1, ap.getPageSize()));
+        Page<Account> a = accountRepository.findAll(PageRequest.of(offset - 1, ap.getLimit()));
         if (a.isEmpty()) {
             logger.error("no account exist !!!");
             throw new RuntimeException("no account exist !!!");
@@ -381,7 +381,7 @@ public class AccountService {
     }
 
     public Page<Account> searchUserWithPaging(String name, AccountPaging accountPaging) {
-        Pageable pageable = PageRequest.of(accountPaging.getOffset() - 1, accountPaging.getPageSize());
+        Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit());
         Page<Account> a = accountRepository.findAllByFullNameContaining(name, pageable);
         return a;
     }
