@@ -1,10 +1,15 @@
 package com.account.utils;
 
+import com.account.Dto.BaseResponse;
+import com.account.config.ResponseError;
+import com.account.exception.ResourceBadRequestException;
+import com.account.exception.ResourceForbiddenRequestException;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -22,6 +27,9 @@ public class JwtUtility implements Serializable {
 
     public static final long JWT_TOKEN_VALIDITY = 10 * 60 * 60;
 
+    @Autowired
+    private ResponseError r;
+
     private String secret = "secret";
 
     //retrieve username from jwt token
@@ -38,9 +46,10 @@ public class JwtUtility implements Serializable {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
     }
+
     //for retrieveing any information from token we will need the secret key
-    private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+    private Claims getAllClaimsFromToken(String token) throws ResourceForbiddenRequestException {
+            return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
     //check if the token has expired

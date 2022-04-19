@@ -36,6 +36,8 @@ public class Question {
     private List<QuestionChoice> questionChoice=new ArrayList<>();
     private  int questionTime;
     private boolean isActive =true;
+    private long company_id;
+    private boolean isPublic;
 
 
 }

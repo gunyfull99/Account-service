@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,6 +29,8 @@ public class AccountDto {
     private String address;
     private boolean isActive ;
     private Company company;
+    private LocalDateTime birthDay;
+    private LocalDateTime startDay;
     private Set<Roles> roles = new HashSet<>();
     private Set<Permission> permissions = new HashSet<>();
 }

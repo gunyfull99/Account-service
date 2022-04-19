@@ -6,6 +6,11 @@ import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.PUT;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
+import com.account.Dto.BaseResponse;
+import com.account.config.ResponseError;
+import com.account.exception.GlobalExceptionHandler;
+import com.account.exception.ResourceBadRequestException;
+import com.account.exception.ResourceForbiddenRequestException;
 import com.account.filter.AuthorizationFilter;
 import com.account.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +28,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -36,6 +47,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AuthorizationFilter authorizationFilter;
+    @Autowired
+    private GlobalExceptionHandler globalExceptionHandler;
+
+    @Autowired
+    private ResponseError r;
 //
 //    @Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -56,12 +72,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/accounts/login").permitAll()
-                .antMatchers( "/accounts/**").permitAll()
-                .antMatchers("/company/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/accounts/login", "/company/**").permitAll()
+                .antMatchers("/accounts/role/**", "/accounts/{id}").hasAuthority("ADMIN")
+                .and().exceptionHandling().accessDeniedHandler(((request, response, accessDeniedException) -> {
+                    globalExceptionHandler.handleConflict(response);
+                }))
                 .and()
                 .logout()
                 .logoutSuccessUrl("/accounts/login")
@@ -69,12 +87,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 clearAuthentication(true).
                 invalidateHttpSession(true)
                 .and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .exceptionHandling().accessDeniedPage("/403");
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
     }
-
 
     @Bean
     BCryptPasswordEncoder passwordEncoder() {

@@ -23,4 +23,6 @@ public class QuestDTO {
     private int questionTime;
 
     private List<QuestionChoiceDTO> questionChoiceDTOs;
+    private long company_id;
+    private boolean isPublic;
 }

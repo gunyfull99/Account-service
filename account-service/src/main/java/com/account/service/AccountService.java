@@ -142,6 +142,8 @@ public class AccountService {
         acc.setEmail(a.getEmail());
         acc.setFullName(a.getFullName());
         acc.setUserType(a.getUserType());
+        acc.setBirthDay(a.getBirthDay());
+        acc.setStartDay(a.getStartDay());
         return acc;
     }
 
@@ -383,8 +385,11 @@ public class AccountService {
     public Page<Account> searchUserWithPaging(String name, AccountPaging accountPaging) {
         Page<Account> a = null;
         Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit());
-        if (name.isEmpty() || name == null || name.trim().equals("")) {
-            a= accountRepository.findAll(pageable);
+
+        if (accountPaging.getRole() == null || !accountPaging.getRole().isEmpty()) {
+            a = accountRepository.findAllByRolesId(Long.parseLong(accountPaging.getRole()), pageable);
+        } else if (name.isEmpty() || name == null || name.trim().equals("")) {
+            a = accountRepository.findAll(pageable);
         } else {
             a = accountRepository.findAllByFullNameContainingIgnoreCase(name, pageable);
         }

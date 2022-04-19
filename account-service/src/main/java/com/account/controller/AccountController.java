@@ -481,7 +481,7 @@ public class AccountController {
     public ResponseEntity<AccountPaging> getAllAccount(@RequestBody AccountPaging accountPaging) {
         Page<Account> accounts = accountService.findAll(accountPaging);
         List<AccountDto> list = accountService.convertAccount(accounts.getContent());
-        return ResponseEntity.ok().body(new AccountPaging((int) accounts.getTotalElements(), list,accountPaging.getPage(),accountPaging.getLimit(),null));
+        return ResponseEntity.ok().body(new AccountPaging((int) accounts.getTotalElements(), list,accountPaging.getPage(),accountPaging.getLimit(),null,null));
     }
 
     // get can read from user
@@ -557,7 +557,7 @@ public class AccountController {
     public ResponseEntity<AccountPaging> searchUserWithPaging(@RequestBody AccountPaging accountPaging) {
         Page<Account> list = accountService.searchUserWithPaging(accountPaging.getSearch(), accountPaging);
         List<AccountDto> list1 = accountService.convertAccount(list.getContent());
-        return ResponseEntity.ok().body(new AccountPaging((int) list.getTotalElements(), list1,accountPaging.getPage(),accountPaging.getLimit(),accountPaging.getSearch()));
+        return ResponseEntity.ok().body(new AccountPaging((int) list.getTotalElements(), list1,accountPaging.getPage(),accountPaging.getLimit(),accountPaging.getSearch(),null));
     }
 
     // search user

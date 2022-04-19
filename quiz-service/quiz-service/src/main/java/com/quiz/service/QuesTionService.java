@@ -124,6 +124,8 @@ public class QuesTionService {
             request.setCategory(question1.getCategory());
             request.setQuestionChoice(question1.getQuestionChoice());
             request.setQuestionTime(question1.getQuestionTime());
+            request.setPublic(question1.isPublic());
+            request.setCompany_id(question1.getCompany_id());
             questionRequests.add(request);
         }
         return questionRequests;
@@ -145,6 +147,8 @@ public class QuesTionService {
             request.setCategory(question1.getCategory());
             request.setQuestionChoice(question1.getQuestionChoice());
             request.setQuestionTime(question1.getQuestionTime());
+            request.setPublic(question1.isPublic());
+            request.setCompany_id(question1.getCompany_id());
             questionRequests.add(request);
         }
         return questionRequests;
@@ -164,6 +168,8 @@ public class QuesTionService {
         questionEntity.setCategory(request.getCategory());
         questionEntity.setQuestionChoice(request.getQuestionChoice());
         questionEntity.setQuestionTime(request.getQuestionTime());
+        questionEntity.setPublic(request.isPublic());
+        questionEntity.setCompany_id(request.getCompany_id());
         questionRepository.save(questionEntity);
     }
 

@@ -12,6 +12,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public class Account implements Serializable {
     @Size(min = 5, max = 12, message = "username should between 5-12 characters")
     private String username;
 
-//    @Pattern(regexp = "^[a-zA-Z0-9]+$",message = "password must alpha numberic")
+    //    @Pattern(regexp = "^[a-zA-Z0-9]+$",message = "password must alpha numberic")
 //    @Size(min = 8,max = 16,message = "password should between 8-16 characters")
     private String password;
 
@@ -41,7 +42,7 @@ public class Account implements Serializable {
     private String email;
     private String address;
     private String userType;
-    private boolean isActive =true;
+    private boolean isActive = true;
 
     @ManyToOne
     //@JsonIgnore
@@ -54,8 +55,11 @@ public class Account implements Serializable {
     @ManyToMany(fetch = EAGER)
     private Set<Permission> permissions = new HashSet<>();
 
+    private LocalDateTime birthDay;
+    private LocalDateTime startDay;
+
     public boolean getActive() {
-       return this.isActive;
+        return this.isActive;
     }
 
 

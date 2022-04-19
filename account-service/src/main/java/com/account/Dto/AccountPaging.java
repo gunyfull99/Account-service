@@ -17,6 +17,8 @@ public class AccountPaging {
     int page ;
     int limit ;
     String search;
+    String role;
+
 
     public  AccountPaging(int totalElements,List<AccountDto> accountDtoList){
         this.total=totalElements;

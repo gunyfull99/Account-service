@@ -21,7 +21,6 @@ public class CompanyDto {
     private String shortCutName;
     private String address;
     private String logo;
-
     private Set<AccountDto> account=new HashSet<>();
     private boolean isActive;
 

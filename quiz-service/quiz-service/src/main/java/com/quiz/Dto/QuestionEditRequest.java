@@ -25,4 +25,6 @@ public class QuestionEditRequest {
     private List<QuestionChoice> questionChoice = new ArrayList<>();
 
     private int questionTime;
+    private long company_id;
+    private boolean isPublic;
 }

@@ -24,4 +24,6 @@ public class QuestionRequest {
     private int questionTime;
 
     private List<QuestionChoice> questionChoice = new ArrayList<>();
+    private long company_id;
+    private boolean isPublic;
 }

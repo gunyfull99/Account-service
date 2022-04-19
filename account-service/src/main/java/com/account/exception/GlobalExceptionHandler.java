@@ -3,11 +3,14 @@ package com.account.exception;
 import com.account.Dto.BaseResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
 
 @ControllerAdvice
@@ -29,6 +32,18 @@ public class GlobalExceptionHandler {
 //        return new ResponseEntity<>(baseResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 //
 //    }
+
+//    @ExceptionHandler(AccessDeniedException.class)
+//    public ResponseEntity<?> resourceForbiddenRequestException(ResourceForbiddenRequestException ex ) {
+//        BaseResponse baseResponse= new BaseResponse(Integer.parseInt(ex.getMessage().split("@")[0]),ex.getMessage().split("@")[1]);
+//        return new ResponseEntity<>(baseResponse, HttpStatus.FORBIDDEN);
+//
+//    }
+
+    @ExceptionHandler(value = AccessDeniedException.class)
+    public void handleConflict(HttpServletResponse response) throws IOException {
+        response.sendError(403, "Bạn không có quyền truy cập trang này ");
+    }
 
     @ExceptionHandler(ResourceBadRequestException.class)
     public ResponseEntity<?> resourceBadRequestException(ResourceBadRequestException ex ) {

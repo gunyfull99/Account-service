@@ -168,6 +168,11 @@ public class QuizController {
     //http://localhost:8080/quiz/createnominee
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PostMapping("/createnominee")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "create success", response = Nominee.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public void createNominee(@RequestBody NomineeRequest nomineeRequest) {
         nomineeService.createNominee(nomineeRequest);
     }
@@ -175,6 +180,11 @@ public class QuizController {
     //http://localhost:8080/quiz/editnominee
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PutMapping("/editnominee")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "update success", response = Nominee.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public void editNominee(@RequestBody NomineeEditRequest nomineeRequest) {
         nomineeService.editNominee(nomineeRequest);
     }
@@ -182,6 +192,11 @@ public class QuizController {
     //http://localhost:8080/quiz/deletenominee
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PutMapping("/deletenominee/{id}")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "delete success", response = Nominee.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public void deleteNominee(@PathVariable("id") Long id) {
         nomineeService.deleteNominee(id);
     }
@@ -189,6 +204,11 @@ public class QuizController {
     //http://localhost:8080/quiz/nominee/list
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/nominee/list")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Nominee.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public List<Nominee> getAllNominee() {
 
         return nomineeService.getAll();
