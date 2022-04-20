@@ -57,6 +57,10 @@ public class AccountService {
         return accountRepository.save(entity);
     }
 
+    public List<Account> listAllAccount() {
+        return accountRepository.findAll();
+    }
+
     public void blockListUser(List<Long> listUser) {
         for (int i = 0; i < listUser.size(); i++) {
             Account a = accountRepository.selectById(listUser.get(i));
@@ -89,7 +93,13 @@ public class AccountService {
     }
 
     public List<AccountDto> searchUser(String name) {
-        List<Account> list = accountRepository.searchUser(name);
+        List<Account> list = null;
+        if (name == null || name.trim().equals("")) {
+            list = accountRepository.findAll();
+        } else {
+            list = accountRepository.searchUser(name);
+
+        }
         List<AccountDto> a1 = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             AccountDto aDto = updateUser(list.get(i));
@@ -382,16 +392,34 @@ public class AccountService {
         return acc;
     }
 
-    public Page<Account> searchUserWithPaging(String name, AccountPaging accountPaging) {
+    public Page<Account> searchUserWithPaging(AccountPaging accountPaging) {
         Page<Account> a = null;
         Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit());
-
-        if (accountPaging.getRole() == null || !accountPaging.getRole().isEmpty()) {
-            a = accountRepository.findAllByRolesId(Long.parseLong(accountPaging.getRole()), pageable);
-        } else if (name.isEmpty() || name == null || name.trim().equals("")) {
+        if ((accountPaging.getSearch().isEmpty() || accountPaging.getSearch() == null || accountPaging.getSearch().trim().equals(""))
+                && (accountPaging.getRole() == null || accountPaging.getRole().isEmpty())
+                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())
+        ) {
             a = accountRepository.findAll(pageable);
-        } else {
-            a = accountRepository.findAllByFullNameContainingIgnoreCase(name, pageable);
+        } else if (accountPaging.getSearch() != null
+                && (accountPaging.getRole() == null || accountPaging.getRole().isEmpty())
+                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())) {
+            a = accountRepository.findAllByFullNameContainingIgnoreCase(accountPaging.getSearch(), pageable);
+        } else if (accountPaging.getSearch() != null
+                && (accountPaging.getRole() != null)
+                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())) {
+
+            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesId(accountPaging.getSearch(),
+                    Long.parseLong(accountPaging.getRole()), pageable);
+        } else if (accountPaging.getSearch() != null
+                && (accountPaging.getRole() != null)
+                && (accountPaging.getUserType() != null)) {
+            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesIdAndUserType(accountPaging.getSearch(),
+                    Long.parseLong(accountPaging.getRole()), accountPaging.getUserType(), pageable);
+        } else if (accountPaging.getSearch() != null
+                && (accountPaging.getRole() == null)
+                && (accountPaging.getUserType() != null)) {
+            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndUserType(accountPaging.getSearch(),
+                    accountPaging.getUserType(), pageable);
         }
         return a;
     }

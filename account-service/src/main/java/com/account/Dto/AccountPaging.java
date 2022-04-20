@@ -18,6 +18,7 @@ public class AccountPaging {
     int limit ;
     String search;
     String role;
+    String userType;
 
 
     public  AccountPaging(int totalElements,List<AccountDto> accountDtoList){

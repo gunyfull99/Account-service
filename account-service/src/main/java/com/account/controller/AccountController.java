@@ -477,11 +477,11 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    @PostMapping("/list")
-    public ResponseEntity<AccountPaging> getAllAccount(@RequestBody AccountPaging accountPaging) {
-        Page<Account> accounts = accountService.findAll(accountPaging);
-        List<AccountDto> list = accountService.convertAccount(accounts.getContent());
-        return ResponseEntity.ok().body(new AccountPaging((int) accounts.getTotalElements(), list,accountPaging.getPage(),accountPaging.getLimit(),null,null));
+    @GetMapping("/list")
+    public ResponseEntity<List<Account>> getAllAccount() {
+//        Page<Account> accounts = accountService.findAll(accountPaging);
+//        List<AccountDto> list = accountService.convertAccount(accounts.getContent());
+        return ResponseEntity.ok().body(accountService.listAllAccount());
     }
 
     // get can read from user
@@ -555,9 +555,10 @@ public class AccountController {
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @PostMapping("/searchWithPaging")
     public ResponseEntity<AccountPaging> searchUserWithPaging(@RequestBody AccountPaging accountPaging) {
-        Page<Account> list = accountService.searchUserWithPaging(accountPaging.getSearch(), accountPaging);
+        Page<Account> list = accountService.searchUserWithPaging(accountPaging);
         List<AccountDto> list1 = accountService.convertAccount(list.getContent());
-        return ResponseEntity.ok().body(new AccountPaging((int) list.getTotalElements(), list1,accountPaging.getPage(),accountPaging.getLimit(),accountPaging.getSearch(),null));
+        return ResponseEntity.ok().body(new AccountPaging((int) list.getTotalElements(),
+                list1,accountPaging.getPage(),accountPaging.getLimit(),accountPaging.getSearch(),accountPaging.getRole(),accountPaging.getUserType()));
     }
 
     // search user

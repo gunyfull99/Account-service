@@ -22,7 +22,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     Account findByUsername(@Param("username") String username);
 
     @Query(value = "SELECT  * from accounts where id= :id", nativeQuery = true)
-     Account selectById(@Param("id") Long id);
+    Account selectById(@Param("id") Long id);
 
     @Query(value = "insert into accounts_permissions VALUES(:acId,:canCreate,:canRead,:canUpdate,:perId)", nativeQuery = true)
     void addPermission2User(@Param("acId") Long acId, @Param("canCreate") boolean canCreate,
@@ -38,5 +38,12 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
 
     Page<Account> findAllByRolesId(long id, Pageable p);
-    Page<Account> findAllByFullNameContainingIgnoreCase (String name, Pageable p);
+
+    Page<Account> findAllByFullNameContainingIgnoreCase(String name, Pageable p);
+
+    Page<Account> findAllByFullNameContainingIgnoreCaseAndRolesId(String name, long roleId, Pageable p);
+
+    Page<Account> findAllByFullNameContainingIgnoreCaseAndUserType(String name, String userType, Pageable p);
+
+    Page<Account> findAllByFullNameContainingIgnoreCaseAndRolesIdAndUserType(String name, long roleId, String userType, Pageable p);
 }
