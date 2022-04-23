@@ -19,8 +19,8 @@ public class AccountPermission {
     private long id;
     private long account_id;
     private  long permissions_id;
-    private boolean canRead;
-    private boolean canUpdate;
-    private boolean canCreate;
+    private boolean can_read;
+    private boolean can_update;
+    private boolean can_create;
 
 }

@@ -199,9 +199,9 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<Roles> createRole(@Valid @RequestBody Roles role) {
+    public ResponseEntity<String> createRole(@Valid @RequestBody Roles role) {
 
-        return new ResponseEntity<Roles>(accountService.saveRole(role), HttpStatus.CREATED);
+        return new ResponseEntity<String>(accountService.saveRole(role), HttpStatus.CREATED);
     }
 
     // add role to User
@@ -497,7 +497,7 @@ public class AccountController {
     public ResponseEntity<Boolean> getCanRead(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
         AccountDto a1 = accountService.getAccByUsername(username);
         AccountPermission ap = accountService.getDetailPerInUser(a1.getId(), perId);
-        return ResponseEntity.ok().body(ap.isCanRead());
+        return ResponseEntity.ok().body(ap.isCan_read());
     }
 
     // get can create from user
@@ -512,7 +512,7 @@ public class AccountController {
     public ResponseEntity<Boolean> getCanCreate(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
         AccountDto a1 = accountService.getAccByUsername(username);
         AccountPermission ap = accountService.getDetailPerInUser(a1.getId(), perId);
-        return ResponseEntity.ok().body(ap.isCanCreate());
+        return ResponseEntity.ok().body(ap.isCan_create());
     }
 
     // get can update from user
@@ -527,7 +527,7 @@ public class AccountController {
     public ResponseEntity<Boolean> getCanUpdate(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
         AccountDto a1 = accountService.getAccByUsername(username);
         AccountPermission ap = accountService.getDetailPerInUser(a1.getId(), perId);
-        return ResponseEntity.ok().body(ap.isCanUpdate());
+        return ResponseEntity.ok().body(ap.isCan_update());
     }
 
 

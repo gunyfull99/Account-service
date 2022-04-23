@@ -38,6 +38,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
 
     Page<Account> findAllByRolesId(long id, Pageable p);
+    Page<Account> findAllByUserType(String userType, Pageable p);
 
     Page<Account> findAllByFullNameContainingIgnoreCase(String name, Pageable p);
 
