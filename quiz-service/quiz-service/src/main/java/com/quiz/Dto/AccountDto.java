@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +24,6 @@ public class AccountDto {
     private CompanyDto company;
     private Set<RolesDto> roles = new HashSet<>();
     private Set<PermissionDto> permissions = new HashSet<>();
-    private LocalDateTime birthDay;
-    private LocalDateTime startDay;
+    private Date birthDay;
+    private Date startDay;
 }

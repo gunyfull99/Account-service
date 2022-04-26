@@ -29,4 +29,5 @@ public class QuizDto {
     private String score;
 
     private List<Question> questions ;
+    private long userStartQuiz;
 }

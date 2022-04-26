@@ -7,16 +7,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Set;
 
+@Repository
 public interface QuestionRepository extends JpaRepository<Question,Long> {
 
     @Query(value = "select * from questions where cate_id = :id and type_id != 3 and is_active=true", nativeQuery = true)
     List<Question> getAllQuestionByCateToCreateQuiz(@Param("id") long id );
 
     Page<Question> findAllByCategoryId (long id, Pageable p);
+    Page<Question> findAllByQuestionTypeId (long id, Pageable p);
+    Page<Question> findAllByCategoryIdAndContentContainingIgnoreCase (long id,String content, Pageable p);
+    Page<Question> findAllByQuestionTypeIdAndContentContainingIgnoreCase (long id,String content, Pageable p);
 
     @Query(value = "select * from questions where cate_id = :id and type_id = 3 and is_active=true", nativeQuery = true)
     List<Question> getAllQuestionText(@Param("id") long id );

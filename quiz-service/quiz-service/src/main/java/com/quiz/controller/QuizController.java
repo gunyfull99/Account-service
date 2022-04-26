@@ -16,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -54,6 +56,8 @@ public class QuizController {
         quesTionService.createQuestion(request);
     }
 
+
+
     //http://localhost:8080/quiz/editquestion
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PutMapping("/editquestion")
@@ -82,16 +86,28 @@ public class QuizController {
         return quesTionService.openQuestion(id);
     }
 
-    //http://localhost:8080/quiz/getquestionbycategory
+    //http://localhost:8080/quiz/getquestionbycategorypaging
     @CrossOrigin(origins = "http://localhost:8080/quiz")
-    @PostMapping("/getquestionbycategory")
+    @PostMapping("/getquestionbycategorypaging")
     public QuestionPaging getQuestionByCategory(@RequestBody QuestionPaging questionPaging
 //            , @RequestHeader("Authorization") String token
     ) {
 //        if (templateService.getCanRead(perQuestion, token) == false) {
 //            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
 //        }
-        return quesTionService.getQuestionByCategory(questionPaging);
+        return quesTionService.getQuestionByCategoryPaging(questionPaging);
+    }
+
+    //http://localhost:8080/quiz/getquestionbytype
+    @CrossOrigin(origins = "http://localhost:8080/quiz")
+    @PostMapping("/getquestionbytype")
+    public QuestionPaging getQuestionByType(@RequestBody QuestionPaging questionPaging
+//            , @RequestHeader("Authorization") String token
+    ) {
+//        if (templateService.getCanRead(perQuestion, token) == false) {
+//            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+//        }
+        return quesTionService.getQuestionByQuestionType(questionPaging);
     }
 
     //http://localhost:8080/quiz/getAllQuestion
@@ -284,6 +300,19 @@ public class QuizController {
         return ResponseEntity.ok().body(quizService.getListQuizNotStart(id));
     }
 
+    // get list quiz
+    // http://localhost:8080/quiz/list
+    @CrossOrigin(origins = "http://localhost:8080/quiz")
+    @GetMapping("/list")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    public ResponseEntity<QuizPaging> getListQuizPaging(@RequestBody QuizPaging quizPaging) throws ResourceBadRequestException {
+        return ResponseEntity.ok().body(quizService.getListQuizPaging(quizPaging));
+    }
+
     // start quiz
     // http://localhost:8080/quiz/startquiz/1952
     @CrossOrigin(origins = "http://localhost:8080/quiz")
@@ -343,5 +372,20 @@ public class QuizController {
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public List<AccountDto> getUserDidTheTest() throws ResourceBadRequestException {
         return quizService.getUserDidTheTest();
+    }
+
+    //http://localhost:8080/quiz/importquestion
+    @CrossOrigin(origins = "http://localhost:8080/quiz")
+    @PostMapping("/importquestion")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "create success", response = Quiz.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    public ResponseEntity<String> importQuestion(@RequestParam MultipartFile file) throws IOException {
+//        if(templateService.getCanCreate(perQuiz)==false){
+//            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+//        }
+        return ResponseEntity.ok().body(quesTionService.excelImport(file));
     }
 }

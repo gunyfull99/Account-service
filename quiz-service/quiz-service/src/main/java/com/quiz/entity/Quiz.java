@@ -36,5 +36,6 @@ public class Quiz  {
 
     @ManyToMany(fetch = EAGER)
     private List<Question> questions = new ArrayList<>();
+    private long userStartQuiz=0;
 
 }

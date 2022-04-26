@@ -1,7 +1,11 @@
 package com.quiz.repository;
 
+import com.quiz.entity.Question;
 import com.quiz.entity.Quiz;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -20,4 +24,12 @@ public interface QuizRepository extends JpaRepository<Quiz,Long> {
     List<Integer> getIdByStatus();
     @Query(value = "select * from quiz where user_id= :id and status = 'not start' ", nativeQuery = true)
     List<Quiz> getQuizNotStart(@Param("id") long userId);
+
+    @Modifying
+    @Query(value = "update quiz set user_start_quiz= :time where id = :id", nativeQuery = true)
+    void updateUserStartQuiz(@Param("id") Long id,@Param("time") Long time);
+
+    Page<Quiz> findAllByUserId(long id, Pageable p);
+    Page<Quiz> findAllByStatus(String status, Pageable p);
+    Page<Quiz> findAllByUserIdAndStatus(long id,String status, Pageable p);
 }

@@ -25,4 +25,5 @@ public class QuestDTO {
     private List<QuestionChoiceDTO> questionChoiceDTOs;
     private long company_id;
     private boolean isPublic;
+    long userStartQuiz;
 }

@@ -1,9 +1,6 @@
 package com.quiz.service;
 
-import com.quiz.Dto.AccountDto;
-import com.quiz.Dto.BaseResponse;
-import com.quiz.Dto.CreateQuizForm;
-import com.quiz.Dto.QuestDTO;
+import com.quiz.Dto.*;
 import com.quiz.entity.Question;
 import com.quiz.entity.QuestionChoice;
 import com.quiz.entity.Quiz;
@@ -17,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.ManyToMany;
@@ -84,7 +84,7 @@ public class QuizService {
             Quiz quiz1 = new Quiz(form.getQuiz().getId(), form.getQuiz().getDescription(), form.getQuiz().getQuizTime(),
                     form.getQuiz().getUserId().get(k), form.getQuiz().getStartTime(), form.getQuiz().getEndTime(),
                     form.getQuiz().getExpiredTime(), form.getQuiz().getStatus(), form.getQuiz().getNumberQuestions()
-                    , form.getQuiz().getScore(), form.getQuiz().getQuestions()
+                    , form.getQuiz().getScore(), form.getQuiz().getQuestions(),form.getQuiz().getUserStartQuiz()
             );
             Quiz quiz = createQuiz(quiz1);
             int numberQuestion = 0;
@@ -206,6 +206,28 @@ public class QuizService {
             list.get(i).setQuestions(null);
         }
         return list;
+    }
+
+    public QuizPaging getListQuizPaging(QuizPaging quizPaging) {
+
+        logger.info("receive info to get List Quiz");
+        Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit());
+        Page<Quiz> list = null;
+        if(quizPaging.getUserId()==0 && quizPaging.getStatus()==null){
+            list=quizRepository.findAll(pageable);
+        }else if(quizPaging.getUserId()==0 && quizPaging.getStatus()!=null){
+            list=quizRepository.findAllByStatus(quizPaging.getStatus(),pageable);
+        }else if(quizPaging.getUserId()!=0 && quizPaging.getStatus()==null){
+            list=quizRepository.findAllByUserId(quizPaging.getUserId(),pageable);
+        }else{
+            list=quizRepository.findAllByUserIdAndStatus(quizPaging.getUserId(), quizPaging.getStatus(),pageable);
+        }
+
+        for (int i = 0; i < list.getContent().size(); i++) {
+            list.getContent().get(i).setQuestions(null);
+        }
+        QuizPaging qp=new QuizPaging((int) list.getTotalElements(),list.getContent(),quizPaging.getPage(),quizPaging.getLimit());
+        return qp;
     }
 
     public List<QuizQuestion> getListQuestionByQuizId(long quizId) {

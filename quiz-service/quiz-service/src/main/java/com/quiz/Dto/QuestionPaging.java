@@ -16,10 +16,30 @@ public class QuestionPaging {
     int page;
     int limit;
     long cateId;
+    String search;
+    long typeId;
 
     public  QuestionPaging(int totalElements,List<QuestDTO> questions){
         this.total=totalElements;
         this.questions=questions;
+    }
+
+    public  QuestionPaging(int totalElements,List<QuestDTO> questions,int page,int limit,long cateId,String search){
+        this.total=totalElements;
+        this.questions=questions;
+        this.page=page;
+        this.limit=limit;
+        this.cateId=cateId;
+        this.search=search;
+    }
+
+    public  QuestionPaging(int totalElements,List<QuestDTO> questions,int page,int limit,String search,long typeId){
+        this.total=totalElements;
+        this.questions=questions;
+        this.page=page;
+        this.limit=limit;
+        this.typeId=typeId;
+        this.search=search;
     }
 
 }
