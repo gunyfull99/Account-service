@@ -1,5 +1,6 @@
 package com.account.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -13,6 +14,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -55,8 +57,11 @@ public class Account implements Serializable {
     @ManyToMany(fetch = EAGER)
     private Set<Permission> permissions = new HashSet<>();
 
-    private LocalDateTime birthDay;
-    private LocalDateTime startDay;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date birthDay;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date startDay;
 
     public boolean getActive() {
         return this.isActive;

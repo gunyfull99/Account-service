@@ -352,7 +352,7 @@ public class AccountController {
     }
 
 
-    // get role not in Account
+    // get role  in Account
     // http://localhost:8091/accounts/list/haverole/2
     @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Account.class),
@@ -456,8 +456,8 @@ public class AccountController {
         return ResponseEntity.ok().body(accountService.getDetailPerInUser(id, idP));
     }
 
-    // get all Per
-    // http://localhost:8091/account/role/list
+    // get all role
+    // http://localhost:8091/accounts/role/list
     @CrossOrigin(origins = "http://localhost:8091/accounts")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
@@ -572,5 +572,18 @@ public class AccountController {
     @GetMapping("/search/{name}")
     public ResponseEntity<List<AccountDto>> searchUser(@PathVariable(name = "name") String name) {
         return ResponseEntity.ok().body(accountService.searchUser(name));
+    }
+
+    // gửi mail đổi mật khẩu
+    // http://localhost:8091/accounts/sendmailpassword
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @PostMapping("/sendmailpassword")
+    public ResponseEntity<String> sendMailPassword(@RequestBody ClientSdi sdi) {
+        return ResponseEntity.ok().body(accountService.sendMailPassWord(sdi));
     }
 }

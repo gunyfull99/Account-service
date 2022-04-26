@@ -8,6 +8,7 @@ import com.account.exception.ResourceBadRequestException;
 import com.account.exception.ResourceForbiddenRequestException;
 import com.account.exception.ResourceNotFoundException;
 import com.account.repository.*;
+import com.account.utils.DataUtils;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -16,13 +17,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring5.SpringTemplateEngine;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.util.*;
 
 @Service
 @Transactional
@@ -36,6 +41,13 @@ public class AccountService {
     private ResponseError r;
     @Autowired
     private AccountRepository accountRepository;
+
+
+    @Autowired
+    private SpringTemplateEngine templateEngine;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Autowired
     private AccountPermissionRepository accountPermissionRepository;
@@ -138,10 +150,17 @@ public class AccountService {
         logger.info("save user {}", a.getFullName());
 
         a.setPassword(passwordEncoder.encode(a.getPassword()));
-        accountRepository.save(a);
+        Account acc = accountRepository.save(a);
+        List<Permission> listPer = permissionRepository.findAll();
+        for (int i = 0; i < listPer.size(); i++) {
+            AccountPermission ap = new AccountPermission();
+            ap.setAccount_id(acc.getId());
+            ap.setPermissions_id(listPer.get(i).getId());
+            addPer2User(ap);
+        }
         ModelMapper mapper = new ModelMapper();
-        AccountDto acc = mapper.map(a, AccountDto.class);
-        return acc;
+        AccountDto accd = mapper.map(a, AccountDto.class);
+        return accd;
     }
 
     public Account convertAccount(Account a) {
@@ -192,15 +211,15 @@ public class AccountService {
 
     public String saveRole(Roles role) {
         logger.info("receive info to save for role {}", role.getName());
-        Roles roles=roleRepository.save(role);
-        List<Permission> listPer=permissionRepository.findAll();
+        Roles roles = roleRepository.save(role);
+        List<Permission> listPer = permissionRepository.findAll();
         for (int i = 0; i < listPer.size(); i++) {
-            RolePermission rp=new RolePermission();
+            RolePermission rp = new RolePermission();
             rp.setRoles_id(roles.getId());
             rp.setPermissions_id(listPer.get(i).getId());
             addPer2Role(rp);
         }
-        return  "Create role " + role.getName()+" successful";
+        return "Create role " + role.getName() + " successful";
     }
 
     public Permission savePermission(Permission permission) {
@@ -437,5 +456,43 @@ public class AccountService {
         return a;
     }
 
+    public void sendHtmlMail(DataMailDTO dataMail, String templateName) throws MessagingException {
+        MimeMessage message = mailSender.createMimeMessage();
 
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+
+        Context context = new Context();
+        context.setVariables(dataMail.getProps());
+
+        String html = templateEngine.process(templateName, context);
+
+        helper.setTo(dataMail.getTo());
+        helper.setSubject(dataMail.getSubject());
+        helper.setText(html, true);
+
+        mailSender.send(message);
+    }
+
+    public String sendMailPassWord(ClientSdi sdi) throws ResourceNotFoundException {
+        try {
+            Account a = accountRepository.findByEmail(sdi.getEmail());
+            if (a == null) {
+                throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Email không tồn tại "));
+            }
+            String newPass = DataUtils.generateTempPwd(6);
+            DataMailDTO dataMail = new DataMailDTO();
+            dataMail.setTo(sdi.getEmail());
+            dataMail.setSubject("Gửi lại mật khẩu ");
+            Map<String, Object> props = new HashMap<>();
+            props.put("password", newPass);
+            dataMail.setProps(props);
+            sendHtmlMail(dataMail, "client");
+            a.setPassword(newPass);
+            AccountDto account = saveUserWithPassword(a);
+            return "Gửi mail thành công";
+        } catch (MessagingException exp) {
+            exp.printStackTrace();
+        }
+        return "Gửi mail thất bại";
+    }
 }

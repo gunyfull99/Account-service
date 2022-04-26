@@ -2,3 +2,11 @@ app:
   name: Tech Interface - Swagger and Profiles Tutorial
 server:
   port: 8091
+
+mailServer:
+  host: smtp.gmail.com
+  port: 587
+  email: hieunmhe140582@fpt.edu.vn
+  password: Vietnam123456789
+  protocol: smtp
+  isSSL: false
