@@ -75,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/accounts/login", "/company/**").permitAll()
+                .antMatchers("/accounts/login", "/company/**","/accounts/**").permitAll()
                // .antMatchers("/accounts/role/**", "/accounts/{id}").hasAuthority("ADMIN")
                 .and().exceptionHandling().accessDeniedHandler(((request, response, accessDeniedException) -> {
                     globalExceptionHandler.handleConflict(response);
