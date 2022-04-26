@@ -303,7 +303,7 @@ public class QuizController {
     // get list quiz
     // http://localhost:8080/quiz/list
     @CrossOrigin(origins = "http://localhost:8080/quiz")
-    @GetMapping("/list")
+    @PostMapping("/list")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
