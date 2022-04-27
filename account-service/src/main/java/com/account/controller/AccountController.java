@@ -319,8 +319,8 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public String updatePerToRole(@Valid @RequestBody RolePermission rolePermission) {
-        return accountService.updatePerInRole(rolePermission);
+    public ResponseEntity<String> updatePerToRole(@Valid @RequestBody RolePermission rolePermission) {
+        return ResponseEntity.ok().body(accountService.updatePerInRole(rolePermission));
 
     }
 
@@ -333,8 +333,8 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public String updatePerToUser(@Valid @RequestBody AccountPermission accountPermission) {
-        return accountService.updatePerInUser(accountPermission);
+    public ResponseEntity<String> updatePerToUser(@Valid @RequestBody AccountPermission accountPermission) {
+        return ResponseEntity.ok().body(accountService.updatePerInUser(accountPermission));
 
     }
 
