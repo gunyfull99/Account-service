@@ -11,9 +11,10 @@ import org.springframework.data.repository.query.Param;
 import java.util.Set;
 
 public interface RolePermissionRepository  extends JpaRepository<RolePermission,Long> {
+
     @Modifying
     @Query(value = "UPDATE roles_permissions SET can_create = :create,can_update= :update,can_read= :read WHERE roles_id = :role and permissions_id = :per",nativeQuery = true)
-    void updatePerInRole(@Param("create") boolean create,@Param("update") boolean update,@Param("read") boolean read,
+    void updatePerInRole(@Param("create") String create,@Param("update") String update,@Param("read") String read,
                           @Param("role") long role,@Param("per") long per);
 
     @Query(value = "select * from roles_permissions WHERE roles_id = :id and permissions_id = :idP", nativeQuery = true)

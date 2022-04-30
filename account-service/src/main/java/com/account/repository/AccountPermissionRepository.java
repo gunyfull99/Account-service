@@ -16,7 +16,7 @@ public interface AccountPermissionRepository extends JpaRepository<AccountPermis
 
     @Modifying
     @Query(value = "UPDATE accounts_permissions SET can_create = :create,can_update= :update,can_read= :read WHERE account_id = :user and permissions_id = :per",nativeQuery = true)
-    void updatePerInUser(@Param("create") boolean create,@Param("update") boolean update,@Param("read") boolean read,
+    void updatePerInUser(@Param("create") String create,@Param("update") String update,@Param("read") String read,
                          @Param("user") long user,@Param("per") long per);
 
 

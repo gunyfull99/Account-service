@@ -14,9 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +26,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.*;
+
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
 
 @Service
 @Transactional
@@ -333,8 +333,8 @@ public class AccountService {
         List<Permission> p = getRoleHavePer(roleId);
         List<RolePerForm> list = new ArrayList<>();
         for (int i = 0; i < p.size(); i++) {
-            list.add(new RolePerForm(roleId, p.get(i).getId(), getDetailPerInRole(roleId, p.get(i).getId()).isCan_read(),
-                    getDetailPerInRole(roleId, p.get(i).getId()).isCan_update(), getDetailPerInRole(roleId, p.get(i).getId()).isCan_create(),
+            list.add(new RolePerForm(roleId, p.get(i).getId(), getDetailPerInRole(roleId, p.get(i).getId()).getCan_read(),
+                    getDetailPerInRole(roleId, p.get(i).getId()).getCan_update(), getDetailPerInRole(roleId, p.get(i).getId()).getCan_create(),
                     p.get(i).getName()));
         }
         return list;
@@ -369,8 +369,8 @@ public class AccountService {
         List<Permission> p = getUserHavePer(userId);
         List<AccountPerForm> list = new ArrayList<>();
         for (int i = 0; i < p.size(); i++) {
-            list.add(new AccountPerForm(userId, p.get(i).getId(), getDetailPerInUser(userId, p.get(i).getId()).isCan_read(),
-                    getDetailPerInUser(userId, p.get(i).getId()).isCan_update(), getDetailPerInUser(userId, p.get(i).getId()).isCan_create(),
+            list.add(new AccountPerForm(userId, p.get(i).getId(), getDetailPerInUser(userId, p.get(i).getId()).getCan_read(),
+                    getDetailPerInUser(userId, p.get(i).getId()).getCan_update(), getDetailPerInUser(userId, p.get(i).getId()).getCan_create(),
                     p.get(i).getName()));
         }
         return list;
@@ -390,15 +390,30 @@ public class AccountService {
 
     public String updatePerInRole(RolePermission rolePermission) {
         logger.info("update Permission In Role");
+        String canRead="true";
+        String canUpdate="true";
+        String canCreate="true";
+        RolePermission rp=rolePermissionRepository.getDetailPerInRole(rolePermission.getRoles_id(),rolePermission.getPermissions_id());
 
-        rolePermissionRepository.updatePerInRole(rolePermission.isCan_create(), rolePermission.isCan_update(), rolePermission.isCan_read(), rolePermission.getRoles_id(), rolePermission.getPermissions_id());
+        canRead=rolePermission.getCan_read()==null ? canCreate=rp.getCan_read() : rolePermission.getCan_read();
+        canUpdate=rolePermission.getCan_update()==null ? canCreate=rp.getCan_update() : rolePermission.getCan_update();
+        canCreate=rolePermission.getCan_create()==null ? canCreate=rp.getCan_create() : rolePermission.getCan_create();
+
+        rolePermissionRepository.updatePerInRole(canCreate ,canUpdate, canRead, rolePermission.getRoles_id(), rolePermission.getPermissions_id());
         return "Update success!";
     }
 
     public String updatePerInUser(AccountPermission accountPermission) {
         logger.info("update Permission In User");
+        String canRead="true";
+        String canUpdate="true";
+        String canCreate="true";
+        AccountPermission rp=accountPermissionRepository.getDetailPerInUser(accountPermission.getAccount_id(),accountPermission.getPermissions_id());
 
-        accountPermissionRepository.updatePerInUser(accountPermission.isCan_create(), accountPermission.isCan_update(), accountPermission.isCan_read(), accountPermission.getAccount_id(), accountPermission.getPermissions_id());
+        canRead=accountPermission.getCan_read()==null ? canCreate=rp.getCan_read() : accountPermission.getCan_read();
+        canUpdate=accountPermission.getCan_update()==null ? canCreate=rp.getCan_update() : accountPermission.getCan_update();
+        canCreate=accountPermission.getCan_create()==null ? canCreate=rp.getCan_create() : accountPermission.getCan_create();
+        accountPermissionRepository.updatePerInUser(canCreate, canUpdate, canRead, accountPermission.getAccount_id(), accountPermission.getPermissions_id());
         return "Update success!";
     }
 
@@ -421,6 +436,15 @@ public class AccountService {
     public Page<Account> searchUserWithPaging(AccountPaging accountPaging) {
         Page<Account> a = null;
         Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit());
+        String inner="";
+
+       // a=accountRepository.filter(accountPaging.getSearch(),Long.parseLong(accountPaging.getRole()),accountPaging.getUserType(),pageable);
+
+//        a=accountRepository.filter( " where lower(full_name) LIKE %'"+accountPaging.getSearch()+"'% ",
+//                 accountPaging.getRole()==null ? "" :" inner join accounts_roles on accounts.id= accounts_roles.account_id and accounts_roles.roles_id='"+accountPaging.getRole()+"' ",
+//                accountPaging.getUserType()==null ? "" : " and user_type='"+accountPaging.getUserType()+"' ",
+//                pageable);
+
         if ((accountPaging.getSearch().isEmpty() || accountPaging.getSearch() == null || accountPaging.getSearch().trim().equals(""))
                 && (accountPaging.getRole() == null || accountPaging.getRole().isEmpty())
                 && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())
@@ -433,7 +457,6 @@ public class AccountService {
         } else if (accountPaging.getSearch() != null
                 && (accountPaging.getRole() != null)
                 && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())) {
-
             a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesId(accountPaging.getSearch(),
                     Long.parseLong(accountPaging.getRole()), pageable);
         } else if (accountPaging.getSearch() != null
@@ -451,7 +474,6 @@ public class AccountService {
                 && (accountPaging.getUserType() != null)) {
             a = accountRepository.findAllByUserType(accountPaging.getUserType(), pageable);
         }
-
 
         return a;
     }

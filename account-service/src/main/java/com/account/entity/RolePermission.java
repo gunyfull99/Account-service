@@ -19,7 +19,7 @@ public class RolePermission {
     private long id;
     private long roles_id;
     private  long permissions_id;
-    private boolean can_read;
-    private boolean can_update;
-    private boolean can_create;
+    private String can_read;
+    private String can_update;
+    private String can_create;
 }

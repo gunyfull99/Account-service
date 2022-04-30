@@ -393,7 +393,7 @@ public class AccountController {
 
     // get per not in role
     // http://localhost:8091/accounts/role/notPer/1
-    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @CrossOrigin(origins = "http://localhost:8091/accounts/role/**")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -406,7 +406,7 @@ public class AccountController {
 
     // get per  in role
     // http://localhost:8091/accounts/role/havePer/1
-    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @CrossOrigin(origins = "http://localhost:8091/accounts/role/*")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Account.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
@@ -494,10 +494,10 @@ public class AccountController {
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @CrossOrigin(origins = "http://localhost:8091/accounts")
     @GetMapping("/canread/{username}/{perid}")
-    public ResponseEntity<Boolean> getCanRead(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
+    public ResponseEntity<String> getCanRead(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
         AccountDto a1 = accountService.getAccByUsername(username);
         AccountPermission ap = accountService.getDetailPerInUser(a1.getId(), perId);
-        return ResponseEntity.ok().body(ap.isCan_read());
+        return ResponseEntity.ok().body(ap.getCan_read());
     }
 
     // get can create from user
@@ -509,10 +509,10 @@ public class AccountController {
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @CrossOrigin(origins = "http://localhost:8091/accounts")
     @GetMapping("/cancreate/{username}/{perid}")
-    public ResponseEntity<Boolean> getCanCreate(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
+    public ResponseEntity<String> getCanCreate(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
         AccountDto a1 = accountService.getAccByUsername(username);
         AccountPermission ap = accountService.getDetailPerInUser(a1.getId(), perId);
-        return ResponseEntity.ok().body(ap.isCan_create());
+        return ResponseEntity.ok().body(ap.getCan_create());
     }
 
     // get can update from user
@@ -524,10 +524,10 @@ public class AccountController {
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @CrossOrigin(origins = "http://localhost:8091/accounts")
     @GetMapping("/canupdate/{username}/{perid}")
-    public ResponseEntity<Boolean> getCanUpdate(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
+    public ResponseEntity<String> getCanUpdate(@PathVariable(name = "username") String username, @PathVariable(name = "perid") long perId) {
         AccountDto a1 = accountService.getAccByUsername(username);
         AccountPermission ap = accountService.getDetailPerInUser(a1.getId(), perId);
-        return ResponseEntity.ok().body(ap.isCan_update());
+        return ResponseEntity.ok().body(ap.getCan_update());
     }
 
 

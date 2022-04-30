@@ -29,7 +29,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8091");
+                .allowedOrigins("http://localhost:8091/**","http://localhost:5000/**");
     }
 //
 //    @Bean

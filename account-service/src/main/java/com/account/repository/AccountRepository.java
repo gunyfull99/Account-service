@@ -39,6 +39,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     Account findByEmail(String email);
 
     Page<Account> findAllByRolesId(long id, Pageable p);
+
     Page<Account> findAllByUserType(String userType, Pageable p);
 
     Page<Account> findAllByFullNameContainingIgnoreCase(String name, Pageable p);
@@ -48,4 +49,13 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     Page<Account> findAllByFullNameContainingIgnoreCaseAndUserType(String name, String userType, Pageable p);
 
     Page<Account> findAllByFullNameContainingIgnoreCaseAndRolesIdAndUserType(String name, long roleId, String userType, Pageable p);
+
+    // @Query(value = "SELECT * FROM accounts :role  :name  :type ", nativeQuery = true)
+    @Query(value = "SELECT * FROM accounts \n" +
+            "inner join accounts_roles on accounts.id= accounts_roles.account_id and accounts_roles.roles_id= :role \n" +
+            " where lower(full_name) like %:name% and user_type= :type ", nativeQuery = true)
+    Page<Account> filter(@Param("name") String name,
+                         @Param("role") long roleId
+            , @Param("type") String userType
+            , Pageable pageable);
 }
