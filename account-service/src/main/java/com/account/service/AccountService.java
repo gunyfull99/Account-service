@@ -156,6 +156,9 @@ public class AccountService {
             AccountPermission ap = new AccountPermission();
             ap.setAccount_id(acc.getId());
             ap.setPermissions_id(listPer.get(i).getId());
+            ap.setCan_create("false");
+            ap.setCan_read("false");
+            ap.setCan_update("false");
             addPer2User(ap);
         }
         ModelMapper mapper = new ModelMapper();
@@ -217,6 +220,9 @@ public class AccountService {
             RolePermission rp = new RolePermission();
             rp.setRoles_id(roles.getId());
             rp.setPermissions_id(listPer.get(i).getId());
+            rp.setCan_create("false");
+            rp.setCan_update("false");
+            rp.setCan_read("false");
             addPer2Role(rp);
         }
         return "Create role " + role.getName() + " successful";
