@@ -167,17 +167,24 @@ public class QuesTionService {
         logger.info("Receive info of question {} to edit", questionPaging.getCateId());
         Pageable pageable = PageRequest.of(questionPaging.getPage() - 1, questionPaging.getLimit());
         Page<Question> questionEntity = null;
+        String search= "";
+        if(questionPaging.getSearch()==null){
+            search="";
+        }else{
+            search=questionPaging.getSearch();
+        }
+
         if(questionPaging.getTypeId()==0 && questionPaging.getCateId()==0){
-            questionEntity = questionRepository.findAllByContentContainingIgnoreCase(questionPaging.getSearch(),pageable);
+            questionEntity = questionRepository.findAllByContentContainingIgnoreCase(search,pageable);
         }else if (questionPaging.getCateId()==0) {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCase(questionPaging.getTypeId(),questionPaging.getSearch(), pageable);
+            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCase(questionPaging.getTypeId(),search, pageable);
         } else if(questionPaging.getTypeId()==0){
             questionEntity = questionRepository.findAllByCategoryIdAndContentContainingIgnoreCase(questionPaging.getCateId(),
-                    questionPaging.getSearch(),
+                    search,
                     pageable);
         }else {
             questionEntity = questionRepository.findAllByQuestionTypeIdAndCategoryIdAndContentContainingIgnoreCase(
-                    questionPaging.getTypeId(),questionPaging.getCateId(),questionPaging.getSearch(),pageable
+                    questionPaging.getTypeId(),questionPaging.getCateId(),search,pageable
             );
         }
         List<QuestDTO> questionRequests = new ArrayList<>();
