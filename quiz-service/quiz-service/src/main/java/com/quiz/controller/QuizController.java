@@ -86,16 +86,16 @@ public class QuizController {
         return quesTionService.openQuestion(id);
     }
 
-    //http://localhost:8080/quiz/getquestionbycategorypaging
+    //http://localhost:8080/quiz/getquestionpaging
     @CrossOrigin(origins = "http://localhost:8080/quiz")
-    @PostMapping("/getquestionbycategorypaging")
+    @PostMapping("/getquestionpaging")
     public QuestionPaging getQuestionByCategory(@RequestBody QuestionPaging questionPaging
-//            , @RequestHeader("Authorization") String token
+       //     , @RequestHeader("Authorization") String token
     ) {
-//        if (templateService.getCanRead(perQuestion, token) == false) {
-//            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-//        }
-        return quesTionService.getQuestionByCategoryPaging(questionPaging);
+    //    if (templateService.getCanRead(perQuestion, token) == false) {
+       //     throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+        //}
+        return quesTionService.getQuestionPaging(questionPaging);
     }
 
     //http://localhost:8080/quiz/getquestionbytype
