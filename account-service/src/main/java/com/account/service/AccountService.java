@@ -396,29 +396,29 @@ public class AccountService {
 
     public String updatePerInRole(RolePermission rolePermission) {
         logger.info("update Permission In Role");
-        String canRead="true";
-        String canUpdate="true";
-        String canCreate="true";
-        RolePermission rp=rolePermissionRepository.getDetailPerInRole(rolePermission.getRoles_id(),rolePermission.getPermissions_id());
+        String canRead = "true";
+        String canUpdate = "true";
+        String canCreate = "true";
+        RolePermission rp = rolePermissionRepository.getDetailPerInRole(rolePermission.getRoles_id(), rolePermission.getPermissions_id());
 
-        canRead=rolePermission.getCan_read()==null ? canCreate=rp.getCan_read() : rolePermission.getCan_read();
-        canUpdate=rolePermission.getCan_update()==null ? canCreate=rp.getCan_update() : rolePermission.getCan_update();
-        canCreate=rolePermission.getCan_create()==null ? canCreate=rp.getCan_create() : rolePermission.getCan_create();
+        canRead = rolePermission.getCan_read() == null ? canCreate = rp.getCan_read() : rolePermission.getCan_read();
+        canUpdate = rolePermission.getCan_update() == null ? canCreate = rp.getCan_update() : rolePermission.getCan_update();
+        canCreate = rolePermission.getCan_create() == null ? canCreate = rp.getCan_create() : rolePermission.getCan_create();
 
-        rolePermissionRepository.updatePerInRole(canCreate ,canUpdate, canRead, rolePermission.getRoles_id(), rolePermission.getPermissions_id());
+        rolePermissionRepository.updatePerInRole(canCreate, canUpdate, canRead, rolePermission.getRoles_id(), rolePermission.getPermissions_id());
         return "Update success!";
     }
 
     public String updatePerInUser(AccountPermission accountPermission) {
         logger.info("update Permission In User");
-        String canRead="true";
-        String canUpdate="true";
-        String canCreate="true";
-        AccountPermission rp=accountPermissionRepository.getDetailPerInUser(accountPermission.getAccount_id(),accountPermission.getPermissions_id());
+        String canRead = "true";
+        String canUpdate = "true";
+        String canCreate = "true";
+        AccountPermission rp = accountPermissionRepository.getDetailPerInUser(accountPermission.getAccount_id(), accountPermission.getPermissions_id());
 
-        canRead=accountPermission.getCan_read()==null ? canCreate=rp.getCan_read() : accountPermission.getCan_read();
-        canUpdate=accountPermission.getCan_update()==null ? canCreate=rp.getCan_update() : accountPermission.getCan_update();
-        canCreate=accountPermission.getCan_create()==null ? canCreate=rp.getCan_create() : accountPermission.getCan_create();
+        canRead = accountPermission.getCan_read() == null ? canCreate = rp.getCan_read() : accountPermission.getCan_read();
+        canUpdate = accountPermission.getCan_update() == null ? canCreate = rp.getCan_update() : accountPermission.getCan_update();
+        canCreate = accountPermission.getCan_create() == null ? canCreate = rp.getCan_create() : accountPermission.getCan_create();
         accountPermissionRepository.updatePerInUser(canCreate, canUpdate, canRead, accountPermission.getAccount_id(), accountPermission.getPermissions_id());
         return "Update success!";
     }
@@ -442,44 +442,54 @@ public class AccountService {
     public Page<Account> searchUserWithPaging(AccountPaging accountPaging) {
         Page<Account> a = null;
         Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit());
-        String inner="";
 
-       // a=accountRepository.filter(accountPaging.getSearch(),Long.parseLong(accountPaging.getRole()),accountPaging.getUserType(),pageable);
+        // a=accountRepository.filter(accountPaging.getSearch(),Long.parseLong(accountPaging.getRole()),accountPaging.getUserType(),pageable);
 
-//        a=accountRepository.filter( " where lower(full_name) LIKE %'"+accountPaging.getSearch()+"'% ",
-//                 accountPaging.getRole()==null ? "" :" inner join accounts_roles on accounts.id= accounts_roles.account_id and accounts_roles.roles_id='"+accountPaging.getRole()+"' ",
-//                accountPaging.getUserType()==null ? "" : " and user_type='"+accountPaging.getUserType()+"' ",
-//                pageable);
-
-        if ((accountPaging.getSearch().isEmpty() || accountPaging.getSearch() == null || accountPaging.getSearch().trim().equals(""))
-                && (accountPaging.getRole() == null || accountPaging.getRole().isEmpty())
-                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())
-        ) {
-            a = accountRepository.findAll(pageable);
-        } else if (accountPaging.getSearch() != null
-                && (accountPaging.getRole() == null || accountPaging.getRole().isEmpty())
-                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())) {
-            a = accountRepository.findAllByFullNameContainingIgnoreCase(accountPaging.getSearch(), pageable);
-        } else if (accountPaging.getSearch() != null
-                && (accountPaging.getRole() != null)
-                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())) {
+        if (accountPaging.getRole() == null || accountPaging.getRole().trim().equals("")) {
+            a = accountRepository.filterWhereNoRole(accountPaging.getSearch(),
+                    accountPaging.getUserType() == null || accountPaging.getUserType().trim().equals("") ? "%%" : accountPaging.getUserType(),
+                    pageable);
+        } else if (accountPaging.getRole() != null && (accountPaging.getUserType() != null && !accountPaging.getUserType().trim().equals(""))) {
+            a = accountRepository.filterWhereHaveRoleAndType(accountPaging.getSearch(),
+                    Long.parseLong(accountPaging.getRole()),
+                    accountPaging.getUserType(),
+                    pageable);
+        }else if(accountPaging.getUserType() == null || accountPaging.getUserType().trim().equals("")){
             a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesId(accountPaging.getSearch(),
-                    Long.parseLong(accountPaging.getRole()), pageable);
-        } else if (accountPaging.getSearch() != null
-                && (accountPaging.getRole() != null)
-                && (accountPaging.getUserType() != null)) {
-            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesIdAndUserType(accountPaging.getSearch(),
-                    Long.parseLong(accountPaging.getRole()), accountPaging.getUserType(), pageable);
-        } else if (accountPaging.getSearch() != null
-                && (accountPaging.getRole() == null)
-                && (accountPaging.getUserType() != null)) {
-            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndUserType(accountPaging.getSearch(),
-                    accountPaging.getUserType(), pageable);
-        } else if (accountPaging.getSearch() == null
-                && (accountPaging.getRole() == null)
-                && (accountPaging.getUserType() != null)) {
-            a = accountRepository.findAllByUserType(accountPaging.getUserType(), pageable);
+                    Long.parseLong(accountPaging.getRole()),
+                    pageable);
         }
+
+
+//        if ((accountPaging.getSearch().isEmpty() || accountPaging.getSearch() == null || accountPaging.getSearch().trim().equals(""))
+//                && (accountPaging.getRole() == null || accountPaging.getRole().isEmpty())
+//                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())
+//        ) {
+//            a = accountRepository.findAll(pageable);
+//        } else if (accountPaging.getSearch() != null
+//                && (accountPaging.getRole() == null || accountPaging.getRole().isEmpty())
+//                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())) {
+//            a = accountRepository.findAllByFullNameContainingIgnoreCase(accountPaging.getSearch(), pageable);
+//        } else if (accountPaging.getSearch() != null
+//                && (accountPaging.getRole() != null)
+//                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())) {
+//            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesId(accountPaging.getSearch(),
+//                    Long.parseLong(accountPaging.getRole()), pageable);
+//        } else if (accountPaging.getSearch() != null
+//                && (accountPaging.getRole() != null)
+//                && (accountPaging.getUserType() != null)) {
+//            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesIdAndUserType(accountPaging.getSearch(),
+//                    Long.parseLong(accountPaging.getRole()), accountPaging.getUserType(), pageable);
+//        } else if (accountPaging.getSearch() != null
+//                && (accountPaging.getRole() == null)
+//                && (accountPaging.getUserType() != null)) {
+//            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndUserType(accountPaging.getSearch(),
+//                    accountPaging.getUserType(), pageable);
+//        } else if (accountPaging.getSearch() == null
+//                && (accountPaging.getRole() == null)
+//                && (accountPaging.getUserType() != null)) {
+//            a = accountRepository.findAllByUserType(accountPaging.getUserType(), pageable);
+//        }
 
         return a;
     }

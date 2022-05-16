@@ -53,9 +53,18 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     // @Query(value = "SELECT * FROM accounts :role  :name  :type ", nativeQuery = true)
     @Query(value = "SELECT * FROM accounts \n" +
             "inner join accounts_roles on accounts.id= accounts_roles.account_id and accounts_roles.roles_id= :role \n" +
-            " where lower(full_name) like %:name% and user_type= :type ", nativeQuery = true)
-    Page<Account> filter(@Param("name") String name,
-                         @Param("role") long roleId
-            , @Param("type") String userType
+            " where lower(accounts.user_type) like :type and lower(accounts.full_name) like %:name%   ", nativeQuery = true)
+    Page<Account> filterWhereHaveRoleAndType(@Param("name") String name,
+                                      @Param("role") long roleId
+            , @Param("type") String type
             , Pageable pageable);
+
+
+
+    @Query(value = "SELECT * FROM accounts \n" +
+            " where lower(user_type) like :type and lower(full_name) like %:name%   ", nativeQuery = true)
+    Page<Account> filterWhereNoRole(@Param("name") String name,
+             @Param("type") String type
+            , Pageable pageable);
+
 }

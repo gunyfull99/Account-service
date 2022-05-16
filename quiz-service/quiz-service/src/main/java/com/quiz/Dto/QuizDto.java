@@ -27,6 +27,7 @@ public class QuizDto {
     private String status;
     private int numberQuestions;
     private String score;
+    private long creator;
 
     private List<Question> questions ;
     private long userStartQuiz;

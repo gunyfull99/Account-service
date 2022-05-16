@@ -34,6 +34,9 @@ public interface QuestionRepository extends JpaRepository<Question,Long> {
     @Query(value = "select * from questions where id = :id", nativeQuery = true)
     Question getDetailQuestion(@Param("id") long id);
 
+    @Query(value = "select * from questions order by id DESC limit 1", nativeQuery = true)
+    Question getLastQuestion();
+
     @Query(value = "select * from questions where is_active=false", nativeQuery = true)
     List<Question> getAllQuestionBlock();
 

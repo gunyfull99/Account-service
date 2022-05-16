@@ -26,7 +26,7 @@ public class CategoryService {
     public void createCategory(CategoryRequest category) {
         logger.info("Receive infor of category {} to create", category.getName());
 
-        if (categoryRepository.findByName(category.getName()) != null) {
+        if (categoryRepository.findByNameIgnoreCase(category.getName()) != null) {
             logger.error("this category was existed !!!");
 
             throw new RuntimeException("this category was existed !!!");

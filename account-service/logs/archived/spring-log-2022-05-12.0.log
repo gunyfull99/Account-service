@@ -1,0 +1,317 @@
+2022-05-12 08:26:31,458 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-05-12 08:26:31,458 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting AccountServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 6552 (E:\spring-boot-training\StudentSystem-Microservice\account-service\target\classes started by hieu0 in E:\spring-boot-training\StudentSystem-Microservice\account-service)
+2022-05-12 08:26:31,462 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-05-12 08:26:31,513 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-12 08:26:31,522 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-12 08:26:32,522 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-12 08:26:32,592 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 62 ms. Found 6 JPA repository interfaces.
+2022-05-12 08:26:32,967 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] []: Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$22635fe8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-12 08:26:33,015 INFO org.springframework.ws.soap.addressing.server.AbstractAddressingEndpointMapping [restartedMain] []: Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2022-05-12 08:26:33,488 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8091 (http)
+2022-05-12 08:26:33,499 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8091"]
+2022-05-12 08:26:33,499 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-05-12 08:26:33,500 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-12 08:26:33,628 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-05-12 08:26:33,628 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2105 ms
+2022-05-12 08:26:33,742 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-05-12 08:26:33,951 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-05-12 08:26:34,040 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-12 08:26:34,100 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-05-12 08:26:34,250 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-12 08:26:34,373 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-12 08:26:35,622 WARN org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl [restartedMain] []: GenerationTarget encountered exception accepting command : Error executing DDL "alter table accounts add constraint FKqgnsd0v3la0gyituldqo2mca6 foreign key (company_id) references company" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table accounts add constraint FKqgnsd0v3la0gyituldqo2mca6 foreign key (company_id) references company" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:562)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:507)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applyForeignKeys(AbstractSchemaMigrator.java:433)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:249)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:114)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:184)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:318)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:468)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1259)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:233)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1273)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1234)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:494)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342)
+	at org.springframework.orm.jpa.EntityManagerFactoryUtils.findEntityManagerFactory(EntityManagerFactoryUtils.java:121)
+	at org.springframework.orm.jpa.JpaTransactionManager.setBeanFactory(JpaTransactionManager.java:333)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeAwareMethods(AbstractAutowireCapableBeanFactory.java:1826)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1791)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:759)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:719)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:410)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:212)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:203)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:97)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:260)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:234)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5219)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:450)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:199)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:182)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:577)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.account.AccountServiceApplication.main(AccountServiceApplication.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.postgresql.util.PSQLException: ERROR: foreign key constraint "fkqgnsd0v3la0gyituldqo2mca6" cannot be implemented
+  Detail: Key columns "company_id" and "id" are of incompatible types: character varying and bigint.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2565)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2297)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:322)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:481)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:401)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:322)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:308)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:284)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:279)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 124 common frames omitted
+2022-05-12 08:26:35,692 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-12 08:26:35,699 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-12 08:26:36,355 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-12 08:26:36,856 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-05-12 08:26:36,958 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/v2/api-docs'] with []
+2022-05-12 08:26:36,958 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/configuration/ui'] with []
+2022-05-12 08:26:36,958 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/swagger-resources/**'] with []
+2022-05-12 08:26:36,959 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/configuration/**'] with []
+2022-05-12 08:26:36,959 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/swagger-ui.html'] with []
+2022-05-12 08:26:36,959 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/webjars/**'] with []
+2022-05-12 08:26:36,984 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1021ad43, org.springframework.security.web.context.SecurityContextPersistenceFilter@326d0a8c, org.springframework.security.web.header.HeaderWriterFilter@402ce582, org.springframework.security.web.authentication.logout.LogoutFilter@495c6e1e, com.account.filter.AuthorizationFilter@4c0c9a19, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33ee9500, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@28f871f8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@558c989f, org.springframework.security.web.session.SessionManagementFilter@493143aa, org.springframework.security.web.access.ExceptionTranslationFilter@28096f92, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@62d307e7]
+2022-05-12 08:26:37,098 WARN org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: Unable to start LiveReload server
+2022-05-12 08:26:37,312 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8091"]
+2022-05-12 08:26:37,330 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8091 (http) with context path ''
+2022-05-12 08:26:37,331 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-05-12 08:26:37,346 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-05-12 08:26:37,394 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-05-12 08:26:37,909 INFO org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor [restartedMain] []: No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2022-05-12 08:26:37,918 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started AccountServiceApplication in 6.957 seconds (JVM running for 7.839)
+2022-05-12 08:32:17,432 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8091-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-12 08:32:17,432 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8091-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-05-12 08:32:17,434 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8091-exec-1] []: Completed initialization in 2 ms
+2022-05-12 08:32:17,798 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: get Account By Username admin123
+2022-05-12 08:32:18,396 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: update user abc
+2022-05-12 08:32:18,399 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: update user abc
+2022-05-12 08:32:18,404 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: update user abc
+2022-05-12 08:32:18,406 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: update user Nguyễn Văn A
+2022-05-12 08:32:18,409 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: update user abcdee
+2022-05-12 08:32:18,411 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: update user xyz
+2022-05-12 08:32:18,413 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: update user xyz
+2022-05-12 08:32:18,415 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: update user xyz
+2022-05-12 08:32:18,416 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: update user abc
+2022-05-12 08:32:18,418 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: update user xyz
+2022-05-12 08:32:54,873 INFO com.account.service.AccountService [http-nio-8091-exec-9] []: get Account By Username admin
+2022-05-12 08:32:55,175 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: update user abc
+2022-05-12 08:32:55,176 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: update user abc
+2022-05-12 08:32:55,178 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: update user abc
+2022-05-12 08:32:55,179 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: update user Nguyễn Văn A
+2022-05-12 08:32:55,182 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: update user abcdee
+2022-05-12 08:32:55,184 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: update user xyz
+2022-05-12 08:32:55,186 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: update user xyz
+2022-05-12 08:32:55,188 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: update user xyz
+2022-05-12 08:32:55,191 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: update user abc
+2022-05-12 08:32:55,193 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: update user xyz
+2022-05-12 08:32:58,789 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 08:32:58,791 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 08:32:58,792 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 08:32:58,793 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user Nguyễn Văn A
+2022-05-12 08:32:58,794 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abcdee
+2022-05-12 08:32:58,796 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 08:32:58,797 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 08:32:58,798 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 08:32:58,800 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 08:32:58,801 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 08:57:31,556 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 08:57:31,559 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 08:57:31,560 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 08:57:31,561 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user Nguyễn Văn A
+2022-05-12 08:57:31,563 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abcdee
+2022-05-12 08:57:31,565 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 08:57:31,567 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 08:57:31,568 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 08:57:31,569 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 08:57:31,571 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 09:11:08,740 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: get Account By Username admin
+2022-05-12 09:11:09,149 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: update user abc
+2022-05-12 09:11:09,150 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: update user abc
+2022-05-12 09:11:09,152 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: update user abc
+2022-05-12 09:11:09,154 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: update user Nguyễn Văn A
+2022-05-12 09:11:09,156 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: update user abcdee
+2022-05-12 09:11:09,157 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: update user xyz
+2022-05-12 09:11:09,158 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: update user xyz
+2022-05-12 09:11:09,160 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: update user xyz
+2022-05-12 09:11:09,161 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: update user abc
+2022-05-12 09:11:09,162 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: update user xyz
+2022-05-12 09:15:19,509 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: get Account By Username admin
+2022-05-12 09:15:19,771 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 09:15:19,772 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 09:15:19,773 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 09:15:19,774 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user Nguyễn Văn A
+2022-05-12 09:15:19,775 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abcdee
+2022-05-12 09:15:19,776 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 09:15:19,777 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 09:15:19,777 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 09:15:19,778 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 09:15:19,779 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 09:15:55,017 INFO com.account.service.AccountService [http-nio-8091-exec-7] []: get Account By Username admin123
+2022-05-12 09:15:55,351 INFO com.account.service.AccountService [http-nio-8091-exec-8] []: update user abc
+2022-05-12 09:15:55,353 INFO com.account.service.AccountService [http-nio-8091-exec-8] []: update user abc
+2022-05-12 09:15:55,354 INFO com.account.service.AccountService [http-nio-8091-exec-8] []: update user abc
+2022-05-12 09:15:55,356 INFO com.account.service.AccountService [http-nio-8091-exec-8] []: update user Nguyễn Văn A
+2022-05-12 09:15:55,357 INFO com.account.service.AccountService [http-nio-8091-exec-8] []: update user abcdee
+2022-05-12 09:15:55,358 INFO com.account.service.AccountService [http-nio-8091-exec-8] []: update user xyz
+2022-05-12 09:15:55,359 INFO com.account.service.AccountService [http-nio-8091-exec-8] []: update user xyz
+2022-05-12 09:15:55,360 INFO com.account.service.AccountService [http-nio-8091-exec-8] []: update user xyz
+2022-05-12 09:15:55,362 INFO com.account.service.AccountService [http-nio-8091-exec-8] []: update user abc
+2022-05-12 09:15:55,363 INFO com.account.service.AccountService [http-nio-8091-exec-8] []: update user xyz
+2022-05-12 09:16:55,489 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: get Account By Username admin
+2022-05-12 09:16:55,832 INFO com.account.service.AccountService [http-nio-8091-exec-1] []: update user abc
+2022-05-12 09:16:55,833 INFO com.account.service.AccountService [http-nio-8091-exec-1] []: update user abc
+2022-05-12 09:16:55,834 INFO com.account.service.AccountService [http-nio-8091-exec-1] []: update user abc
+2022-05-12 09:16:55,835 INFO com.account.service.AccountService [http-nio-8091-exec-1] []: update user Nguyễn Văn A
+2022-05-12 09:16:55,836 INFO com.account.service.AccountService [http-nio-8091-exec-1] []: update user abcdee
+2022-05-12 09:16:55,837 INFO com.account.service.AccountService [http-nio-8091-exec-1] []: update user xyz
+2022-05-12 09:16:55,838 INFO com.account.service.AccountService [http-nio-8091-exec-1] []: update user xyz
+2022-05-12 09:16:55,839 INFO com.account.service.AccountService [http-nio-8091-exec-1] []: update user xyz
+2022-05-12 09:16:55,840 INFO com.account.service.AccountService [http-nio-8091-exec-1] []: update user abc
+2022-05-12 09:16:55,840 INFO com.account.service.AccountService [http-nio-8091-exec-1] []: update user xyz
+2022-05-12 09:29:39,939 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 09:29:39,941 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 09:29:39,942 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 09:29:39,942 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user Nguyễn Văn A
+2022-05-12 09:29:39,943 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abcdee
+2022-05-12 09:29:39,944 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 09:29:39,945 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 09:29:39,946 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 09:29:39,947 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user abc
+2022-05-12 09:29:39,948 INFO com.account.service.AccountService [http-nio-8091-exec-3] []: update user xyz
+2022-05-12 09:32:07,951 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: get Account By Username admin
+2022-05-12 09:32:08,302 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: update user abc
+2022-05-12 09:32:08,305 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: update user abc
+2022-05-12 09:32:08,306 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: update user abc
+2022-05-12 09:32:08,307 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: update user Nguyễn Văn A
+2022-05-12 09:32:08,308 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: update user abcdee
+2022-05-12 09:32:08,309 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: update user xyz
+2022-05-12 09:32:08,310 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: update user xyz
+2022-05-12 09:32:08,311 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: update user xyz
+2022-05-12 09:32:08,313 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: update user abc
+2022-05-12 09:32:08,314 INFO com.account.service.AccountService [http-nio-8091-exec-6] []: update user xyz
+2022-05-12 10:11:09,452 INFO com.account.service.AccountService [http-nio-8091-exec-10] []: get Account By Username admin
+2022-05-12 10:11:09,884 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: update user abc
+2022-05-12 10:11:09,886 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: update user abc
+2022-05-12 10:11:09,887 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: update user abc
+2022-05-12 10:11:09,889 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: update user Nguyễn Văn A
+2022-05-12 10:11:09,890 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: update user abcdee
+2022-05-12 10:11:09,891 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: update user xyz
+2022-05-12 10:11:09,892 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: update user xyz
+2022-05-12 10:11:09,893 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: update user xyz
+2022-05-12 10:11:09,895 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: update user abc
+2022-05-12 10:11:09,898 INFO com.account.service.AccountService [http-nio-8091-exec-2] []: update user xyz
+2022-05-12 10:11:19,818 INFO com.account.service.AccountService [http-nio-8091-exec-4] []: get Account By Username admin
+2022-05-12 10:11:20,131 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: update user abc
+2022-05-12 10:11:20,132 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: update user abc
+2022-05-12 10:11:20,133 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: update user abc
+2022-05-12 10:11:20,134 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: update user Nguyễn Văn A
+2022-05-12 10:11:20,135 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: update user abcdee
+2022-05-12 10:11:20,136 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: update user xyz
+2022-05-12 10:11:20,137 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: update user xyz
+2022-05-12 10:11:20,137 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: update user xyz
+2022-05-12 10:11:20,138 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: update user abc
+2022-05-12 10:11:20,139 INFO com.account.service.AccountService [http-nio-8091-exec-5] []: update user xyz
+2022-05-12 11:57:09,195 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-12 11:57:09,204 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-05-12 11:57:09,211 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.

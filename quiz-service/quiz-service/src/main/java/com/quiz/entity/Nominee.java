@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 @Data
@@ -12,7 +13,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Entity
 @Table(name = "nominee")
-public class Nominee {
+public class Nominee  {
     @Id
     @SequenceGenerator(name = "category_generator", sequenceName = "category_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_generator")
@@ -25,5 +26,6 @@ public class Nominee {
     @ManyToMany(mappedBy = "nomineeEntities")
     // LAZY để tránh việc truy xuất dữ liệu không cần thiết. Lúc nào cần thì mới query
     private Collection<Category> categoryEntities;
+
 
 }

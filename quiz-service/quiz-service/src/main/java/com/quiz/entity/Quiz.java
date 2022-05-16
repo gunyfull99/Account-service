@@ -33,7 +33,7 @@ public class Quiz  {
     private String status;
     private int numberQuestions;
     private String score;
-
+    private long creator;
     @ManyToMany(fetch = EAGER)
     private List<Question> questions = new ArrayList<>();
     private long userStartQuiz=0;

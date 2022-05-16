@@ -4,10 +4,7 @@ import com.quiz.Dto.*;
 import com.quiz.entity.*;
 import com.quiz.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.modelmapper.ModelMapper;
@@ -167,24 +164,24 @@ public class QuesTionService {
         logger.info("Receive info of question {} to edit", questionPaging.getCateId());
         Pageable pageable = PageRequest.of(questionPaging.getPage() - 1, questionPaging.getLimit());
         Page<Question> questionEntity = null;
-        String search= "";
-        if(questionPaging.getSearch()==null){
-            search="";
-        }else{
-            search=questionPaging.getSearch();
+        String search = "";
+        if (questionPaging.getSearch() == null) {
+            search = "";
+        } else {
+            search = questionPaging.getSearch();
         }
 
-        if(questionPaging.getTypeId()==0 && questionPaging.getCateId()==0){
-            questionEntity = questionRepository.findAllByContentContainingIgnoreCase(search,pageable);
-        }else if (questionPaging.getCateId()==0) {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCase(questionPaging.getTypeId(),search, pageable);
-        } else if(questionPaging.getTypeId()==0){
+        if (questionPaging.getTypeId() == 0 && questionPaging.getCateId() == 0) {
+            questionEntity = questionRepository.findAllByContentContainingIgnoreCase(search, pageable);
+        } else if (questionPaging.getCateId() == 0) {
+            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCase(questionPaging.getTypeId(), search, pageable);
+        } else if (questionPaging.getTypeId() == 0) {
             questionEntity = questionRepository.findAllByCategoryIdAndContentContainingIgnoreCase(questionPaging.getCateId(),
                     search,
                     pageable);
-        }else {
+        } else {
             questionEntity = questionRepository.findAllByQuestionTypeIdAndCategoryIdAndContentContainingIgnoreCase(
-                    questionPaging.getTypeId(),questionPaging.getCateId(),search,pageable
+                    questionPaging.getTypeId(), questionPaging.getCateId(), search, pageable
             );
         }
         List<QuestDTO> questionRequests = new ArrayList<>();
@@ -309,27 +306,25 @@ public class QuesTionService {
         }
     }
 
+    public void updateListChoice(Question q1, List<QuestionChoice> q) {
+        for (int i = 0; i < q.size(); i++) {
+            q.get(i).setQuestion(q1);
+            questionChoiceRepository.save(q.get(i));
+        }
+    }
+
     public String excelImport(MultipartFile file) throws IOException {
-        List<QuestionRequest> lqr=new ArrayList<>();
         String content = null;
         QuestionType questionType = null;
         Category category = null;
         int questionTime = 0;
         List<QuestionChoice> questionChoice = new ArrayList<>();
-        String nameChoice1 = null;
-        String nameChoice2 = null;
-        String nameChoice3 = null;
-        String nameChoice4 = null;
-        boolean choiceTrue1 = false;
-        boolean choiceTrue2 = false;
-        boolean choiceTrue3 = false;
-        boolean choiceTrue4 = false;
         long company_id = 0;
         boolean isPublic = true;
         long start = System.currentTimeMillis();
 
-        Path tempDir= Files.createTempDirectory("");
-        File tempFile=tempDir.resolve(file.getOriginalFilename()).toFile();
+        Path tempDir = Files.createTempDirectory("");
+        File tempFile = tempDir.resolve(file.getOriginalFilename()).toFile();
         file.transferTo(tempFile);
         try {
             Workbook workbook = new XSSFWorkbook(tempFile);
@@ -339,77 +334,86 @@ public class QuesTionService {
             while (rowIterator.hasNext()) {
                 Row nextRow = rowIterator.next();
                 Iterator<Cell> cellIterator = nextRow.cellIterator();
-                while (cellIterator.hasNext()) {
-                    Cell nextCell = cellIterator.next();
-                    int columnIndex = nextCell.getColumnIndex();
-                    switch (columnIndex) {
-                        case 0:
-                            category = new Category();
-                            category.setId((long) nextCell.getNumericCellValue());
-                            break;
-                        case 1:
-                            content = nextCell.getStringCellValue();
-                            break;
-                        case 2:
-                            nameChoice1 = nextCell.getStringCellValue();
-                            break;
-                        case 3:
-                            choiceTrue1 = nextCell.getBooleanCellValue();
-                            break;
-                        case 4:
-                            nameChoice2 = nextCell.getStringCellValue();
-                            break;
-                        case 5:
-                            choiceTrue2 = nextCell.getBooleanCellValue();
-                            break;
-                        case 6:
-                            nameChoice3 = nextCell.getStringCellValue();
-                            break;
-                        case 7:
-                            choiceTrue3 = nextCell.getBooleanCellValue();
-                            break;
-                        case 8:
-                            nameChoice4 = nextCell.getStringCellValue();
-                            break;
-                        case 9:
-                            choiceTrue4 = nextCell.getBooleanCellValue();
-                            break;
-                        case 10:
-                            questionTime = (int) nextCell.getNumericCellValue();
-                            break;
-                        case 11:
-                            questionType = new QuestionType();
-                            questionType.setId((long) nextCell.getNumericCellValue());
-                            break;
-                        case 12:
-                            company_id = (long) nextCell.getNumericCellValue();
-                            break;
-                        case 13:
-                            isPublic = (boolean) nextCell.getBooleanCellValue();
-                            break;
-                    }
-
-
-                }
+                QuestionChoice qc = new QuestionChoice();
+                boolean isBlank = true;
+                String answer = "null1";
+                boolean answerIsTrue = false;
                 QuestionChoice qc1 = new QuestionChoice();
-                qc1.setName(nameChoice1);
-                qc1.setTrue(choiceTrue1);
-                QuestionChoice qc2 = new QuestionChoice();
-                qc2.setName(nameChoice2);
-                qc2.setTrue(choiceTrue2);
-                QuestionChoice qc3 = new QuestionChoice();
-                qc3.setName(nameChoice3);
-                qc3.setTrue(choiceTrue3);
-                QuestionChoice qc4 = new QuestionChoice();
-                qc4.setName(nameChoice4);
-                qc4.setTrue(choiceTrue4);
-                questionChoice.add(qc1);
-                questionChoice.add(qc2);
-                questionChoice.add(qc3);
-                questionChoice.add(qc4);
-                QuestionRequest qr = new QuestionRequest(content, questionType, category, questionTime, questionChoice, company_id, isPublic);
-                createQuestion(qr);
-                lqr.add(qr);
+                int check = 0;
+                    while (cellIterator.hasNext()) {
+                        Cell nextCell = cellIterator.next();
+                        int columnIndex = nextCell.getColumnIndex();
+                        String cellValue = "null1";
+                        long cellNumber;
+                        boolean cellBool = false;
+                        CellType type = nextCell.getCellType();
+                        if (type == CellType.STRING) {
+                            cellValue = nextCell.getStringCellValue();
+                        } else if (type == CellType.NUMERIC) {
+                            cellNumber = (long) nextCell.getNumericCellValue();
+                        } else {
+                            cellBool = nextCell.getBooleanCellValue();
+                        }
+
+                        if (columnIndex == 0 && !cellValue.equals("null1")
+                        ) {
+                            isBlank = false;
+                            check = 1;
+                        } else if (columnIndex == 3 && (!cellValue.equals("null1") || !cellValue.trim().equals("")) && isBlank == true) {
+                            answer = cellValue;
+                        } else if (columnIndex == 3 && isBlank == true && answer.equals("null1")) {
+                            System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzz");
+                            Question q = questionRepository.getLastQuestion();
+                            System.out.println(q + "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+                            System.out.println(questionChoice);
+                            updateListChoice(q, questionChoice);
+                            questionChoice.clear();
+                        } else if (columnIndex == 4 && !cellValue.equals("null1") && isBlank == true) {
+                            answerIsTrue = true;
+                        } else if (columnIndex == 4 && isBlank == true && !answer.equals("null1")) {
+                            qc.setName(answer);
+                            qc.setTrue(answerIsTrue);
+                            questionChoice.add(qc);
+                        } else if (check == 1) {
+                            switch (columnIndex) {
+                                case 1:
+                                    String nameCate = nextCell.getStringCellValue();
+                                    category = categoryRepository.findByNameIgnoreCase(nameCate);
+                                    break;
+                                case 2:
+                                    content = nextCell.getStringCellValue();
+                                    break;
+                                case 3:
+                                    qc1.setName(nextCell.getStringCellValue());
+                                    break;
+                                case 4:
+                                    boolean isTrue = true;
+                                    if (nextCell.getStringCellValue() == null || nextCell.getStringCellValue().trim().equals("")) {
+                                        isTrue = false;
+                                    }
+                                    qc1.setTrue(isTrue);
+                                    break;
+                                case 5:
+                                    questionTime = (int) nextCell.getNumericCellValue();
+                                    break;
+                                case 6:
+                                    questionType = new QuestionType();
+                                    questionType.setId((long) nextCell.getNumericCellValue());
+                                    break;
+                                case 7:
+                                    company_id = (long) nextCell.getNumericCellValue();
+                                    break;
+                                case 8:
+                                    isPublic = (boolean) nextCell.getBooleanCellValue();
+                                    break;
+                            }
+                        }
+                    }
+                if (isBlank == false) {
+                    questionChoice.add(qc1);
+                    QuestionRequest qr = new QuestionRequest(content, questionType, category, questionTime, questionChoice, company_id, isPublic);
+                    createQuestion(qr);
+                }
             }
             workbook.close();
             long end = System.currentTimeMillis();

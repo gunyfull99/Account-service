@@ -12,7 +12,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "category")
-public class Category {
+public class Category  {
 
     @Id
     @SequenceGenerator(name = "category_generator", sequenceName = "category_seq")

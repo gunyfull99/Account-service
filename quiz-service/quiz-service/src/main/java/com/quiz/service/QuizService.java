@@ -84,7 +84,7 @@ public class QuizService {
             Quiz quiz1 = new Quiz(form.getQuiz().getId(), form.getQuiz().getDescription(), form.getQuiz().getQuizTime(),
                     form.getQuiz().getUserId().get(k), form.getQuiz().getStartTime(), form.getQuiz().getEndTime(),
                     form.getQuiz().getExpiredTime(), form.getQuiz().getStatus(), form.getQuiz().getNumberQuestions()
-                    , form.getQuiz().getScore(), form.getQuiz().getQuestions(),form.getQuiz().getUserStartQuiz()
+                    , form.getQuiz().getScore(),form.getQuiz().getCreator(), form.getQuiz().getQuestions(),form.getQuiz().getUserStartQuiz()
             );
             Quiz quiz = createQuiz(quiz1);
             int numberQuestion = 0;
