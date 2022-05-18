@@ -54,6 +54,9 @@ public class AccountService {
 
     @Autowired
     private PermissionRepository permissionRepository;
+
+    @Autowired
+    private StatusWorkRepository statusWorkRepository;
     @Autowired
     private RolePermissionRepository rolePermissionRepository;
 
@@ -71,6 +74,9 @@ public class AccountService {
 
     public List<Account> listAllAccount() {
         return accountRepository.findAll();
+    }
+    public List<StatusWork> listAllStatusWork() {
+        return statusWorkRepository.findAll();
     }
 
     public void blockListUser(List<Long> listUser) {

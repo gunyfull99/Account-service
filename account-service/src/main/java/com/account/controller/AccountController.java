@@ -352,6 +352,7 @@ public class AccountController {
     }
 
 
+
     // get role  in Account
     // http://localhost:8091/accounts/list/haverole/2
     @CrossOrigin(origins = "http://localhost:8091/accounts")
@@ -482,6 +483,19 @@ public class AccountController {
 //        Page<Account> accounts = accountService.findAll(accountPaging);
 //        List<AccountDto> list = accountService.convertAccount(accounts.getContent());
         return ResponseEntity.ok().body(accountService.listAllAccount());
+    }
+
+    // get all status work
+    // http://localhost:8091/accounts/liststatuswork
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/liststatuswork")
+    public ResponseEntity<List<StatusWork>> getAllStatusWork() {
+        return ResponseEntity.ok().body(accountService.listAllStatusWork());
     }
 
     // get can read from user
