@@ -98,6 +98,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>quiz-service</finalName>
     </build>
     <repositories>
         <repository>

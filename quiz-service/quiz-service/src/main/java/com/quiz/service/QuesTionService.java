@@ -340,75 +340,86 @@ public class QuesTionService {
                 boolean answerIsTrue = false;
                 QuestionChoice qc1 = new QuestionChoice();
                 int check = 0;
-                    while (cellIterator.hasNext()) {
-                        Cell nextCell = cellIterator.next();
-                        int columnIndex = nextCell.getColumnIndex();
-                        String cellValue = "null1";
-                        long cellNumber;
-                        boolean cellBool = false;
-                        CellType type = nextCell.getCellType();
-                        if (type == CellType.STRING) {
-                            cellValue = nextCell.getStringCellValue();
-                        } else if (type == CellType.NUMERIC) {
-                            cellNumber = (long) nextCell.getNumericCellValue();
-                        } else {
-                            cellBool = nextCell.getBooleanCellValue();
-                        }
+                while (cellIterator.hasNext()) {
+                    Cell nextCell = cellIterator.next();
+                    int columnIndex = nextCell.getColumnIndex();
+                    String cellValue = "null1";
+                    long cellNumber=0;
+                    boolean cellBool = false;
+                    CellType type = nextCell.getCellType();
+                    if (type == CellType.STRING) {
+                        cellValue = nextCell.getStringCellValue();
+                    } else if (type == CellType.NUMERIC) {
+                        cellNumber = (long) nextCell.getNumericCellValue();
+                    } else if(type == CellType.BOOLEAN) {
+                        cellBool = nextCell.getBooleanCellValue();
+                    }else if(type==CellType.BLANK){
+                        cellValue = "null1";
+                    }
 
-                        if (columnIndex == 0 && !cellValue.equals("null1")
-                        ) {
-                            isBlank = false;
-                            check = 1;
-                        } else if (columnIndex == 3 && (!cellValue.equals("null1") || !cellValue.trim().equals("")) && isBlank == true) {
+                    if (columnIndex == 0 && cellNumber!=0
+                    ) {
+                        isBlank = false;
+                        check = 1;
+                    } else if (columnIndex == 3 && isBlank == true) {
+
+                        if (cellValue.equals("null1") == false) {
                             answer = cellValue;
-                        } else if (columnIndex == 3 && isBlank == true && answer.equals("null1")) {
-                            System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzz");
+                        } else {
                             Question q = questionRepository.getLastQuestion();
-                            System.out.println(q + "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-                            System.out.println(questionChoice);
                             updateListChoice(q, questionChoice);
                             questionChoice.clear();
-                        } else if (columnIndex == 4 && !cellValue.equals("null1") && isBlank == true) {
+                        }
+                    } else if (columnIndex == 4 && isBlank == true) {
+                        if (cellValue.equals("null1") == false) {
                             answerIsTrue = true;
-                        } else if (columnIndex == 4 && isBlank == true && !answer.equals("null1")) {
+                        }
+                        if (answer.equals("null1") == false) {
                             qc.setName(answer);
                             qc.setTrue(answerIsTrue);
                             questionChoice.add(qc);
-                        } else if (check == 1) {
-                            switch (columnIndex) {
-                                case 1:
-                                    String nameCate = nextCell.getStringCellValue();
-                                    category = categoryRepository.findByNameIgnoreCase(nameCate);
-                                    break;
-                                case 2:
-                                    content = nextCell.getStringCellValue();
-                                    break;
-                                case 3:
-                                    qc1.setName(nextCell.getStringCellValue());
-                                    break;
-                                case 4:
-                                    boolean isTrue = true;
-                                    if (nextCell.getStringCellValue() == null || nextCell.getStringCellValue().trim().equals("")) {
-                                        isTrue = false;
-                                    }
-                                    qc1.setTrue(isTrue);
-                                    break;
-                                case 5:
-                                    questionTime = (int) nextCell.getNumericCellValue();
-                                    break;
-                                case 6:
-                                    questionType = new QuestionType();
-                                    questionType.setId((long) nextCell.getNumericCellValue());
-                                    break;
-                                case 7:
-                                    company_id = (long) nextCell.getNumericCellValue();
-                                    break;
-                                case 8:
-                                    isPublic = (boolean) nextCell.getBooleanCellValue();
-                                    break;
-                            }
+                        }
+                    } else if (columnIndex == 4 && isBlank == false) {
+                        boolean isTrue = true;
+                        if (nextCell.getStringCellValue() == null || nextCell.getStringCellValue().trim().equals("")) {
+                            isTrue = false;
+                        }
+                        qc1.setTrue(isTrue);
+                    } else if (check == 1) {
+                        switch (columnIndex) {
+                            case 1:
+                                String nameCate = nextCell.getStringCellValue();
+                                category = categoryRepository.findByNameIgnoreCase(nameCate);
+                                break;
+                            case 2:
+                                content = nextCell.getStringCellValue();
+                                break;
+                            case 3:
+                                qc1.setName(nextCell.getStringCellValue());
+                                break;
+                            case 4:
+                                boolean isTrue = true;
+                                if (nextCell.getStringCellValue() == null || nextCell.getStringCellValue().trim().equals("")) {
+                                    isTrue = false;
+                                }
+                                qc1.setTrue(isTrue);
+                                break;
+                            case 5:
+                                questionTime = (int) nextCell.getNumericCellValue();
+                                break;
+                            case 6:
+                                questionType = new QuestionType();
+                                questionType.setId((long) nextCell.getNumericCellValue());
+                                break;
+                            case 7:
+                                company_id = (long) nextCell.getNumericCellValue();
+                                break;
+                            case 8:
+                                isPublic = (boolean) nextCell.getBooleanCellValue();
+                                break;
                         }
                     }
+                }
                 if (isBlank == false) {
                     questionChoice.add(qc1);
                     QuestionRequest qr = new QuestionRequest(content, questionType, category, questionTime, questionChoice, company_id, isPublic);

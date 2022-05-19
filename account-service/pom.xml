@@ -149,7 +149,7 @@
 
             </plugin>
         </plugins>
-
+        <finalName>profile-service</finalName>
     </build>
     <repositories>
         <repository>
