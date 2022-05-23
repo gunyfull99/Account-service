@@ -6,6 +6,7 @@ import com.quiz.entity.QuestionChoice;
 import com.quiz.entity.Quiz;
 import com.quiz.entity.QuizQuestion;
 import com.quiz.exception.ResourceBadRequestException;
+import com.quiz.repository.CategoryRepository;
 import com.quiz.repository.QuestionChoiceRepository;
 import com.quiz.repository.QuizQuestionRepository;
 import com.quiz.repository.QuizRepository;
@@ -37,6 +38,9 @@ public class QuizService {
     private QuizQuestionRepository quizQuestionRepository;
     @Autowired
     private QuesTionService quesTionService;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Autowired
     private QuestionChoiceRepository questionChoiceRepository;
@@ -80,11 +84,13 @@ public class QuizService {
 
     public String addQuesToQuiz(CreateQuizForm form) {
         logger.info("receive info to add Question To Quiz");
+        String cate="";
         for (int k = 0; k < form.getQuiz().getUserId().size(); k++) {
+
             Quiz quiz1 = new Quiz(form.getQuiz().getId(), form.getQuiz().getDescription(), form.getQuiz().getQuizTime(),
                     form.getQuiz().getUserId().get(k), form.getQuiz().getStartTime(), form.getQuiz().getEndTime(),
                     form.getQuiz().getExpiredTime(), form.getQuiz().getStatus(), form.getQuiz().getNumberQuestions()
-                    , form.getQuiz().getScore(),form.getQuiz().getCreator(), form.getQuiz().getQuestions(),form.getQuiz().getUserStartQuiz()
+                    , form.getQuiz().getScore(),form.getQuiz().getCreator(),cate,form.getQuiz().getQuestions(),form.getQuiz().getUserStartQuiz()
             );
             Quiz quiz = createQuiz(quiz1);
             int numberQuestion = 0;
@@ -93,6 +99,9 @@ public class QuizService {
 
 
             for (int i = 0; i < form.getTopics().size(); i++) {
+                String getCateName=categoryRepository.getById(form.getTopics().get(i).getCate()).getName().toUpperCase();
+                cate= i==0 ? getCateName : cate+","+getCateName;
+
                 List<Question> hasTag1 = quesTionService.getAllQuestionByCate(form.getTopics().get(i).getCate());
                 Collections.shuffle(hasTag1);
                 numberQuestion += form.getTopics().get(i).getQuantity();
@@ -114,7 +123,7 @@ public class QuizService {
             }
             quiz.setNumberQuestions(numberQuestion);
             quiz.setQuizTime(totalTime);
-
+            quiz.setCate(cate);
             quizRepository.save(quiz);
 
             for (int i = 0; i < q.size(); i++) {

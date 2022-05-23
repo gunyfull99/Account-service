@@ -1098,3 +1098,34 @@ Action:
 
 Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
 
+2022-05-19 14:04:43,545 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-05-19 14:04:43,605 INFO org.springframework.boot.StartupInfoLogger [main] []: Starting QuizServiceApplication v0.0.1-SNAPSHOT using Java 11.0.11 on LAPTOP-BP05I3UL with PID 10268 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\quiz-service\target\quiz-service.jar started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service\quiz-service)
+2022-05-19 14:04:43,610 INFO org.springframework.boot.SpringApplication [main] []: No active profile set, falling back to default profiles: default
+2022-05-19 14:04:45,406 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-19 14:04:45,521 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] []: Finished Spring Data repository scanning in 99 ms. Found 7 JPA repository interfaces.
+2022-05-19 14:04:46,983 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] []: Tomcat initialized with port(s): 8080 (http)
+2022-05-19 14:04:47,001 INFO org.apache.juli.logging.DirectJDKLog [main] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-19 14:04:47,002 INFO org.apache.juli.logging.DirectJDKLog [main] []: Starting service [Tomcat]
+2022-05-19 14:04:47,002 INFO org.apache.juli.logging.DirectJDKLog [main] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-19 14:04:47,081 INFO org.apache.juli.logging.DirectJDKLog [main] []: Initializing Spring embedded WebApplicationContext
+2022-05-19 14:04:47,082 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] []: Root WebApplicationContext: initialization completed in 3391 ms
+2022-05-19 14:04:47,353 INFO org.hibernate.jpa.internal.util.LogHelper [main] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-19 14:04:47,480 INFO org.hibernate.Version [main] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-05-19 14:04:47,781 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-19 14:04:47,997 INFO com.zaxxer.hikari.HikariDataSource [main] []: HikariPool-1 - Starting...
+2022-05-19 14:04:48,264 INFO com.zaxxer.hikari.HikariDataSource [main] []: HikariPool-1 - Start completed.
+2022-05-19 14:04:48,334 INFO org.hibernate.dialect.Dialect [main] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-19 14:04:50,124 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-19 14:04:50,135 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-19 14:04:51,178 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-19 14:04:51,398 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-05-19 14:04:51,749 INFO org.apache.juli.logging.DirectJDKLog [main] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-05-19 14:04:51,776 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-19 14:04:51,777 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] []: Context refreshed
+2022-05-19 14:04:51,803 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] []: Found 1 custom documentation plugin(s)
+2022-05-19 14:04:51,861 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] []: Scanning for api listing references
+2022-05-19 14:04:52,044 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [main] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-05-19 14:04:52,350 INFO org.springframework.boot.StartupInfoLogger [main] []: Started QuizServiceApplication in 9.409 seconds (JVM running for 11.187)
+2022-05-19 14:05:51,969 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-19 14:05:51,972 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-05-19 14:05:51,985 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.

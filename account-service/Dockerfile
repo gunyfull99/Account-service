@@ -1,7 +1,7 @@
 FROM openjdk:11
 EXPOSE 8091
 
-ENV DATABASE_HOST=host.docker.internal
+ENV DATABASE_HOST=jdbc:postgresql://localhost:
 ENV DATABASE_PORT=5432
 ENV DATABASE_NAME=profile
 ENV DATABASE_USERNAME=postgres

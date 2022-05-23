@@ -251,6 +251,11 @@ public class QuesTionService {
 
         } else {
             time = (quiz.getQuizTime() * 1000 * 60) - (System.currentTimeMillis() - timeStart);
+            System.out.println("zzzz"+time);
+            System.out.println("zzzz"+timeStart);
+
+            quiz.setUserStartQuiz(time);
+            quizService.save(quiz);
         }
 
         for (int i = 0; i < list.size(); i++) {
@@ -276,6 +281,8 @@ public class QuesTionService {
             request.setUserStartQuiz(time);
             questionRequests.add(request);
         }
+
+
         return questionRequests;
     }
 
