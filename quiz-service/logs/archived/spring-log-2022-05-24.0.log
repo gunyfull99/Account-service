@@ -1,0 +1,226 @@
+2022-05-24 09:58:14,494 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 13580 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-05-24 09:58:14,494 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-05-24 09:58:14,499 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-05-24 09:58:14,545 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-24 09:58:14,550 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-24 09:58:15,671 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-24 09:58:15,754 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 75 ms. Found 7 JPA repository interfaces.
+2022-05-24 09:58:16,747 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-05-24 09:58:16,761 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-24 09:58:16,762 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-05-24 09:58:16,762 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-24 09:58:16,917 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-05-24 09:58:16,918 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2367 ms
+2022-05-24 09:58:17,108 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-24 09:58:17,174 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-05-24 09:58:17,334 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-24 09:58:17,446 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-05-24 09:58:17,701 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-05-24 09:58:17,727 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-24 09:58:19,130 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-24 09:58:19,137 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 09:58:19,990 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-24 09:58:20,142 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-05-24 09:58:20,260 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-05-24 09:58:20,421 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-05-24 09:58:20,439 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-24 09:58:20,440 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-05-24 09:58:20,460 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-05-24 09:58:20,485 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-05-24 09:58:20,646 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-05-24 09:58:20,935 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 6.907 seconds (JVM running for 7.993)
+2022-05-24 09:59:01,607 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-24 09:59:01,608 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-05-24 09:59:01,609 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Completed initialization in 1 ms
+2022-05-24 09:59:02,402 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question If you follow my direction, you _______ her house easily. to create
+2022-05-24 09:59:02,551 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Backpacking is best suited for those who are in good physical condition _______. to create
+2022-05-24 09:59:02,565 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question I’m sorry. I didn’t mean to _______ your feelings when I said such a thing. to create
+2022-05-24 09:59:02,580 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Laura came to _______ me for taking care of her dog when she was away. to create
+2022-05-24 09:59:02,602 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question The aroma of freshly baked bread in the morning has always _______ memories of this childhood home. to create
+2022-05-24 09:59:02,609 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Schoolchildren shouldn’t make fun of those who are intellectually _______ to them. to create
+2022-05-24 09:59:02,622 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question The film was so intriguing that the audience were all _______ to the sceen until the end. to create
+2022-05-24 09:59:02,634 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question My uncle tries to spend time playing with his children _______ he is very busy. to create
+2022-05-24 09:59:02,649 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Linda took great photos of butterflies while she _______ in the forest. to create
+2022-05-24 09:59:02,662 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question The children are highly excited _______ the coming holiday. to create
+2022-05-24 09:59:02,676 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question A key component of Industry 4.0 is the Internet of Things characterised by the connections of all mobile _______ to create
+2022-05-24 09:59:02,690 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Joseph would never forget _______ by his boss through no fault of his own. to create
+2022-05-24 09:59:02,702 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Once _______ with ufficient information, the freshmen will feel more confident to start the new course to create
+2022-05-24 09:59:02,720 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question John is _______ most hard-working student I’ve ever know. to create
+2022-05-24 09:59:02,738 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Linda and Peter are talking about safe drving.
+- Linda: “I think drinking-driving should be severly punished.”
+- Peter: “_______. It may cause accidents or even deaths.” to create
+2022-05-24 09:59:02,757 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question A porter is talking to Mary in the hotel lobby.
+- Porter: “May I help you with your suitcase?”
+- Mary: “_______” to create
+2022-05-24 09:59:02,798 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part that differs from the other three in the pronunciation in each of the following questions. to create
+2022-05-24 09:59:02,805 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part that differs from the other three in the pronunciation in each of the following questions. to create
+2022-05-24 09:59:02,810 ERROR com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: this question was crate before !!!
+2022-05-24 10:04:09,358 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 10:04:09,362 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-05-24 10:04:09,376 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-05-24 10:04:58,995 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-05-24 10:04:59,000 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 3992 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-05-24 10:04:59,002 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-05-24 10:04:59,071 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-24 10:04:59,071 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-24 10:05:00,106 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-24 10:05:00,183 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 66 ms. Found 7 JPA repository interfaces.
+2022-05-24 10:05:01,250 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-05-24 10:05:01,263 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-24 10:05:01,263 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-05-24 10:05:01,264 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-24 10:05:01,380 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-05-24 10:05:01,380 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2308 ms
+2022-05-24 10:05:01,549 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-24 10:05:01,597 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-05-24 10:05:01,711 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-24 10:05:01,824 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-05-24 10:05:02,043 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-05-24 10:05:02,061 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-24 10:05:03,518 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-24 10:05:03,525 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 10:05:04,706 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-24 10:05:05,061 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-05-24 10:05:05,199 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-05-24 10:05:05,401 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-05-24 10:05:05,424 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-24 10:05:05,426 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-05-24 10:05:05,446 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-05-24 10:05:05,476 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-05-24 10:05:05,655 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-05-24 10:05:06,059 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 7.603 seconds (JVM running for 8.601)
+2022-05-24 10:05:51,680 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-24 10:05:51,680 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-05-24 10:05:51,681 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Completed initialization in 1 ms
+2022-05-24 10:05:52,389 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question If you follow my direction, you _______ her house easily. to create
+2022-05-24 10:05:52,510 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Backpacking is best suited for those who are in good physical condition _______. to create
+2022-05-24 10:05:52,523 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question I’m sorry. I didn’t mean to _______ your feelings when I said such a thing. to create
+2022-05-24 10:05:52,538 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Laura came to _______ me for taking care of her dog when she was away. to create
+2022-05-24 10:05:52,552 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question The aroma of freshly baked bread in the morning has always _______ memories of this childhood home. to create
+2022-05-24 10:05:52,560 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Schoolchildren shouldn’t make fun of those who are intellectually _______ to them. to create
+2022-05-24 10:05:52,569 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question The film was so intriguing that the audience were all _______ to the sceen until the end. to create
+2022-05-24 10:05:52,587 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question My uncle tries to spend time playing with his children _______ he is very busy. to create
+2022-05-24 10:05:52,604 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Linda took great photos of butterflies while she _______ in the forest. to create
+2022-05-24 10:05:52,621 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question The children are highly excited _______ the coming holiday. to create
+2022-05-24 10:05:52,642 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question A key component of Industry 4.0 is the Internet of Things characterised by the connections of all mobile _______ to create
+2022-05-24 10:05:52,664 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Joseph would never forget _______ by his boss through no fault of his own. to create
+2022-05-24 10:05:52,683 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Once _______ with ufficient information, the freshmen will feel more confident to start the new course to create
+2022-05-24 10:05:52,703 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question John is _______ most hard-working student I’ve ever know. to create
+2022-05-24 10:05:52,722 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Linda and Peter are talking about safe drving.
+- Linda: “I think drinking-driving should be severly punished.”
+- Peter: “_______. It may cause accidents or even deaths.” to create
+2022-05-24 10:05:52,747 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question A porter is talking to Mary in the hotel lobby.
+- Porter: “May I help you with your suitcase?”
+- Mary: “_______” to create
+2022-05-24 10:05:52,800 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part that differs from the other three in the pronunciation in each of the following questions. to create
+2022-05-24 10:05:52,811 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part that differs from the other three in the pronunciation in each of the following questions. to create
+2022-05-24 10:05:52,816 ERROR com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: this question was crate before !!!
+2022-05-24 10:08:04,880 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 10:08:04,883 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-05-24 10:08:04,894 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-05-24 10:14:55,275 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 11204 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-05-24 10:14:55,278 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-05-24 10:14:55,283 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-05-24 10:14:55,345 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-24 10:14:55,347 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-24 10:14:56,505 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-24 10:14:56,584 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 70 ms. Found 7 JPA repository interfaces.
+2022-05-24 10:14:57,759 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-05-24 10:14:57,772 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-24 10:14:57,773 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-05-24 10:14:57,773 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-24 10:14:57,914 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-05-24 10:14:57,914 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2566 ms
+2022-05-24 10:14:58,130 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-24 10:14:58,204 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-05-24 10:14:58,315 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-24 10:14:58,435 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-05-24 10:14:58,651 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-05-24 10:14:58,677 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-24 10:15:00,511 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-24 10:15:00,518 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 10:15:01,421 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-24 10:15:01,569 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-05-24 10:15:01,680 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-05-24 10:15:01,886 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-05-24 10:15:01,906 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-24 10:15:01,907 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-05-24 10:15:01,922 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-05-24 10:15:01,946 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-05-24 10:15:02,078 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-05-24 10:15:02,328 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 7.601 seconds (JVM running for 8.403)
+2022-05-24 10:15:09,664 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-24 10:15:09,664 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-05-24 10:15:09,665 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Completed initialization in 1 ms
+2022-05-24 10:15:10,384 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question If you follow my direction, you _______ her house easily. to create
+2022-05-24 10:15:10,497 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Backpacking is best suited for those who are in good physical condition _______. to create
+2022-05-24 10:15:10,509 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question I’m sorry. I didn’t mean to _______ your feelings when I said such a thing. to create
+2022-05-24 10:15:10,522 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Laura came to _______ me for taking care of her dog when she was away. to create
+2022-05-24 10:15:10,535 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question The aroma of freshly baked bread in the morning has always _______ memories of this childhood home. to create
+2022-05-24 10:15:10,547 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Schoolchildren shouldn’t make fun of those who are intellectually _______ to them. to create
+2022-05-24 10:15:10,561 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question The film was so intriguing that the audience were all _______ to the sceen until the end. to create
+2022-05-24 10:15:10,574 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question My uncle tries to spend time playing with his children _______ he is very busy. to create
+2022-05-24 10:15:10,585 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Linda took great photos of butterflies while she _______ in the forest. to create
+2022-05-24 10:15:10,596 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question The children are highly excited _______ the coming holiday. to create
+2022-05-24 10:15:10,605 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question A key component of Industry 4.0 is the Internet of Things characterised by the connections of all mobile _______ to create
+2022-05-24 10:15:10,614 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Joseph would never forget _______ by his boss through no fault of his own. to create
+2022-05-24 10:15:10,624 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Once _______ with ufficient information, the freshmen will feel more confident to start the new course to create
+2022-05-24 10:15:10,632 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question John is _______ most hard-working student I’ve ever know. to create
+2022-05-24 10:15:10,644 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Linda and Peter are talking about safe drving.
+- Linda: “I think drinking-driving should be severly punished.”
+- Peter: “_______. It may cause accidents or even deaths.” to create
+2022-05-24 10:15:10,652 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question A porter is talking to Mary in the hotel lobby.
+- Porter: “May I help you with your suitcase?”
+- Mary: “_______” to create
+2022-05-24 10:15:10,672 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part that differs from the other three in the pronunciation in each of the following questions. to create
+2022-05-24 10:15:10,682 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part that differs from the other three in the pronunciation in each of the following questions. to create
+2022-05-24 10:15:10,683 ERROR com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: this question was crate before !!!
+2022-05-24 10:18:34,784 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question If you follow my direction, you _______ her house easily. to create
+2022-05-24 10:18:34,798 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question Backpacking is best suited for those who are in good physical condition _______. to create
+2022-05-24 10:18:34,808 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question I’m sorry. I didn’t mean to _______ your feelings when I said such a thing. to create
+2022-05-24 10:18:34,821 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question Laura came to _______ me for taking care of her dog when she was away. to create
+2022-05-24 10:18:34,835 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question The aroma of freshly baked bread in the morning has always _______ memories of this childhood home. to create
+2022-05-24 10:18:34,844 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question Schoolchildren shouldn’t make fun of those who are intellectually _______ to them. to create
+2022-05-24 10:18:34,855 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question The film was so intriguing that the audience were all _______ to the sceen until the end. to create
+2022-05-24 10:18:34,863 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question My uncle tries to spend time playing with his children _______ he is very busy. to create
+2022-05-24 10:18:34,873 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question Linda took great photos of butterflies while she _______ in the forest. to create
+2022-05-24 10:18:34,883 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question The children are highly excited _______ the coming holiday. to create
+2022-05-24 10:18:34,890 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question A key component of Industry 4.0 is the Internet of Things characterised by the connections of all mobile _______ to create
+2022-05-24 10:18:34,899 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question Joseph would never forget _______ by his boss through no fault of his own. to create
+2022-05-24 10:18:34,905 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question Once _______ with ufficient information, the freshmen will feel more confident to start the new course to create
+2022-05-24 10:18:34,912 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question John is _______ most hard-working student I’ve ever know. to create
+2022-05-24 10:18:34,922 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question Linda and Peter are talking about safe drving.
+- Linda: “I think drinking-driving should be severly punished.”
+- Peter: “_______. It may cause accidents or even deaths.” to create
+2022-05-24 10:18:34,932 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question A porter is talking to Mary in the hotel lobby.
+- Porter: “May I help you with your suitcase?”
+- Mary: “_______” to create
+2022-05-24 10:18:34,941 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part that differs from the other three in the pronunciation in each of the following questions. to create
+2022-05-24 10:18:34,952 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive info of question Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part that differs from the other three in the pronunciation in each of the following questions. to create
+2022-05-24 10:18:34,953 ERROR com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: this question was crate before !!!
+2022-05-24 10:21:17,987 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question If you follow my direction, you _______ her house easily. to create
+2022-05-24 10:21:17,996 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question Backpacking is best suited for those who are in good physical condition _______. to create
+2022-05-24 10:21:18,003 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question I’m sorry. I didn’t mean to _______ your feelings when I said such a thing. to create
+2022-05-24 10:21:18,015 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question Laura came to _______ me for taking care of her dog when she was away. to create
+2022-05-24 10:21:18,024 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question The aroma of freshly baked bread in the morning has always _______ memories of this childhood home. to create
+2022-05-24 10:21:18,033 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question Schoolchildren shouldn’t make fun of those who are intellectually _______ to them. to create
+2022-05-24 10:21:18,041 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question The film was so intriguing that the audience were all _______ to the sceen until the end. to create
+2022-05-24 10:21:18,050 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question My uncle tries to spend time playing with his children _______ he is very busy. to create
+2022-05-24 10:21:18,056 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question Linda took great photos of butterflies while she _______ in the forest. to create
+2022-05-24 10:21:18,065 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question The children are highly excited _______ the coming holiday. to create
+2022-05-24 10:21:18,073 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question A key component of Industry 4.0 is the Internet of Things characterised by the connections of all mobile _______ to create
+2022-05-24 10:21:18,082 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question Joseph would never forget _______ by his boss through no fault of his own. to create
+2022-05-24 10:21:18,087 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question Once _______ with ufficient information, the freshmen will feel more confident to start the new course to create
+2022-05-24 10:21:18,095 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question John is _______ most hard-working student I’ve ever know. to create
+2022-05-24 10:21:18,102 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question Linda and Peter are talking about safe drving.
+- Linda: “I think drinking-driving should be severly punished.”
+- Peter: “_______. It may cause accidents or even deaths.” to create
+2022-05-24 10:21:18,107 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question A porter is talking to Mary in the hotel lobby.
+- Porter: “May I help you with your suitcase?”
+- Mary: “_______” to create
+2022-05-24 10:21:18,116 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part that differs from the other three in the pronunciation in each of the following questions. to create
+2022-05-24 10:21:18,125 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: Receive info of question Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part that differs from the other three in the pronunciation in each of the following questions. to create
+2022-05-24 10:21:18,128 ERROR com.quiz.service.QuesTionService [http-nio-8080-exec-8] []: this question was crate before !!!
+2022-05-24 10:22:37,373 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 10:22:37,378 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-05-24 10:22:37,389 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.

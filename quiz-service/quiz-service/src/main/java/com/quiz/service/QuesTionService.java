@@ -2,6 +2,7 @@ package com.quiz.service;
 
 import com.quiz.Dto.*;
 import com.quiz.entity.*;
+import com.quiz.exception.ResourceBadRequestException;
 import com.quiz.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.*;
@@ -42,6 +43,9 @@ public class QuesTionService {
 
     @Autowired
     QuizRepository quizRepository;
+
+    @Autowired
+    QuizQuestionRepository quizQuestionRepository;
 
     @Autowired
     QuestionChoiceRepository questionChoiceRepository;
@@ -233,20 +237,22 @@ public class QuesTionService {
         return new QuestionPaging((int) questionEntity.getTotalElements(), questionRequests, questionPaging.getPage(), questionPaging.getLimit(), questionPaging.getSearch(), questionPaging.getTypeId());
     }
 
-    public List<QuestDTO> getListQuestionByQuizId(long id) {
+    public List<QuestDTO> getListQuestionByQuizId(long id,boolean isView) {
         logger.info("Receive id to get List Question By Quiz Id", id);
+        boolean view = isView;
+
         List<QuizQuestion> list = quizService.getListQuestionByQuizId(id);
         if (list.isEmpty()) {
             logger.error("this list question is not exist !!!");
             throw new RuntimeException("this list question is not exist !!!");
         }
         List<Question> questionEntity = new ArrayList<>();
-        long time = 0;
         Quiz quiz = quizRepository.findById(id).get();
         long timeStart = quiz.getUserStartQuiz();
 
-        if (timeStart == 0) {
-            quiz.setUserStartQuiz(System.currentTimeMillis());
+        if (timeStart == 0 && !isView) {
+            timeStart=System.currentTimeMillis();
+            quiz.setUserStartQuiz(timeStart);
             quizService.save(quiz);
         }
 
@@ -261,16 +267,23 @@ public class QuesTionService {
             QuestDTO request = mapper.map(question, QuestDTO.class);
             request.setQuiz_id(list.get(0).getQuiz_id());
             request.setQuestions_id(question.getId());
+            String userAnswer=quizQuestionRepository.getUserAnswer(id,question.getId());
             List<QuestionChoiceDTO> questionChoiceDTOS = new ArrayList<>();
             for (QuestionChoice questionChoice : question.getQuestionChoice()) {
                 QuestionChoiceDTO questionChoiceDTO = new QuestionChoiceDTO();
                 questionChoiceDTO.setId(questionChoice.getId());
                 questionChoiceDTO.setName(questionChoice.getName());
+                if(isView){
+                    if(userAnswer.equals(questionChoice.getName())){
+                        questionChoiceDTO.setUserAnswer(userAnswer);
+                    }
+                    questionChoiceDTO.setTrue(questionChoice.isTrue());
+                }
                 questionChoiceDTOS.add(questionChoiceDTO);
             }
             request.setQuestionChoiceDTOs(questionChoiceDTOS);
             request.setQuestionTime(question.getQuestionTime());
-            request.setUserStartQuiz(time);
+            request.setUserStartQuiz(timeStart);
             questionRequests.add(request);
         }
 
@@ -291,10 +304,10 @@ public class QuesTionService {
 
     public void createQuestion(QuestionRequest request) {
         logger.info("Receive info of question {} to create", request.getContent());
-        if (questionRepository.findByContent(request.getContent()) != null) {
-            logger.error("this question was crate before !!!");
-            throw new RuntimeException("this question was crate before !!!");
-        }
+//        if (questionRepository.findByContent(request.getContent()) != null) {
+//            logger.error("this question was crate before !!!");
+//            throw new RuntimeException("this question was crate before !!!");
+//        }
         ModelMapper mapper = new ModelMapper();
         Question questionEntity = mapper.map(request, Question.class);
         Question q1 = questionRepository.save(questionEntity);
@@ -312,7 +325,7 @@ public class QuesTionService {
         }
     }
 
-    public String excelImport(MultipartFile file) throws IOException {
+    public BaseResponse excelImport(MultipartFile file) throws ResourceBadRequestException, IOException {
         String content = null;
         QuestionType questionType = null;
         Category category = null;
@@ -429,9 +442,8 @@ public class QuesTionService {
             long end = System.currentTimeMillis();
             System.out.printf("Import done in %d ms\n", (end - start));
         } catch (Exception e) {
-            e.printStackTrace();
-            return "Tạo câu hỏi thất bại";
+            throw new ResourceBadRequestException(new BaseResponse(400, "Tạo câu hỏi thất bại"));
         }
-        return "Tạo câu hỏi thành công";
+        return new BaseResponse(200,"Tạo câu hỏi thành công");
     }
 }

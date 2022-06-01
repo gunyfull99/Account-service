@@ -19,6 +19,9 @@ public interface QuizQuestionRepository extends JpaRepository<QuizQuestion,Long>
 
     @Query(value = "select * from quiz_questions where quiz_id = :id", nativeQuery = true)
     List<QuizQuestion> getListQuestionByQuizId(@Param("id") Long quizId);
+
+    @Query(value = "select user_answer from quiz_questions where quiz_id = :qid and questions_id = :id", nativeQuery = true)
+    String getUserAnswer(@Param("qid") Long quizId,@Param("id") Long quesId);
 }
 
 

@@ -12,4 +12,5 @@ public class QuestionChoiceDTO {
     private String name;
     private boolean isTrue;
     private String text;
+    private String userAnswer;
 }

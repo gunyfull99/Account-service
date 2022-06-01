@@ -69,6 +69,7 @@ public class QuizService {
             quiz1.setExpiredTime(quiz.getExpiredTime());
             quiz1.setStatus(quiz.getStatus());
             quiz1.setUserId(quiz.getUserId());
+            quiz1.setCreator(quiz.getCreator());
             return quizRepository.save(quiz1);
         }
     }
