@@ -1582,3 +1582,324 @@ java.lang.NullPointerException: null
 2022-06-02 12:47:11,314 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-06-02 12:47:11,318 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
 2022-06-02 12:47:11,326 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-02 14:12:44,594 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 17756 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-02 14:12:44,600 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-02 14:12:44,614 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-02 14:12:44,675 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-02 14:12:44,676 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-02 14:12:45,974 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-02 14:12:46,082 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 94 ms. Found 7 JPA repository interfaces.
+2022-06-02 14:12:47,376 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-02 14:12:47,394 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-02 14:12:47,395 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-02 14:12:47,395 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-02 14:12:47,602 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-02 14:12:47,603 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2926 ms
+2022-06-02 14:12:47,873 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-02 14:12:47,947 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-02 14:12:48,119 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-02 14:12:48,259 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-02 14:12:48,554 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-02 14:12:48,581 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-02 14:12:50,264 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-02 14:12:50,274 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-02 14:12:51,355 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-02 14:12:51,577 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-02 14:12:51,723 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-02 14:12:51,943 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-02 14:12:51,969 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-02 14:12:51,970 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-02 14:12:51,997 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-02 14:12:52,073 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-02 14:12:52,357 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-02 14:12:52,357 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-06-02 14:12:52,359 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Completed initialization in 2 ms
+2022-06-02 14:12:52,362 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-02 14:12:52,541 INFO com.quiz.service.QuizService [http-nio-8080-exec-1] []: receive info to get List Quiz
+2022-06-02 14:12:52,826 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 8.855 seconds (JVM running for 10.369)
+2022-06-02 14:12:54,633 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8091/accounts/listuserid/%20": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect] with root cause
+java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at java.base/java.net.Socket.connect(Socket.java:558)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:182)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:474)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:569)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:242)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:341)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:362)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1253)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1187)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1081)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1015)
+	at org.springframework.http.client.SimpleBufferingClientHttpRequest.executeInternal(SimpleBufferingClientHttpRequest.java:76)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:732)
+	at org.springframework.web.client.RestTemplate.getForObject(RestTemplate.java:343)
+	at com.quiz.restTemplate.RestTemplateService.getListUserId(RestTemplateService.java:59)
+	at com.quiz.service.QuizService.getListQuizPaging(QuizService.java:251)
+	at com.quiz.controller.QuizController.getListQuizPaging(QuizController.java:314)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.quiz.filter.SimpleCORSFilter.doFilter(SimpleCORSFilter.java:27)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2022-06-02 14:12:58,853 INFO com.quiz.service.QuizService [http-nio-8080-exec-4] []: receive info to get List Quiz
+2022-06-02 14:13:00,904 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-4] []: Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8091/accounts/listuserid/%20": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect] with root cause
+java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at java.base/java.net.Socket.connect(Socket.java:558)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:182)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:474)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:569)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:242)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:341)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:362)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1253)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1187)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1081)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1015)
+	at org.springframework.http.client.SimpleBufferingClientHttpRequest.executeInternal(SimpleBufferingClientHttpRequest.java:76)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:732)
+	at org.springframework.web.client.RestTemplate.getForObject(RestTemplate.java:343)
+	at com.quiz.restTemplate.RestTemplateService.getListUserId(RestTemplateService.java:59)
+	at com.quiz.service.QuizService.getListQuizPaging(QuizService.java:251)
+	at com.quiz.controller.QuizController.getListQuizPaging(QuizController.java:314)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.quiz.filter.SimpleCORSFilter.doFilter(SimpleCORSFilter.java:27)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2022-06-02 14:13:23,236 INFO com.quiz.service.QuizService [http-nio-8080-exec-6] []: receive info to get List Quiz
+2022-06-02 14:22:00,180 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-02 14:22:00,185 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-02 14:22:00,197 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-02 14:23:52,619 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 19384 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-02 14:23:52,625 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-02 14:23:52,633 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-02 14:23:52,708 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-02 14:23:52,709 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-02 14:23:54,018 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-02 14:23:54,120 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 88 ms. Found 7 JPA repository interfaces.
+2022-06-02 14:23:55,436 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-02 14:23:55,455 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-02 14:23:55,456 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-02 14:23:55,457 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-02 14:23:55,648 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-02 14:23:55,649 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2939 ms
+2022-06-02 14:23:55,926 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-02 14:23:56,031 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-02 14:23:56,244 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-02 14:23:56,403 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-02 14:23:56,733 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-02 14:23:56,760 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-02 14:23:58,905 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-02 14:23:58,912 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-02 14:24:00,135 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-02 14:24:00,363 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-02 14:24:00,531 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-02 14:24:00,772 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-02 14:24:00,802 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-02 14:24:00,803 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-02 14:24:00,823 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-02 14:24:00,852 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-02 14:24:01,041 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-02 14:24:01,444 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 9.469 seconds (JVM running for 10.528)
+2022-06-02 14:24:03,603 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-02 14:24:03,603 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] []: Initializing Servlet 'dispatcherServlet'
+2022-06-02 14:24:03,605 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] []: Completed initialization in 1 ms
+2022-06-02 14:24:03,715 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-2] []: Receive info of question 0 to edit
+2022-06-02 14:28:16,001 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-02 14:28:16,006 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-02 14:28:16,016 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-02 14:37:57,824 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 10868 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-02 14:37:57,828 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-02 14:37:57,835 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-02 14:37:57,902 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-02 14:37:57,903 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-02 14:37:59,114 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-02 14:37:59,208 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 81 ms. Found 7 JPA repository interfaces.
+2022-06-02 14:38:00,579 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-02 14:38:00,595 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-02 14:38:00,596 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-02 14:38:00,597 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-02 14:38:00,773 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-02 14:38:00,774 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2871 ms
+2022-06-02 14:38:00,989 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-02 14:38:01,057 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-02 14:38:01,239 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-02 14:38:01,371 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-02 14:38:01,665 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-02 14:38:01,689 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-02 14:38:03,386 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-02 14:38:03,394 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-02 14:38:04,578 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-02 14:38:04,829 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-02 14:38:05,016 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-02 14:38:05,336 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-02 14:38:05,379 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-02 14:38:05,381 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-02 14:38:05,441 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-02 14:38:05,481 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-02 14:38:05,823 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-02 14:38:06,342 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 9.128 seconds (JVM running for 10.207)
+2022-06-02 14:38:19,857 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-02 14:38:19,857 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] []: Initializing Servlet 'dispatcherServlet'
+2022-06-02 14:38:19,858 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] []: Completed initialization in 1 ms
+2022-06-02 14:38:20,474 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-2] []: Receive info of question 0 to edit
+2022-06-02 14:38:23,528 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-3] []: Receive info of question 0 to edit
+2022-06-02 14:38:28,410 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-4] []: Resolved [org.springframework.web.bind.MissingRequestHeaderException: Required request header 'Authorization' for method parameter type String is not present]
+2022-06-02 14:38:34,206 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-6] []: Receive info of question 0 to edit
+2022-06-02 14:38:59,115 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-7] []: Receive info of question 0 to edit
+2022-06-02 14:44:50,242 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-02 14:44:50,247 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-02 14:44:50,263 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-02 15:15:08,520 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 26608 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-02 15:15:08,525 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-02 15:15:08,529 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-02 15:15:08,591 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-02 15:15:08,591 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-02 15:15:09,649 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-02 15:15:09,725 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 65 ms. Found 7 JPA repository interfaces.
+2022-06-02 15:15:10,829 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-02 15:15:10,844 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-02 15:15:10,845 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-02 15:15:10,845 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-02 15:15:10,974 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-02 15:15:10,974 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2382 ms
+2022-06-02 15:15:11,151 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-02 15:15:11,207 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-02 15:15:11,356 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-02 15:15:11,481 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-02 15:15:11,715 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-02 15:15:11,733 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-02 15:15:13,280 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-02 15:15:13,289 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-02 15:15:14,317 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-02 15:15:14,501 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-02 15:15:14,655 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-02 15:15:14,848 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-02 15:15:14,872 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-02 15:15:14,873 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-02 15:15:14,895 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-02 15:15:14,920 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-02 15:15:15,096 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-02 15:15:15,465 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 7.487 seconds (JVM running for 8.48)
+2022-06-02 15:17:50,539 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-02 15:17:50,539 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-06-02 15:17:50,541 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Completed initialization in 2 ms
+2022-06-02 15:17:50,597 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive id to get List Question By Quiz Id
+2022-06-02 15:17:50,598 INFO com.quiz.service.QuizService [http-nio-8080-exec-1] []: receive info to get List Question By QuizId
+2022-06-02 15:18:23,256 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-02 15:18:23,260 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-02 15:18:23,268 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
