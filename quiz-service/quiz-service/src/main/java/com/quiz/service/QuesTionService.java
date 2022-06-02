@@ -273,6 +273,7 @@ public class QuesTionService {
                 QuestionChoiceDTO questionChoiceDTO = new QuestionChoiceDTO();
                 questionChoiceDTO.setId(questionChoice.getId());
                 questionChoiceDTO.setName(questionChoice.getName());
+                questionChoiceDTO.setUserAnswer(questionChoice.getUserAnswer());
                 if(isView){
                     if(userAnswer.equals(questionChoice.getName())){
                         questionChoiceDTO.setUserAnswer(userAnswer);

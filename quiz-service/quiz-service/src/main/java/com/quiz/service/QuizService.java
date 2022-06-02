@@ -250,8 +250,8 @@ public class QuizService {
         Page<Quiz> list = null;
         List<Long>listUserId=restTemplateService.getListUserId(quizPaging.getKeywords()==null||quizPaging.getKeywords().equals("")? " " : quizPaging.getKeywords());
         list=quizRepository.filterWhereNoUserId(quizPaging.getStatus()==null || quizPaging.getStatus().trim().equals("") ? "%%" : quizPaging.getStatus(),
-                    quizPaging.getCate().toLowerCase(),
-                    quizPaging.getKeywords().toLowerCase(),
+                quizPaging.getCate() ==null ? "" :  quizPaging.getCate().toLowerCase(),
+                quizPaging.getKeywords() ==null ? "" :   quizPaging.getKeywords().toLowerCase(),
                     listUserId,
                     pageable);
         for (int i = 0; i < list.getContent().size(); i++) {
