@@ -25,6 +25,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import static javax.persistence.FetchType.EAGER;
 
@@ -65,6 +66,7 @@ public class QuizService {
             throw new ResourceBadRequestException(new BaseResponse(80805, "StartTime must before ExpireTime"));
         } else {
             quiz1.setDescription(quiz.getDescription());
+            quiz1.setCreateDate(quiz.getCreateDate());
             quiz1.setStartTime(quiz.getStartTime());
             quiz1.setExpiredTime(quiz.getExpiredTime());
             quiz1.setStatus(quiz.getStatus());
@@ -89,7 +91,7 @@ public class QuizService {
         for (int k = 0; k < form.getQuiz().getUserId().size(); k++) {
 
             Quiz quiz1 = new Quiz(form.getQuiz().getId(), form.getQuiz().getDescription(), form.getQuiz().getQuizTime(),
-                    form.getQuiz().getUserId().get(k), form.getQuiz().getStartTime(), form.getQuiz().getEndTime(),
+                    form.getQuiz().getUserId().get(k), LocalDateTime.now(),form.getQuiz().getStartTime(), form.getQuiz().getEndTime(),
                     form.getQuiz().getExpiredTime(), form.getQuiz().getStatus(), form.getQuiz().getNumberQuestions()
                     , form.getQuiz().getScore(),form.getQuiz().getCreator(),cate,form.getQuiz().getQuestions(),form.getQuiz().getUserStartQuiz()
             );
@@ -218,21 +220,45 @@ public class QuizService {
         return list;
     }
 
+//    public QuizPaging getListQuizPaging(QuizPaging quizPaging) {
+//
+//        logger.info("receive info to get List Quiz");
+//        Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit());
+//        Page<Quiz> list = null;
+//        if(quizPaging.getUserId()==0 && quizPaging.getStatus()==null){
+//            list=quizRepository.findAll(pageable);
+//        }else if(quizPaging.getUserId()==0 && quizPaging.getStatus()!=null){
+//            list=quizRepository.findAllByStatus(quizPaging.getStatus(),pageable);
+//        }else if(quizPaging.getUserId()!=0 && quizPaging.getStatus()==null){
+//            list=quizRepository.findAllByUserId(quizPaging.getUserId(),pageable);
+//        }else{
+//            list=quizRepository.findAllByUserIdAndStatus(quizPaging.getUserId(), quizPaging.getStatus(),pageable);
+//        }
+//
+//        for (int i = 0; i < list.getContent().size(); i++) {
+//            list.getContent().get(i).setQuestions(null);
+//        }
+//        QuizPaging qp=new QuizPaging((int) list.getTotalElements(),list.getContent(),quizPaging.getPage(),quizPaging.getLimit());
+//        return qp;
+//    }
+
+
     public QuizPaging getListQuizPaging(QuizPaging quizPaging) {
 
         logger.info("receive info to get List Quiz");
         Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit());
         Page<Quiz> list = null;
-        if(quizPaging.getUserId()==0 && quizPaging.getStatus()==null){
-            list=quizRepository.findAll(pageable);
-        }else if(quizPaging.getUserId()==0 && quizPaging.getStatus()!=null){
-            list=quizRepository.findAllByStatus(quizPaging.getStatus(),pageable);
-        }else if(quizPaging.getUserId()!=0 && quizPaging.getStatus()==null){
-            list=quizRepository.findAllByUserId(quizPaging.getUserId(),pageable);
-        }else{
-            list=quizRepository.findAllByUserIdAndStatus(quizPaging.getUserId(), quizPaging.getStatus(),pageable);
-        }
-
+        String a =quizPaging.getStatus()==null || quizPaging.getStatus().trim().equals("") ? "%%" : quizPaging.getStatus();
+        String b = quizPaging.getCate()==null || quizPaging.getCate().trim().equals("") ? "%%" : quizPaging.getCate();
+        String c =  quizPaging.getKeywords()==null || quizPaging.getKeywords().equals("") ? "%%" : quizPaging.getKeywords();
+        System.out.println(a +"    "+ b+"    "+c);
+        List<Long>listUserId=restTemplateService.getListUserId(quizPaging.getKeywords());
+        list=quizRepository.filterWhereNoUserId(quizPaging.getStatus()==null || quizPaging.getStatus().trim().equals("") ? "%%" : quizPaging.getStatus(),
+                    quizPaging.getCate(),
+                    quizPaging.getKeywords(),
+                    listUserId,
+                    pageable);
+        System.out.println(list);
         for (int i = 0; i < list.getContent().size(); i++) {
             list.getContent().get(i).setQuestions(null);
         }

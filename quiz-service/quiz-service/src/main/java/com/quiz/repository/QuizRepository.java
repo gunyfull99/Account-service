@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface QuizRepository extends JpaRepository<Quiz,Long> {
@@ -28,6 +29,16 @@ public interface QuizRepository extends JpaRepository<Quiz,Long> {
     @Modifying
     @Query(value = "update quiz set user_start_quiz= :time where id = :id", nativeQuery = true)
     void updateUserStartQuiz(@Param("id") Long id,@Param("time") Long time);
+
+
+    @Query(value = "select * from quiz where lower(status) like :status and lower(cate) like %:cate% and (lower(description) like %:description% or creator  IN :creator) ", nativeQuery = true)
+    Page<Quiz> filterWhereNoUserId(@Param("status") String status,
+                                    @Param("cate") String cate,
+                                    @Param("description") String description,
+                                   @Param("creator") List<Long> creator,
+                                   Pageable pageable);
+
+
 
     Page<Quiz> findAllByUserId(long id, Pageable p);
     Page<Quiz> findAllByStatus(String status, Pageable p);

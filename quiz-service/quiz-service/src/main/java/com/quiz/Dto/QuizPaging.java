@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 @Data
 @AllArgsConstructor
@@ -15,7 +16,10 @@ public class QuizPaging {
     int page ;
     int limit ;
     long userId;
-    String status;
+    String  status;
+    LocalDateTime createDate;
+    String keywords;
+    String cate;
 
     public QuizPaging(int total,List<Quiz> quizList,int page,int limit){
         this.total=total;

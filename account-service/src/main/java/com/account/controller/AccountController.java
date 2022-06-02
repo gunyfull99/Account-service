@@ -588,6 +588,19 @@ public class AccountController {
         return ResponseEntity.ok().body(accountService.searchUser(name));
     }
 
+    // get list user id
+    // http://localhost:8091/accounts/listuserid/{name}
+    @CrossOrigin(origins = "http://localhost:8091/accounts")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Account.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    @GetMapping("/listuserid/{name}")
+    public ResponseEntity<List<Long>> getListUserId(@PathVariable(name = "name") String name) {
+        return ResponseEntity.ok().body(accountService.getListUserId(name));
+    }
+
     // gửi mail đổi mật khẩu
     // http://localhost:8091/accounts/sendmailpassword
     @CrossOrigin(origins = "http://localhost:8091/accounts")

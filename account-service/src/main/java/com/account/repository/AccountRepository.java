@@ -36,6 +36,9 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query(value = "select * from accounts  where username   LIKE %:name% or full_name  LIKE %:name% ", nativeQuery = true)
     List<Account> searchUser(@Param("name") String name);
 
+    @Query(value = "select id from accounts  where  full_name  LIKE %:name% ", nativeQuery = true)
+    List<Long> getListUserId(@Param("name") String name);
+
     Account findByEmail(String email);
 
     Page<Account> findAllByRolesId(long id, Pageable p);

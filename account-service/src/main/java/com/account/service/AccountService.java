@@ -126,6 +126,11 @@ public class AccountService {
         return a1;
     }
 
+    public List<Long> getListUserId(String name) {
+        List<Long> list = accountRepository.getListUserId(name);
+        return list;
+    }
+
     public List<Roles> findAllRole() {
 
         logger.info("get all role");

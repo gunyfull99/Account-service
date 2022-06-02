@@ -27,6 +27,7 @@ public class Quiz  {
     private String description;
     private int quizTime;
     private long userId;
+    private LocalDateTime createDate;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private LocalDateTime expiredTime;

@@ -27,6 +27,7 @@ public class RestTemplateService {
     private final String canRead = "/canread/{username}/{perid}";
     private final String canUpdate = "/canupdate/{username}/{perid}";
     private final String canCreate = "/cancreate/{username}/{perid}";
+    private final String listUserId = "/listuserid/{name}";
 
     @Autowired
     RestTemplate restTemplate;
@@ -45,7 +46,19 @@ public class RestTemplateService {
         AccountDto user = restTemplate.getForObject(uriBuilder.toUriString() + subpass, AccountDto.class, params);
         return user;
     }
+    public List<Long> getListUserId(String name) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Object> entity = new HttpEntity<Object>(headers);
 
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder
+                .fromUriString(libraryServiceHost);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("name", name);
+        List<Long> list = restTemplate.getForObject(uriBuilder.toUriString() + listUserId, List.class, params);
+        return list;
+    }
     public boolean getCanRead(long per,String token) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
