@@ -248,17 +248,12 @@ public class QuizService {
         logger.info("receive info to get List Quiz");
         Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit());
         Page<Quiz> list = null;
-        String a =quizPaging.getStatus()==null || quizPaging.getStatus().trim().equals("") ? "%%" : quizPaging.getStatus();
-        String b = quizPaging.getCate()==null || quizPaging.getCate().trim().equals("") ? "%%" : quizPaging.getCate();
-        String c =  quizPaging.getKeywords()==null || quizPaging.getKeywords().equals("") ? "%%" : quizPaging.getKeywords();
-        System.out.println(a +"    "+ b+"    "+c);
-        List<Long>listUserId=restTemplateService.getListUserId(quizPaging.getKeywords());
+        List<Long>listUserId=restTemplateService.getListUserId(quizPaging.getKeywords()==null||quizPaging.getKeywords().equals("")? " " : quizPaging.getKeywords());
         list=quizRepository.filterWhereNoUserId(quizPaging.getStatus()==null || quizPaging.getStatus().trim().equals("") ? "%%" : quizPaging.getStatus(),
                     quizPaging.getCate(),
                     quizPaging.getKeywords(),
                     listUserId,
                     pageable);
-        System.out.println(list);
         for (int i = 0; i < list.getContent().size(); i++) {
             list.getContent().get(i).setQuestions(null);
         }
