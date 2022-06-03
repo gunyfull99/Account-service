@@ -10,8 +10,5 @@ import lombok.NoArgsConstructor;
 public class BaseResponse {
 	private Integer code;
 	private String message;
-
-
-
 }
 

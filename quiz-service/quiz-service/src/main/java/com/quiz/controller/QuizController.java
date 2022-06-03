@@ -61,7 +61,7 @@ public class QuizController {
     //http://localhost:8080/quiz/editquestion
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PutMapping("/editquestion")
-    public void editQuestion(@RequestBody QuestionEditRequest request
+    public BaseResponse editQuestion(@RequestBody QuestionEditRequest request
        //     , @RequestHeader("Authorization") String token
     ) {
 //
@@ -69,6 +69,7 @@ public class QuizController {
 //            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
 //        }
         quesTionService.editQuestion(request);
+      return  new BaseResponse(200,"Update question thành công");
     }
 
     //http://localhost:8080/quiz/blockquestion

@@ -249,11 +249,14 @@ public class QuizService {
         Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit());
         Page<Quiz> list = null;
         List<Long>listUserId=restTemplateService.getListUserId(quizPaging.getKeywords()==null||quizPaging.getKeywords().equals("")? " " : quizPaging.getKeywords());
+
         list=quizRepository.filterWhereNoUserId(quizPaging.getStatus()==null || quizPaging.getStatus().trim().equals("") ? "%%" : quizPaging.getStatus(),
                 quizPaging.getCate() ==null ? "" :  quizPaging.getCate().toLowerCase(),
                 quizPaging.getKeywords() ==null ? "" :   quizPaging.getKeywords().toLowerCase(),
                     listUserId,
                     pageable);
+
+
         for (int i = 0; i < list.getContent().size(); i++) {
             list.getContent().get(i).setQuestions(null);
         }

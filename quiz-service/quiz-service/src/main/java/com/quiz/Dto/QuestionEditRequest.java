@@ -20,7 +20,7 @@ public class QuestionEditRequest {
 
     private QuestionType questionType;
 
-    private Category category;
+    private long cateId;
 
     private List<QuestionChoice> questionChoice = new ArrayList<>();
 
