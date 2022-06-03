@@ -155,7 +155,7 @@ public class QuesTionService {
             throw new RuntimeException("this question not exist or wrong id!!!");
         }
         questionEntity.setContent(request.getContent());
-        questionEntity.setQuestionType(request.getQuestionType());
+        questionEntity.setQuestionType(questionTypeRepository.getById(request.getQuestionTypeId()));
         questionEntity.setCategory(categoryRepository.getById(request.getCateId()));
         questionEntity.setQuestionChoice(request.getQuestionChoice());
         questionEntity.setQuestionTime(request.getQuestionTime());

@@ -18,7 +18,7 @@ public class QuestionEditRequest {
 
     private String content;
 
-    private QuestionType questionType;
+    private long questionTypeId;
 
     private long cateId;
 
