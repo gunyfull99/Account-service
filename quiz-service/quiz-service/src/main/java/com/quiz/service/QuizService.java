@@ -125,7 +125,11 @@ public class QuizService {
                 }
             }
             quiz.setNumberQuestions(numberQuestion);
-            quiz.setQuizTime(totalTime);
+            if(form.getQuiz().getQuizTime()==0){
+                quiz.setQuizTime(totalTime);
+            }else{
+                quiz.setQuizTime(form.getQuiz().getQuizTime());
+            }
             quiz.setCate(cate);
             quizRepository.save(quiz);
 
