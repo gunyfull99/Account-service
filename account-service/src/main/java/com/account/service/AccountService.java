@@ -183,6 +183,7 @@ public class AccountService {
         acc.setAddress(a.getAddress());
         acc.setCompany(a.getCompany());
         acc.setEmail(a.getEmail());
+        acc.setPhone(a.getPhone());
         acc.setFullName(a.getFullName());
         acc.setUserType(a.getUserType());
         acc.setBirthDay(a.getBirthDay());

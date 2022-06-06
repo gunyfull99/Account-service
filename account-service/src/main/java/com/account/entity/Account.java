@@ -44,6 +44,7 @@ public class Account implements Serializable {
     private String email;
     private String address;
     private String userType;
+    private String phone;
     private boolean isActive = true;
 
     @ManyToOne
