@@ -122,13 +122,13 @@ public class AccountController {
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<AccountDto> createAccount(@Valid @RequestBody Account a) throws ResourceBadRequestException {
+    public ResponseEntity<BaseResponse> createAccount(@Valid @RequestBody CreateAccountDto a) throws ResourceBadRequestException {
 
         Account account = accountService.getByUsername(a.getUsername());
         if (account != null) {
             throw new ResourceBadRequestException(new BaseResponse(r.isExist, "User is exist"));
         } else {
-            return new ResponseEntity<AccountDto>(accountService.saveUserWithPassword(a), HttpStatus.CREATED);
+            return new ResponseEntity<BaseResponse>(accountService.createAccount(a), HttpStatus.CREATED);
         }
     }
 

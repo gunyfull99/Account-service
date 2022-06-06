@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.ManyToMany;
@@ -250,7 +251,7 @@ public class QuizService {
     public QuizPaging getListQuizPaging(QuizPaging quizPaging) {
 
         logger.info("receive info to get List Quiz");
-        Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit());
+        Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit(),Sort.by("id").descending());
         Page<Quiz> list = null;
         List<Long>listUserId=restTemplateService.getListUserId(quizPaging.getKeywords()==null||quizPaging.getKeywords().equals("")? " " : quizPaging.getKeywords());
 

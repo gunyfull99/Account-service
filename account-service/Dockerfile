@@ -3,5 +3,6 @@ EXPOSE 8091
 
 
 
-COPY target/profile-service.jar profile-service.jar
-ENTRYPOINT ["java","-jar","/profile-service.jar"]
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} account-service.jar
+ENTRYPOINT ["java","-jar","/account-service.jar"]

@@ -56,6 +56,9 @@ public class AccountService {
     private PermissionRepository permissionRepository;
 
     @Autowired
+    private CompanyRepository companyRepository;
+
+    @Autowired
     private StatusWorkRepository statusWorkRepository;
     @Autowired
     private RolePermissionRepository rolePermissionRepository;
@@ -175,6 +178,31 @@ public class AccountService {
         ModelMapper mapper = new ModelMapper();
         AccountDto accd = mapper.map(a, AccountDto.class);
         return accd;
+    }
+
+    public BaseResponse createAccount(CreateAccountDto a) {
+        logger.info("save user {}", a.getFullName());
+        a.setPassword(passwordEncoder.encode(a.getPassword()));
+        Set<Roles> roles=new HashSet<>();
+        roles.add(roleRepository.findById(a.getRole()).get());
+        ModelMapper mapper = new ModelMapper();
+        Account acc=mapper.map(a, Account.class);
+        acc.setCompany(companyRepository.findComPanyById(a.getCompany()));
+        acc.setRoles(roles);
+        acc.setActive(true);
+        acc = accountRepository.save(acc);
+        List<Permission> listPer = permissionRepository.findAll();
+        for (int i = 0; i < listPer.size(); i++) {
+            AccountPermission ap = new AccountPermission();
+            ap.setAccount_id(acc.getId());
+            ap.setPermissions_id(listPer.get(i).getId());
+            ap.setCan_create("false");
+            ap.setCan_read("false");
+            ap.setCan_update("false");
+            addPer2User(ap);
+        }
+
+        return new BaseResponse(200,"Tạo tài khoản thành công ");
     }
 
     public Account convertAccount(Account a) {
@@ -453,7 +481,7 @@ public class AccountService {
 
     public Page<Account> searchUserWithPaging(AccountPaging accountPaging) {
         Page<Account> a = null;
-        Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit());
+        Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit(),Sort.by("id").descending());
 
         // a=accountRepository.filter(accountPaging.getSearch(),Long.parseLong(accountPaging.getRole()),accountPaging.getUserType(),pageable);
 

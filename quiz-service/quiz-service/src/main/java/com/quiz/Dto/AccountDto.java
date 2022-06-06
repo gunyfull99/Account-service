@@ -19,6 +19,7 @@ public class AccountDto {
     private String fullName;
     private String email;
     private String userType;
+    private String phone;
     private String address;
     private boolean isActive ;
     private CompanyDto company;

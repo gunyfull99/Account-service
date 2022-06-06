@@ -10,3 +10,9 @@ mailServer:
   password: Vietnam123456789
   protocol: smtp
   isSSL: false
+
+spring:
+  datasource:
+    spring.datasource.url=jdbc:postgresql://localhost:5432/profile
+    spring.datasource.username=postgres
+    spring.datasource.password=123
