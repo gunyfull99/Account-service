@@ -1,0 +1,196 @@
+2022-04-20 08:50:07,942 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-04-20 08:50:07,954 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 11900 (C:\Users\hieu0\OneDrive\Máy tính\quiz-service\quiz-service\target\classes started by hieu0 in C:\Users\hieu0\OneDrive\Máy tính\quiz-service\quiz-service)
+2022-04-20 08:50:07,957 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-04-20 08:50:08,040 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-20 08:50:08,041 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-20 08:50:09,362 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-20 08:50:09,469 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 93 ms. Found 7 JPA repository interfaces.
+2022-04-20 08:50:10,835 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-04-20 08:50:10,859 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-04-20 08:50:10,860 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-04-20 08:50:10,860 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-04-20 08:50:10,974 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-04-20 08:50:10,974 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2932 ms
+2022-04-20 08:50:11,161 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-20 08:50:11,240 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-04-20 08:50:11,419 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-20 08:50:11,573 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-04-20 08:50:11,853 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-04-20 08:50:11,879 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-04-20 08:50:13,357 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-20 08:50:13,366 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-20 08:50:14,248 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-20 08:50:14,400 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-04-20 08:50:14,533 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-04-20 08:50:14,727 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-04-20 08:50:14,751 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-04-20 08:50:14,753 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-04-20 08:50:14,774 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-04-20 08:50:14,798 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-04-20 08:50:14,949 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-04-20 08:50:15,204 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 7.953 seconds (JVM running for 9.846)
+2022-04-20 08:58:05,211 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-20 08:58:05,212 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-04-20 08:58:05,213 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Completed initialization in 1 ms
+2022-04-20 08:58:05,255 INFO com.quiz.service.NomineeService [http-nio-8080-exec-5] []: get all nominee
+2022-04-20 08:58:20,894 INFO com.quiz.service.NomineeService [http-nio-8080-exec-9] []: get all nominee
+2022-04-20 08:58:24,115 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive info of question 1 to edit
+2022-04-20 08:58:35,469 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-3] []: Receive info of question 2 to edit
+2022-04-20 08:58:36,155 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-6] []: Receive info of question 3 to edit
+2022-04-20 08:58:59,939 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-4] []: Receive info of question Abc to create
+2022-04-20 08:59:00,014 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-7] []: Receive info of question 1 to edit
+2022-04-20 08:59:03,147 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-9] []: Receive info of question 1 to edit
+2022-04-20 08:59:26,276 INFO com.quiz.service.NomineeService [http-nio-8080-exec-3] []: get all nominee
+2022-04-20 09:04:24,211 INFO com.quiz.service.NomineeService [http-nio-8080-exec-2] []: get all nominee
+2022-04-20 09:04:49,061 INFO com.quiz.service.NomineeService [http-nio-8080-exec-6] []: get all nominee
+2022-04-20 09:06:40,335 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-20 09:06:40,338 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-04-20 09:06:40,343 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-04-20 09:35:44,682 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-04-20 09:35:44,688 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 10420 (C:\Users\hieu0\OneDrive\Máy tính\quiz-service\quiz-service\target\classes started by hieu0 in C:\Users\hieu0\OneDrive\Máy tính\quiz-service\quiz-service)
+2022-04-20 09:35:44,690 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-04-20 09:35:44,726 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-20 09:35:44,727 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-20 09:35:45,581 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-20 09:35:45,669 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 79 ms. Found 7 JPA repository interfaces.
+2022-04-20 09:35:46,522 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-04-20 09:35:46,533 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-04-20 09:35:46,533 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-04-20 09:35:46,533 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-04-20 09:35:46,626 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-04-20 09:35:46,626 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 1898 ms
+2022-04-20 09:35:46,801 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-20 09:35:46,895 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-04-20 09:35:47,079 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-20 09:35:47,239 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-04-20 09:35:47,438 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-04-20 09:35:47,461 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-04-20 09:35:49,579 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-20 09:35:49,588 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-20 09:35:50,381 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-20 09:35:50,549 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-04-20 09:35:50,677 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-04-20 09:35:50,848 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-04-20 09:35:50,869 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-04-20 09:35:50,871 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-04-20 09:35:50,891 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-04-20 09:35:50,918 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-04-20 09:35:51,081 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-04-20 09:35:51,363 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 7.153 seconds (JVM running for 7.935)
+2022-04-20 09:37:49,872 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-3] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-20 09:37:49,872 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-3] []: Initializing Servlet 'dispatcherServlet'
+2022-04-20 09:37:49,873 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-3] []: Completed initialization in 1 ms
+2022-04-20 09:37:49,916 INFO com.quiz.service.NomineeService [http-nio-8080-exec-6] []: get all nominee
+2022-04-20 09:38:00,001 INFO com.quiz.service.NomineeService [http-nio-8080-exec-8] []: get all nominee
+2022-04-20 09:41:17,795 INFO com.quiz.service.NomineeService [http-nio-8080-exec-4] []: get all nominee
+2022-04-20 09:41:23,718 INFO com.quiz.service.NomineeService [http-nio-8080-exec-10] []: get all nominee
+2022-04-20 09:47:37,624 INFO com.quiz.service.NomineeService [http-nio-8080-exec-7] []: get all nominee
+2022-04-20 09:47:50,805 INFO com.quiz.service.NomineeService [http-nio-8080-exec-6] []: get all nominee
+2022-04-20 09:47:53,445 INFO com.quiz.service.NomineeService [http-nio-8080-exec-2] []: get all nominee
+2022-04-20 09:47:54,776 INFO com.quiz.service.NomineeService [http-nio-8080-exec-3] []: get all nominee
+2022-04-20 09:48:00,513 INFO com.quiz.service.NomineeService [http-nio-8080-exec-5] []: get all nominee
+2022-04-20 09:48:04,559 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-2] []: Receive info of question 1 to edit
+2022-04-20 09:48:13,794 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-9] []: Receive info of question 3 to edit
+2022-04-20 09:48:24,190 INFO com.quiz.service.CategoryService [http-nio-8080-exec-3] []: Receive infor of category Node Js to create
+2022-04-20 09:48:27,036 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-6] []: Receive info of question 102 to edit
+2022-04-20 09:59:30,616 INFO com.quiz.service.NomineeService [http-nio-8080-exec-9] []: get all nominee
+2022-04-20 10:03:10,766 INFO com.quiz.service.NomineeService [http-nio-8080-exec-5] []: get all nominee
+2022-04-20 10:03:14,300 INFO com.quiz.service.QuizService [http-nio-8080-exec-9] []: receive info to get List Quiz Not Start
+2022-04-20 10:03:14,300 INFO com.quiz.service.QuizService [http-nio-8080-exec-2] []: receive info to get List Quiz By User When Done
+2022-04-20 10:03:22,145 INFO com.quiz.service.QuizService [http-nio-8080-exec-6] []: receive info to get List Quiz Not Start
+2022-04-20 10:03:22,145 INFO com.quiz.service.QuizService [http-nio-8080-exec-1] []: receive info to get List Quiz By User When Done
+2022-04-20 10:03:28,235 INFO com.quiz.service.NomineeService [http-nio-8080-exec-10] []: get all nominee
+2022-04-20 10:03:38,474 INFO com.quiz.service.QuizService [http-nio-8080-exec-7] []: receive info to get List Quiz Not Start
+2022-04-20 10:03:38,475 INFO com.quiz.service.QuizService [http-nio-8080-exec-2] []: receive info to get List Quiz By User When Done
+2022-04-20 10:04:00,500 INFO com.quiz.service.NomineeService [http-nio-8080-exec-1] []: get all nominee
+2022-04-20 10:04:01,815 INFO com.quiz.service.QuizService [http-nio-8080-exec-10] []: receive info to get List Quiz Not Start
+2022-04-20 10:04:01,815 INFO com.quiz.service.QuizService [http-nio-8080-exec-4] []: receive info to get List Quiz By User When Done
+2022-04-20 10:07:00,182 INFO com.quiz.service.QuizService [http-nio-8080-exec-6] []: receive info to get List Quiz Not Start
+2022-04-20 10:07:00,182 INFO com.quiz.service.QuizService [http-nio-8080-exec-1] []: receive info to get List Quiz By User When Done
+2022-04-20 10:14:20,442 INFO com.quiz.service.QuizService [http-nio-8080-exec-10] []: receive info to get List Quiz Not Start
+2022-04-20 10:14:20,442 INFO com.quiz.service.QuizService [http-nio-8080-exec-8] []: receive info to get List Quiz By User When Done
+2022-04-20 10:14:23,389 INFO com.quiz.service.QuizService [http-nio-8080-exec-7] []: receive info to get List Quiz Not Start
+2022-04-20 10:14:23,389 INFO com.quiz.service.QuizService [http-nio-8080-exec-9] []: receive info to get List Quiz By User When Done
+2022-04-20 10:17:05,023 INFO com.quiz.service.NomineeService [http-nio-8080-exec-7] []: get all nominee
+2022-04-20 10:17:06,267 INFO com.quiz.service.QuizService [http-nio-8080-exec-3] []: receive info to get List Quiz By User When Done
+2022-04-20 10:17:06,267 INFO com.quiz.service.QuizService [http-nio-8080-exec-6] []: receive info to get List Quiz Not Start
+2022-04-20 10:22:41,445 INFO com.quiz.service.QuizService [http-nio-8080-exec-8] []: receive info to get List Quiz Not Start
+2022-04-20 10:22:41,445 INFO com.quiz.service.QuizService [http-nio-8080-exec-9] []: receive info to get List Quiz By User When Done
+2022-04-20 10:22:50,497 INFO com.quiz.service.QuizService [http-nio-8080-exec-3] []: receive info to create quiz
+2022-04-20 10:22:50,497 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-1] []: Receive id to get List Question By Quiz Id
+2022-04-20 10:22:50,498 INFO com.quiz.service.QuizService [http-nio-8080-exec-1] []: receive info to get List Question By QuizId
+2022-04-20 10:22:59,274 INFO com.quiz.service.QuizService [http-nio-8080-exec-5] []: receive info to calculate Score
+2022-04-20 10:23:00,337 INFO com.quiz.service.QuizService [http-nio-8080-exec-10] []: receive info to get List Quiz Not Start
+2022-04-20 10:23:00,337 INFO com.quiz.service.QuizService [http-nio-8080-exec-4] []: receive info to get List Quiz By User When Done
+2022-04-20 10:23:48,639 INFO com.quiz.service.QuizService [http-nio-8080-exec-7] []: receive info to create quiz
+2022-04-20 10:23:48,640 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-2] []: Receive id to get List Question By Quiz Id
+2022-04-20 10:23:48,640 INFO com.quiz.service.QuizService [http-nio-8080-exec-2] []: receive info to get List Question By QuizId
+2022-04-20 10:45:17,371 INFO com.quiz.service.NomineeService [http-nio-8080-exec-9] []: get all nominee
+2022-04-20 10:45:20,542 INFO com.quiz.service.NomineeService [http-nio-8080-exec-3] []: get all nominee
+2022-04-20 11:08:28,525 INFO com.quiz.service.NomineeService [http-nio-8080-exec-2] []: get all nominee
+2022-04-20 11:44:18,910 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-9] []: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`)<LF> at [Source: (PushbackInputStream); line: 1, column: 121] (through reference chain: com.quiz.Dto.CreateQuizForm["quiz"]->com.quiz.Dto.QuizDto["userId"])]
+2022-04-20 11:45:00,161 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-7] []: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`)<LF> at [Source: (PushbackInputStream); line: 1, column: 127] (through reference chain: com.quiz.Dto.CreateQuizForm["quiz"]->com.quiz.Dto.QuizDto["userId"])]
+2022-04-20 11:48:42,432 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-1] []: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`)<LF> at [Source: (PushbackInputStream); line: 1, column: 127] (through reference chain: com.quiz.Dto.CreateQuizForm["quiz"]->com.quiz.Dto.QuizDto["userId"])]
+2022-04-20 11:49:22,716 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-2] []: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`)<LF> at [Source: (PushbackInputStream); line: 1, column: 129] (through reference chain: com.quiz.Dto.CreateQuizForm["quiz"]->com.quiz.Dto.QuizDto["userId"])]
+2022-04-20 11:49:33,296 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-6] []: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`)<LF> at [Source: (PushbackInputStream); line: 1, column: 129] (through reference chain: com.quiz.Dto.CreateQuizForm["quiz"]->com.quiz.Dto.QuizDto["userId"])]
+2022-04-20 11:49:58,160 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-4] []: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`)<LF> at [Source: (PushbackInputStream); line: 1, column: 129] (through reference chain: com.quiz.Dto.CreateQuizForm["quiz"]->com.quiz.Dto.QuizDto["userId"])]
+2022-04-20 11:53:22,730 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-8] []: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`)<LF> at [Source: (PushbackInputStream); line: 1, column: 127] (through reference chain: com.quiz.Dto.CreateQuizForm["quiz"]->com.quiz.Dto.QuizDto["userId"])]
+2022-04-20 11:57:17,809 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-9] []: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot coerce empty String ("") to element of `java.util.ArrayList<java.lang.Long>` (but could if coercion was enabled using `CoercionConfig`)<LF> at [Source: (PushbackInputStream); line: 1, column: 127] (through reference chain: com.quiz.Dto.CreateQuizForm["quiz"]->com.quiz.Dto.QuizDto["userId"])]
+2022-04-20 11:57:23,872 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-7] []: Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2022-04-20 11:58:17,645 INFO com.quiz.service.QuizService [http-nio-8080-exec-3] []: receive info to get List Quiz Not Start
+2022-04-20 11:58:17,645 INFO com.quiz.service.QuizService [http-nio-8080-exec-2] []: receive info to get List Quiz By User When Done
+2022-04-20 11:59:01,981 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-20 11:59:01,988 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-04-20 11:59:01,998 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-04-20 13:41:18,369 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-04-20 13:41:18,371 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 14540 (C:\Users\hieu0\OneDrive\Máy tính\quiz-service\quiz-service\target\classes started by hieu0 in C:\Users\hieu0\OneDrive\Máy tính\quiz-service\quiz-service)
+2022-04-20 13:41:18,373 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-04-20 13:41:18,417 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-20 13:41:18,417 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-20 13:41:19,318 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-20 13:41:19,402 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 74 ms. Found 7 JPA repository interfaces.
+2022-04-20 13:41:20,336 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-04-20 13:41:20,349 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-04-20 13:41:20,350 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-04-20 13:41:20,351 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-04-20 13:41:20,457 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-04-20 13:41:20,458 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2040 ms
+2022-04-20 13:41:20,635 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-20 13:41:20,696 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-04-20 13:41:20,887 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-20 13:41:21,023 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-04-20 13:41:21,380 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-04-20 13:41:21,405 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-04-20 13:41:22,801 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-20 13:41:22,811 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-20 13:41:23,757 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-20 13:41:23,986 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-04-20 13:41:24,105 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-04-20 13:41:24,272 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-04-20 13:41:24,292 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-04-20 13:41:24,293 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-04-20 13:41:24,311 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-04-20 13:41:24,332 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-04-20 13:41:24,464 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-04-20 13:41:24,682 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 6.793 seconds (JVM running for 7.535)
+2022-04-20 13:41:42,351 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-20 13:41:42,351 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-04-20 13:41:42,352 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Completed initialization in 1 ms
+2022-04-20 13:41:42,406 INFO com.quiz.service.QuizService [http-nio-8080-exec-1] []: receive info to get List Quiz Not Start
+2022-04-20 13:41:42,406 INFO com.quiz.service.QuizService [http-nio-8080-exec-2] []: receive info to get List Quiz By User When Done
+2022-04-20 13:42:08,868 INFO com.quiz.service.QuizService [http-nio-8080-exec-5] []: receive info to add Question To Quiz
+2022-04-20 13:42:08,868 INFO com.quiz.service.QuizService [http-nio-8080-exec-5] []: receive info to create quiz
+2022-04-20 13:42:08,915 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive id to get All Question By Cate
+2022-04-20 13:42:08,921 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive id to get All Question Text
+2022-04-20 13:42:08,926 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive id to get All Question By Cate
+2022-04-20 13:42:08,932 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-5] []: Receive id to get All Question By Cate
+2022-04-20 13:42:13,034 INFO com.quiz.service.QuizService [http-nio-8080-exec-6] []: receive info to get List Quiz Not Start
+2022-04-20 13:42:13,034 INFO com.quiz.service.QuizService [http-nio-8080-exec-7] []: receive info to get List Quiz By User When Done
+2022-04-20 13:42:23,553 INFO com.quiz.service.QuizService [http-nio-8080-exec-1] []: receive info to create quiz
+2022-04-20 13:42:23,553 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-10] []: Receive id to get List Question By Quiz Id
+2022-04-20 13:42:23,553 INFO com.quiz.service.QuizService [http-nio-8080-exec-10] []: receive info to get List Question By QuizId
+2022-04-20 13:42:33,272 INFO com.quiz.service.QuizService [http-nio-8080-exec-3] []: receive info to get List Quiz Not Start
+2022-04-20 13:42:33,272 INFO com.quiz.service.QuizService [http-nio-8080-exec-4] []: receive info to get List Quiz By User When Done
+2022-04-20 14:15:28,523 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-20 14:15:28,551 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-04-20 14:15:28,592 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
