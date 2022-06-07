@@ -1,18 +1,17 @@
 app:
   name: Tech Interface - Swagger and Profiles Tutorial
-server:
-  port: 8091
+
 
 mailServer:
   host: smtp.gmail.com
   port: 587
   email: hieunmhe140582@fpt.edu.vn
-  password: Vietnam123456789
+  password: abc
   protocol: smtp
   isSSL: false
 
 spring:
   datasource:
-    spring.datasource.url=jdbc:postgresql://localhost:5432/profile
-    spring.datasource.username=postgres
-    spring.datasource.password=123
+    spring.datasource.url=${JDBC_DATABASE_URL:}
+    spring.datasource.username=${JDBC_DATABASE_USERNAME:}
+    spring.datasource.password=${JDBC_DATABASE_PASSWORD:}
