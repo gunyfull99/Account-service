@@ -141,14 +141,15 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<AccountDto> updateAccount(@Valid @RequestBody Account a)
+    public ResponseEntity<AccountDto> updateAccount(@Valid @RequestBody AccountDto a)
             throws ResourceNotFoundException, ResourceBadRequestException {
 
         Account accountRequest = accountService.getByUsername(a.getUsername());
         if (accountRequest == null) {
-            throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
+            throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this user"));
         }
-        accountRequest = accountService.convertAccount(a);
+        accountRequest = accountService.convertAccount(accountRequest,a);
+
         Account account = accountService.save(accountRequest);
         return ResponseEntity.ok().body(accountService.updateUser(account));
     }

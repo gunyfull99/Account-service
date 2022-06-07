@@ -205,17 +205,16 @@ public class AccountService {
         return new BaseResponse(200,"Tạo tài khoản thành công ");
     }
 
-    public Account convertAccount(Account a) {
-        Account acc = new Account();
-        acc.setActive(a.getActive());
-        acc.setAddress(a.getAddress());
-        acc.setCompany(a.getCompany());
-        acc.setEmail(a.getEmail());
+    public Account convertAccount(Account acc,AccountDto a) {
         acc.setPhone(a.getPhone());
-        acc.setFullName(a.getFullName());
-        acc.setUserType(a.getUserType());
+        acc.setActive(a.isActive());
+        acc.setAddress(a.getAddress());
         acc.setBirthDay(a.getBirthDay());
+        acc.setUserType(a.getUserType());
         acc.setStartDay(a.getStartDay());
+        acc.setEmail(a.getEmail());
+        acc.setFullName(a.getFullName());
+        acc.setCompany(companyRepository.findComPanyById(a.getCompanyId()));
         return acc;
     }
 

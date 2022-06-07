@@ -30,7 +30,7 @@ public class AccountDto {
     private String phone;
     private String address;
     private boolean isActive ;
-    private Company company;
+    private long companyId;
     private Date birthDay;
     private Date startDay;
     private Set<Roles> roles = new HashSet<>();

@@ -91,11 +91,11 @@ public class QuizController {
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PostMapping("/getquestionpaging")
     public QuestionPaging getQuestionByCategory(@RequestBody QuestionPaging questionPaging
-           , @RequestHeader("Authorization") String token
-        ) {
-        if (templateService.getCanRead(perQuestion, token) == false) {
-            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-        }
+           //, @RequestHeader("Authorization") String token
+    ) {
+      //  if (templateService.getCanRead(perQuestion, token) == false) {
+         //   throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+       // }
         return quesTionService.getQuestionPaging(questionPaging);
     }
 
