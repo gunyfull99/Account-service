@@ -20,10 +20,10 @@ public interface QuestionRepository extends JpaRepository<Question,Long> {
 
     Page<Question> findAllByCategoryId (long id, Pageable p);
     Page<Question> findAllByQuestionTypeId (long id, Pageable p);
-    Page<Question> findAllByCategoryIdAndContentContainingIgnoreCase (long id,String content, Pageable p);
-    Page<Question> findAllByContentContainingIgnoreCase (String content, Pageable p);
-    Page<Question> findAllByQuestionTypeIdAndContentContainingIgnoreCase (long id,String content, Pageable p);
-    Page<Question> findAllByQuestionTypeIdAndCategoryIdAndContentContainingIgnoreCase (long idT,long idC,String content, Pageable p);
+    Page<Question> findAllByCategoryIdAndContentContainingIgnoreCaseAndIsActive (long id,String content,boolean isActive, Pageable p);
+    Page<Question> findAllByContentContainingIgnoreCaseAndIsActive (String content,boolean isActive, Pageable p);
+    Page<Question> findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActive (long id,String content,boolean isActive, Pageable p);
+    Page<Question> findAllByQuestionTypeIdAndCategoryIdAndContentContainingIgnoreCaseAndIsActive (long idT,long idC,String content,boolean isActive, Pageable p);
 
     @Query(value = "select * from questions where cate_id = :id and type_id = 3 and is_active=true", nativeQuery = true)
     List<Question> getAllQuestionText(@Param("id") long id );

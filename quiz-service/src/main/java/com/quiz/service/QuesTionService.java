@@ -177,16 +177,16 @@ public class QuesTionService {
         }
 
         if (questionPaging.getTypeId() == 0 && questionPaging.getCateId() == 0) {
-            questionEntity = questionRepository.findAllByContentContainingIgnoreCase(search, pageable);
+            questionEntity = questionRepository.findAllByContentContainingIgnoreCaseAndIsActive(search, true,pageable);
         } else if (questionPaging.getCateId() == 0) {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCase(questionPaging.getTypeId(), search, pageable);
+            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActive(questionPaging.getTypeId(), search,true, pageable);
         } else if (questionPaging.getTypeId() == 0) {
-            questionEntity = questionRepository.findAllByCategoryIdAndContentContainingIgnoreCase(questionPaging.getCateId(),
-                    search,
+            questionEntity = questionRepository.findAllByCategoryIdAndContentContainingIgnoreCaseAndIsActive(questionPaging.getCateId(),
+                    search,true,
                     pageable);
         } else {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndCategoryIdAndContentContainingIgnoreCase(
-                    questionPaging.getTypeId(), questionPaging.getCateId(), search, pageable
+            questionEntity = questionRepository.findAllByQuestionTypeIdAndCategoryIdAndContentContainingIgnoreCaseAndIsActive(
+                    questionPaging.getTypeId(), questionPaging.getCateId(), search,true, pageable
             );
         }
         List<QuestDTO> questionRequests = new ArrayList<>();
@@ -215,8 +215,8 @@ public class QuesTionService {
         if (questionPaging.getSearch() == null || questionPaging.getSearch().trim().equals("")) {
             questionEntity = questionRepository.findAllByQuestionTypeId(questionPaging.getTypeId(), pageable);
         } else {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCase(questionPaging.getTypeId(),
-                    questionPaging.getSearch(),
+            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActive(questionPaging.getTypeId(),
+                    questionPaging.getSearch(),true,
                     pageable);
         }
         List<QuestDTO> questionRequests = new ArrayList<>();
