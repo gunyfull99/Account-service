@@ -31,11 +31,12 @@ public interface QuizRepository extends JpaRepository<Quiz,Long> {
     void updateUserStartQuiz(@Param("id") Long id,@Param("time") Long time);
 
 
-    @Query(value = "select * from quiz where lower(status) like :status and lower(cate) like %:cate% and (lower(description) like %:description% or creator  IN :creator) ", nativeQuery = true)
+    @Query(value = "select * from quiz where lower(status) like :status and lower(cate) like %:cate% and (lower(description) like %:description% or creator  IN :creator) and group_quiz_id=:gid ", nativeQuery = true)
     Page<Quiz> filterWhereNoUserId(@Param("status") String status,
                                     @Param("cate") String cate,
                                     @Param("description") String description,
                                    @Param("creator") List<Long> creator,
+                                   @Param("gid") Long groupId,
                                    Pageable pageable);
 
 

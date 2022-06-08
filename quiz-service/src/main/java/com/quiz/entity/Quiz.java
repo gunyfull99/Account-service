@@ -1,9 +1,7 @@
 package com.quiz.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -39,5 +37,11 @@ public class Quiz  {
     @ManyToMany(fetch = EAGER)
     private List<Question> questions = new ArrayList<>();
     private long userStartQuiz=0;
+
+    @ManyToOne
+    @JoinColumn(name = "group_quiz_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private GroupQuiz groupQuiz;
 
 }

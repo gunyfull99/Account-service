@@ -20,6 +20,7 @@ public class QuizPaging {
     LocalDateTime createDate;
     String keywords;
     String cate;
+    long groupQuiz;
 
     public QuizPaging(int total,List<Quiz> quizList,int page,int limit){
         this.total=total;

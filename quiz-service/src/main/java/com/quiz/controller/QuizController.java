@@ -240,13 +240,13 @@ public class QuizController {
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<String> createQuiz(@Valid @RequestBody CreateQuizForm form
+    public ResponseEntity<BaseResponse> createQuiz(@Valid @RequestBody CreateQuizForm form
                                              //   , @RequestHeader("Authorization") String token
     ) throws ResourceBadRequestException, ResourceForbiddenRequestException {
 //        if (templateService.getCanCreate(perQuiz, token) == false) {
 //            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
 //        }
-        return new ResponseEntity<String>(quizService.addQuesToQuiz(form), HttpStatus.CREATED);
+        return new ResponseEntity<BaseResponse>(quizService.addQuesToQuiz(form), HttpStatus.CREATED);
     }
 
     // get detail quiz
@@ -313,6 +313,19 @@ public class QuizController {
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public ResponseEntity<QuizPaging> getListQuizPaging(@RequestBody QuizPaging quizPaging) throws ResourceBadRequestException {
         return ResponseEntity.ok().body(quizService.getListQuizPaging(quizPaging));
+    }
+
+    // get list group quiz
+    // http://localhost:8080/quiz/list
+    @CrossOrigin(origins = "http://localhost:8080/quiz")
+    @PostMapping("/listgroup")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+    public ResponseEntity<GroupQuizPaging> getListGroupQuizPaging(@RequestBody GroupQuizPaging quizPaging) throws ResourceBadRequestException {
+        return ResponseEntity.ok().body(quizService.getListGroupQuizPaging(quizPaging));
     }
 
     // start quiz

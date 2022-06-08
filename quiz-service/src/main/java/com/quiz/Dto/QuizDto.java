@@ -1,5 +1,6 @@
 package com.quiz.Dto;
 
+import com.quiz.entity.GroupQuiz;
 import com.quiz.entity.Question;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,4 +32,5 @@ public class QuizDto {
     private String[] cate;
     private List<Question> questions ;
     private long userStartQuiz;
+    private GroupQuiz groupQuiz;
 }

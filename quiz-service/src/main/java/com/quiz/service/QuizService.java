@@ -1,15 +1,9 @@
 package com.quiz.service;
 
 import com.quiz.Dto.*;
-import com.quiz.entity.Question;
-import com.quiz.entity.QuestionChoice;
-import com.quiz.entity.Quiz;
-import com.quiz.entity.QuizQuestion;
+import com.quiz.entity.*;
 import com.quiz.exception.ResourceBadRequestException;
-import com.quiz.repository.CategoryRepository;
-import com.quiz.repository.QuestionChoiceRepository;
-import com.quiz.repository.QuizQuestionRepository;
-import com.quiz.repository.QuizRepository;
+import com.quiz.repository.*;
 import com.quiz.restTemplate.RestTemplateService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -45,6 +39,9 @@ public class QuizService {
     private CategoryRepository categoryRepository;
 
     @Autowired
+    private GroupQuizRepository groupQuizRepository;
+
+    @Autowired
     private QuestionChoiceRepository questionChoiceRepository;
 
     @Autowired
@@ -73,6 +70,7 @@ public class QuizService {
             quiz1.setStatus(quiz.getStatus());
             quiz1.setUserId(quiz.getUserId());
             quiz1.setCreator(quiz.getCreator());
+            quiz1.setGroupQuiz(quiz.getGroupQuiz());
             return quizRepository.save(quiz1);
         }
     }
@@ -82,19 +80,30 @@ public class QuizService {
 
         Quiz quiz = quizRepository.findById(id).get();
         quiz.setQuestions(null);
+        quiz.setGroupQuiz(null);
         return quiz;
     }
 
 
-    public String addQuesToQuiz(CreateQuizForm form) {
+    public BaseResponse addQuesToQuiz(CreateQuizForm form) {
         logger.info("receive info to add Question To Quiz");
         String cate="";
+        GroupQuiz groupQuiz =new GroupQuiz();
+        groupQuiz.setCate(cate);
+        groupQuiz.setCreator(form.getQuiz().getCreator());
+        groupQuiz.setDescription(form.getQuiz().getDescription());
+        groupQuiz.setCreateDate(LocalDateTime.now());
+        groupQuiz.setStartTime(form.getQuiz().getStartTime());
+        groupQuiz.setExpiredTime(form.getQuiz().getExpiredTime());
+
+        groupQuiz= groupQuizRepository.save(groupQuiz);
+
         for (int k = 0; k < form.getQuiz().getUserId().size(); k++) {
 
             Quiz quiz1 = new Quiz(form.getQuiz().getId(), form.getQuiz().getDescription(), form.getQuiz().getQuizTime(),
                     form.getQuiz().getUserId().get(k), LocalDateTime.now(),form.getQuiz().getStartTime(), form.getQuiz().getEndTime(),
                     form.getQuiz().getExpiredTime(), form.getQuiz().getStatus(), form.getQuiz().getNumberQuestions()
-                    , form.getQuiz().getScore(),form.getQuiz().getCreator(),cate,form.getQuiz().getQuestions(),form.getQuiz().getUserStartQuiz()
+                    , form.getQuiz().getScore(),form.getQuiz().getCreator(),cate,form.getQuiz().getQuestions(),form.getQuiz().getUserStartQuiz(),groupQuiz
             );
             Quiz quiz = createQuiz(quiz1);
             int numberQuestion = 0;
@@ -142,15 +151,18 @@ public class QuizService {
                 quizQuestionRepository.save(q1);
             }
         }
+        groupQuiz.setCate(cate);
+        groupQuizRepository.save(groupQuiz);
 
-        return "Create success";
+
+        return new BaseResponse(200,"Taọ  quiz thành công");
     }
 
     public Quiz calculateScore(List<QuestDTO> questDTO) {
         logger.info("receive info to calculate Score");
 
         int score = 0;
-        float percent = 0;
+        //float percent = 0;
         String user_answer = "";
         List<QuizQuestion> questionIds = quizQuestionRepository.getListQuestionByQuizId(questDTO.get(0).getQuiz_id());
         for (int i = 0; i < questDTO.size(); i++) {
@@ -185,12 +197,13 @@ public class QuizService {
 
         Quiz quiz = quizRepository.findById(questDTO.get(0).getQuiz_id()).get();
         float per = ((float) score / (float) quiz.getNumberQuestions()) * 100;
-        percent = (float) (Math.round(per * 100.0) / 100.0);
-        quiz.setScore((score + "/" + quiz.getNumberQuestions() + "  (" + percent + "%)"));
+  //      percent = (float) (Math.round(per * 100.0) / 100.0);
+        quiz.setScore(score  + "/"+(quiz.getNumberQuestions()-score));
         quiz.setStatus("done");
         quiz.setEndTime(LocalDateTime.now());
         quizRepository.save(quiz);
         quiz.setQuestions(null);
+        quiz.setGroupQuiz(null);
         return quiz;
     }
 
@@ -200,6 +213,7 @@ public class QuizService {
         List<Quiz> list = quizRepository.getQuizByUserWhenDone(id);
         for (int i = 0; i < list.size(); i++) {
             list.get(i).setQuestions(null);
+            list.get(i).setGroupQuiz(null);
         }
         return list;
     }
@@ -210,6 +224,7 @@ public class QuizService {
         List<Quiz> list = quizRepository.getAllByUser(id);
         for (int i = 0; i < list.size(); i++) {
             list.get(i).setQuestions(null);
+            list.get(i).setGroupQuiz(null);
         }
         return list;
     }
@@ -221,6 +236,7 @@ public class QuizService {
         List<Quiz> list = quizRepository.getQuizNotStart(id);
         for (int i = 0; i < list.size(); i++) {
             list.get(i).setQuestions(null);
+            list.get(i).setGroupQuiz(null);
         }
         return list;
     }
@@ -259,15 +275,39 @@ public class QuizService {
                 quizPaging.getCate() ==null ? "" :  quizPaging.getCate().toLowerCase(),
                 quizPaging.getKeywords() ==null ? "" :   quizPaging.getKeywords().toLowerCase(),
                     listUserId,
+                    quizPaging.getGroupQuiz(),
                     pageable);
-
 
         for (int i = 0; i < list.getContent().size(); i++) {
             list.getContent().get(i).setQuestions(null);
+            list.getContent().get(i).setGroupQuiz(null);
         }
         QuizPaging qp=new QuizPaging((int) list.getTotalElements(),list.getContent(),quizPaging.getPage(),quizPaging.getLimit());
         return qp;
     }
+
+
+    public GroupQuizPaging getListGroupQuizPaging(GroupQuizPaging quizPaging) {
+
+        logger.info("receive info to get List Quiz");
+        Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit(),Sort.by("id").descending());
+        Page<GroupQuiz> list = null;
+        List<Long>listUserId=restTemplateService.getListUserId(quizPaging.getKeywords()==null||quizPaging.getKeywords().equals("")? " " : quizPaging.getKeywords());
+
+        list=groupQuizRepository.filter(
+                quizPaging.getCate() ==null ? "" :  quizPaging.getCate().toLowerCase(),
+                quizPaging.getKeywords() ==null ? "" :   quizPaging.getKeywords().toLowerCase(),
+                listUserId,
+                pageable);
+
+        for (int i = 0; i < list.getContent().size(); i++) {
+            list.getContent().get(i).setQuiz(null);
+        }
+
+        GroupQuizPaging qp=new GroupQuizPaging((int) list.getTotalElements(),list.getContent(),quizPaging.getPage(),quizPaging.getLimit());
+        return qp;
+    }
+
 
     public List<QuizQuestion> getListQuestionByQuizId(long quizId) {
         logger.info("receive info to get List Question By QuizId");
