@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.ManyToMany;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -83,6 +85,14 @@ public class QuizService {
         Quiz quiz = quizRepository.findById(id).get();
         quiz.setQuestions(null);
         quiz.setGroupQuiz(null);
+        if(  quiz.getStatus().equals("not_start")) {
+            ZonedDateTime zdt = ZonedDateTime.of(quiz.getExpiredTime(), ZoneId.systemDefault());
+            long expiredTime = zdt.toInstant().toEpochMilli();
+            long now = System.currentTimeMillis();
+            if (expiredTime < now) {
+                quiz.setStatus("expired");
+            }
+        }
         return quiz;
     }
 
@@ -231,6 +241,15 @@ public class QuizService {
         for (int i = 0; i < list1.size(); i++) {
             list1.get(i).setQuestions(null);
             list1.get(i).setGroupQuiz(null);
+            if( list1.get(i).getStatus().equals("not_start")){
+                ZonedDateTime zdt = ZonedDateTime.of(list1.get(i).getExpiredTime(), ZoneId.systemDefault());
+                long expiredTime = zdt.toInstant().toEpochMilli();
+                long now = System.currentTimeMillis();
+                if(expiredTime<now){
+                    list1.get(i).setStatus("expired");
+                  save(list1.get(i));
+                }
+            }
         }
         return list1;
     }
@@ -288,6 +307,15 @@ public class QuizService {
         for (int i = 0; i < list.getContent().size(); i++) {
             list.getContent().get(i).setQuestions(null);
             list.getContent().get(i).setGroupQuiz(null);
+            if(  list.getContent().get(i).getStatus().equals("not_start")) {
+                ZonedDateTime zdt = ZonedDateTime.of(list.getContent().get(i).getExpiredTime(), ZoneId.systemDefault());
+                long expiredTime = zdt.toInstant().toEpochMilli();
+                long now = System.currentTimeMillis();
+                if (expiredTime < now) {
+                    list.getContent().get(i).setStatus("expired");
+                    save(list.getContent().get(i));
+                }
+            }
             QuizPagingDto q=mapper.map(list.getContent().get(i),QuizPagingDto.class);
             q.setGroupName(groupQuizRepository.getById(quizPaging.getGroupQuiz()).getDescription());
             q.setUser(restTemplateService.getName((int) list.getContent().get(i).getUserId()));

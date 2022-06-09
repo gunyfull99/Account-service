@@ -25,6 +25,8 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
@@ -251,10 +253,22 @@ public class QuesTionService {
         Quiz quiz = quizRepository.findById(id).get();
         long timeStart = quiz.getUserStartQuiz();
 
+
+
         if (timeStart == 0 && !isView) {
             timeStart=System.currentTimeMillis();
             quiz.setUserStartQuiz(timeStart);
+            quiz.setStatus("doing");
             quizService.save(quiz);
+        }else if(isView && quiz.getStatus().equals("not_start")){
+            ZonedDateTime zdt = ZonedDateTime.of(quiz.getExpiredTime(), ZoneId.systemDefault());
+            long expiredTime = zdt.toInstant().toEpochMilli();
+            long now = System.currentTimeMillis();
+            if(expiredTime<now){
+                quiz.setStatus("expired");
+                quizService.save(quiz);
+            }
+
         }
 
         for (int i = 0; i < list.size(); i++) {
