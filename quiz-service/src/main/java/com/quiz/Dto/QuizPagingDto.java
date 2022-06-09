@@ -1,5 +1,6 @@
 package com.quiz.Dto;
 
+import com.quiz.entity.GroupQuiz;
 import com.quiz.entity.Question;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class QuizPagingDto {
 
     private String description;
     private int quizTime;
-    private long userId;
+    private AccountDto user;
     private LocalDateTime createDate;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
@@ -30,4 +31,5 @@ public class QuizPagingDto {
     private String cate;
     private List<Question> questions = new ArrayList<>();
     private long userStartQuiz=0;
+    private String groupName;
 }

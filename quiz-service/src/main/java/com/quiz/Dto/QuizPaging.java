@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class QuizPaging {
     int total ;
-    List<Quiz> quizList;
+    List<QuizPagingDto> quizList;
     int page ;
     int limit ;
     long userId;
@@ -22,10 +22,11 @@ public class QuizPaging {
     String cate;
     long groupQuiz;
 
-    public QuizPaging(int total,List<Quiz> quizList,int page,int limit){
+    public QuizPaging(int total,List<QuizPagingDto> quizList,int page,int limit){
         this.total=total;
         this.quizList=quizList;
         this.page=page;
         this.limit=limit;
     }
+
 }

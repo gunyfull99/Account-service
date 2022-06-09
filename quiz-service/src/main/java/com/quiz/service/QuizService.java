@@ -6,6 +6,7 @@ import com.quiz.exception.ResourceBadRequestException;
 import com.quiz.repository.*;
 import com.quiz.restTemplate.RestTemplateService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -222,15 +223,16 @@ public class QuizService {
         return list;
     }
 
-    public List<Quiz> getAllQuizByUser(long id) {
+    public List<Quiz> getAllQuizByUser(QuizPaging quizPaging) {
         logger.info("receive info to get All Quiz By User");
-
-        List<Quiz> list = quizRepository.getAllByUser(id);
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).setQuestions(null);
-            list.get(i).setGroupQuiz(null);
+        Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit(),Sort.by("id").descending());
+        Page<Quiz> list = quizRepository.getAllByUser(quizPaging.getUserId(),pageable);
+        List<Quiz> list1 =list.getContent();
+        for (int i = 0; i < list1.size(); i++) {
+            list1.get(i).setQuestions(null);
+            list1.get(i).setGroupQuiz(null);
         }
-        return list;
+        return list1;
     }
 
     public List<Quiz> getListQuizNotStart(long id) {
@@ -281,12 +283,17 @@ public class QuizService {
                     listUserId,
                     quizPaging.getGroupQuiz(),
                     pageable);
-
+        ModelMapper mapper=new ModelMapper();
+        List<QuizPagingDto> quizDtoList=new ArrayList<>();
         for (int i = 0; i < list.getContent().size(); i++) {
             list.getContent().get(i).setQuestions(null);
             list.getContent().get(i).setGroupQuiz(null);
+            QuizPagingDto q=mapper.map(list.getContent().get(i),QuizPagingDto.class);
+            q.setGroupName(groupQuizRepository.getById(quizPaging.getGroupQuiz()).getDescription());
+            q.setUser(restTemplateService.getName((int) list.getContent().get(i).getUserId()));
+            quizDtoList.add(q);
         }
-        QuizPaging qp=new QuizPaging((int) list.getTotalElements(),list.getContent(),quizPaging.getPage(),quizPaging.getLimit());
+        QuizPaging qp=new QuizPaging((int) list.getTotalElements(),quizDtoList,quizPaging.getPage(),quizPaging.getLimit());
         return qp;
     }
 

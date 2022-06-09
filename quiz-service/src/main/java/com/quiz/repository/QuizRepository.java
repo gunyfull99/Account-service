@@ -22,7 +22,7 @@ public interface QuizRepository extends JpaRepository<Quiz,Long> {
     List<Quiz> getQuizByUserWhenDone(@Param("id") long userId);
 
     @Query(value = "select * from quiz where user_id = :id   order by id DESC ", nativeQuery = true)
-    List<Quiz> getAllByUser(@Param("id") long userId);
+    Page<Quiz> getAllByUser(@Param("id") long userId,  Pageable pageable);
 
     @Query(value = "SELECT  id from quiz", nativeQuery = true)
     List<Integer> getAllId();

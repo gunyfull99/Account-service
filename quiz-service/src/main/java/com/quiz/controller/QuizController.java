@@ -277,16 +277,16 @@ public class QuizController {
     }
 
     // get all quiz by user
-    // http://localhost:8080/quiz/all/2
+    // http://localhost:8080/quiz/allbyuser
     @CrossOrigin(origins = "http://localhost:8080/quiz")
-    @GetMapping("/all/{id}")
+    @GetMapping("/allbyuser")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
-            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<List<Quiz>> getAllQuizByUser(@PathVariable("id") long id) throws ResourceBadRequestException {
-        return ResponseEntity.ok().body(quizService.getAllQuizByUser(id));
+    public ResponseEntity<List<Quiz>> getAllQuizByUser(@RequestBody QuizPaging quizPaging) throws ResourceBadRequestException {
+        return ResponseEntity.ok().body(quizService.getAllQuizByUser(quizPaging));
     }
 
     // get list quiz not start by user
