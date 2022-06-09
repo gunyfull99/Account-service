@@ -30,6 +30,7 @@ public class QuizService {
 
     @Autowired
     private QuizRepository quizRepository;
+
     @Autowired
     private QuizQuestionRepository quizQuestionRepository;
     @Autowired
@@ -164,6 +165,7 @@ public class QuizService {
         int score = 0;
         //float percent = 0;
         String user_answer = "";
+        int wrongAnswer=0;
         List<QuizQuestion> questionIds = quizQuestionRepository.getListQuestionByQuizId(questDTO.get(0).getQuiz_id());
         for (int i = 0; i < questDTO.size(); i++) {
             if (questDTO.get(i).getQuestionType().getId() == 2) {
@@ -188,6 +190,8 @@ public class QuizService {
                 if (questionChoiceRepository.checkCorrectAnswer(questDTO.get(i).getQuestionChoiceDTOs().get(0).getId()) == true
                 ) {
                     score += 1;
+                }else {
+                    wrongAnswer+=1;
                 }
             } else {
                 questionIds.get(i).setUser_answer(questDTO.get(i).getQuestionChoiceDTOs().get(0).getText());
@@ -198,7 +202,7 @@ public class QuizService {
         Quiz quiz = quizRepository.findById(questDTO.get(0).getQuiz_id()).get();
         float per = ((float) score / (float) quiz.getNumberQuestions()) * 100;
   //      percent = (float) (Math.round(per * 100.0) / 100.0);
-        quiz.setScore(score  + "/"+(quiz.getNumberQuestions()-score));
+        quiz.setScore(score  + "/"+wrongAnswer+"/"+(quiz.getNumberQuestions()-score-wrongAnswer));
         quiz.setStatus("done");
         quiz.setEndTime(LocalDateTime.now());
         quizRepository.save(quiz);

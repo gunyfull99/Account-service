@@ -2,15 +2,20 @@ package com.quiz.repository;
 
 import com.quiz.entity.Question;
 import com.quiz.entity.Quiz;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+
 
 public interface QuizRepository extends JpaRepository<Quiz,Long> {
     @Query(value = "select * from quiz where user_id = :id and status ='done' ", nativeQuery = true)
@@ -44,4 +49,6 @@ public interface QuizRepository extends JpaRepository<Quiz,Long> {
     Page<Quiz> findAllByUserId(long id, Pageable p);
     Page<Quiz> findAllByStatus(String status, Pageable p);
     Page<Quiz> findAllByUserIdAndStatus(long id,String status, Pageable p);
+
+
 }
