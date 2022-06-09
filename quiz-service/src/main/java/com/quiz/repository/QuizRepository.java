@@ -21,7 +21,7 @@ public interface QuizRepository extends JpaRepository<Quiz,Long> {
     @Query(value = "select * from quiz where user_id = :id and status ='done' ", nativeQuery = true)
     List<Quiz> getQuizByUserWhenDone(@Param("id") long userId);
 
-    @Query(value = "select * from quiz where user_id = :id  ", nativeQuery = true)
+    @Query(value = "select * from quiz where user_id = :id   order by id DESC ", nativeQuery = true)
     List<Quiz> getAllByUser(@Param("id") long userId);
 
     @Query(value = "SELECT  id from quiz", nativeQuery = true)

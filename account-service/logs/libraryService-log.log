@@ -1,23 +1,23 @@
-2022-06-08 13:47:37,628 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting AccountServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 26916 (E:\spring-boot-training\AIS-Interview-BE\account-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\account-service)
-2022-06-08 13:47:37,630 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
-2022-06-08 13:47:37,633 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
-2022-06-08 13:47:37,743 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-06-08 13:47:37,744 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-06-08 13:47:39,084 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-06-08 13:47:39,259 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 139 ms. Found 7 JPA repository interfaces.
-2022-06-08 13:47:39,665 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] []: Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$baebcbad] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-06-08 13:47:39,721 INFO org.springframework.ws.soap.addressing.server.AbstractAddressingEndpointMapping [restartedMain] []: Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
-2022-06-08 13:47:40,358 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8091 (http)
-2022-06-08 13:47:40,368 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8091"]
-2022-06-08 13:47:40,369 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
-2022-06-08 13:47:40,369 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
-2022-06-08 13:47:40,518 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
-2022-06-08 13:47:40,518 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2774 ms
-2022-06-08 13:47:40,719 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-06-08 13:47:40,790 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
-2022-06-08 13:47:40,959 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-06-08 13:47:41,320 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2022-06-08 13:47:42,773 WARN org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl [restartedMain] []: GenerationTarget encountered exception accepting command : Error executing DDL "
+2022-06-09 08:41:50,013 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 08:41:50,014 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting AccountServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 10368 (E:\spring-boot-training\AIS-Interview-BE\account-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\account-service)
+2022-06-09 08:41:50,020 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-09 08:41:50,689 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-09 08:41:50,690 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-09 08:42:03,214 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 08:42:03,352 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 111 ms. Found 7 JPA repository interfaces.
+2022-06-09 08:42:03,913 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] []: Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$9dba17f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-09 08:42:03,983 INFO org.springframework.ws.soap.addressing.server.AbstractAddressingEndpointMapping [restartedMain] []: Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2022-06-09 08:42:04,793 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8091 (http)
+2022-06-09 08:42:04,809 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8091"]
+2022-06-09 08:42:04,810 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-09 08:42:04,810 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 08:42:04,979 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-09 08:42:04,980 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 14288 ms
+2022-06-09 08:42:05,207 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 08:42:05,281 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 08:42:05,489 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 08:42:05,960 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 08:42:07,945 WARN org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl [restartedMain] []: GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table accounts 
        add constraint FKqgnsd0v3la0gyituldqo2mca6 
        foreign key (company_id) 
@@ -160,25 +160,24 @@ Caused by: org.postgresql.util.PSQLException: ERROR: foreign key constraint "fkq
 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:279)
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
 	... 119 common frames omitted
-2022-06-08 13:47:42,835 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-06-08 13:47:42,842 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-06-08 13:47:43,506 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-06-08 13:47:44,243 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2022-06-08 13:47:44,401 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/v2/api-docs'] with []
-2022-06-08 13:47:44,401 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/configuration/ui'] with []
-2022-06-08 13:47:44,401 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/swagger-resources/**'] with []
-2022-06-08 13:47:44,401 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/configuration/**'] with []
-2022-06-08 13:47:44,402 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/swagger-ui.html'] with []
-2022-06-08 13:47:44,402 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/webjars/**'] with []
-2022-06-08 13:47:44,437 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4d7bb2c3, org.springframework.security.web.context.SecurityContextPersistenceFilter@19fdf927, org.springframework.security.web.header.HeaderWriterFilter@440f1275, org.springframework.security.web.authentication.logout.LogoutFilter@36b68bb5, com.account.filter.AuthorizationFilter@524b24da, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@13d60f16, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@29cf7eba, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@60244d6, org.springframework.security.web.session.SessionManagementFilter@7b710673, org.springframework.security.web.access.ExceptionTranslationFilter@6173d8d6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@27f3b32f]
-2022-06-08 13:47:44,591 WARN org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: Unable to start LiveReload server
-2022-06-08 13:47:44,849 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8091"]
-2022-06-08 13:47:44,881 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8091 (http) with context path ''
-2022-06-08 13:47:44,883 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
-2022-06-08 13:47:44,909 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
-2022-06-08 13:47:44,978 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
-2022-06-08 13:47:45,742 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started AccountServiceApplication in 8.693 seconds (JVM running for 9.706)
-2022-06-08 13:47:47,598 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8091-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-06-08 13:47:47,599 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8091-exec-1] []: Initializing Servlet 'dispatcherServlet'
-2022-06-08 13:47:47,600 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8091-exec-1] []: Completed initialization in 1 ms
-2022-06-08 14:02:04,663 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 08:42:08,056 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 08:42:08,070 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 08:42:09,030 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 08:42:09,886 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-09 08:42:10,053 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/v2/api-docs'] with []
+2022-06-09 08:42:10,054 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/configuration/ui'] with []
+2022-06-09 08:42:10,055 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/swagger-resources/**'] with []
+2022-06-09 08:42:10,055 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/configuration/**'] with []
+2022-06-09 08:42:10,055 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/swagger-ui.html'] with []
+2022-06-09 08:42:10,055 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure Ant [pattern='/webjars/**'] with []
+2022-06-09 08:42:10,095 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] []: Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@66384c9d, org.springframework.security.web.context.SecurityContextPersistenceFilter@35621f62, org.springframework.security.web.header.HeaderWriterFilter@3cec6239, org.springframework.security.web.authentication.logout.LogoutFilter@274ed6a7, com.account.filter.AuthorizationFilter@b7adf6c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@133cee63, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13da8fa1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@33fddf, org.springframework.security.web.session.SessionManagementFilter@62765279, org.springframework.security.web.access.ExceptionTranslationFilter@58707e1d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@33506cb4]
+2022-06-09 08:42:10,310 WARN org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: Unable to start LiveReload server
+2022-06-09 08:42:10,585 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8091"]
+2022-06-09 08:42:10,611 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8091 (http) with context path ''
+2022-06-09 08:42:10,612 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-09 08:42:10,634 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-09 08:42:10,712 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-09 08:42:11,648 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started AccountServiceApplication in 23.763 seconds (JVM running for 26.603)
+2022-06-09 08:42:14,684 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8091-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 08:42:14,684 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8091-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-06-09 08:42:14,686 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8091-exec-1] []: Completed initialization in 1 ms
