@@ -279,7 +279,7 @@ public class QuizController {
     // get all quiz by user
     // http://localhost:8080/quiz/allbyuser
     @CrossOrigin(origins = "http://localhost:8080/quiz")
-    @GetMapping("/allbyuser")
+    @PostMapping("/allbyuser")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Quiz.class),
             @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
