@@ -201,9 +201,10 @@ public class QuizService {
                 if (questionChoiceRepository.checkCorrectAnswer(questDTO.get(i).getQuestionChoiceDTOs().get(0).getId()) == true
                 ) {
                     score += 1;
-                }else {
-                    wrongAnswer+=1;
                 }
+//                else {
+//                    wrongAnswer+=1;
+//                }
             } else {
                 questionIds.get(i).setUser_answer(questDTO.get(i).getQuestionChoiceDTOs().get(0).getText());
             }
@@ -213,7 +214,8 @@ public class QuizService {
         Quiz quiz = quizRepository.findById(questDTO.get(0).getQuiz_id()).get();
         float per = ((float) score / (float) quiz.getNumberQuestions()) * 100;
   //      percent = (float) (Math.round(per * 100.0) / 100.0);
-        quiz.setScore(score  + "/"+wrongAnswer+"/"+(quiz.getNumberQuestions()-score-wrongAnswer));
+       // quiz.setScore(score  + "/"+wrongAnswer+"/"+(quiz.getNumberQuestions()-score-wrongAnswer));
+        quiz.setScore(score +"/"+(quiz.getNumberQuestions()-score));
         quiz.setStatus("done");
         quiz.setEndTime(LocalDateTime.now());
         quizRepository.save(quiz);
