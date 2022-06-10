@@ -19,4 +19,7 @@ public interface GroupQuizRepository extends JpaRepository<GroupQuiz,Long> {
                            @Param("description") String description,
                            @Param("creator") List<Long> creator,
                            Pageable pageable);
+
+    @Query(value = "delete from group_quiz where id = :id", nativeQuery = true)
+    void deleteGroupQuiz(@Param("id") Long id);
 }

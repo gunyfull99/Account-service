@@ -48,6 +48,9 @@ public class QuesTionService {
     QuizRepository quizRepository;
 
     @Autowired
+    GroupQuizRepository groupQuizRepository;
+
+    @Autowired
     QuizQuestionRepository quizQuestionRepository;
 
     @Autowired
@@ -96,12 +99,18 @@ public class QuesTionService {
 
         for (int i = 0; i < listId.size(); i++) {
             Quiz q =quizRepository.getById(listId.get(i));
-            if(q.getStatus().equals("expried")|| q.getStatus().equals("not_start")){
-                quizQuestionRepository.deleteQuiz(listId.get(i));
-                quizRepository.deleteQuiz(listId.get(i));
+            if(q.getStatus().equals("done")|| q.getStatus().equals("donging")){
+                return  new BaseResponse( 200,"Đã có ứng viên làm bài kiểm tra này.Xóa bài kiểm tra thất bại.");
             }
         }
-        return  new BaseResponse( 200,"Xóa list quiz thành công ");
+
+        for (int i = 0; i < listId.size(); i++) {
+            Quiz q =quizRepository.getById(listId.get(i));
+                quizQuestionRepository.deleteQuiz(listId.get(i));
+                quizRepository.deleteQuiz(listId.get(i));
+                groupQuizRepository.deleteGroupQuiz(q.getGroupQuiz().getId());
+        }
+        return  new BaseResponse( 200,"Xóa bài kiểm tra thành công ");
     }
 
     public String openQuestion(List<Long> listId) {
