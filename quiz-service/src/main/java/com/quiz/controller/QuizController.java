@@ -75,7 +75,7 @@ public class QuizController {
     //http://localhost:8080/quiz/blockquestion
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PutMapping("/blockquestion")
-    public String deleteQuestion(@RequestBody List<Long> id) {
+    public BaseResponse deleteQuestion(@RequestBody List<Long> id) {
         return quesTionService.blockQuestion(id);
     }
 
@@ -417,4 +417,13 @@ public class QuizController {
 //        }
         return ResponseEntity.ok().body(quesTionService.excelImport(file));
     }
+
+
+    //http://localhost:8080/quiz/deletelistquiz
+    @CrossOrigin(origins = "http://localhost:8080/quiz")
+    @PutMapping("/deletelistquiz")
+    public BaseResponse deleteListQuiz(@RequestBody List<Long> id) {
+        return quesTionService.deleteListQuiz(id);
+    }
+
 }

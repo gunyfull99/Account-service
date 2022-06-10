@@ -1,0 +1,1078 @@
+2022-06-09 08:28:20,376 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 08:28:20,380 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 21516 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-09 08:28:20,382 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-09 08:28:20,446 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-09 08:28:20,447 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-09 08:28:21,982 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 08:28:22,107 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 111 ms. Found 8 JPA repository interfaces.
+2022-06-09 08:28:23,496 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-09 08:28:23,516 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 08:28:23,517 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-09 08:28:23,517 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 08:28:23,688 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-09 08:28:23,688 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 3240 ms
+2022-06-09 08:28:23,978 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 08:28:24,065 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 08:28:24,270 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 08:28:24,434 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-09 08:28:24,762 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-09 08:28:24,796 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 08:28:27,318 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 08:28:27,327 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 08:28:28,496 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 08:28:28,695 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-09 08:28:28,849 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-09 08:28:29,090 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 08:28:29,113 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 08:28:29,115 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-09 08:28:29,139 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-09 08:28:29,169 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-09 08:28:29,371 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-09 08:28:29,811 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 10.02 seconds (JVM running for 11.464)
+2022-06-09 08:29:23,730 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 08:29:23,730 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-06-09 08:29:23,732 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Completed initialization in 2 ms
+2022-06-09 08:29:23,844 INFO com.quiz.service.QuizService [http-nio-8080-exec-1] []: receive info to calculate Score
+2022-06-09 08:30:13,073 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 08:30:13,084 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-09 08:30:13,093 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-09 08:40:51,028 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 23428 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-09 08:40:51,025 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 08:40:51,281 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-09 08:40:51,349 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-09 08:40:51,349 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-09 08:41:07,693 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 08:41:07,805 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 97 ms. Found 8 JPA repository interfaces.
+2022-06-09 08:41:09,289 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-09 08:41:09,314 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 08:41:09,315 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-09 08:41:09,316 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 08:41:09,494 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-09 08:41:09,494 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 18144 ms
+2022-06-09 08:41:09,742 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 08:41:09,829 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 08:41:10,065 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 08:41:10,219 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-09 08:41:10,578 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-09 08:41:10,607 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 08:41:12,922 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 08:41:12,932 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 08:41:14,285 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 08:41:14,520 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-09 08:41:14,710 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-09 08:41:15,003 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 08:41:15,038 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 08:41:15,040 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-09 08:41:15,091 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-09 08:41:15,128 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-09 08:41:15,368 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-09 08:41:15,801 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 26.096 seconds (JVM running for 28.84)
+2022-06-09 08:41:18,312 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 08:41:18,313 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-06-09 08:41:18,315 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Completed initialization in 2 ms
+2022-06-09 08:41:18,452 INFO com.quiz.service.QuizService [http-nio-8080-exec-1] []: receive info to get List Quiz
+2022-06-09 08:41:20,536 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8091/accounts/listuserid/%20": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect] with root cause
+java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at java.base/java.net.Socket.connect(Socket.java:558)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:182)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:474)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:569)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:242)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:341)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:362)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1253)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1187)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1081)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1015)
+	at org.springframework.http.client.SimpleBufferingClientHttpRequest.executeInternal(SimpleBufferingClientHttpRequest.java:76)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:732)
+	at org.springframework.web.client.RestTemplate.getForObject(RestTemplate.java:343)
+	at com.quiz.restTemplate.RestTemplateService.getListUserId(RestTemplateService.java:59)
+	at com.quiz.service.QuizService.getListQuizPaging(QuizService.java:276)
+	at com.quiz.controller.QuizController.getListQuizPaging(QuizController.java:315)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.quiz.filter.SimpleCORSFilter.doFilter(SimpleCORSFilter.java:27)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2022-06-09 08:42:14,621 INFO com.quiz.service.QuizService [http-nio-8080-exec-4] []: receive info to get List Quiz
+2022-06-09 08:43:34,314 INFO com.quiz.service.QuizService [http-nio-8080-exec-7] []: receive info to get List Quiz
+2022-06-09 08:46:45,007 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 08:46:45,014 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-09 08:46:45,029 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-09 08:54:42,864 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 08:54:42,872 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 20800 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-09 08:54:42,964 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-09 08:54:43,024 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-09 08:54:43,024 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-09 08:54:47,007 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 08:54:47,114 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 94 ms. Found 8 JPA repository interfaces.
+2022-06-09 08:54:48,245 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-09 08:54:48,259 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 08:54:48,260 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-09 08:54:48,260 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 08:54:48,395 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-09 08:54:48,396 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 5371 ms
+2022-06-09 08:54:48,616 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 08:54:48,690 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 08:54:48,879 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 08:54:49,024 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-09 08:54:49,309 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-09 08:54:49,332 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 08:54:51,017 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 08:54:51,026 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 08:54:52,079 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 08:54:52,273 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-09 08:54:52,419 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-09 08:54:52,621 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 08:54:52,645 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 08:54:52,646 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-09 08:54:52,673 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-09 08:54:52,715 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-09 08:54:52,896 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-09 08:54:53,250 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 11.133 seconds (JVM running for 13.228)
+2022-06-09 08:54:56,650 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 08:54:56,655 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-09 08:54:56,668 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-09 11:17:24,014 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 11:17:24,019 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 24640 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-09 11:17:24,031 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-09 11:17:24,113 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-09 11:17:24,113 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-09 11:17:25,647 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 11:17:25,764 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 102 ms. Found 8 JPA repository interfaces.
+2022-06-09 11:17:27,066 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-09 11:17:27,083 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:17:27,083 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-09 11:17:27,084 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 11:17:27,251 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-09 11:17:27,252 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 3138 ms
+2022-06-09 11:17:27,506 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 11:17:27,587 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 11:17:27,799 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 11:17:27,946 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-09 11:17:28,216 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-09 11:17:28,252 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 11:17:29,977 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 11:17:29,985 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:17:31,144 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 11:17:31,370 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-09 11:17:31,523 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-09 11:17:31,757 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:17:31,783 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 11:17:31,784 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-09 11:17:31,808 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-09 11:17:31,836 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-09 11:17:32,031 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-09 11:17:32,456 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 9.052 seconds (JVM running for 10.292)
+2022-06-09 11:17:44,293 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 11:17:44,293 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] []: Initializing Servlet 'dispatcherServlet'
+2022-06-09 11:17:44,295 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] []: Completed initialization in 2 ms
+2022-06-09 11:17:44,439 INFO com.quiz.service.QuizService [http-nio-8080-exec-2] []: receive info to get List Quiz
+2022-06-09 11:17:46,502 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] []: Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8091/accounts/listuserid/%20": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect] with root cause
+java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at java.base/java.net.Socket.connect(Socket.java:558)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:182)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:474)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:569)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:242)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:341)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:362)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1253)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1187)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1081)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1015)
+	at org.springframework.http.client.SimpleBufferingClientHttpRequest.executeInternal(SimpleBufferingClientHttpRequest.java:76)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:732)
+	at org.springframework.web.client.RestTemplate.getForObject(RestTemplate.java:343)
+	at com.quiz.restTemplate.RestTemplateService.getListUserId(RestTemplateService.java:59)
+	at com.quiz.service.QuizService.getListQuizPaging(QuizService.java:277)
+	at com.quiz.controller.QuizController.getListQuizPaging(QuizController.java:315)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.quiz.filter.SimpleCORSFilter.doFilter(SimpleCORSFilter.java:27)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2022-06-09 11:18:06,281 INFO com.quiz.service.QuizService [http-nio-8080-exec-4] []: receive info to get List Quiz
+2022-06-09 11:18:22,857 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:18:22,861 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-09 11:18:22,872 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-09 11:22:37,960 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 11:22:37,964 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 5580 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-09 11:22:37,966 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-09 11:22:38,061 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-09 11:22:38,061 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-09 11:22:39,338 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 11:22:39,452 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 102 ms. Found 8 JPA repository interfaces.
+2022-06-09 11:22:40,835 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-09 11:22:40,852 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:22:40,852 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-09 11:22:40,853 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 11:22:41,028 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-09 11:22:41,028 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2966 ms
+2022-06-09 11:22:41,295 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 11:22:41,358 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 11:22:41,542 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 11:22:41,683 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-09 11:22:41,979 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-09 11:22:42,002 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 11:22:43,845 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 11:22:43,853 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:22:45,197 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 11:22:45,402 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-09 11:22:45,563 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-09 11:22:45,783 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:22:45,808 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 11:22:45,808 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-09 11:22:45,845 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-09 11:22:45,876 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-09 11:22:46,093 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-09 11:22:46,569 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 9.225 seconds (JVM running for 10.517)
+2022-06-09 11:23:18,014 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 11:23:18,014 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] []: Initializing Servlet 'dispatcherServlet'
+2022-06-09 11:23:18,016 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] []: Completed initialization in 1 ms
+2022-06-09 11:23:18,151 INFO com.quiz.service.QuizService [http-nio-8080-exec-2] []: receive info to get All Quiz By User
+2022-06-09 11:23:24,883 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:23:24,888 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-09 11:23:24,899 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-09 14:12:11,113 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 14:12:11,113 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 2828 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-09 14:12:11,118 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-09 14:12:11,181 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-09 14:12:11,181 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-09 14:12:12,296 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 14:12:12,422 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 111 ms. Found 8 JPA repository interfaces.
+2022-06-09 14:12:13,553 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-09 14:12:13,568 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 14:12:13,568 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-09 14:12:13,569 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 14:12:13,722 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-09 14:12:13,723 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2541 ms
+2022-06-09 14:12:13,930 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 14:12:13,989 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 14:12:14,124 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 14:12:14,254 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-09 14:12:14,479 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-09 14:12:14,498 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 14:12:16,293 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 14:12:16,301 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 14:12:17,502 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 14:12:17,756 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-09 14:12:17,902 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-09 14:12:18,130 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 14:12:18,153 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 14:12:18,155 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-09 14:12:18,176 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-09 14:12:18,211 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-09 14:12:18,394 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-09 14:12:18,709 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 8.192 seconds (JVM running for 9.16)
+2022-06-09 14:12:56,233 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 14:12:56,233 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] []: Initializing Servlet 'dispatcherServlet'
+2022-06-09 14:12:56,235 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] []: Completed initialization in 1 ms
+2022-06-09 14:12:56,283 INFO com.quiz.service.QuizService [http-nio-8080-exec-2] []: receive info to create quiz
+2022-06-09 14:13:35,395 INFO com.quiz.service.QuizService [http-nio-8080-exec-3] []: receive info to create quiz
+2022-06-09 14:13:37,203 INFO com.quiz.service.QuizService [http-nio-8080-exec-4] []: receive info to create quiz
+2022-06-09 14:14:03,134 INFO com.quiz.service.QuizService [http-nio-8080-exec-5] []: receive info to create quiz
+2022-06-09 14:14:19,224 INFO com.quiz.service.QuizService [http-nio-8080-exec-6] []: receive info to get All Quiz By User
+2022-06-09 14:15:35,778 INFO com.quiz.service.QuesTionService [http-nio-8080-exec-9] []: Receive id to get List Question By Quiz Id
+2022-06-09 14:15:35,779 INFO com.quiz.service.QuizService [http-nio-8080-exec-9] []: receive info to get List Question By QuizId
+2022-06-09 14:17:24,116 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 14:17:24,120 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-09 14:17:24,127 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-09 14:17:30,832 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Starting QuizServiceApplication using Java 11.0.11 on LAPTOP-BP05I3UL with PID 10792 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\target\classes started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-09 14:17:30,832 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 14:17:30,837 INFO org.springframework.boot.SpringApplication [restartedMain] []: No active profile set, falling back to default profiles: default
+2022-06-09 14:17:30,924 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-09 14:17:30,925 INFO org.springframework.boot.logging.DeferredLog [restartedMain] []: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-09 14:17:32,200 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 14:17:32,304 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] []: Finished Spring Data repository scanning in 91 ms. Found 8 JPA repository interfaces.
+2022-06-09 14:17:33,697 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-09 14:17:33,707 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 14:17:33,708 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting service [Tomcat]
+2022-06-09 14:17:33,708 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 14:17:33,869 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Initializing Spring embedded WebApplicationContext
+2022-06-09 14:17:33,869 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] []: Root WebApplicationContext: initialization completed in 2943 ms
+2022-06-09 14:17:34,135 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 14:17:34,201 INFO org.hibernate.Version [restartedMain] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 14:17:34,369 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 14:17:34,514 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Starting...
+2022-06-09 14:17:34,787 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] []: HikariPool-1 - Start completed.
+2022-06-09 14:17:34,814 INFO org.hibernate.dialect.Dialect [restartedMain] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 14:17:36,670 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] []: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 14:17:36,677 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] []: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 14:17:37,810 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] []: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 14:17:38,033 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [restartedMain] []: Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-09 14:17:38,166 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] []: LiveReload server is running on port 35729
+2022-06-09 14:17:38,348 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] []: Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 14:17:38,372 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] []: Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 14:17:38,373 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Context refreshed
+2022-06-09 14:17:38,394 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [restartedMain] []: Found 1 custom documentation plugin(s)
+2022-06-09 14:17:38,423 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [restartedMain] []: Scanning for api listing references
+2022-06-09 14:17:38,625 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [restartedMain] []: Generating unique operation named: createCategoryUsingPOST_1
+2022-06-09 14:17:39,063 INFO org.springframework.boot.StartupInfoLogger [restartedMain] []: Started QuizServiceApplication in 8.874 seconds (JVM running for 10.144)
+2022-06-09 14:17:46,274 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] []: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 14:17:46,274 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Initializing Servlet 'dispatcherServlet'
+2022-06-09 14:17:46,275 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] []: Completed initialization in 1 ms
+2022-06-09 14:17:46,378 INFO com.quiz.service.QuizService [http-nio-8080-exec-1] []: receive info to get All Quiz By User
+2022-06-09 14:18:21,000 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] []: Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 14:18:21,004 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown initiated...
+2022-06-09 14:18:21,017 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] []: HikariPool-1 - Shutdown completed.
+2022-06-09 16:10:26,420 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] []: Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.quiz.QuizServiceApplicationTests], using SpringBootContextLoader
+2022-06-09 16:10:26,430 INFO org.springframework.test.context.support.AbstractContextLoader [main] []: Could not detect default resource locations for test class [com.quiz.QuizServiceApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-06-09 16:10:26,431 INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils [main] []: Could not detect default configuration classes for test class [com.quiz.QuizServiceApplicationTests]: QuizServiceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-06-09 16:10:26,592 INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper [main] []: Found @SpringBootConfiguration com.quiz.QuizServiceApplication for test class com.quiz.QuizServiceApplicationTests
+2022-06-09 16:10:26,721 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] []: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-06-09 16:10:26,748 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] []: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1cb3ec38, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@403132fc, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@71c5b236, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@2cab9998, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2f7a7219, org.springframework.test.context.support.DirtiesContextTestExecutionListener@669513d8, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3a1d593e, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4a8a60bc, org.springframework.test.context.event.EventPublishingTestExecutionListener@361c294e, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7859e786, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@285d851a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@314b8f2d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@664a9613, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5118388b, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@15a902e7]
+2022-06-09 16:10:27,179 INFO org.springframework.boot.StartupInfoLogger [main] []: Starting QuizServiceApplicationTests using Java 11.0.11 on LAPTOP-BP05I3UL with PID 22904 (started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-09 16:10:27,183 INFO org.springframework.boot.SpringApplication [main] []: No active profile set, falling back to default profiles: default
+2022-06-09 16:10:27,200 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 16:10:28,568 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 16:10:28,683 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] []: Finished Spring Data repository scanning in 103 ms. Found 8 JPA repository interfaces.
+2022-06-09 16:10:29,623 INFO org.hibernate.jpa.internal.util.LogHelper [main] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 16:10:29,715 INFO org.hibernate.Version [main] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 16:10:29,893 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 16:10:30,813 INFO com.zaxxer.hikari.HikariDataSource [main] []: HikariPool-1 - Starting...
+2022-06-09 16:10:30,819 WARN org.postgresql.Driver [main] []: JDBC URL invalid port number: ${DATABASE_PORT}
+2022-06-09 16:10:30,823 WARN org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator [main] []: HHH000342: Could not obtain connection to query metadata
+java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at com.zaxxer.hikari.util.DriverDataSource.<init>(DriverDataSource.java:110)
+	at com.zaxxer.hikari.pool.PoolBase.initializeDataSource(PoolBase.java:331)
+	at com.zaxxer.hikari.pool.PoolBase.<init>(PoolBase.java:114)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:108)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:101)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:176)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:127)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1224)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1255)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:123)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$6(ClassBasedTestDescriptor.java:350)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:355)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$7(ClassBasedTestDescriptor.java:350)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:349)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$4(ClassBasedTestDescriptor.java:270)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:269)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$2(ClassBasedTestDescriptor.java:259)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$3(ClassBasedTestDescriptor.java:258)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:101)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:100)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:65)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$1(NodeTestTask.java:111)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:111)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:79)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+2022-06-09 16:10:30,843 INFO org.hibernate.dialect.Dialect [main] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 16:10:31,847 INFO com.zaxxer.hikari.HikariDataSource [main] []: HikariPool-1 - Starting...
+2022-06-09 16:10:31,848 WARN org.postgresql.Driver [main] []: JDBC URL invalid port number: ${DATABASE_PORT}
+2022-06-09 16:10:31,852 ERROR org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] []: Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+2022-06-09 16:10:31,853 WARN org.springframework.context.support.AbstractApplicationContext [main] []: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+2022-06-09 16:10:31,862 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] []: 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-06-09 16:10:31,886 ERROR org.springframework.boot.SpringApplication [main] []: Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:123)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$6(ClassBasedTestDescriptor.java:350)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:355)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$7(ClassBasedTestDescriptor.java:350)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:349)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$4(ClassBasedTestDescriptor.java:270)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:269)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$2(ClassBasedTestDescriptor.java:259)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$3(ClassBasedTestDescriptor.java:258)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:101)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:100)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:65)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$1(NodeTestTask.java:111)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:111)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:79)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 82 common frames omitted
+Caused by: java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at com.zaxxer.hikari.util.DriverDataSource.<init>(DriverDataSource.java:110)
+	at com.zaxxer.hikari.pool.PoolBase.initializeDataSource(PoolBase.java:331)
+	at com.zaxxer.hikari.pool.PoolBase.<init>(PoolBase.java:114)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:108)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:43)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:60)
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:40)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:65)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:59)
+	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:155)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:184)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:318)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:468)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1259)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	... 86 common frames omitted
+2022-06-09 16:10:31,890 ERROR org.springframework.test.context.TestContextManager [main] []: Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@1cb3ec38] to prepare test instance [com.quiz.QuizServiceApplicationTests@372841d2]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$6(ClassBasedTestDescriptor.java:350)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:355)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$7(ClassBasedTestDescriptor.java:350)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:349)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$4(ClassBasedTestDescriptor.java:270)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:269)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$2(ClassBasedTestDescriptor.java:259)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$3(ClassBasedTestDescriptor.java:258)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:101)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:100)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:65)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$1(NodeTestTask.java:111)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:111)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:79)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:123)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	... 67 common frames omitted
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 82 common frames omitted
+Caused by: java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at com.zaxxer.hikari.util.DriverDataSource.<init>(DriverDataSource.java:110)
+	at com.zaxxer.hikari.pool.PoolBase.initializeDataSource(PoolBase.java:331)
+	at com.zaxxer.hikari.pool.PoolBase.<init>(PoolBase.java:114)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:108)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:43)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:60)
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:40)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:65)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:59)
+	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:155)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:184)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:318)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:468)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1259)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	... 86 common frames omitted
+2022-06-09 17:35:35,484 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 17:35:35,529 INFO org.springframework.boot.StartupInfoLogger [main] []: Starting QuizServiceApplication v0.0.1-SNAPSHOT using Java 11.0.11 on LAPTOP-BP05I3UL with PID 23024 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\target\quiz-service.jar started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-09 17:35:35,531 INFO org.springframework.boot.SpringApplication [main] []: No active profile set, falling back to default profiles: default
+2022-06-09 17:35:37,542 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 17:35:37,627 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] []: Finished Spring Data repository scanning in 73 ms. Found 8 JPA repository interfaces.
+2022-06-09 17:35:38,869 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-09 17:35:38,888 INFO org.apache.juli.logging.DirectJDKLog [main] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 17:35:38,889 INFO org.apache.juli.logging.DirectJDKLog [main] []: Starting service [Tomcat]
+2022-06-09 17:35:38,889 INFO org.apache.juli.logging.DirectJDKLog [main] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 17:35:38,950 INFO org.apache.juli.logging.DirectJDKLog [main] []: Initializing Spring embedded WebApplicationContext
+2022-06-09 17:35:38,950 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] []: Root WebApplicationContext: initialization completed in 3326 ms
+2022-06-09 17:35:39,207 INFO org.hibernate.jpa.internal.util.LogHelper [main] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 17:35:39,348 INFO org.hibernate.Version [main] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 17:35:39,649 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 17:35:39,900 INFO com.zaxxer.hikari.HikariDataSource [main] []: HikariPool-1 - Starting...
+2022-06-09 17:35:39,904 WARN org.postgresql.Driver [main] []: JDBC URL invalid port number: ${DATABASE_PORT}
+2022-06-09 17:35:39,906 WARN org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator [main] []: HHH000342: Could not obtain connection to query metadata
+java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at com.zaxxer.hikari.util.DriverDataSource.<init>(DriverDataSource.java:110)
+	at com.zaxxer.hikari.pool.PoolBase.initializeDataSource(PoolBase.java:331)
+	at com.zaxxer.hikari.pool.PoolBase.<init>(PoolBase.java:114)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:108)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:101)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:176)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:127)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1224)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1255)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.quiz.QuizServiceApplication.main(QuizServiceApplication.java:13)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:49)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:108)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:58)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88)
+2022-06-09 17:35:39,953 INFO org.hibernate.dialect.Dialect [main] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 17:35:40,815 INFO com.zaxxer.hikari.HikariDataSource [main] []: HikariPool-1 - Starting...
+2022-06-09 17:35:40,815 WARN org.postgresql.Driver [main] []: JDBC URL invalid port number: ${DATABASE_PORT}
+2022-06-09 17:35:40,834 ERROR org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] []: Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+2022-06-09 17:35:40,834 WARN org.springframework.context.support.AbstractApplicationContext [main] []: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+2022-06-09 17:35:40,836 INFO org.apache.juli.logging.DirectJDKLog [main] []: Stopping service [Tomcat]
+2022-06-09 17:35:40,844 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] []: 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-06-09 17:35:40,861 ERROR org.springframework.boot.SpringApplication [main] []: Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.quiz.QuizServiceApplication.main(QuizServiceApplication.java:13)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:49)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:108)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:58)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88)
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 24 common frames omitted
+Caused by: java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at com.zaxxer.hikari.util.DriverDataSource.<init>(DriverDataSource.java:110)
+	at com.zaxxer.hikari.pool.PoolBase.initializeDataSource(PoolBase.java:331)
+	at com.zaxxer.hikari.pool.PoolBase.<init>(PoolBase.java:114)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:108)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:43)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:60)
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:40)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:65)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:59)
+	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:155)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:184)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:318)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:468)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1259)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	... 28 common frames omitted
+2022-06-09 17:41:07,298 INFO org.hibernate.validator.internal.util.Version [background-preinit] []: HV000001: Hibernate Validator 6.2.0.Final
+2022-06-09 17:41:07,386 INFO org.springframework.boot.StartupInfoLogger [main] []: Starting QuizServiceApplication v0.0.1-SNAPSHOT using Java 11.0.11 on LAPTOP-BP05I3UL with PID 15484 (E:\spring-boot-training\AIS-Interview-BE\quiz-service\target\quiz-service.jar started by hieu0 in E:\spring-boot-training\AIS-Interview-BE\quiz-service)
+2022-06-09 17:41:07,388 INFO org.springframework.boot.SpringApplication [main] []: No active profile set, falling back to default profiles: default
+2022-06-09 17:41:09,909 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] []: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 17:41:10,019 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] []: Finished Spring Data repository scanning in 98 ms. Found 8 JPA repository interfaces.
+2022-06-09 17:41:11,887 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] []: Tomcat initialized with port(s): 8080 (http)
+2022-06-09 17:41:11,908 INFO org.apache.juli.logging.DirectJDKLog [main] []: Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 17:41:11,909 INFO org.apache.juli.logging.DirectJDKLog [main] []: Starting service [Tomcat]
+2022-06-09 17:41:11,910 INFO org.apache.juli.logging.DirectJDKLog [main] []: Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 17:41:12,024 INFO org.apache.juli.logging.DirectJDKLog [main] []: Initializing Spring embedded WebApplicationContext
+2022-06-09 17:41:12,024 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] []: Root WebApplicationContext: initialization completed in 4531 ms
+2022-06-09 17:41:12,373 INFO org.hibernate.jpa.internal.util.LogHelper [main] []: HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 17:41:12,469 INFO org.hibernate.Version [main] []: HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-06-09 17:41:12,770 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] []: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 17:41:12,984 INFO com.zaxxer.hikari.HikariDataSource [main] []: HikariPool-1 - Starting...
+2022-06-09 17:41:12,989 WARN org.postgresql.Driver [main] []: JDBC URL invalid port number: ${DATABASE_PORT}
+2022-06-09 17:41:12,991 WARN org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator [main] []: HHH000342: Could not obtain connection to query metadata
+java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at com.zaxxer.hikari.util.DriverDataSource.<init>(DriverDataSource.java:110)
+	at com.zaxxer.hikari.pool.PoolBase.initializeDataSource(PoolBase.java:331)
+	at com.zaxxer.hikari.pool.PoolBase.<init>(PoolBase.java:114)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:108)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:101)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:176)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:127)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1224)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1255)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.quiz.QuizServiceApplication.main(QuizServiceApplication.java:13)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:49)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:108)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:58)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88)
+2022-06-09 17:41:13,020 INFO org.hibernate.dialect.Dialect [main] []: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-06-09 17:41:14,168 INFO com.zaxxer.hikari.HikariDataSource [main] []: HikariPool-1 - Starting...
+2022-06-09 17:41:14,169 WARN org.postgresql.Driver [main] []: JDBC URL invalid port number: ${DATABASE_PORT}
+2022-06-09 17:41:14,178 ERROR org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] []: Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+2022-06-09 17:41:14,178 WARN org.springframework.context.support.AbstractApplicationContext [main] []: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+2022-06-09 17:41:14,181 INFO org.apache.juli.logging.DirectJDKLog [main] []: Stopping service [Tomcat]
+2022-06-09 17:41:14,195 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] []: 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-06-09 17:41:14,226 ERROR org.springframework.boot.SpringApplication [main] []: Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.quiz.QuizServiceApplication.main(QuizServiceApplication.java:13)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:49)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:108)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:58)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88)
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 24 common frames omitted
+Caused by: java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+	at com.zaxxer.hikari.util.DriverDataSource.<init>(DriverDataSource.java:110)
+	at com.zaxxer.hikari.pool.PoolBase.initializeDataSource(PoolBase.java:331)
+	at com.zaxxer.hikari.pool.PoolBase.<init>(PoolBase.java:114)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:108)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:43)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:60)
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:40)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:65)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:59)
+	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:155)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:184)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:318)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:468)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1259)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	... 28 common frames omitted

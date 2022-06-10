@@ -82,13 +82,26 @@ public class QuesTionService {
         return questionRepository.getById(id);
     }
 
-    public String blockQuestion(List<Long> listId) {
+    public BaseResponse blockQuestion(List<Long> listId) {
         logger.info("Receive id to block Question");
 
         for (int i = 0; i < listId.size(); i++) {
             questionRepository.blockQuestion(listId.get(i));
         }
-        return "Block question success";
+        return new BaseResponse(200,"Xóa câu hỏi thành công") ;
+    }
+
+
+    public BaseResponse deleteListQuiz(List<Long> listId) {
+
+        for (int i = 0; i < listId.size(); i++) {
+            Quiz q =quizRepository.getById(listId.get(i));
+            if(q.getStatus().equals("expried")|| q.getStatus().equals("not_start")){
+                quizQuestionRepository.deleteQuiz(listId.get(i));
+                quizRepository.deleteQuiz(listId.get(i));
+            }
+        }
+        return  new BaseResponse( 200,"Xóa list quiz thành công ");
     }
 
     public String openQuestion(List<Long> listId) {

@@ -35,6 +35,8 @@ public interface QuizRepository extends JpaRepository<Quiz,Long> {
     @Query(value = "update quiz set user_start_quiz= :time where id = :id", nativeQuery = true)
     void updateUserStartQuiz(@Param("id") Long id,@Param("time") Long time);
 
+    @Query(value = "delete from where id = :id", nativeQuery = true)
+    void deleteQuiz(@Param("id") Long id);
 
     @Query(value = "select * from quiz where lower(status) like :status and lower(cate) like %:cate% and (lower(description) like %:description% or creator  IN :creator) and group_quiz_id=:gid ", nativeQuery = true)
     Page<Quiz> filterWhereNoUserId(@Param("status") String status,

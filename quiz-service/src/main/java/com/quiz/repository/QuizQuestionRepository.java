@@ -17,6 +17,9 @@ public interface QuizQuestionRepository extends JpaRepository<QuizQuestion,Long>
     @Query(value = "update quiz_questions set user_answer = :ans where questions_id =:ques and quiz_id=:quiz", nativeQuery = true)
     void updateUserAnswer(@Param("ques") Long ques, @Param("quiz") Long quiz,@Param("ans") String ans);
 
+    @Query(value = "delete from quiz_questions where quiz_id=:quiz", nativeQuery = true)
+    void deleteQuiz( @Param("quiz") Long quiz);
+
     @Query(value = "select * from quiz_questions where quiz_id = :id", nativeQuery = true)
     List<QuizQuestion> getListQuestionByQuizId(@Param("id") Long quizId);
 

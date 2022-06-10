@@ -31,6 +31,7 @@ public class CategoryService {
 
             throw new RuntimeException("this category was existed !!!");
         }
+
         Category categoryEntity = new Category();
         categoryEntity.setName(category.getName());
         categoryEntity.setActive(category.isActive());
