@@ -1,5 +1,6 @@
 package com.quiz.service;
 
+import com.quiz.Dto.BaseResponse;
 import com.quiz.Dto.CategoryEditRequest;
 import com.quiz.Dto.CategoryRequest;
 import com.quiz.entity.Category;
@@ -23,19 +24,20 @@ public class CategoryService {
     CategoryRepository categoryRepository;
     private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
 
-    public void createCategory(CategoryRequest category) {
+    public BaseResponse createCategory(CategoryRequest category) {
         logger.info("Receive infor of category {} to create", category.getName());
-
+        if(category.getName()==null || category.getName().trim().equals("")){
+            return new BaseResponse(400,"Chủ đề không được để trống ");
+        }
         if (categoryRepository.findByNameIgnoreCase(category.getName()) != null) {
             logger.error("this category was existed !!!");
-
-            throw new RuntimeException("this category was existed !!!");
+            throw new RuntimeException("Chủ đề đã tồn tại !!!");
         }
-
         Category categoryEntity = new Category();
         categoryEntity.setName(category.getName());
         categoryEntity.setActive(category.isActive());
         categoryRepository.save(categoryEntity);
+        return new BaseResponse(200,"Tạo chủ đề thành công ");
     }
 
 

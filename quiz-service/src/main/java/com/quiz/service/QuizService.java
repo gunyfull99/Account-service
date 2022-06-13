@@ -100,6 +100,16 @@ public class QuizService {
     public BaseResponse addQuesToQuiz(CreateQuizForm form) {
         logger.info("receive info to add Question To Quiz");
         String cate="";
+        if(form.getQuiz().getStartTime().isAfter(form.getQuiz().getExpiredTime())){
+            return new BaseResponse(400,"Thời gian mở phải trước thời gian đóng");
+        }
+        ZonedDateTime zdtEx = ZonedDateTime.of(form.getQuiz().getExpiredTime(), ZoneId.systemDefault());
+        ZonedDateTime zdtSt = ZonedDateTime.of(form.getQuiz().getStartTime(), ZoneId.systemDefault());
+        long expiredTime = zdtEx.toInstant().toEpochMilli();
+        long startTime = zdtSt.toInstant().toEpochMilli();
+        if(expiredTime-startTime<form.getQuiz().getQuizTime()*60*1000){
+            return new BaseResponse(400,"Thời gian làm bài vượt quá hạn làm bài.");
+        }
         GroupQuiz groupQuiz =new GroupQuiz();
         groupQuiz.setCate(cate);
         groupQuiz.setCreator(form.getQuiz().getCreator());
@@ -131,7 +141,7 @@ public class QuizService {
                 Collections.shuffle(hasTag1);
                 numberQuestion += form.getTopics().get(i).getQuantity();
                 if (form.getTopics().get(i).getQuantity() > hasTag1.size()) {
-                    throw new ResourceBadRequestException(new BaseResponse(80808, "Not enough question for topic " + i));
+                    return new BaseResponse(400, "Không đủ câu hỏi cho chủ đề " + i);
                 }
                 for (int j = 0; j < form.getTopics().get(i).getQuantity(); j++) {
 
@@ -150,8 +160,10 @@ public class QuizService {
             if(form.getQuiz().getQuizTime()==0){
                 quiz.setQuizTime(totalTime);
             }else{
+
                 quiz.setQuizTime(form.getQuiz().getQuizTime());
             }
+
             quiz.setCate(cate);
             quizRepository.save(quiz);
 
@@ -163,6 +175,7 @@ public class QuizService {
                 quizQuestionRepository.save(q1);
             }
         }
+
         groupQuiz.setCate(cate);
         groupQuizRepository.save(groupQuiz);
 
