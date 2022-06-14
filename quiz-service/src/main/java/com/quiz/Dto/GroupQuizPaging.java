@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,8 +18,10 @@ public class GroupQuizPaging {
     List<GroupQuiz> groupQuizList;
     int page ;
     int limit ;
-    long userId;
+    Long userId;
     LocalDateTime createDate;
+    LocalDateTime startTime;
+    LocalDateTime expiredTime;
     String keywords;
     String cate;
 

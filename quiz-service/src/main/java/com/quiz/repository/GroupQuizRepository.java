@@ -10,16 +10,29 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public interface GroupQuizRepository extends JpaRepository<GroupQuiz,Long> {
-    @Query(value = "select * from group_quiz where lower(cate) like %:cate% and (lower(description) like %:description% or creator  IN :creator) ", nativeQuery = true)
+
+    @Query("select gq from GroupQuiz gq where (:cate is null OR LOWER(gq.cate) LIKE %:cate%)" +
+            " AND ((:description is null OR LOWER(gq.description) LIKE %:description%) " +
+            "OR ((:creators) is null OR (gq.creator IN :creators))) " +
+            "AND (cast(:createDate as date) is null OR gq.createDate = :createDate) " +
+            "AND (cast(:startTime as date) is null OR gq.startTime >= :startTime)" +
+            "AND (cast(:expiredTime as date) is null OR gq.expiredTime <= :expiredTime)")
     Page<GroupQuiz> filter(@Param("cate") String cate,
                            @Param("description") String description,
-                           @Param("creator") List<Long> creator,
+                           @Param("creators") List<String> creators,
+                           @Param("createDate") LocalDateTime createDate,
+                           @Param("startTime") LocalDateTime  startTime,
+                           @Param("expiredTime") LocalDateTime  expiredTime,
                            Pageable pageable);
 
     @Query(value = "delete from group_quiz where id = :id", nativeQuery = true)
     void deleteGroupQuiz(@Param("id") Long id);
+
+
 }

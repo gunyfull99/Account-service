@@ -285,7 +285,7 @@ public class QuizController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<List<Quiz>> getAllQuizByUser(@RequestBody QuizPaging quizPaging) throws ResourceBadRequestException {
+    public ResponseEntity<QuizPaging> getAllQuizByUser(@RequestBody QuizPaging quizPaging) throws ResourceBadRequestException {
         return ResponseEntity.ok().body(quizService.getAllQuizByUser(quizPaging));
     }
 
