@@ -42,7 +42,7 @@ public interface QuizRepository extends JpaRepository<Quiz,Long> {
     Page<Quiz> filterWhereNoUserId(@Param("status") String status,
                                     @Param("cate") String cate,
                                     @Param("description") String description,
-                                   @Param("creator") List<Long> creator,
+                                   @Param("creator") List<String> creator,
                                    @Param("gid") Long groupId,
                                    Pageable pageable);
 

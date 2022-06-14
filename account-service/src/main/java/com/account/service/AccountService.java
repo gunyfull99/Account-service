@@ -76,13 +76,20 @@ public class AccountService {
     }
 
     public List<Account> listAllAccount() {
+
+        logger.info("find all account");
+
         return accountRepository.findAll();
     }
+
     public List<StatusWork> listAllStatusWork() {
+        logger.info("find all statuswork");
         return statusWorkRepository.findAll();
     }
 
     public void blockListUser(List<Long> listUser) {
+        logger.info("Block list user");
+
         for (int i = 0; i < listUser.size(); i++) {
             Account a = accountRepository.selectById(listUser.get(i));
             a.setActive(false);
@@ -114,12 +121,14 @@ public class AccountService {
     }
 
     public List<AccountDto> searchUser(String name) {
+
+        logger.info("search user");
+
         List<Account> list = null;
         if (name == null || name.trim().equals("")) {
             list = accountRepository.findAll();
         } else {
             list = accountRepository.searchUser(name);
-
         }
         List<AccountDto> a1 = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -130,6 +139,8 @@ public class AccountService {
     }
 
     public List<Long> getListUserId(String name) {
+        logger.info("list user id by name");
+
         List<Long> list = accountRepository.getListUserId(name);
         return list;
     }
@@ -183,10 +194,10 @@ public class AccountService {
     public BaseResponse createAccount(CreateAccountDto a) {
         logger.info("save user {}", a.getFullName());
         a.setPassword(passwordEncoder.encode(a.getPassword()));
-        Set<Roles> roles=new HashSet<>();
+        Set<Roles> roles = new HashSet<>();
         roles.add(roleRepository.findById(a.getRole()).get());
         ModelMapper mapper = new ModelMapper();
-        Account acc=mapper.map(a, Account.class);
+        Account acc = mapper.map(a, Account.class);
         acc.setCompany(companyRepository.findComPanyById(a.getCompany()));
         acc.setRoles(roles);
         acc.setActive(true);
@@ -202,10 +213,10 @@ public class AccountService {
             addPer2User(ap);
         }
 
-        return new BaseResponse(200,"Tạo tài khoản thành công ");
+        return new BaseResponse(200, "Tạo tài khoản thành công ");
     }
 
-    public Account convertAccount(Account acc,AccountDto a) {
+    public Account convertAccount(Account acc, AccountDto a) {
         acc.setPhone(a.getPhone());
         acc.setActive(a.isActive());
         acc.setAddress(a.getAddress());
@@ -239,11 +250,11 @@ public class AccountService {
         if (!match) {
             logger.error("Old pass  is wrong");
 
-            throw new ResourceBadRequestException(new BaseResponse(notFound, "Old pass  is wrong  "));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Sai mật khẩu cũ"));
         } else if (!form.getNewPass().equals(form.getReNewPass())) {
             logger.error("Re-NewPass not equal new pass");
 
-            throw new ResourceBadRequestException(new BaseResponse(notFound, "Re-NewPass not equal new pass  "));
+            throw new ResourceBadRequestException(new BaseResponse(400, "2 mật khẩu không khớp"));
         } else {
             user.setPassword(passwordEncoder.encode(form.getNewPass()));
         }
@@ -251,7 +262,7 @@ public class AccountService {
     }
 
 
-    public String saveRole(Roles role) {
+    public BaseResponse saveRole(Roles role) {
         logger.info("receive info to save for role {}", role.getName());
         Roles roles = roleRepository.save(role);
         List<Permission> listPer = permissionRepository.findAll();
@@ -264,7 +275,7 @@ public class AccountService {
             rp.setCan_read("false");
             addPer2Role(rp);
         }
-        return "Create role " + role.getName() + " successful";
+        return new BaseResponse(200,"Create role " + role.getName() + " successful") ;
     }
 
     public Permission savePermission(Permission permission) {
@@ -284,19 +295,19 @@ public class AccountService {
     }
 
 
-    public void addRoleToUser(String username, long roleId) throws ResourceNotFoundException {
+    public void addRoleToUser(String username, long roleId) throws ResourceBadRequestException {
         logger.info("add Role To User {}", username);
 
         Account user = accountRepository.findByUsername(username);
         if (user == null) {
             logger.error("Not found for this username {}", username);
 
-            throw new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this username "));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Không tìm thấy tài khoản "));
         }
 
         Roles role = roleRepository.getById(roleId);
         if (role == null) {
-            throw new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this Role Name "));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Không tìm thấy role name "));
         }
         // accountRepository.addRole2User(user.getId(), role.getId());
         user.getRoles().add(role);
@@ -304,28 +315,28 @@ public class AccountService {
 
     }
 
-    public void removeRoleToUser(String username, long roleId) throws ResourceNotFoundException {
+    public void removeRoleToUser(String username, long roleId) throws ResourceBadRequestException {
         logger.info("remove Role To User {}", username);
 
         Account user = accountRepository.findByUsername(username);
         if (user == null) {
             logger.error("Not found for this username {}", username);
 
-            throw new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this username "));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Không tìm thấy tài khoản"));
         }
         Set<Roles> userRole = user.getRoles();
         user.getRoles().removeIf(x -> x.getId() == roleId);
         accountRepository.save(user);
     }
 
-    public void removePermissionToUser(String username, long perId) throws ResourceNotFoundException {
+    public void removePermissionToUser(String username, long perId) throws ResourceBadRequestException {
         logger.info("remove Permission To User {}", username);
 
         Account user = accountRepository.findByUsername(username);
         if (user == null) {
             logger.error("Not found for this username {}", username);
 
-            throw new ResourceNotFoundException(new BaseResponse(notFound, "Not found for this username "));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Không tìm thấy tài khoản"));
         }
         Set<Permission> userPer = user.getPermissions();
         user.getPermissions().removeIf(x -> x.getId() == perId);
@@ -403,7 +414,7 @@ public class AccountService {
         logger.info("get Detail Permission In User");
         AccountPermission a = accountPermissionRepository.getDetailPerInUser(id, idP);
         if (a == null) {
-            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "Bạn không có quyền truy cập "));
         }
         return a;
     }
@@ -433,7 +444,7 @@ public class AccountService {
         rolePermissionRepository.save(rolePermission);
     }
 
-    public String updatePerInRole(RolePermission rolePermission) {
+    public BaseResponse updatePerInRole(RolePermission rolePermission) {
         logger.info("update Permission In Role");
         String canRead = "true";
         String canUpdate = "true";
@@ -445,10 +456,10 @@ public class AccountService {
         canCreate = rolePermission.getCan_create() == null ? canCreate = rp.getCan_create() : rolePermission.getCan_create();
 
         rolePermissionRepository.updatePerInRole(canCreate, canUpdate, canRead, rolePermission.getRoles_id(), rolePermission.getPermissions_id());
-        return "Update success!";
+        return new BaseResponse(200,"Update success!");
     }
 
-    public String updatePerInUser(AccountPermission accountPermission) {
+    public BaseResponse updatePerInUser(AccountPermission accountPermission) {
         logger.info("update Permission In User");
         String canRead = "true";
         String canUpdate = "true";
@@ -459,7 +470,7 @@ public class AccountService {
         canUpdate = accountPermission.getCan_update() == null ? canCreate = rp.getCan_update() : accountPermission.getCan_update();
         canCreate = accountPermission.getCan_create() == null ? canCreate = rp.getCan_create() : accountPermission.getCan_create();
         accountPermissionRepository.updatePerInUser(canCreate, canUpdate, canRead, accountPermission.getAccount_id(), accountPermission.getPermissions_id());
-        return "Update success!";
+        return new BaseResponse(200,"Update success!") ;
     }
 
     public AccountDto getAccByUsername(String username) {
@@ -479,8 +490,10 @@ public class AccountService {
     }
 
     public Page<Account> searchUserWithPaging(AccountPaging accountPaging) {
+        logger.info("Search user");
+
         Page<Account> a = null;
-        Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit(),Sort.by("id").descending());
+        Pageable pageable = PageRequest.of(accountPaging.getPage() - 1, accountPaging.getLimit(), Sort.by("id").descending());
 
         // a=accountRepository.filter(accountPaging.getSearch(),Long.parseLong(accountPaging.getRole()),accountPaging.getUserType(),pageable);
 
@@ -493,47 +506,17 @@ public class AccountService {
                     Long.parseLong(accountPaging.getRole()),
                     accountPaging.getUserType(),
                     pageable);
-        }else if(accountPaging.getUserType() == null || accountPaging.getUserType().trim().equals("")){
+        } else if (accountPaging.getUserType() == null || accountPaging.getUserType().trim().equals("")) {
             a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesId(accountPaging.getSearch(),
                     Long.parseLong(accountPaging.getRole()),
                     pageable);
         }
-
-
-//        if ((accountPaging.getSearch().isEmpty() || accountPaging.getSearch() == null || accountPaging.getSearch().trim().equals(""))
-//                && (accountPaging.getRole() == null || accountPaging.getRole().isEmpty())
-//                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())
-//        ) {
-//            a = accountRepository.findAll(pageable);
-//        } else if (accountPaging.getSearch() != null
-//                && (accountPaging.getRole() == null || accountPaging.getRole().isEmpty())
-//                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())) {
-//            a = accountRepository.findAllByFullNameContainingIgnoreCase(accountPaging.getSearch(), pageable);
-//        } else if (accountPaging.getSearch() != null
-//                && (accountPaging.getRole() != null)
-//                && (accountPaging.getUserType() == null || accountPaging.getUserType().isEmpty())) {
-//            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesId(accountPaging.getSearch(),
-//                    Long.parseLong(accountPaging.getRole()), pageable);
-//        } else if (accountPaging.getSearch() != null
-//                && (accountPaging.getRole() != null)
-//                && (accountPaging.getUserType() != null)) {
-//            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesIdAndUserType(accountPaging.getSearch(),
-//                    Long.parseLong(accountPaging.getRole()), accountPaging.getUserType(), pageable);
-//        } else if (accountPaging.getSearch() != null
-//                && (accountPaging.getRole() == null)
-//                && (accountPaging.getUserType() != null)) {
-//            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndUserType(accountPaging.getSearch(),
-//                    accountPaging.getUserType(), pageable);
-//        } else if (accountPaging.getSearch() == null
-//                && (accountPaging.getRole() == null)
-//                && (accountPaging.getUserType() != null)) {
-//            a = accountRepository.findAllByUserType(accountPaging.getUserType(), pageable);
-//        }
-
         return a;
     }
 
     public void sendHtmlMail(DataMailDTO dataMail, String templateName) throws MessagingException {
+        logger.info("Send mail");
+
         MimeMessage message = mailSender.createMimeMessage();
 
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
@@ -550,7 +533,9 @@ public class AccountService {
         mailSender.send(message);
     }
 
-    public String sendMailPassWord(ClientSdi sdi) throws ResourceNotFoundException {
+    public BaseResponse sendMailPassWord(ClientSdi sdi) throws ResourceNotFoundException {
+        logger.info("Send mail");
+
         try {
             Account a = accountRepository.findByEmail(sdi.getEmail());
             if (a == null) {
@@ -566,10 +551,10 @@ public class AccountService {
             sendHtmlMail(dataMail, "client");
             a.setPassword(newPass);
             AccountDto account = saveUserWithPassword(a);
-            return "Gửi mail thành công";
+            return new BaseResponse(200,"Gửi mail thành công") ;
         } catch (MessagingException exp) {
             exp.printStackTrace();
         }
-        return "Gửi mail thất bại";
+        return  new BaseResponse(200,"Gửi mail thất bại");
     }
 }

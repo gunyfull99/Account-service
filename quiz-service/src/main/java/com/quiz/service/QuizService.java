@@ -66,7 +66,7 @@ public class QuizService {
         LocalDateTime date1 = quiz.getStartTime();
         LocalDateTime date2 = quiz.getExpiredTime();
         if (date1.isAfter(date2)) {
-            throw new ResourceBadRequestException(new BaseResponse(80805, "StartTime must before ExpireTime"));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Thời gian mở phải trước thời gian đóng"));
         } else {
             quiz1.setDescription(quiz.getDescription());
             quiz1.setCreateDate(quiz.getCreateDate());
@@ -103,6 +103,10 @@ public class QuizService {
         String cate = "";
         if (form.getQuiz().getStartTime().isAfter(form.getQuiz().getExpiredTime())) {
             return new BaseResponse(400, "Thời gian mở phải trước thời gian đóng");
+        }
+        if(form.getQuiz().getQuizTime()<=0){
+            return new BaseResponse(400, "Thời gian làm bài ít nhất 1 phút");
+
         }
         ZonedDateTime zdtEx = ZonedDateTime.of(form.getQuiz().getExpiredTime(), ZoneId.systemDefault());
         ZonedDateTime zdtSt = ZonedDateTime.of(form.getQuiz().getStartTime(), ZoneId.systemDefault());
@@ -288,27 +292,6 @@ public class QuizService {
         return list;
     }
 
-//    public QuizPaging getListQuizPaging(QuizPaging quizPaging) {
-//
-//        logger.info("receive info to get List Quiz");
-//        Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit());
-//        Page<Quiz> list = null;
-//        if(quizPaging.getUserId()==0 && quizPaging.getStatus()==null){
-//            list=quizRepository.findAll(pageable);
-//        }else if(quizPaging.getUserId()==0 && quizPaging.getStatus()!=null){
-//            list=quizRepository.findAllByStatus(quizPaging.getStatus(),pageable);
-//        }else if(quizPaging.getUserId()!=0 && quizPaging.getStatus()==null){
-//            list=quizRepository.findAllByUserId(quizPaging.getUserId(),pageable);
-//        }else{
-//            list=quizRepository.findAllByUserIdAndStatus(quizPaging.getUserId(), quizPaging.getStatus(),pageable);
-//        }
-//
-//        for (int i = 0; i < list.getContent().size(); i++) {
-//            list.getContent().get(i).setQuestions(null);
-//        }
-//        QuizPaging qp=new QuizPaging((int) list.getTotalElements(),list.getContent(),quizPaging.getPage(),quizPaging.getLimit());
-//        return qp;
-//    }
 
 
     public QuizPaging getListQuizPaging(QuizPaging quizPaging) {
@@ -317,11 +300,14 @@ public class QuizService {
         Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit(), Sort.by("id").descending());
         Page<Quiz> list = null;
         List<Long> listUserId = restTemplateService.getListUserId(quizPaging.getKeywords() == null || quizPaging.getKeywords().equals("") ? " " : quizPaging.getKeywords());
-
+        List<String> listUser=new ArrayList<>();
+        for (int i = 0; i <listUserId.size() ; i++) {
+            listUser.add(listUserId.get(i)+"");
+        }
         list = quizRepository.filterWhereNoUserId(quizPaging.getStatus() == null || quizPaging.getStatus().trim().equals("") ? "%%" : quizPaging.getStatus(),
                 quizPaging.getCate() == null ? "" : quizPaging.getCate().toLowerCase(),
                 quizPaging.getKeywords() == null ? "" : quizPaging.getKeywords().toLowerCase(),
-                listUserId,
+                listUser,
                 quizPaging.getGroupQuiz(),
                 pageable);
         ModelMapper mapper = new ModelMapper();
@@ -403,13 +389,5 @@ public class QuizService {
         }
         return user;
     }
-//    public List<Object> getName() {
-//        List<Integer> accountId = quizRepository.getAllId();
-//        List<Object> list = new ArrayList<>();
-//        for (Integer integer : accountId) {
-//            Object o = restTemplateService.getName(integer);
-//            list.add(o);
-//        }
-//        return list;
-//    }
+
 }

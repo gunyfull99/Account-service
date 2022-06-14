@@ -83,7 +83,7 @@ public class QuizController {
     //http://localhost:8080/quiz/openquestion/
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PutMapping("/openquestion")
-    public String openQuestion(@RequestBody List<Long> id) {
+    public BaseResponse openQuestion(@RequestBody List<Long> id) {
         return quesTionService.openQuestion(id);
     }
 

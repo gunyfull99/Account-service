@@ -31,6 +31,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -75,9 +79,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/accounts/login", "/company/**","accounts/**","accounts/permission/**",
-                        "accounts/role/**","accounts/role/notPer/**","accounts/role/havePer/**").permitAll()
-               // .antMatchers("/accounts/role/**", "/accounts/{id}").hasAuthority("ADMIN")
+                .antMatchers("/accounts/login").permitAll()
+               // .antMatchers( "/accounts/{id}").hasAuthority("ADMIN")
                 .and().exceptionHandling().accessDeniedHandler(((request, response, accessDeniedException) -> {
                     globalExceptionHandler.handleConflict(response);
                 }))
@@ -97,6 +100,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        UrlBasedCorsConfigurationSource source =
+//                new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowCredentials(true);
+//        config.addAllowedOrigin("*");
+//        config.addAllowedHeader("*");
+//        config.addAllowedMethod("*");
+//        source.registerCorsConfiguration("/**", config);
+//        return new CorsFilter((CorsConfigurationSource) source);
+//    }
 
     @Override
     @Bean

@@ -113,14 +113,14 @@ public class QuesTionService {
         return  new BaseResponse( 200,"Xóa bài kiểm tra thành công ");
     }
 
-    public String openQuestion(List<Long> listId) {
+    public BaseResponse openQuestion(List<Long> listId) {
         logger.info("Receive id to open Question");
 
         for (int i = 0; i < listId.size(); i++) {
             questionRepository.openQuestion(listId.get(i));
 
         }
-        return "Open question success";
+        return new BaseResponse(200,"Mở câu hỏi thành công") ;
     }
 
 
@@ -130,7 +130,7 @@ public class QuesTionService {
         List<Question> question = questionRepository.getAllQuestion();
         if (question.isEmpty()) {
             logger.error("no question. please input new question !!!");
-            throw new RuntimeException("no question. please input new question !!!");
+            throw new RuntimeException("Question không được để trống!!!");
         }
         List<QuestionRequest> questionRequests = new ArrayList<>();
         for (Question question1 : question) {
@@ -153,7 +153,7 @@ public class QuesTionService {
         List<Question> question = questionRepository.getAllQuestionBlock();
         if (question.isEmpty()) {
             logger.error("no question block. please add new question block!!!");
-            throw new RuntimeException("no question block. please add new question block!!!");
+            throw new RuntimeException("Không có question trống!!!");
         }
         List<QuestionRequest> questionRequests = new ArrayList<>();
         for (Question question1 : question) {
@@ -177,7 +177,7 @@ public class QuesTionService {
         Question questionEntity = questionRepository.getDetailQuestion(request.getId());
         if (questionEntity == null) {
             logger.error("this question not exist or wrong id!!!");
-            throw new RuntimeException("this question not exist or wrong id!!!");
+            throw new RuntimeException("question không tồn tại!!!");
         }
         questionEntity.setContent(request.getContent());
         questionEntity.setQuestionType(questionTypeRepository.getById(request.getQuestionTypeId()));
@@ -269,7 +269,7 @@ public class QuesTionService {
         List<QuizQuestion> list = quizService.getListQuestionByQuizId(id);
         if (list.isEmpty()) {
             logger.error("this list question is not exist !!!");
-            throw new RuntimeException("this list question is not exist !!!");
+            throw new RuntimeException("List question không tồn tại !!!");
         }
         List<Question> questionEntity = new ArrayList<>();
         Quiz quiz = quizRepository.findById(id).get();
@@ -330,22 +330,22 @@ public class QuesTionService {
     }
 
     public void createQuestionType(QuestionTypeRequest type) {
+        logger.info("Creat new question type");
+
         QuestionType questionType = new QuestionType();
         questionType.setName(type.getName());
         questionTypeRepository.save(questionType);
     }
 
     public List<QuestionType> getAllQuestionType() {
+        logger.info("Get all question type");
+
         List<QuestionType> question = questionTypeRepository.getAllQuestionType();
         return question;
     }
 
     public void createQuestion(QuestionRequest request) {
         logger.info("Receive info of question {} to create", request.getContent());
-//        if (questionRepository.findByContent(request.getContent()) != null) {
-//            logger.error("this question was crate before !!!");
-//            throw new RuntimeException("this question was crate before !!!");
-//        }
         ModelMapper mapper = new ModelMapper();
         Question questionEntity = mapper.map(request, Question.class);
         Question q1 = questionRepository.save(questionEntity);
@@ -357,6 +357,8 @@ public class QuesTionService {
     }
 
     public void updateListChoice(Question q1, List<QuestionChoice> q) {
+        logger.info("Update list choice");
+
         for (int i = 0; i < q.size(); i++) {
             q.get(i).setQuestion(q1);
             questionChoiceRepository.save(q.get(i));
@@ -364,6 +366,8 @@ public class QuesTionService {
     }
 
     public BaseResponse excelImport(MultipartFile file) throws ResourceBadRequestException, IOException {
+        logger.info("Import excel");
+
         String content = null;
         QuestionType questionType = null;
         Category category = null;
@@ -478,7 +482,7 @@ public class QuesTionService {
             }
             workbook.close();
             long end = System.currentTimeMillis();
-            System.out.printf("Import done in %d ms\n", (end - start));
+            logger.info("Import done in %d ms\n", (end - start));
         } catch (Exception e) {
             throw new ResourceBadRequestException(new BaseResponse(400, "Tạo câu hỏi thất bại"));
         }

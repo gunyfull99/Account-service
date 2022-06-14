@@ -2,6 +2,7 @@ package com.account.service;
 
 import com.account.Dto.BaseResponse;
 import com.account.entity.Account;
+import com.account.exception.ResourceBadRequestException;
 import com.account.exception.ResourceNotFoundException;
 import com.account.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +19,21 @@ import java.util.Collection;
 public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
-    private static final int notFound = 80915;
     @Override
-    public UserDetails loadUserByUsername(String username) throws ResourceNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws ResourceBadRequestException {
         Account a = accountRepository.findByUsername(username);
         if (a == null) {
 
-            throw new ResourceNotFoundException(new BaseResponse(notFound,"User not found "));
+            throw new ResourceBadRequestException(new BaseResponse(400,"Không tìm thấy user"));
         } else {
 
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
             a.getRoles().forEach(role -> {
                 authorities.add(new SimpleGrantedAuthority(role.getName()));
             });
-            a.getPermissions().forEach(permission -> {
-                authorities.add(new SimpleGrantedAuthority(permission.getName()));
-            });
+//            a.getPermissions().forEach(permission -> {
+//                authorities.add(new SimpleGrantedAuthority(permission.getName()));
+//            });
             return new org.springframework.security.core.userdetails.User(a.getUsername(), a.getPassword(),
                     authorities);
         }

@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import javax.annotation.security.RolesAllowed;
+import javax.management.relation.Role;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -86,7 +90,7 @@ public class AccountController {
                     )
             );
         } catch (BadCredentialsException e) {
-            throw new ResourceBadRequestException(new BaseResponse(r.notFound, "Wrong user or password"));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Sai mật khẩu"));
         }
 
         final UserDetails userDetails
@@ -96,7 +100,7 @@ public class AccountController {
                 jwtUtility.generateToken(userDetails);
         AccountDto a = accountService.getAccByUsername(jwtRequest.getUsername());
         if (a.isActive() == false) {
-            throw new ResourceBadRequestException(new BaseResponse(r.notFound, "Account is block."));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Tài khoản bị khóa"));
         }
         return new JwtResponse(token, a);
     }
@@ -110,7 +114,7 @@ public class AccountController {
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "logout success !";
+        return "Đăng xuất thành công!";
     }
 
     // Create account
@@ -126,7 +130,7 @@ public class AccountController {
 
         Account account = accountService.getByUsername(a.getUsername());
         if (account != null) {
-            throw new ResourceBadRequestException(new BaseResponse(r.isExist, "User is exist"));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Tài khoản đã tổn tại"));
         } else {
             return new ResponseEntity<BaseResponse>(accountService.createAccount(a), HttpStatus.CREATED);
         }
@@ -142,13 +146,13 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public ResponseEntity<AccountDto> updateAccount(@Valid @RequestBody AccountDto a)
-            throws ResourceNotFoundException, ResourceBadRequestException {
+            throws ResourceBadRequestException {
 
         Account accountRequest = accountService.getByUsername(a.getUsername());
         if (accountRequest == null) {
-            throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this user"));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Không tìm thấy tài khoản"));
         }
-        accountRequest = accountService.convertAccount(accountRequest,a);
+        accountRequest = accountService.convertAccount(accountRequest, a);
 
         Account account = accountService.save(accountRequest);
         return ResponseEntity.ok().body(accountService.updateUser(account));
@@ -168,7 +172,7 @@ public class AccountController {
 
         Account accountRequest = accountService.getByUsername(a.getUsername());
         if (accountRequest == null) {
-            throw new ResourceNotFoundException(new BaseResponse(r.notFound, "Not found for this id"));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Không tìm thấy id"));
         }
         accountRequest.setPassword(a.getPassword());
         AccountDto account = accountService.saveUserWithPassword(accountRequest);
@@ -200,9 +204,9 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<String> createRole(@Valid @RequestBody Roles role) {
+    public ResponseEntity<BaseResponse> createRole(@Valid @RequestBody Roles role) {
 
-        return new ResponseEntity<String>(accountService.saveRole(role), HttpStatus.CREATED);
+        return new ResponseEntity<BaseResponse>(accountService.saveRole(role), HttpStatus.CREATED);
     }
 
     // add role to User
@@ -320,7 +324,7 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<String> updatePerToRole(@Valid @RequestBody RolePermission rolePermission) {
+    public ResponseEntity<BaseResponse> updatePerToRole(@Valid @RequestBody RolePermission rolePermission) {
         return ResponseEntity.ok().body(accountService.updatePerInRole(rolePermission));
 
     }
@@ -334,7 +338,7 @@ public class AccountController {
             @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public ResponseEntity<String> updatePerToUser(@Valid @RequestBody AccountPermission accountPermission) {
+    public ResponseEntity<BaseResponse> updatePerToUser(@Valid @RequestBody AccountPermission accountPermission) {
         return ResponseEntity.ok().body(accountService.updatePerInUser(accountPermission));
 
     }
@@ -351,7 +355,6 @@ public class AccountController {
     public ResponseEntity<Set<Roles>> getRoleNotInUser(@PathVariable(name = "id") long id) {
         return ResponseEntity.ok().body(accountService.getUserNotRole(id));
     }
-
 
 
     // get role  in Account
@@ -573,7 +576,7 @@ public class AccountController {
         Page<Account> list = accountService.searchUserWithPaging(accountPaging);
         List<AccountDto> list1 = accountService.convertAccount(list.getContent());
         return ResponseEntity.ok().body(new AccountPaging((int) list.getTotalElements(),
-                list1,accountPaging.getPage(),accountPaging.getLimit(),accountPaging.getSearch(),accountPaging.getRole(),accountPaging.getUserType()));
+                list1, accountPaging.getPage(), accountPaging.getLimit(), accountPaging.getSearch(), accountPaging.getRole(), accountPaging.getUserType()));
     }
 
     // search user
@@ -611,7 +614,7 @@ public class AccountController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     @PostMapping("/sendmailpassword")
-    public ResponseEntity<String> sendMailPassword(@RequestBody ClientSdi sdi) {
+    public ResponseEntity<BaseResponse> sendMailPassword(@RequestBody ClientSdi sdi) {
         return ResponseEntity.ok().body(accountService.sendMailPassWord(sdi));
     }
 }

@@ -70,6 +70,8 @@ public class CategoryService {
     }
 
     public List<Category> getAllCate() {
+        logger.info("get all category");
+
         return categoryRepository.findAll();
     }
 }
