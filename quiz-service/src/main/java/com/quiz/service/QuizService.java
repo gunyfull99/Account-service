@@ -21,10 +21,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 import static javax.persistence.FetchType.EAGER;
 
@@ -104,10 +101,9 @@ public class QuizService {
         if (form.getQuiz().getStartTime().isAfter(form.getQuiz().getExpiredTime())) {
             return new BaseResponse(400, "Thời gian mở phải trước thời gian đóng");
         }
-        if(form.getQuiz().getQuizTime()<=0){
-            return new BaseResponse(400, "Thời gian làm bài ít nhất 1 phút");
-
-        }
+//        if(form.getQuiz().getQuizTime()<=0){
+//            return new BaseResponse(400, "Thời gian làm bài ít nhất 1 phút");
+//        }
         ZonedDateTime zdtEx = ZonedDateTime.of(form.getQuiz().getExpiredTime(), ZoneId.systemDefault());
         ZonedDateTime zdtSt = ZonedDateTime.of(form.getQuiz().getStartTime(), ZoneId.systemDefault());
         long expiredTime = zdtEx.toInstant().toEpochMilli();
@@ -119,7 +115,7 @@ public class QuizService {
         groupQuiz.setCate(cate);
         groupQuiz.setCreator(form.getQuiz().getCreator());
         groupQuiz.setDescription(form.getQuiz().getDescription());
-        groupQuiz.setCreateDate(LocalDateTime.now());
+        groupQuiz.setCreateDate(new Date());
         groupQuiz.setStartTime(form.getQuiz().getStartTime());
         groupQuiz.setExpiredTime(form.getQuiz().getExpiredTime());
 
@@ -344,13 +340,15 @@ public class QuizService {
         for (int i = 0; i <listUserId.size() ; i++) {
             listUser.add(listUserId.get(i)+"");
         }
+        Date date1 = Date.from(quizPaging.getStartTime().atZone(ZoneId.systemDefault()).toInstant());
+        Date date2 = Date.from(quizPaging.getExpiredTime().atZone(ZoneId.systemDefault()).toInstant());
         list = groupQuizRepository.filter(
                 quizPaging.getCate().toLowerCase(),
                 quizPaging.getKeywords().toLowerCase(),
                 listUser,
                 quizPaging.getCreateDate(),
-                quizPaging.getStartTime(),
-                quizPaging.getExpiredTime(),
+                date1,
+                date2,
                 pageable);
 
         for (int i = 0; i < list.getContent().size(); i++) {

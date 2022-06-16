@@ -187,6 +187,9 @@ public class QuesTionService {
         questionEntity.setPublic(request.isPublic());
         questionEntity.setCompany_id(request.getCompany_id());
         questionRepository.save(questionEntity);
+        for (int i = 0; i < request.getQuestionChoice().size(); i++) {
+            questionChoiceRepository.save(request.getQuestionChoice().get(i));
+        }
     }
 
     public QuestionPaging getQuestionPaging(QuestionPaging questionPaging) {

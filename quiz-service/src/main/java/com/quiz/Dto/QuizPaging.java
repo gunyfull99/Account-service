@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 @Data
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class QuizPaging {
     int limit ;
     long userId;
     String  status;
-    LocalDateTime createDate;
+    Date createDate;
     String keywords;
     String cate;
     long groupQuiz;

@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class GroupQuiz implements Serializable {
     private Long id;
 
     private String description;
-    private LocalDateTime createDate;
+    private Date createDate;
     private LocalDateTime startTime;
     private LocalDateTime expiredTime;
     private String creator;

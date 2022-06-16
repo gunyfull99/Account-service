@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.ManyToMany;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,7 +21,7 @@ public class QuizPagingDto {
     private String description;
     private int quizTime;
     private AccountDto user;
-    private LocalDateTime createDate;
+    private Date createDate;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private LocalDateTime expiredTime;

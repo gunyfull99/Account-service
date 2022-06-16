@@ -80,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/accounts/login").permitAll()
-               // .antMatchers( "/accounts/{id}").hasAuthority("ADMIN")
+               //.antMatchers( "/accounts/{id}").hasAuthority("ADMIN")
                 .and().exceptionHandling().accessDeniedHandler(((request, response, accessDeniedException) -> {
                     globalExceptionHandler.handleConflict(response);
                 }))

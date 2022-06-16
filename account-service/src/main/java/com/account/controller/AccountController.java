@@ -75,6 +75,22 @@ public class AccountController {
         return ResponseEntity.ok().body(accountService.getAccById(account));
     }
 
+    // get detail account
+    // http://localhost:8091/accounts/getuserbyusername/{name}
+    @CrossOrigin(origins = "http://localhost:8091/accounts/getuserbyusername/{name}")
+    @GetMapping("/getuserbyusername/{name}")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Success", response = Account.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorized", response = BaseResponse.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+
+    public ResponseEntity<AccountDto> getDetailUser(@Valid @PathVariable(name = "name") String name) throws ResourceNotFoundException {
+        Account account = accountService.getByUsername(name);
+
+        return ResponseEntity.ok().body(accountService.getAccById(account));
+    }
+
     // Login
     // http://localhost:8091/accounts/login
     @PostMapping("/login")

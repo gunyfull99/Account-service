@@ -24,6 +24,7 @@ public class RestTemplateService {
     private Decode decode;
 
     private final String subpass = "/{id}";
+    private final String detailUser = "/getuserbyusername/{name}";
     private final String canRead = "/canread/{username}/{perid}";
     private final String canUpdate = "/canupdate/{username}/{perid}";
     private final String canCreate = "/cancreate/{username}/{perid}";
@@ -44,6 +45,21 @@ public class RestTemplateService {
         params.put("id", id);
 
         AccountDto user = restTemplate.getForObject(uriBuilder.toUriString() + subpass, AccountDto.class, params);
+        return user;
+    }
+
+    public AccountDto getDetailUser(String name) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Object> entity = new HttpEntity<Object>(headers);
+
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder
+                .fromUriString(libraryServiceHost);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("name", name);
+
+        AccountDto user = restTemplate.getForObject(uriBuilder.toUriString() + detailUser, AccountDto.class, params);
         return user;
     }
     public List<Long> getListUserId(String name) {

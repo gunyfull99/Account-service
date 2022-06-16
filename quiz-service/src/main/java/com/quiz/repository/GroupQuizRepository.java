@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -21,14 +22,14 @@ public interface GroupQuizRepository extends JpaRepository<GroupQuiz,Long> {
             " AND ((:description is null OR LOWER(gq.description) LIKE %:description%) " +
             "OR ((:creators) is null OR (gq.creator IN :creators))) " +
             "AND (cast(:createDate as date) is null OR gq.createDate = :createDate) " +
-            "AND (cast(:startTime as date) is null OR gq.startTime >= :startTime)" +
-            "AND (cast(:expiredTime as date) is null OR gq.expiredTime <= :expiredTime)")
+            "AND (cast(:startTime as date) is null OR gq.startTime = :startTime)" +
+            "AND (cast(:expiredTime as date) is null OR gq.expiredTime = :expiredTime)")
     Page<GroupQuiz> filter(@Param("cate") String cate,
                            @Param("description") String description,
                            @Param("creators") List<String> creators,
-                           @Param("createDate") LocalDateTime createDate,
-                           @Param("startTime") LocalDateTime  startTime,
-                           @Param("expiredTime") LocalDateTime  expiredTime,
+                           @Param("createDate") Date createDate,
+                           @Param("startTime") Date  startTime,
+                           @Param("expiredTime") Date  expiredTime,
                            Pageable pageable);
 
     @Query(value = "delete from group_quiz where id = :id", nativeQuery = true)

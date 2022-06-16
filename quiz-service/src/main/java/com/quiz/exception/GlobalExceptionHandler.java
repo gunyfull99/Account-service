@@ -7,10 +7,17 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-
+//
+//    @ExceptionHandler(value = AccessDeniedException.class)
+//    public void handleConflict(HttpServletResponse response) throws IOException {
+//        response.sendError(403, "Bạn không có quyền truy cập trang này ");
+//    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> resourceNotFoundException(ResourceNotFoundException ex) {
