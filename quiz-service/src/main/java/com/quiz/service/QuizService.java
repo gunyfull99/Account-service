@@ -340,15 +340,13 @@ public class QuizService {
         for (int i = 0; i <listUserId.size() ; i++) {
             listUser.add(listUserId.get(i)+"");
         }
-        Date date1 = Date.from(quizPaging.getStartTime().atZone(ZoneId.systemDefault()).toInstant());
-        Date date2 = Date.from(quizPaging.getExpiredTime().atZone(ZoneId.systemDefault()).toInstant());
         list = groupQuizRepository.filter(
                 quizPaging.getCate().toLowerCase(),
                 quizPaging.getKeywords().toLowerCase(),
                 listUser,
                 quizPaging.getCreateDate(),
-                date1,
-                date2,
+                quizPaging.getStartTime(),
+                quizPaging.getExpiredTime(),
                 pageable);
 
         for (int i = 0; i < list.getContent().size(); i++) {

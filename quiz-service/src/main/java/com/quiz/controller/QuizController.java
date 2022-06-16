@@ -12,6 +12,7 @@ import com.quiz.service.QuesTionService;
 import com.quiz.service.QuizService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.experimental.Delegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -421,7 +422,7 @@ public class QuizController {
 
     //http://localhost:8080/quiz/deletelistquiz
     @CrossOrigin(origins = "http://localhost:8080/quiz")
-    @PutMapping("/deletelistquiz")
+    @DeleteMapping("/deletelistquiz")
     public BaseResponse deleteListQuiz(@RequestBody List<Long> id) {
         return quesTionService.deleteListQuiz(id);
     }

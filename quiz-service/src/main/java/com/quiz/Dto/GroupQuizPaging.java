@@ -21,8 +21,8 @@ public class GroupQuizPaging {
     int limit ;
     Long userId;
     Date createDate;
-    LocalDateTime startTime;
-    LocalDateTime expiredTime;
+    Date startTime;
+    Date expiredTime;
     String keywords;
     String cate;
 
