@@ -17,10 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.ManyToMany;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.*;
 
 import static javax.persistence.FetchType.EAGER;
@@ -91,6 +88,7 @@ public class QuizService {
                 quiz.setStatus("expired");
             }
         }
+
         return quiz;
     }
 
@@ -229,7 +227,9 @@ public class QuizService {
         quiz.setScore(score + "/" + wrongAnswer + "/" + (quiz.getNumberQuestions() - score - wrongAnswer));
         //   quiz.setScore(score +"/"+(quiz.getNumberQuestions()-score));
         quiz.setStatus("done");
-        quiz.setEndTime(LocalDateTime.now());
+        LocalDateTime date =
+                LocalDateTime.from(Instant.ofEpochMilli(System.currentTimeMillis()).atZone(ZoneId.systemDefault()).toLocalDateTime());
+        quiz.setEndTime(date);
         quizRepository.save(quiz);
         quiz.setQuestions(null);
         quiz.setGroupQuiz(null);

@@ -38,7 +38,7 @@ public class Quiz  {
     private List<Question> questions = new ArrayList<>();
     private long userStartQuiz=0;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = GroupQuiz.class)
     @JoinColumn(name = "group_quiz_id")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

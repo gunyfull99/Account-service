@@ -103,13 +103,15 @@ public class QuesTionService {
                 return  new BaseResponse( 200,"Đã có ứng viên làm bài kiểm tra này.Xóa bài kiểm tra thất bại.");
             }
         }
-
+        long gqId=0;
         for (int i = 0; i < listId.size(); i++) {
             Quiz q =quizRepository.getById(listId.get(i));
                 quizQuestionRepository.deleteQuiz(listId.get(i));
                 quizRepository.deleteQuiz(listId.get(i));
-                groupQuizRepository.deleteGroupQuiz(q.getGroupQuiz().getId());
+            gqId=q.getGroupQuiz().getId();
         }
+        groupQuizRepository.deleteGroupQuiz(gqId);
+
         return  new BaseResponse( 200,"Xóa bài kiểm tra thành công ");
     }
 
@@ -204,16 +206,16 @@ public class QuesTionService {
         }
 
         if (questionPaging.getTypeId() == 0 && questionPaging.getCateId() == 0) {
-            questionEntity = questionRepository.findAllByContentContainingIgnoreCaseAndIsActive(search, true,pageable);
+            questionEntity = questionRepository.findAllByContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(search,true, search,pageable);
         } else if (questionPaging.getCateId() == 0) {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActive(questionPaging.getTypeId(), search,true, pageable);
+            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(questionPaging.getTypeId(), search,true,search, pageable);
         } else if (questionPaging.getTypeId() == 0) {
-            questionEntity = questionRepository.findAllByCategoryIdAndContentContainingIgnoreCaseAndIsActive(questionPaging.getCateId(),
-                    search,true,
+            questionEntity = questionRepository.findAllByCategoryIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(questionPaging.getCateId(),
+                    search,true,search,
                     pageable);
         } else {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndCategoryIdAndContentContainingIgnoreCaseAndIsActive(
-                    questionPaging.getTypeId(), questionPaging.getCateId(), search,true, pageable
+            questionEntity = questionRepository.findAllByQuestionTypeIdAndCategoryIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(
+                    questionPaging.getTypeId(), questionPaging.getCateId(), search,true,search, pageable
             );
         }
         List<QuestDTO> questionRequests = new ArrayList<>();
@@ -242,8 +244,8 @@ public class QuesTionService {
         if (questionPaging.getSearch() == null || questionPaging.getSearch().trim().equals("")) {
             questionEntity = questionRepository.findAllByQuestionTypeId(questionPaging.getTypeId(), pageable);
         } else {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActive(questionPaging.getTypeId(),
-                    questionPaging.getSearch(),true,
+            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(questionPaging.getTypeId(),
+                    questionPaging.getSearch(),true,questionPaging.getSearch(),
                     pageable);
         }
         List<QuestDTO> questionRequests = new ArrayList<>();

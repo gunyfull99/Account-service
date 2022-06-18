@@ -15,9 +15,9 @@ public class QuestionPaging {
     List<QuestDTO> questions;
     int page;
     int limit;
-    long cateId;
+    Long cateId;
     String search;
-    long typeId;
+    Long typeId;
 
     public  QuestionPaging(int totalElements,List<QuestDTO> questions){
         this.total=totalElements;

@@ -34,7 +34,7 @@ public interface QuizRepository extends JpaRepository<Quiz,Long> {
     @Modifying
     @Query(value = "update quiz set user_start_quiz= :time where id = :id", nativeQuery = true)
     void updateUserStartQuiz(@Param("id") Long id,@Param("time") Long time);
-
+    @Modifying
     @Query(value = "delete from quiz where id = :id", nativeQuery = true)
     void deleteQuiz(@Param("id") Long id);
 

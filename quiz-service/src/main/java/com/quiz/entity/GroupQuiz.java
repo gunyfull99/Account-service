@@ -13,8 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "group_quiz")
-public class GroupQuiz implements Serializable {
-    private static final Long serialVersionUID = 1L;
+public class GroupQuiz  {
     @Id
     @SequenceGenerator(name = "GroupQuiz_generator", sequenceName = "GroupQuiz_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GroupQuiz_generator")
@@ -27,7 +26,7 @@ public class GroupQuiz implements Serializable {
     private String creator;
     private String cate;
 
-    @OneToMany(mappedBy = "groupQuiz", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "groupQuiz")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private List<Quiz> quiz;
