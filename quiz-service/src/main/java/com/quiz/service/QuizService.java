@@ -265,11 +265,12 @@ public class QuizService {
                     save(list1.get(i));
                 }
             }
-            list1.get(i).setQuestions(null);
-            list1.get(i).setGroupQuiz(null);
+//            list1.get(i).setQuestions(null);
+//            list1.get(i).setGroupQuiz(null);
             QuizPagingDto q = mapper.map(list.getContent().get(i), QuizPagingDto.class);
         //    q.setGroupName(groupQuizRepository.getById(quizPaging.getGroupQuiz()).getDescription());
            // q.setUser(restTemplateService.getName((int) list.getContent().get(i).getUserId()));
+            q.setQuestions(null);
             quizDtoList.add(q);
 
         }
@@ -311,8 +312,7 @@ public class QuizService {
         ModelMapper mapper = new ModelMapper();
         List<QuizPagingDto> quizDtoList = new ArrayList<>();
         for (int i = 0; i < list.getContent().size(); i++) {
-            list.getContent().get(i).setQuestions(null);
-            list.getContent().get(i).setGroupQuiz(null);
+
             if (list.getContent().get(i).getStatus().equals("not_start")) {
                 ZonedDateTime zdt = ZonedDateTime.of(list.getContent().get(i).getExpiredTime(), ZoneId.systemDefault());
                 long expiredTime = zdt.toInstant().toEpochMilli();
@@ -322,9 +322,12 @@ public class QuizService {
                     save(list.getContent().get(i));
                 }
             }
+//            list.getContent().get(i).setQuestions(null);
+//            list.getContent().get(i).setGroupQuiz(null);
             QuizPagingDto q = mapper.map(list.getContent().get(i), QuizPagingDto.class);
             q.setGroupName(groupQuizRepository.getById(quizPaging.getGroupQuiz()).getDescription());
             q.setUser(restTemplateService.getName((int) list.getContent().get(i).getUserId()));
+            q.setQuestions(null);
             quizDtoList.add(q);
         }
         QuizPaging qp = new QuizPaging((int) list.getTotalElements(), quizDtoList, quizPaging.getPage(), quizPaging.getLimit());
