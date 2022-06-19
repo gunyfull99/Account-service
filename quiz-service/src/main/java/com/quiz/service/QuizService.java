@@ -255,8 +255,7 @@ public class QuizService {
         ModelMapper mapper = new ModelMapper();
         List<QuizPagingDto> quizDtoList = new ArrayList<>();
         for (int i = 0; i < list1.size(); i++) {
-            list1.get(i).setQuestions(null);
-            list1.get(i).setGroupQuiz(null);
+
             if (list1.get(i).getStatus().equals("not_start")) {
                 ZonedDateTime zdt = ZonedDateTime.of(list1.get(i).getExpiredTime(), ZoneId.systemDefault());
                 long expiredTime = zdt.toInstant().toEpochMilli();
@@ -266,10 +265,13 @@ public class QuizService {
                     save(list1.get(i));
                 }
             }
+            list1.get(i).setQuestions(null);
+            list1.get(i).setGroupQuiz(null);
             QuizPagingDto q = mapper.map(list.getContent().get(i), QuizPagingDto.class);
         //    q.setGroupName(groupQuizRepository.getById(quizPaging.getGroupQuiz()).getDescription());
            // q.setUser(restTemplateService.getName((int) list.getContent().get(i).getUserId()));
             quizDtoList.add(q);
+
         }
         QuizPaging qp = new QuizPaging((int) list.getTotalElements(), quizDtoList, quizPaging.getPage(), quizPaging.getLimit());
 

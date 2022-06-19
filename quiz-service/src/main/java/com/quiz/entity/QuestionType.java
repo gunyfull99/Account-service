@@ -17,6 +17,6 @@ public class QuestionType {
     @Id
     @SequenceGenerator(name = "questionT_generator", sequenceName = "questionT_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "questionT_generator")
-    private long id;
+    private Long id;
     private String name;
 }

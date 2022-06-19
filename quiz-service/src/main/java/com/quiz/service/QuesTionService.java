@@ -197,27 +197,10 @@ public class QuesTionService {
     public QuestionPaging getQuestionPaging(QuestionPaging questionPaging) {
         logger.info("Receive info of question {} to edit", questionPaging.getCateId());
         Pageable pageable = PageRequest.of(questionPaging.getPage() - 1, questionPaging.getLimit(), Sort.by("id").descending());
-        Page<Question> questionEntity = null;
-        String search = "";
-        if (questionPaging.getSearch() == null) {
-            search = "";
-        } else {
-            search = questionPaging.getSearch();
-        }
 
-        if (questionPaging.getTypeId() == 0 && questionPaging.getCateId() == 0) {
-            questionEntity = questionRepository.findAllByContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(search,true, search,pageable);
-        } else if (questionPaging.getCateId() == 0) {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(questionPaging.getTypeId(), search,true,search, pageable);
-        } else if (questionPaging.getTypeId() == 0) {
-            questionEntity = questionRepository.findAllByCategoryIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(questionPaging.getCateId(),
-                    search,true,search,
-                    pageable);
-        } else {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndCategoryIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(
-                    questionPaging.getTypeId(), questionPaging.getCateId(), search,true,search, pageable
-            );
-        }
+        Page<Question> questionEntity = questionRepository.filter(questionPaging.getCateId()==null ? null : questionPaging.getCateId()
+                ,questionPaging.getSearch(),questionPaging.getTypeId()==null ? null : questionPaging.getTypeId(),pageable);
+
         List<QuestDTO> questionRequests = new ArrayList<>();
 
         for (Question question : questionEntity.getContent()) {
@@ -237,35 +220,35 @@ public class QuesTionService {
         return new QuestionPaging((int) questionEntity.getTotalElements(), questionRequests, questionPaging.getPage(), questionPaging.getLimit(), questionPaging.getCateId(), questionPaging.getSearch());
     }
 
-    public QuestionPaging getQuestionByQuestionType(QuestionPaging questionPaging) {
-        logger.info("Receive info of question {} to edit", questionPaging.getCateId());
-        Pageable pageable = PageRequest.of(questionPaging.getPage() - 1, questionPaging.getLimit());
-        Page<Question> questionEntity = null;
-        if (questionPaging.getSearch() == null || questionPaging.getSearch().trim().equals("")) {
-            questionEntity = questionRepository.findAllByQuestionTypeId(questionPaging.getTypeId(), pageable);
-        } else {
-            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(questionPaging.getTypeId(),
-                    questionPaging.getSearch(),true,questionPaging.getSearch(),
-                    pageable);
-        }
-        List<QuestDTO> questionRequests = new ArrayList<>();
-
-        for (Question question : questionEntity.getContent()) {
-            ModelMapper mapper = new ModelMapper();
-            QuestDTO request = mapper.map(question, QuestDTO.class);
-            List<QuestionChoiceDTO> questionChoiceDTOS = new ArrayList<>();
-            for (QuestionChoice questionChoice : question.getQuestionChoice()) {
-                ModelMapper mapper1 = new ModelMapper();
-                QuestionChoiceDTO questionChoiceDTO = mapper1.map(questionChoice, QuestionChoiceDTO.class);
-                questionChoiceDTOS.add(questionChoiceDTO);
-            }
-            request.setQuestions_id(question.getId());
-            request.setQuestionChoiceDTOs(questionChoiceDTOS);
-            request.setQuestionTime(question.getQuestionTime());
-            questionRequests.add(request);
-        }
-        return new QuestionPaging((int) questionEntity.getTotalElements(), questionRequests, questionPaging.getPage(), questionPaging.getLimit(), questionPaging.getSearch(), questionPaging.getTypeId());
-    }
+//    public QuestionPaging getQuestionByQuestionType(QuestionPaging questionPaging) {
+//        logger.info("Receive info of question {} to edit", questionPaging.getCateId());
+//        Pageable pageable = PageRequest.of(questionPaging.getPage() - 1, questionPaging.getLimit());
+//        Page<Question> questionEntity = null;
+//        if (questionPaging.getSearch() == null || questionPaging.getSearch().trim().equals("")) {
+//            questionEntity = questionRepository.findAllByQuestionTypeId(questionPaging.getTypeId().get(), pageable);
+//        } else {
+//            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(questionPaging.getTypeId(),
+//                    questionPaging.getSearch(),true,questionPaging.getSearch(),
+//                    pageable);
+//        }
+//        List<QuestDTO> questionRequests = new ArrayList<>();
+//
+//        for (Question question : questionEntity.getContent()) {
+//            ModelMapper mapper = new ModelMapper();
+//            QuestDTO request = mapper.map(question, QuestDTO.class);
+//            List<QuestionChoiceDTO> questionChoiceDTOS = new ArrayList<>();
+//            for (QuestionChoice questionChoice : question.getQuestionChoice()) {
+//                ModelMapper mapper1 = new ModelMapper();
+//                QuestionChoiceDTO questionChoiceDTO = mapper1.map(questionChoice, QuestionChoiceDTO.class);
+//                questionChoiceDTOS.add(questionChoiceDTO);
+//            }
+//            request.setQuestions_id(question.getId());
+//            request.setQuestionChoiceDTOs(questionChoiceDTOS);
+//            request.setQuestionTime(question.getQuestionTime());
+//            questionRequests.add(request);
+//        }
+//        return new QuestionPaging((int) questionEntity.getTotalElements(), questionRequests, questionPaging.getPage(), questionPaging.getLimit(), questionPaging.getSearch(), questionPaging.getTypeId());
+//    }
 
     public List<QuestDTO> getListQuestionByQuizId(long id,boolean isView) {
         logger.info("Receive id to get List Question By Quiz Id", id);

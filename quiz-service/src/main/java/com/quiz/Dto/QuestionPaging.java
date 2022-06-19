@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +25,7 @@ public class QuestionPaging {
         this.questions=questions;
     }
 
-    public  QuestionPaging(int totalElements,List<QuestDTO> questions,int page,int limit,long cateId,String search){
+    public  QuestionPaging(int totalElements,List<QuestDTO> questions,int page,int limit,Long cateId,String search){
         this.total=totalElements;
         this.questions=questions;
         this.page=page;
@@ -33,7 +34,7 @@ public class QuestionPaging {
         this.search=search;
     }
 
-    public  QuestionPaging(int totalElements,List<QuestDTO> questions,int page,int limit,String search,long typeId){
+    public  QuestionPaging(int totalElements,List<QuestDTO> questions,int page,int limit,String search,Long typeId){
         this.total=totalElements;
         this.questions=questions;
         this.page=page;

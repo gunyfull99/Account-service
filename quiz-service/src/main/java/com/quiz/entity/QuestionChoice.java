@@ -15,7 +15,7 @@ public class QuestionChoice {
     @Id
     @SequenceGenerator(name = "questionC_generator", sequenceName = "questionC_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "questionC_generator")
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "question_id")

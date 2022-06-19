@@ -101,16 +101,16 @@ public class QuizController {
     }
 
     //http://localhost:8080/quiz/getquestionbytype
-    @CrossOrigin(origins = "http://localhost:8080/quiz")
-    @PostMapping("/getquestionbytype")
-    public QuestionPaging getQuestionByType(@RequestBody QuestionPaging questionPaging
-//            , @RequestHeader("Authorization") String token
-    ) {
-//        if (templateService.getCanRead(perQuestion, token) == false) {
-//            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-//        }
-        return quesTionService.getQuestionByQuestionType(questionPaging);
-    }
+//    @CrossOrigin(origins = "http://localhost:8080/quiz")
+//    @PostMapping("/getquestionbytype")
+//    public QuestionPaging getQuestionByType(@RequestBody QuestionPaging questionPaging
+////            , @RequestHeader("Authorization") String token
+//    ) {
+////        if (templateService.getCanRead(perQuestion, token) == false) {
+////            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+////        }
+//        return quesTionService.getQuestionByQuestionType(questionPaging);
+//    }
 
     //http://localhost:8080/quiz/getAllQuestion
     @CrossOrigin(origins = "http://localhost:8080/quiz")

@@ -17,7 +17,7 @@ public class Category  {
     @Id
     @SequenceGenerator(name = "category_generator", sequenceName = "category_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_generator")
-    private long id;
+    private Long id;
 
     private String name;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

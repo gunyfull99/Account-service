@@ -20,28 +20,19 @@ public interface QuestionRepository extends JpaRepository<Question,Long> {
     @Query(value = "select * from questions where cate_id = :id and type_id != 3 and is_active=true", nativeQuery = true)
     List<Question> getAllQuestionByCateToCreateQuiz(@Param("id") long id );
 
-    Page<Question> findAllByCategoryId (long id, Pageable p);
-    Page<Question> findAllByQuestionTypeId (long id, Pageable p);
-    Page<Question> findAllByCategoryIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(long id,String content,boolean isActive,String content1, Pageable p);
-    Page<Question> findAllByContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(String content,boolean isActive,String content1, Pageable p);
-    Page<Question> findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase (long id,String content,boolean isActive,String content1, Pageable p);
-    Page<Question> findAllByQuestionTypeIdAndCategoryIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase (long idT,long idC,String content,boolean isActive,String content1, Pageable p);
 
 //    SELECT q.id,q.content FROM  questions as q  join question_choice as qc
 //    ON q.id=qc.question_id group by q.id
 
-    @Query("select gq from GroupQuiz gq where (:cate is null OR LOWER(gq.cate) LIKE %:cate%)" +
-            " AND ((:description is null OR LOWER(gq.description) LIKE %:description%) " +
-            "OR ((:creators) is null OR (gq.creator IN :creators))) " +
-            "AND (cast(:createDate as date) is null OR gq.createDate = :createDate) " +
-            "AND (cast(:startTime as date) is null OR cast(gq.startTime as date) = :startTime)" +
-            "AND (cast(:expiredTime as date) is null OR cast(gq.expiredTime as date) = :expiredTime)")
-    Page<Question> filter(@Param("cate") String cate,
-                           @Param("description") String description,
-                           @Param("creators") List<String> creators,
-                           @Param("createDate") Date createDate,
-                           @Param("startTime") Date  startTime,
-                           @Param("expiredTime") Date  expiredTime,
+    @Query("SELECT q FROM  Question q  " +
+         //   "ON q.id=qc.question.id group by q.id  " +
+            "WHERE  "+
+            "  ((:search is null OR LOWER(q.content) LIKE %:search%) " +
+            ") AND (:cateId is null OR (q.category.id) = :cateId) " +
+            "AND (:typeId is null OR (q.questionType.id) = :typeId)")
+    Page<Question> filter(@Param("cateId") Long cateId,
+                           @Param("search") String search,
+                           @Param("typeId") Long typeId,
                            Pageable pageable);
 
     @Query(value = "select * from questions where cate_id = :id and type_id = 3 and is_active=true", nativeQuery = true)
