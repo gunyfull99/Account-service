@@ -337,8 +337,8 @@ public class QuizService {
             listUser.add(listUserId.get(i) + "");
         }
         list = groupQuizRepository.filter(
-                quizPaging.getCate().toLowerCase(),
-                quizPaging.getKeywords().toLowerCase(),
+                quizPaging.getCate()==null?"":quizPaging.getCate().trim().toLowerCase(),
+                quizPaging.getKeywords()==null?"":quizPaging.getKeywords().trim().toLowerCase(),
                 listUser,
                 quizPaging.getCreateDate(),
                 quizPaging.getStartTime(),
