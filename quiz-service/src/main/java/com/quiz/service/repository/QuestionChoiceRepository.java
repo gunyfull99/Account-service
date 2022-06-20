@@ -1,4 +1,4 @@
-package com.quiz.repository;
+package com.quiz.service.repository;
 
 import com.quiz.entity.QuestionChoice;
 import com.quiz.entity.Quiz;

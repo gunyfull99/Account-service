@@ -1,6 +1,7 @@
 package com.quiz.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jdk.jfr.Timestamp;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,10 +26,12 @@ public class Quiz  {
     private String description;
     private int quizTime;
     private long userId;
-    private LocalDateTime createDate;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private LocalDateTime expiredTime;
+    private Date createDate;
+    private Date startTime;
+    private Date endTime;
+    private Date expiredTime;
+
+
     private String status;
     private int numberQuestions;
     private String score;

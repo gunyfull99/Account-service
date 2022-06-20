@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuestionChoiceDTO {
-    private long id;
+    private Long id;
     private String name;
     private boolean isTrue;
     private String text;

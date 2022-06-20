@@ -21,8 +21,8 @@ public class GroupQuiz  {
 
     private String description;
     private Date createDate;
-    private LocalDateTime startTime;
-    private LocalDateTime expiredTime;
+    private Date startTime;
+    private Date expiredTime;
     private String creator;
     private String cate;
 

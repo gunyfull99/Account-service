@@ -3,8 +3,8 @@ package com.quiz.service;
 import com.quiz.Dto.*;
 import com.quiz.entity.*;
 import com.quiz.exception.ResourceBadRequestException;
-import com.quiz.repository.*;
 import com.quiz.restTemplate.RestTemplateService;
+import com.quiz.service.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -16,11 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.ManyToMany;
 import java.time.*;
 import java.util.*;
-
-import static javax.persistence.FetchType.EAGER;
 
 @Service
 @RequiredArgsConstructor
@@ -57,9 +54,7 @@ public class QuizService {
         logger.info("receive info to create quiz");
 
         Quiz quiz1 = new Quiz();
-        LocalDateTime date1 = quiz.getStartTime();
-        LocalDateTime date2 = quiz.getExpiredTime();
-        if (date1.isAfter(date2)) {
+        if (quiz.getExpiredTime().getTime() - quiz.getStartTime().getTime() <= 0) {
             throw new ResourceBadRequestException(new BaseResponse(400, "Thời gian mở phải trước thời gian đóng"));
         } else {
             quiz1.setDescription(quiz.getDescription());
@@ -81,10 +76,8 @@ public class QuizService {
         quiz.setQuestions(null);
         quiz.setGroupQuiz(null);
         if (quiz.getStatus().equals("not_start")) {
-            ZonedDateTime zdt = ZonedDateTime.of(quiz.getExpiredTime(), ZoneId.systemDefault());
-            long expiredTime = zdt.toInstant().toEpochMilli();
             long now = System.currentTimeMillis();
-            if (expiredTime < now) {
+            if (quiz.getExpiredTime().getTime() < now) {
                 quiz.setStatus("expired");
             }
         }
@@ -96,16 +89,14 @@ public class QuizService {
     public BaseResponse addQuesToQuiz(CreateQuizForm form) {
         logger.info("receive info to add Question To Quiz");
         String cate = "";
-        if (form.getQuiz().getStartTime().isAfter(form.getQuiz().getExpiredTime())) {
+        if (form.getQuiz().getExpiredTime().getTime() - form.getQuiz().getStartTime().getTime() <= 0) {
             return new BaseResponse(400, "Thời gian mở phải trước thời gian đóng");
         }
 //        if(form.getQuiz().getQuizTime()<=0){
 //            return new BaseResponse(400, "Thời gian làm bài ít nhất 1 phút");
 //        }
-        ZonedDateTime zdtEx = ZonedDateTime.of(form.getQuiz().getExpiredTime(), ZoneId.systemDefault());
-        ZonedDateTime zdtSt = ZonedDateTime.of(form.getQuiz().getStartTime(), ZoneId.systemDefault());
-        long expiredTime = zdtEx.toInstant().toEpochMilli();
-        long startTime = zdtSt.toInstant().toEpochMilli();
+        long expiredTime = form.getQuiz().getExpiredTime().getTime();
+        long startTime = form.getQuiz().getStartTime().getTime();
         if (expiredTime - startTime < form.getQuiz().getQuizTime() * 60 * 1000) {
             return new BaseResponse(400, "Thời gian làm bài vượt quá hạn làm bài.");
         }
@@ -116,34 +107,24 @@ public class QuizService {
         groupQuiz.setCreateDate(new Date());
         groupQuiz.setStartTime(form.getQuiz().getStartTime());
         groupQuiz.setExpiredTime(form.getQuiz().getExpiredTime());
-
         groupQuiz = groupQuizRepository.save(groupQuiz);
 
         for (int k = 0; k < form.getQuiz().getUserId().size(); k++) {
-
-            Quiz quiz1 = new Quiz(form.getQuiz().getId(), form.getQuiz().getDescription(), form.getQuiz().getQuizTime(),
-                    form.getQuiz().getUserId().get(k), LocalDateTime.now(), form.getQuiz().getStartTime(), form.getQuiz().getEndTime(),
-                    form.getQuiz().getExpiredTime(), form.getQuiz().getStatus(), form.getQuiz().getNumberQuestions()
-                    , form.getQuiz().getScore(), form.getQuiz().getCreator(), cate, form.getQuiz().getQuestions(), form.getQuiz().getUserStartQuiz(), groupQuiz
-            );
-            Quiz quiz = createQuiz(quiz1);
             int numberQuestion = 0;
             int totalTime = 0;
             List<Question> q = new ArrayList<>();
-
-
             for (int i = 0; i < form.getTopics().size(); i++) {
                 String getCateName = categoryRepository.getById(form.getTopics().get(i).getCate()).getName().toUpperCase();
                 cate = i == 0 ? getCateName : cate + "," + getCateName;
-
                 List<Question> hasTag1 = quesTionService.getAllQuestionByCate(form.getTopics().get(i).getCate());
                 Collections.shuffle(hasTag1);
                 numberQuestion += form.getTopics().get(i).getQuantity();
                 if (form.getTopics().get(i).getQuantity() > hasTag1.size()) {
-                    return new BaseResponse(400, "Không đủ câu hỏi cho chủ đề " + i);
+                    Long gId=groupQuiz.getId();
+                    groupQuizRepository.deleteGroupQuiz(gId);
+                    return new BaseResponse(400, "Không đủ câu hỏi cho chủ đề " + i );
                 }
                 for (int j = 0; j < form.getTopics().get(i).getQuantity(); j++) {
-
                     q.add(hasTag1.get(j));
                     totalTime += hasTag1.get(j).getQuestionTime();
                 }
@@ -155,6 +136,14 @@ public class QuizService {
                     }
                 }
             }
+            Quiz quiz1 = new Quiz(form.getQuiz().getId(), form.getQuiz().getDescription(), form.getQuiz().getQuizTime(),
+                    form.getQuiz().getUserId().get(k), new Date(), form.getQuiz().getStartTime(), form.getQuiz().getEndTime(),
+                    form.getQuiz().getExpiredTime(), form.getQuiz().getStatus(), form.getQuiz().getNumberQuestions()
+                    , form.getQuiz().getScore(), form.getQuiz().getCreator(), cate, form.getQuiz().getQuestions(), form.getQuiz().getUserStartQuiz(), groupQuiz
+            );
+
+            Quiz quiz = createQuiz(quiz1);
+
             quiz.setNumberQuestions(numberQuestion);
             if (form.getQuiz().getQuizTime() == 0) {
                 quiz.setQuizTime(totalTime);
@@ -227,9 +216,16 @@ public class QuizService {
         quiz.setScore(score + "/" + wrongAnswer + "/" + (quiz.getNumberQuestions() - score - wrongAnswer));
         //   quiz.setScore(score +"/"+(quiz.getNumberQuestions()-score));
         quiz.setStatus("done");
-        LocalDateTime date =
-                LocalDateTime.from(Instant.ofEpochMilli(System.currentTimeMillis()).atZone(ZoneId.systemDefault()).toLocalDateTime());
-        quiz.setEndTime(date);
+//        LocalDateTime date = LocalDateTime.ofInstant(Instant.ofEpochMilli(System.currentTimeMillis()),ZoneId.systemDefault());
+//        Date startTime = new Date();
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(startTime);
+//        calendar.get(Calendar.HOUR);
+//        calendar.get(Calendar.DAY_OF_WEEK);
+//        calendar.set(Calendar.HOUR, 20);
+//        String response = String.format("%02d:%02d:%02d", calendar.get(Calendar.HOUR), calendar.get(Calendar.MINUTE), calendar.get(Calendar.DAY_OF_MONTH));
+        quiz.setEndTime(new Date());
+        System.out.println(new Date().getTime() + "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
         quizRepository.save(quiz);
         quiz.setQuestions(null);
         quiz.setGroupQuiz(null);
@@ -257,10 +253,8 @@ public class QuizService {
         for (int i = 0; i < list1.size(); i++) {
 
             if (list1.get(i).getStatus().equals("not_start")) {
-                ZonedDateTime zdt = ZonedDateTime.of(list1.get(i).getExpiredTime(), ZoneId.systemDefault());
-                long expiredTime = zdt.toInstant().toEpochMilli();
                 long now = System.currentTimeMillis();
-                if (expiredTime < now) {
+                if (list1.get(i).getExpiredTime().getTime() < now) {
                     list1.get(i).setStatus("expired");
                     save(list1.get(i));
                 }
@@ -268,8 +262,8 @@ public class QuizService {
 //            list1.get(i).setQuestions(null);
 //            list1.get(i).setGroupQuiz(null);
             QuizPagingDto q = mapper.map(list.getContent().get(i), QuizPagingDto.class);
-        //    q.setGroupName(groupQuizRepository.getById(quizPaging.getGroupQuiz()).getDescription());
-           // q.setUser(restTemplateService.getName((int) list.getContent().get(i).getUserId()));
+            //    q.setGroupName(groupQuizRepository.getById(quizPaging.getGroupQuiz()).getDescription());
+            // q.setUser(restTemplateService.getName((int) list.getContent().get(i).getUserId()));
             q.setQuestions(null);
             quizDtoList.add(q);
 
@@ -292,16 +286,15 @@ public class QuizService {
     }
 
 
-
     public QuizPaging getListQuizPaging(QuizPaging quizPaging) {
 
         logger.info("receive info to get List Quiz");
         Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit(), Sort.by("id").descending());
         Page<Quiz> list = null;
         List<Long> listUserId = restTemplateService.getListUserId(quizPaging.getKeywords() == null || quizPaging.getKeywords().equals("") ? " " : quizPaging.getKeywords());
-        List<String> listUser=new ArrayList<>();
-        for (int i = 0; i <listUserId.size() ; i++) {
-            listUser.add(listUserId.get(i)+"");
+        List<String> listUser = new ArrayList<>();
+        for (int i = 0; i < listUserId.size(); i++) {
+            listUser.add(listUserId.get(i) + "");
         }
         list = quizRepository.filterWhereNoUserId(quizPaging.getStatus() == null || quizPaging.getStatus().trim().equals("") ? "%%" : quizPaging.getStatus(),
                 quizPaging.getCate() == null ? "" : quizPaging.getCate().toLowerCase(),
@@ -314,10 +307,8 @@ public class QuizService {
         for (int i = 0; i < list.getContent().size(); i++) {
 
             if (list.getContent().get(i).getStatus().equals("not_start")) {
-                ZonedDateTime zdt = ZonedDateTime.of(list.getContent().get(i).getExpiredTime(), ZoneId.systemDefault());
-                long expiredTime = zdt.toInstant().toEpochMilli();
                 long now = System.currentTimeMillis();
-                if (expiredTime < now) {
+                if (list.getContent().get(i).getExpiredTime().getTime() < now) {
                     list.getContent().get(i).setStatus("expired");
                     save(list.getContent().get(i));
                 }
@@ -341,9 +332,9 @@ public class QuizService {
         Pageable pageable = PageRequest.of(quizPaging.getPage() - 1, quizPaging.getLimit(), Sort.by("id").descending());
         Page<GroupQuiz> list = null;
         List<Long> listUserId = restTemplateService.getListUserId(quizPaging.getKeywords() == null || quizPaging.getKeywords().equals("") ? " " : quizPaging.getKeywords());
-        List<String> listUser=new ArrayList<>();
-        for (int i = 0; i <listUserId.size() ; i++) {
-            listUser.add(listUserId.get(i)+"");
+        List<String> listUser = new ArrayList<>();
+        for (int i = 0; i < listUserId.size(); i++) {
+            listUser.add(listUserId.get(i) + "");
         }
         list = groupQuizRepository.filter(
                 quizPaging.getCate().toLowerCase(),

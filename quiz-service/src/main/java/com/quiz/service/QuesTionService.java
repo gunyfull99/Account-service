@@ -3,10 +3,9 @@ package com.quiz.service;
 import com.quiz.Dto.*;
 import com.quiz.entity.*;
 import com.quiz.exception.ResourceBadRequestException;
-import com.quiz.repository.*;
+import com.quiz.service.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -16,7 +15,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,11 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 
 @Service
 @Transactional
@@ -197,11 +193,12 @@ public class QuesTionService {
     public QuestionPaging getQuestionPaging(QuestionPaging questionPaging) {
         logger.info("Receive info of question {} to edit", questionPaging.getCateId());
         Pageable pageable = PageRequest.of(questionPaging.getPage() - 1, questionPaging.getLimit(), Sort.by("id").descending());
-
-        Page<Question> questionEntity = questionRepository.filter(questionPaging.getCateId()==null ? null : questionPaging.getCateId()
-                ,questionPaging.getSearch(),questionPaging.getTypeId()==null ? null : questionPaging.getTypeId(),pageable);
+        String search = questionPaging.getSearch() == null?"":questionPaging.getSearch().trim().toLowerCase();
+        Page<Question> questionEntity = questionRepository.filter(questionPaging.getCateId()
+                ,search,questionPaging.getTypeId(),pageable);
 
         List<QuestDTO> questionRequests = new ArrayList<>();
+
 
         for (Question question : questionEntity.getContent()) {
             ModelMapper mapper = new ModelMapper();
@@ -271,10 +268,8 @@ public class QuesTionService {
             quiz.setStatus("doing");
             quizService.save(quiz);
         }else if(isView && quiz.getStatus().equals("not_start")){
-            ZonedDateTime zdt = ZonedDateTime.of(quiz.getExpiredTime(), ZoneId.systemDefault());
-            long expiredTime = zdt.toInstant().toEpochMilli();
             long now = System.currentTimeMillis();
-            if(expiredTime<now){
+            if(quiz.getExpiredTime().getTime()<now){
                 quiz.setStatus("expired");
                 quizService.save(quiz);
             }

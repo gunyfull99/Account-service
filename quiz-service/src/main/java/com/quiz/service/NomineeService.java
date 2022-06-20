@@ -3,7 +3,7 @@ package com.quiz.service;
 import com.quiz.Dto.NomineeEditRequest;
 import com.quiz.Dto.NomineeRequest;
 import com.quiz.entity.Nominee;
-import com.quiz.repository.NomineeRepository;
+import com.quiz.service.repository.NomineeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

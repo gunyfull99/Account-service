@@ -1,4 +1,4 @@
-package com.quiz.repository;
+package com.quiz.service.repository;
 
 import com.quiz.entity.Category;
 import com.quiz.entity.GroupQuiz;
@@ -11,12 +11,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 @Repository
+@Transactional
 public interface GroupQuizRepository extends JpaRepository<GroupQuiz,Long> {
 
     @Query("select gq from GroupQuiz gq where (:cate is null OR LOWER(gq.cate) LIKE %:cate%)" +

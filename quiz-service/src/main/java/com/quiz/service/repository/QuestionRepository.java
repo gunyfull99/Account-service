@@ -1,7 +1,8 @@
-package com.quiz.repository;
+package com.quiz.service.repository;
 
 import com.quiz.entity.GroupQuiz;
 import com.quiz.entity.Question;
+import com.quiz.entity.QuestionChoice;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,28 +16,31 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public interface QuestionRepository extends JpaRepository<Question,Long> {
+public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     @Query(value = "select * from questions where cate_id = :id and type_id != 3 and is_active=true", nativeQuery = true)
-    List<Question> getAllQuestionByCateToCreateQuiz(@Param("id") long id );
+    List<Question> getAllQuestionByCateToCreateQuiz(@Param("id") long id);
 
 
 //    SELECT q.id,q.content FROM  questions as q  join question_choice as qc
 //    ON q.id=qc.question_id group by q.id
 
-    @Query("SELECT q FROM  Question q  " +
-         //   "ON q.id=qc.question.id group by q.id  " +
-            "WHERE  "+
-            "  ((:search is null OR LOWER(q.content) LIKE %:search%) " +
-            ") AND (:cateId is null OR (q.category.id) = :cateId) " +
-            "AND (:typeId is null OR (q.questionType.id) = :typeId)")
+    @Query("SELECT distinct(q) FROM  Question q  " +
+            " left join QuestionChoice qc on q.id = qc.question.id  " +
+            "WHERE  " +
+            "(:search is null OR LOWER(q.content) LIKE %:search%  "
+            + " OR LOWER(qc.name) LIKE %:search%"
+            + ")"
+            + "AND (:cateId is null OR (q.category.id) = :cateId) "
+            + "AND (:typeId is null OR (q.questionType.id) = :typeId)"
+    )
     Page<Question> filter(@Param("cateId") Long cateId,
-                           @Param("search") String search,
-                           @Param("typeId") Long typeId,
-                           Pageable pageable);
+                          @Param("search") String search,
+                          @Param("typeId") Long typeId,
+                          Pageable pageable);
 
     @Query(value = "select * from questions where cate_id = :id and type_id = 3 and is_active=true", nativeQuery = true)
-    List<Question> getAllQuestionText(@Param("id") long id );
+    List<Question> getAllQuestionText(@Param("id") long id);
 
     @Query(value = "select * from questions where is_active=true", nativeQuery = true)
     List<Question> getAllQuestion();
@@ -59,5 +63,6 @@ public interface QuestionRepository extends JpaRepository<Question,Long> {
     void openQuestion(@Param("ques") Long ques);
 
     Question findByContent(String content);
+
     List<Question> findByCategory_Name(String name);
 }

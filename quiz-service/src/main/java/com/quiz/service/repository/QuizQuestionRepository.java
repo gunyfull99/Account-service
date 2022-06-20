@@ -1,4 +1,4 @@
-package com.quiz.repository;
+package com.quiz.service.repository;
 
 import com.quiz.entity.QuizQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;
