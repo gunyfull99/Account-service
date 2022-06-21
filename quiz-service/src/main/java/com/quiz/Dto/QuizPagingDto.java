@@ -22,9 +22,9 @@ public class QuizPagingDto {
     private int quizTime;
     private AccountDto user;
     private Date createDate;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private LocalDateTime expiredTime;
+    private Date startTime;
+    private Date endTime;
+    private Date expiredTime;
     private String status;
     private int numberQuestions;
     private String score;

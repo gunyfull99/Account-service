@@ -32,6 +32,7 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
             + " OR LOWER(qc.name) LIKE %:search%"
             + ")"
             + "AND (:cateId is null OR (q.category.id) = :cateId) "
+            + "AND ((q.isActive) = true)  "
             + "AND (:typeId is null OR (q.questionType.id) = :typeId)"
     )
     Page<Question> filter(@Param("cateId") Long cateId,
