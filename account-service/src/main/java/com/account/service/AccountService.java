@@ -25,6 +25,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.time.Period;
 import java.util.*;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
@@ -193,6 +194,10 @@ public class AccountService {
 
     public BaseResponse createAccount(CreateAccountDto a) {
         logger.info("save user {}", a.getFullName());
+        if (a.getBirthDay().getTime() >= System.currentTimeMillis()) {
+            return new BaseResponse(400, "Ngày sinh không hợp lệ ");
+        }
+
         a.setPassword(passwordEncoder.encode(a.getPassword()));
         Set<Roles> roles = new HashSet<>();
         roles.add(roleRepository.findById(a.getRole()).get());
@@ -201,6 +206,7 @@ public class AccountService {
         acc.setCompany(companyRepository.findComPanyById(a.getCompany()));
         acc.setRoles(roles);
         acc.setActive(true);
+        acc.setUsername(a.getUsername().toLowerCase());
         acc = accountRepository.save(acc);
         List<Permission> listPer = permissionRepository.findAll();
         for (int i = 0; i < listPer.size(); i++) {
@@ -218,7 +224,6 @@ public class AccountService {
 
     public Account convertAccount(Account acc, AccountDto a) {
         acc.setPhone(a.getPhone());
-        acc.setActive(a.isActive());
         acc.setAddress(a.getAddress());
         acc.setBirthDay(a.getBirthDay());
         acc.setUserType(a.getUserType());
@@ -275,7 +280,7 @@ public class AccountService {
             rp.setCan_read("false");
             addPer2Role(rp);
         }
-        return new BaseResponse(200,"Create role " + role.getName() + " successful") ;
+        return new BaseResponse(200, "Create role " + role.getName() + " successful");
     }
 
     public Permission savePermission(Permission permission) {
@@ -456,7 +461,7 @@ public class AccountService {
         canCreate = rolePermission.getCan_create() == null ? canCreate = rp.getCan_create() : rolePermission.getCan_create();
 
         rolePermissionRepository.updatePerInRole(canCreate, canUpdate, canRead, rolePermission.getRoles_id(), rolePermission.getPermissions_id());
-        return new BaseResponse(200,"Update success!");
+        return new BaseResponse(200, "Update success!");
     }
 
     public BaseResponse updatePerInUser(AccountPermission accountPermission) {
@@ -470,7 +475,7 @@ public class AccountService {
         canUpdate = accountPermission.getCan_update() == null ? canCreate = rp.getCan_update() : accountPermission.getCan_update();
         canCreate = accountPermission.getCan_create() == null ? canCreate = rp.getCan_create() : accountPermission.getCan_create();
         accountPermissionRepository.updatePerInUser(canCreate, canUpdate, canRead, accountPermission.getAccount_id(), accountPermission.getPermissions_id());
-        return new BaseResponse(200,"Update success!") ;
+        return new BaseResponse(200, "Update success!");
     }
 
     public AccountDto getAccByUsername(String username) {
@@ -507,8 +512,8 @@ public class AccountService {
                     accountPaging.getUserType(),
                     pageable);
         } else if (accountPaging.getUserType() == null || accountPaging.getUserType().trim().equals("")) {
-            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesId(accountPaging.getSearch(),
-                    Long.parseLong(accountPaging.getRole()),
+            a = accountRepository.findAllByFullNameContainingIgnoreCaseAndRolesIdAndIsActive(accountPaging.getSearch(),
+                    Long.parseLong(accountPaging.getRole()), true,
                     pageable);
         }
         return a;
@@ -551,10 +556,10 @@ public class AccountService {
             sendHtmlMail(dataMail, "client");
             a.setPassword(newPass);
             AccountDto account = saveUserWithPassword(a);
-            return new BaseResponse(200,"Gửi mail thành công") ;
+            return new BaseResponse(200, "Gửi mail thành công");
         } catch (MessagingException exp) {
             exp.printStackTrace();
         }
-        return  new BaseResponse(200,"Gửi mail thất bại");
+        return new BaseResponse(200, "Gửi mail thất bại");
     }
 }

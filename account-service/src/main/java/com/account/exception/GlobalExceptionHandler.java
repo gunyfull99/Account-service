@@ -17,10 +17,9 @@ import java.util.Date;
 public class GlobalExceptionHandler {
 
 
-
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> resourceNotFoundException(ResourceNotFoundException ex) {
-        BaseResponse baseResponse= new BaseResponse(Integer.parseInt(ex.getMessage().split("@")[0]),ex.getMessage().split("@")[1]);
+        BaseResponse baseResponse = new BaseResponse(Integer.parseInt(ex.getMessage().split("@")[0]), ex.getMessage().split("@")[1]);
         return new ResponseEntity<>(baseResponse, HttpStatus.NOT_FOUND);
 
     }
@@ -46,16 +45,16 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ResourceBadRequestException.class)
-    public ResponseEntity<?> resourceBadRequestException(ResourceBadRequestException ex ) {
-        BaseResponse baseResponse= new BaseResponse(Integer.parseInt(ex.getMessage().split("@")[0]),ex.getMessage().split("@")[1]);
+    public ResponseEntity<?> resourceBadRequestException(ResourceBadRequestException ex) {
+        BaseResponse baseResponse = new BaseResponse(Integer.parseInt(ex.getMessage().split("@")[0]), ex.getMessage().split("@")[1]);
         return new ResponseEntity<>(baseResponse, HttpStatus.BAD_REQUEST);
 
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> customValidationErrorHanding(MethodArgumentNotValidException exception){
-        BaseResponse baseResponse= new BaseResponse(400,exception.getBindingResult()
+    public ResponseEntity<?> customValidationErrorHanding(MethodArgumentNotValidException exception) {
+        BaseResponse baseResponse = new BaseResponse(400, exception.getBindingResult()
                 .getFieldError().getDefaultMessage());
-        return  new ResponseEntity<>(baseResponse,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(baseResponse, HttpStatus.BAD_REQUEST);
     }
 }

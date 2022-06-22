@@ -52,7 +52,7 @@ public class CompanyController {
     private CompanyService companyService;
 
     @Autowired
-    private  FileService fileService;
+    private FileService fileService;
 
     @Autowired
     private ResponseError r;
@@ -114,10 +114,11 @@ public class CompanyController {
 //        byte[] bytes = image.getBytes();
 //        String base64 = Base64.getEncoder().encodeToString(bytes);
         company.setLogo(fileService.storeFile(image).toString());
-       // fos.close();
+        // fos.close();
 
         return new ResponseEntity<Company>(companyService.save(company), HttpStatus.CREATED);
     }
+
     @GetMapping("/getImage/{filename}")
     public ResponseEntity<?> downloadFile(@PathVariable("filename") String filename, HttpServletRequest request) throws IOException {
         Resource fileResource = fileService.getFile(filename);
@@ -133,7 +134,7 @@ public class CompanyController {
         }
         byte[] image = new byte[0];
         try {
-            image = FileUtils.readFileToByteArray(new File("uploads/"+filename));
+            image = FileUtils.readFileToByteArray(new File("uploads/" + filename));
         } catch (IOException e) {
             e.printStackTrace();
         }

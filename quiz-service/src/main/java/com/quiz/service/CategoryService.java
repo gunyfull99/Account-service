@@ -26,8 +26,8 @@ public class CategoryService {
 
     public BaseResponse createCategory(CategoryRequest category) {
         logger.info("Receive infor of category {} to create", category.getName());
-        if(category.getName()==null || category.getName().trim().equals("")){
-            return new BaseResponse(400,"Chủ đề không được để trống ");
+        if (category.getName() == null || category.getName().trim().equals("")) {
+            return new BaseResponse(400, "Chủ đề không được để trống ");
         }
         if (categoryRepository.findByNameIgnoreCase(category.getName()) != null) {
             logger.error("this category was existed !!!");
@@ -37,7 +37,7 @@ public class CategoryService {
         categoryEntity.setName(category.getName());
         categoryEntity.setActive(category.isActive());
         categoryRepository.save(categoryEntity);
-        return new BaseResponse(200,"Tạo chủ đề thành công ");
+        return new BaseResponse(200, "Tạo chủ đề thành công ");
     }
 
 

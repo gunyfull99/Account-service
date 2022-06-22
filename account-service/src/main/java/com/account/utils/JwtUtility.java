@@ -25,7 +25,7 @@ public class JwtUtility implements Serializable {
 
     private static final long serialVersionUID = -2550185165626007488L;
 
-    public static final long JWT_TOKEN_VALIDITY = 10 * 60 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 10 * 60 * 60 * 1000;
 
     @Autowired
     private ResponseError r;
@@ -49,7 +49,7 @@ public class JwtUtility implements Serializable {
 
     //for retrieveing any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) throws ResourceForbiddenRequestException {
-            return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
     //check if the token has expired
@@ -61,7 +61,7 @@ public class JwtUtility implements Serializable {
     //generate token for user
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role",userDetails.getAuthorities());
+        claims.put("role", userDetails.getAuthorities());
         return doGenerateToken(claims, userDetails.getUsername());
     }
 

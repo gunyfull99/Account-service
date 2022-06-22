@@ -19,7 +19,6 @@ public class RestTemplateService {
     private String libraryServiceHost;
 
 
-
     @Autowired
     private Decode decode;
 
@@ -62,6 +61,7 @@ public class RestTemplateService {
         AccountDto user = restTemplate.getForObject(uriBuilder.toUriString() + detailUser, AccountDto.class, params);
         return user;
     }
+
     public List<Long> getListUserId(String name) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -75,43 +75,46 @@ public class RestTemplateService {
         List<Long> list = restTemplate.getForObject(uriBuilder.toUriString() + listUserId, List.class, params);
         return list;
     }
-    public boolean getCanRead(long per,String token) {
+
+    public boolean getCanRead(long per, String token) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<Object> entity = new HttpEntity<Object>(headers);
         UriComponentsBuilder uriBuilder = UriComponentsBuilder
                 .fromUriString(libraryServiceHost);
-        String username= decode.getUsername(token);
+        String username = decode.getUsername(token);
         Map<String, String> params = new HashMap<>();
         params.put("username", username);
-        params.put("perid", per +"");
+        params.put("perid", per + "");
         boolean canread = restTemplate.getForObject(uriBuilder.toUriString() + canRead, Boolean.class, params);
         return canread;
     }
-    public boolean getCanUpdate(long per,String token) {
+
+    public boolean getCanUpdate(long per, String token) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<Object> entity = new HttpEntity<Object>(headers);
         UriComponentsBuilder uriBuilder = UriComponentsBuilder
                 .fromUriString(libraryServiceHost);
-        String username= decode.getUsername(token);
+        String username = decode.getUsername(token);
         Map<String, String> params = new HashMap<>();
         params.put("username", username);
-        params.put("perid", per +"");
+        params.put("perid", per + "");
         boolean canupdate = restTemplate.getForObject(uriBuilder.toUriString() + canUpdate, Boolean.class, params);
         return canupdate;
     }
-    public boolean getCanCreate(long per,String token) {
+
+    public boolean getCanCreate(long per, String token) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<Object> entity = new HttpEntity<Object>(headers);
         UriComponentsBuilder uriBuilder = UriComponentsBuilder
                 .fromUriString(libraryServiceHost);
-        String username= decode.getUsername(token);
+        String username = decode.getUsername(token);
         Map<String, String> params = new HashMap<>();
         params.put("username", username);
-        params.put("perid", per +"");
-        boolean cancreate = restTemplate.getForObject(uriBuilder.toUriString() + canCreate,Boolean.class, params);
+        params.put("perid", per + "");
+        boolean cancreate = restTemplate.getForObject(uriBuilder.toUriString() + canCreate, Boolean.class, params);
         return cancreate;
     }
 }

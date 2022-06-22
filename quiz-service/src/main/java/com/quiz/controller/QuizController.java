@@ -58,19 +58,18 @@ public class QuizController {
     }
 
 
-
     //http://localhost:8080/quiz/editquestion
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PutMapping("/editquestion")
     public BaseResponse editQuestion(@RequestBody QuestionEditRequest request
-       //     , @RequestHeader("Authorization") String token
+                                     //     , @RequestHeader("Authorization") String token
     ) {
 //
 //        if (templateService.getCanUpdate(perQuiz, token) == false) {
 //            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
 //        }
         quesTionService.editQuestion(request);
-      return  new BaseResponse(200,"Update question thành công");
+        return new BaseResponse(200, "Update question thành công");
     }
 
     //http://localhost:8080/quiz/blockquestion
@@ -92,11 +91,11 @@ public class QuizController {
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @PostMapping("/getquestionpaging")
     public QuestionPaging getQuestionByCategory(@RequestBody QuestionPaging questionPaging
-           //, @RequestHeader("Authorization") String token
+                                                //, @RequestHeader("Authorization") String token
     ) {
-      //  if (templateService.getCanRead(perQuestion, token) == false) {
-         //   throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
-       // }
+        //  if (templateService.getCanRead(perQuestion, token) == false) {
+        //   throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
+        // }
         return quesTionService.getQuestionPaging(questionPaging);
     }
 
@@ -116,7 +115,7 @@ public class QuizController {
     @CrossOrigin(origins = "http://localhost:8080/quiz")
     @GetMapping("/getAllQuestion")
     public List<QuestionRequest> getAllQuestion(
-          //  @RequestHeader("Authorization") String token
+            //  @RequestHeader("Authorization") String token
     ) {
 //        if (templateService.getCanRead(perQuestion, token) == false) {
 //            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
@@ -129,7 +128,7 @@ public class QuizController {
     @GetMapping("/getAllQuestionBlock")
     public List<QuestionRequest> getAllQuestionBlock
     (
-    // @RequestHeader("Authorization") String token
+            // @RequestHeader("Authorization") String token
     ) {
 //        if (templateService.getCanRead(perQuestion, token) == false) {
 //            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
@@ -168,8 +167,7 @@ public class QuizController {
     @GetMapping("/getAllQuestionType")
     public List<QuestionType> getAllQuestionType(
 //            @RequestHeader("Authorization") String token
-   )
-    {
+    ) {
 //        if (templateService.getCanRead(perQuestion, token) == false) {
 //            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
 //        }
@@ -220,17 +218,17 @@ public class QuizController {
     }
 
     //http://localhost:8080/quiz/nominee/list
-    @CrossOrigin(origins = "http://localhost:8080/quiz")
-    @GetMapping("/nominee/list")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Nominee.class),
-            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
-            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
-            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
-            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
-    public List<Nominee> getAllNominee() {
-
-        return nomineeService.getAll();
-    }
+//    @CrossOrigin(origins = "http://localhost:8080/quiz")
+//    @GetMapping("/nominee/list")
+//    @ApiResponses(value = {@ApiResponse(code = 200, message = "get success", response = Nominee.class),
+//            @ApiResponse(code = 400, message = "Bad Request", response = BaseResponse.class),
+//            @ApiResponse(code = 401, message = "Unauthorization", response = BaseResponse.class),
+//            @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
+//            @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
+//    public List<Nominee> getAllNominee() {
+//
+//        return nomineeService.getAll();
+//    }
 
     // Create quiz
     // http://localhost:8080/quiz
@@ -242,7 +240,7 @@ public class QuizController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public ResponseEntity<BaseResponse> createQuiz(@Valid @RequestBody CreateQuizForm form
-                                             //   , @RequestHeader("Authorization") String token
+                                                   //   , @RequestHeader("Authorization") String token
     ) throws ResourceBadRequestException, ResourceForbiddenRequestException {
 //        if (templateService.getCanCreate(perQuiz, token) == false) {
 //            throw new ResourceForbiddenRequestException(new BaseResponse(r.forbidden, "You can't access "));
@@ -339,7 +337,7 @@ public class QuizController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public ResponseEntity<List<QuestDTO>> getListQuestionByQuizId(@PathVariable("qizid") long id) throws ResourceBadRequestException {
-        return ResponseEntity.ok().body(quesTionService.getListQuestionByQuizId(id,false));
+        return ResponseEntity.ok().body(quesTionService.getListQuestionByQuizId(id, false));
     }
 
     // view quiz
@@ -352,7 +350,7 @@ public class QuizController {
             @ApiResponse(code = 403, message = "Forbidden", response = BaseResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = BaseResponse.class)})
     public ResponseEntity<List<QuestDTO>> viewQuizHaveQuestion(@PathVariable("qizid") long id) throws ResourceBadRequestException {
-        return ResponseEntity.ok().body(quesTionService.getListQuestionByQuizId(id,true));
+        return ResponseEntity.ok().body(quesTionService.getListQuestionByQuizId(id, true));
     }
 
 

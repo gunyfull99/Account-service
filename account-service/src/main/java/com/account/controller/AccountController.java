@@ -101,7 +101,7 @@ public class AccountController {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            jwtRequest.getUsername(),
+                            jwtRequest.getUsername().toLowerCase(),
                             jwtRequest.getPassword()
                     )
             );
@@ -110,11 +110,11 @@ public class AccountController {
         }
 
         final UserDetails userDetails
-                = myUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
+                = myUserDetailsService.loadUserByUsername(jwtRequest.getUsername().toLowerCase());
 
         final String token =
                 jwtUtility.generateToken(userDetails);
-        AccountDto a = accountService.getAccByUsername(jwtRequest.getUsername());
+        AccountDto a = accountService.getAccByUsername(jwtRequest.getUsername().toLowerCase());
         if (a.isActive() == false) {
             throw new ResourceBadRequestException(new BaseResponse(400, "Tài khoản bị khóa"));
         }

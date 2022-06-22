@@ -217,36 +217,6 @@ public class QuesTionService {
         return new QuestionPaging((int) questionEntity.getTotalElements(), questionRequests, questionPaging.getPage(), questionPaging.getLimit(), questionPaging.getCateId(), questionPaging.getSearch());
     }
 
-//    public QuestionPaging getQuestionByQuestionType(QuestionPaging questionPaging) {
-//        logger.info("Receive info of question {} to edit", questionPaging.getCateId());
-//        Pageable pageable = PageRequest.of(questionPaging.getPage() - 1, questionPaging.getLimit());
-//        Page<Question> questionEntity = null;
-//        if (questionPaging.getSearch() == null || questionPaging.getSearch().trim().equals("")) {
-//            questionEntity = questionRepository.findAllByQuestionTypeId(questionPaging.getTypeId().get(), pageable);
-//        } else {
-//            questionEntity = questionRepository.findAllByQuestionTypeIdAndContentContainingIgnoreCaseAndIsActiveOrQuestionChoiceNameContainingIgnoreCase(questionPaging.getTypeId(),
-//                    questionPaging.getSearch(),true,questionPaging.getSearch(),
-//                    pageable);
-//        }
-//        List<QuestDTO> questionRequests = new ArrayList<>();
-//
-//        for (Question question : questionEntity.getContent()) {
-//            ModelMapper mapper = new ModelMapper();
-//            QuestDTO request = mapper.map(question, QuestDTO.class);
-//            List<QuestionChoiceDTO> questionChoiceDTOS = new ArrayList<>();
-//            for (QuestionChoice questionChoice : question.getQuestionChoice()) {
-//                ModelMapper mapper1 = new ModelMapper();
-//                QuestionChoiceDTO questionChoiceDTO = mapper1.map(questionChoice, QuestionChoiceDTO.class);
-//                questionChoiceDTOS.add(questionChoiceDTO);
-//            }
-//            request.setQuestions_id(question.getId());
-//            request.setQuestionChoiceDTOs(questionChoiceDTOS);
-//            request.setQuestionTime(question.getQuestionTime());
-//            questionRequests.add(request);
-//        }
-//        return new QuestionPaging((int) questionEntity.getTotalElements(), questionRequests, questionPaging.getPage(), questionPaging.getLimit(), questionPaging.getSearch(), questionPaging.getTypeId());
-//    }
-
     public List<QuestDTO> getListQuestionByQuizId(long id, boolean isView) {
         logger.info("Receive id to get List Question By Quiz Id", id);
         boolean view = isView;
@@ -256,8 +226,13 @@ public class QuesTionService {
             logger.error("this list question is not exist !!!");
             throw new RuntimeException("List question không tồn tại !!!");
         }
+
         List<Question> questionEntity = new ArrayList<>();
         Quiz quiz = quizRepository.findById(id).get();
+        if (quiz.getStartTime().getTime() > System.currentTimeMillis() && isView == false) {
+            throw new ResourceBadRequestException(new BaseResponse(400, "Chưa đến thời gian làm bài"));
+        }
+
         long timeStart = quiz.getUserStartQuiz();
 
 
@@ -438,6 +413,9 @@ public class QuesTionService {
                             case 1:
                                 String nameCate = nextCell.getStringCellValue();
                                 category = categoryRepository.findByNameIgnoreCase(nameCate);
+                                if (category == null) {
+                                    throw new ResourceBadRequestException(new BaseResponse(400, "Không tìm thấy chủ đề "));
+                                }
                                 break;
                             case 2:
                                 content = nextCell.getStringCellValue();

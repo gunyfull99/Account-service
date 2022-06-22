@@ -100,6 +100,11 @@ public class QuizService {
         if (expiredTime - startTime < form.getQuiz().getQuizTime() * 60 * 1000) {
             return new BaseResponse(400, "Thời gian làm bài vượt quá hạn làm bài.");
         }
+        if (startTime < new Date().getTime()) {
+            return new BaseResponse(400, "Thời gian làm bắt đầu làm bài không hợp lệ .");
+
+        }
+
         GroupQuiz groupQuiz = new GroupQuiz();
         groupQuiz.setCate(cate);
         groupQuiz.setCreator(form.getQuiz().getCreator());
@@ -115,14 +120,14 @@ public class QuizService {
             List<Question> q = new ArrayList<>();
             for (int i = 0; i < form.getTopics().size(); i++) {
                 String getCateName = categoryRepository.getById(form.getTopics().get(i).getCate()).getName().toUpperCase();
-                cate = i == 0 ? getCateName : cate + "," + getCateName;
+                cate = i == 0 ? getCateName : cate + " , " + getCateName;
                 List<Question> hasTag1 = quesTionService.getAllQuestionByCate(form.getTopics().get(i).getCate());
                 Collections.shuffle(hasTag1);
                 numberQuestion += form.getTopics().get(i).getQuantity();
                 if (form.getTopics().get(i).getQuantity() > hasTag1.size()) {
-                    Long gId=groupQuiz.getId();
+                    Long gId = groupQuiz.getId();
                     groupQuizRepository.deleteGroupQuiz(gId);
-                    return new BaseResponse(400, "Không đủ câu hỏi cho chủ đề " + i );
+                    return new BaseResponse(400, "Không đủ câu hỏi cho chủ đề " + i);
                 }
                 for (int j = 0; j < form.getTopics().get(i).getQuantity(); j++) {
                     q.add(hasTag1.get(j));
@@ -337,8 +342,8 @@ public class QuizService {
             listUser.add(listUserId.get(i) + "");
         }
         list = groupQuizRepository.filter(
-                quizPaging.getCate()==null?"":quizPaging.getCate().trim().toLowerCase(),
-                quizPaging.getKeywords()==null?"":quizPaging.getKeywords().trim().toLowerCase(),
+                quizPaging.getCate() == null ? "" : quizPaging.getCate().trim().toLowerCase(),
+                quizPaging.getKeywords() == null ? "" : quizPaging.getKeywords().trim().toLowerCase(),
                 listUser,
                 quizPaging.getCreateDate(),
                 quizPaging.getStartTime(),

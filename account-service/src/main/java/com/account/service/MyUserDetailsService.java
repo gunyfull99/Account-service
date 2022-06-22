@@ -19,12 +19,13 @@ import java.util.Collection;
 public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws ResourceBadRequestException {
         Account a = accountRepository.findByUsername(username);
         if (a == null) {
 
-            throw new ResourceBadRequestException(new BaseResponse(400,"Không tìm thấy user"));
+            throw new ResourceBadRequestException(new BaseResponse(400, "Không tìm thấy user"));
         } else {
 
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
